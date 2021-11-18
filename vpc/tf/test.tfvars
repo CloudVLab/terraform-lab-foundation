@@ -1,0 +1,5 @@
+gcp_project_id = "qwiklabs-resources"
+gcp_region     = "us-central1"
+gcp_zone       = "us-central1-a"
+network_name   = "test-vpc"
+username       = "test-suite@qwiklabs.com"
