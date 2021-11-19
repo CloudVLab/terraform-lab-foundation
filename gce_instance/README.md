@@ -3,7 +3,7 @@
 | Branch | Description | Status |
 |--------|-------------|--------|
 | Main   | Latest version used for labs | ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=2585d58a-918e-4bf1-b4de-e1c3a2ed949c) |
-| Test   | Last Execution QA process    | ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=771818d6-a680-4df5-bb98-43b5e034245b) |
+| Test   | Last Execution QA process    | ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=878a4ae2-099c-4458-a575-f0be99a621aa) |
 
 Create a virtual machine based on a Terraform configuration
 
