@@ -23,17 +23,19 @@ variable "gcp_zone" {
 ## Output variable definitions - Override from Custom Properties 
 ## --------------------------------------------------------------
 
-# Expected custom_properties key to be declared in `qwiklabs.yaml` 
 # with the same name for any lab that uses this script.
-variable "vm_name" {
-  type        = string
-  description = "GCE VM instance name."
-}
-
-# with the same name for any lab that uses this script.
-variable "username" {
+variable "gcp_username" {
   type        = string
   description = "Name of Qwiklabs user"
+  default     = "qwiklabs-student" 
+}
+
+# Expected custom_properties key to be declared in `qwiklabs.yaml` 
+# with the same name for any lab that uses this script.
+variable "gce_name" {
+  type        = string
+  description = "GCE VM instance name."
+  default     = "tf-test-gce" 
 }
 
 
@@ -42,51 +44,50 @@ variable "username" {
 ## --------------------------------------------------------------
 
 # Custom properties with defaults 
-variable "vm_region" {
+variable "gce_region" {
   type        = string 
   description = "Region to create resources in."
   default     = "us-central1" 
 }
 
 # Custom properties with defaults 
-variable "vm_zone" {
+variable "gce_zone" {
   type        = string 
   description = "Zone to create resources in."
   default     = "us-central1-f" 
 }
 
 # Custom properties with defaults 
-variable "machine_type" {
+variable "gce_machine_type" {
   type        = string 
   description = "Machine type to use for GCE"
   default     = "n1-standard-1" 
 }
 
 # Custom properties with defaults 
-variable "vm_tags" {
+variable "gce_tags" {
   type        = list(string)
   description = "GCE virtual machine tags"
   default     = ["lab-vm"]
 }
 
 # Custom properties with defaults 
-variable "machine_image" {
+variable "gce_machine_image" {
   type        = string
   description = "GCE virtual machine image"
   default     = "debian-cloud/debian-10"
 }
 
 # Custom properties with defaults 
-variable "machine_network" {
+variable "gce_machine_network" {
   type        = string
   description = "GCE virtual machine network"
   default     = "default"
 }
 
 # Custom properties with defaults 
-variable "vm_scopes" {
+variable "gce_scopes" {
   type        = list(string)
   description = "GCE service account scope"
   default     = ["cloud-platform"]
 }
-

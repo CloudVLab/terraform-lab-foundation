@@ -1,13 +1,13 @@
 ## --------------------------------------------------------------
-## Custom variable defintions
+## Custom variable definitions
 ## --------------------------------------------------------------
 
-output "external_ip" {
-  value       = "${google_compute_instance.default.network_interface.0.access_config.0.nat_ip}"
+output "gce_external_ip" {
+  value       = "${google_compute_instance.gce_virtual_machine.network_interface.0.access_config.0.nat_ip}"
   description = "External IP address of GCE instance"
 }
 
 output "gce_instance_name" {
-  value       = "${var.vm_name}"
+  value       = "${var.gce_name}"
   description = "Name of the GCE instance"
 }
