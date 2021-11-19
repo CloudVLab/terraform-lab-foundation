@@ -17,6 +17,6 @@ username       = "name@domain.com"
 
 ## Test Status
 
-| Trigger | Status | Description |
-|---------|------|--------|
-| terraform-gce | ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=2585d58a-918e-4bf1-b4de-e1c3a2ed949c) | Test Terraform script |
+| Trigger | State  | Description |
+|---------|--------|-----------------------|
+| gce     | Stable | Provision a single Google Compute Engine instance |
