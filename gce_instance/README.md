@@ -2,10 +2,10 @@
 
 ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=2585d58a-918e-4bf1-b4de-e1c3a2ed949c)
 
-Create a VM based on the Terraform configuration in the main.tf file
+Create a virtual machine based on a Terraform configuration
 
 ## Configuration
-Qwiklabs requires some values to be defined as part of the provisioning process. 
+__NOTE:__ Qwiklabs requires some values to be defined as part of the provisioning process. 
 
 ```
 gcp_project_id = "my-gcp-project"
@@ -19,4 +19,4 @@ username       = "name@domain.com"
 
 | Trigger | State  | Description |
 |---------|--------|-----------------------|
-| gce     | Stable | Provision a single Google Compute Engine instance |
+| GCE | Stable | Provision a single Google Compute Engine instance |
