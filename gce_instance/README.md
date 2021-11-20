@@ -21,6 +21,7 @@ username       = "name@domain.com"
 ## Stable
 
 ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=2585d58a-918e-4bf1-b4de-e1c3a2ed949c)
+
 The `main` branch contains the most stable revision of the Terraform script. 
 
 __Merging directly to the main branch is prohibited.__
@@ -29,6 +30,7 @@ __Merging directly to the main branch is prohibited.__
 ## Staging
 
 ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=878a4ae2-099c-4458-a575-f0be99a621aa)
+
 Commits to the are automatically submitted for integration tests.
 Only code passing integration tests should be submitted for merging.
 Once code is ready for review, please raise a PR for code approval and merge.
