@@ -1,9 +1,6 @@
 # Terraform: Google Compute Engine
 
-| Branch | Description | Status |
-|--------|-------------|--------|
-| Main   | Latest version used for labs | ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=2585d58a-918e-4bf1-b4de-e1c3a2ed949c) |
-| Test   | Last Execution QA process    | ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=878a4ae2-099c-4458-a575-f0be99a621aa) |
+![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=2585d58a-918e-4bf1-b4de-e1c3a2ed949c) |
 
 Create a virtual machine based on a Terraform configuration
 
@@ -18,13 +15,28 @@ vm_name        = "tester-vm"
 username       = "name@domain.com"
 ```
 
-## Test Status
+## Stable
 
-Ensure commits include the word `test` as part of the branch name to automatically initiate the QA proces.
-Tests are automatically applied to any commits based on the `Test` branch.
-Merging to the main branch is prohibited.
+| Channel | Description | Status |
+|---------|-------------|--------|
+| Stable  | Production environment used for labs | ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=2585d58a-918e-4bf1-b4de-e1c3a2ed949c) |
 
-Please use the `main` branch to access the most stable Terraform script. 
+The `main` branch contains the most stable revision of the Terraform script. 
+__Merging directly to the main branch is prohibited.__
+
+## Staging
+
+| Channel | Description | Status |
+|---------|-------------|--------|
+| Staging | Development/integration testing environment used for QA process    | ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=878a4ae2-099c-4458-a575-f0be99a621aa) |
+
+Commits to the are automatically submitted for integration tests.
+Only code passing integration tests should be submitted for merging.
+Once code is ready for review, please raise a PR for code approval and merge.
+
+## Commits 
+
+Ensure commits include the word `test` as part of the branch name to initiate the automated QA proces.
 
 | Trigger | State  | Description |
 |---------|--------|-----------------------|
