@@ -33,7 +33,15 @@ username       = "name@domain.com"
 
 ## Accessing Output Values 
 
-TBC
+The external IP assigned to the GCE instance
+```
+gce_external_ip
+```
+
+The name of the GCE instance
+```
+gce_instance_name
+```
 
 ## Adding a Commit 
 
