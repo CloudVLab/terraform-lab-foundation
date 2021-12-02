@@ -11,7 +11,7 @@ Terraform Lab Foundation comprises of a number of parts:
 ## Building Blocks 
 Example configurations that can be used with the Qwiklabs Platform
 
-- [x] GCE
+- [x] [GCE](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/gce_instance/README.md)
 - [ ] GKE
 - [ ] Cloud Run
 - [ ] Vertex AI Notebook
