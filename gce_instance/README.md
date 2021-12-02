@@ -1,13 +1,26 @@
 # Terraform: Google Compute Engine
 
-| Branch | Description | Status |
-|--------|-------------|--------|
-| Main   | Latest version used for labs | ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=2585d58a-918e-4bf1-b4de-e1c3a2ed949c) |
-| Test   | Last Execution QA process    | ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=878a4ae2-099c-4458-a575-f0be99a621aa) |
-
 Create a virtual machine based on a Terraform configuration
 
-## Configuration
+## Staging
+
+![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=878a4ae2-099c-4458-a575-f0be99a621aa)
+
+Commits to staging branches are automatically submitted for integration tests.
+Only code passing integration tests are eligible for merging.
+
+__Raise a PR for code approval and merge, once the code is ready for review.__ 
+
+## Stable
+
+![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=2585d58a-918e-4bf1-b4de-e1c3a2ed949c)
+
+The `main` branch contains the most stable revision of the Terraform script. 
+
+__Merging directly to the main branch is prohibited.__
+
+## Using Input Values 
+
 __NOTE:__ Qwiklabs requires some values to be defined as part of the provisioning process. 
 
 ```
@@ -18,14 +31,15 @@ vm_name        = "tester-vm"
 username       = "name@domain.com"
 ```
 
-## Test Status
+## Accessing Output Values 
 
-Ensure commits include the word `test` as part of the branch name to automatically initiate the QA proces.
-Tests are automatically applied to any commits based on the `Test` branch.
-Merging to the main branch is prohibited.
+TBC
 
-Please use the `main` branch to access the most stable Terraform script. 
+## Adding a Commit 
 
-| Trigger | State  | Description |
-|---------|--------|-----------------------|
-| GCE | Stable | Provision a single Google Compute Engine instance |
+Commits to the repository will initiate the automated QA proces.
+It is highly recommended that modules are tested locally before making a commit.
+
+## Request a Pull Request
+
+__DO NOT__ raise a PR on code that does not pass integration tests.
