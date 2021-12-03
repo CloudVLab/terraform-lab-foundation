@@ -1,27 +1,9 @@
-# Terraform: IDE 
+# Terraform: Solutions 
 
-Create an Integrated Development Environment based on a Terraform configuration
+General solutions based on Terraform
 
-## Using Input Values 
 
-__NOTE:__ Qwiklabs requires some values to be defined as part of the provisioning process. 
-
-```
-gcp_project_id  = "my-gcp-project"
-gcp_region      = "us-central1"
-gcp_zone        = "us-central1-a"
-vm_name         = "tester-vm"
-gcp_username    = "name@domain.com"
-gceMachineImage = "cloud-code-codeserver"
-```
-
-## Accessing Output Values 
-
-| Field | Description |
-|-------|-------------|
-| ide_service_url | The service URL for the ide |
-| ide_browser_url | The service URL for the browser |
-| ide_instance_name | The name of the GCE instance |
+- [x] Integrated Development Environment
 
 ## Adding a Commit 
 
