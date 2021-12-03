@@ -11,18 +11,34 @@ Terraform Lab Foundation comprises of a number of parts:
 ## Building Blocks 
 Example configurations that can be used with the Qwiklabs Platform
 
+#### Compute
 - [x] [GCE](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/gce_instance/README.md)
-- [ ] GKE
-- [ ] Cloud Run
-- [ ] Vertex AI Notebook
-- [ ] VPC
-- [ ] Firewall
+- [x] [GKE](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/gke_cluster/README.md)
+
+#### Storage
+- [ ] [Cloud Storage](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/gcs_bucket/README.md)
+
+#### Serverless
+- [ ] [Cloud Run](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/cloud_run/README.md)
+- [ ] [Cloud Functions](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/cloud_functions/README.md)
+
+#### Networking
+- [ ] [VPC](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/vpc_network/README.md)
+- [ ] [Firewall](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/firewall_rulebase/README.md)
+
+#### AI/ML
+- [ ] [Vertex AI Notebook](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/vertex_notebook/README.md)
+
+#### Big Data 
+- [ ] [BigQuery](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/bigquery_data/README.md)
+
 
 ## Technical Solutions
 
 - [ ] Proxy
 - [ ] VPC SC
 - [ ] Custom VM
+- [ ] Custom IDE + Proxy
 
 ## Channels
 
