@@ -26,8 +26,9 @@ Example configurations that can be used with the Qwiklabs Platform
 
 ## Channels
 
-Scripts are maintained via channels - see [CHANNELS.md](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/CHANNELS.md) for more information.
 Content authors should use the `stable` channel.
+
+Scripts are maintained via channels - see [CHANNELS.md](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/CHANNELS.md) for more information.
 
 ## Contributing
 

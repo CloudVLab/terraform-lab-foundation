@@ -16,19 +16,15 @@ username       = "name@domain.com"
 
 ## Accessing Output Values 
 
-The external IP assigned to the GCE instance
-```
-gce_external_ip
-```
-
-The name of the GCE instance
-```
-gce_instance_name
-```
+| Field | Description |
+|-------|-------------|
+| gce_external_ip | The external IP assigned to the GCE instance |
+| gce_instance_name | The name of the GCE instance |
 
 ## Adding a Commit 
 
 Commits to the repository will initiate the automated QA proces.
+
 It is highly recommended that modules are tested locally before making a commit.
 
 ## Request a Pull Request
