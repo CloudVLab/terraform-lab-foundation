@@ -17,5 +17,5 @@ steps:
   dir: '${_TERRAFORM_DIR}' 
 substitutions:  
   _PROVIDER_VER: 1.0.1
-  _TERRAFORM_DIR: gke_cluster/stable
+  _TERRAFORM_DIR: stable
 tags: ['terraform-lab-foundation','gke', 'cluster']  
