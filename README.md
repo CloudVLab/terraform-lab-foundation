@@ -24,6 +24,11 @@ Example configurations that can be used with the Qwiklabs Platform
 - [ ] VPC SC
 - [ ] Custom VM
 
+## Channels
+
+Scripts are maintained via channels - see [CHANNELS.md](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/CHANNELS.md) for more information.
+Content authors should use the `stable` channel.
+
 ## Contributing
 
 Contributions are always welcome - see [CONTRIBUTING.md](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/CONTRIBUTING.md) for more information.
