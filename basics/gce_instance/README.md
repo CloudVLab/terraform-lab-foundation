@@ -1,5 +1,10 @@
 # Terraform: Google Compute Engine
 
+| Channel | Status |
+|---------|--------|
+| Stable  | ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=2585d58a-918e-4bf1-b4de-e1c3a2ed949c) |
+| Beta    | ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=878a4ae2-099c-4458-a575-f0be99a621aa) |
+
 Create a virtual machine based on a Terraform configuration
 
 ## Using Input Values 
