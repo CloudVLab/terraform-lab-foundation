@@ -38,19 +38,19 @@ Example configurations that can be used with the Qwiklabs Platform
 - [ ] Proxy
 - [ ] VPC SC
 - [ ] Custom VM
-- [x] [Custom IDE + Proxy](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/solution_ide/README.md)
+- [x] [Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/solution_ide/README.md)
 
 
 ## Channels
 
 Content authors should use the `stable` channel.
 
-Scripts are main/basicstained via channels - see [CHANNELS.md](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/CHANNELS.md) for more information.
+Scripts are main/basicstained via channels - see [CHANNELS.md](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/CHANNELS.md) for more information.
 
 ## Contributing
 
-Contributions are always welcome - see [CONTRIBUTING.md](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/CONTRIBUTING.md) for more information.
+Contributions are always welcome - see [CONTRIBUTING.md](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/CONTRIBUTING.md) for more information.
 
 ## License
 
-GPE-3.0 - see [LICENSE](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/LICENSE) for more information.
+GPE-3.0 - see [LICENSE](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/LICENSE) for more information.
