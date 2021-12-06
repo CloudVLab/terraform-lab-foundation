@@ -12,7 +12,7 @@ gcp_region      = "us-central1"
 gcp_zone        = "us-central1-a"
 vm_name         = "tester-vm"
 gcp_username    = "name@domain.com"
-gceMachineImage = "cloud-code-codeserver"
+gceMachineImage = "web-codeserver"
 ```
 
 ## Accessing Output Values 

@@ -3,7 +3,8 @@
 General solutions based on Terraform
 
 
-- [x] Integrated Development Environment
+- [x] Cloud Code IDE
+- [x] Web IDE
 
 ## Adding a Commit 
 
