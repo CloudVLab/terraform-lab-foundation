@@ -16,7 +16,7 @@ Example configurations that can be used with the Qwiklabs Platform
 - [x] [GKE](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/gke_cluster/README.md)
 
 #### Storage
-- [ ] [Cloud Storage](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/gcs_bucket/README.md)
+- [x] [Cloud Storage](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/gcs_bucket/README.md)
 
 #### Serverless
 - [ ] [Cloud Run](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/cloud_run/README.md)
@@ -35,10 +35,11 @@ Example configurations that can be used with the Qwiklabs Platform
 
 ## Technical Solutions
 
+- [x] [Cloud Code - Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_cloud_code/README.md)
+- [x] [Web Developer - Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_web/README.md)
 - [ ] Proxy
 - [ ] VPC SC
 - [ ] Custom VM
-- [x] [Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/solution_ide/README.md)
 
 
 ## Channels
