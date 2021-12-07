@@ -21,11 +21,11 @@ gcp_zone       = "us-central1-a"
 #### Custom Properties
 
 ```
-vpc_network   = "dev-network"
+vpc_network             = "dev-network"
 vpc_network_description = "My network"
-vpc_subnet    = "dev-subnet"
-vpc_region    = "us-central1"
-vpc_subnet_cidr = "10.128.0.0/16"
+vpc_subnet              = "dev-subnet"
+vpc_region              = "us-central1"
+vpc_subnet_cidr         = "10.128.0.0/16"
 ```
 
 ## Accessing Output Values 

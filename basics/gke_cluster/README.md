@@ -22,7 +22,7 @@ gcp_zone       = "us-central1-a"
 
 ```
 cluster_name   = "tester-gke"
-gcp_username       = "name@domain.com"
+gcp_username   = "name@domain.com"
 ```
 
 ## Accessing Output Values 

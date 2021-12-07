@@ -21,12 +21,12 @@ gcp_zone       = "us-central1-a"
 #### Custom Properties
 
 ```
-fwr_name = "allow-ssh-network" 
-fwr_network  = "default" 
+fwr_name         = "allow-ssh-network" 
+fwr_network      = "default" 
 fwr_source_range = [ "0.0.0.0/0" ]
-fwr_direction = "INGRESS"
-fwr_protocol  = "tcp"
-fwr_ports     = [ "22" ]
+fwr_direction    = "INGRESS"
+fwr_protocol     = "tcp"
+fwr_ports        = [ "22" ]
 ```
 
 ## Accessing Output Values 
