@@ -19,4 +19,4 @@ substitutions:
   _PROVIDER_VER: 1.0.1
   _TERRAFORM_DIR: basics/gke_cluster/stable
 tags: ['terraform-lab-foundation','gke', 'cluster']  
-timeout: 900s
+timeout: 1200s
