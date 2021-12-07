@@ -5,7 +5,7 @@
 | Stable  | TBC    | 
 | Beta    | TBC    | 
 
-Create a virtual machine based on a Terraform configuration
+Create a Google Cloud Storage bucket based on a Terraform configuration
 
 ## Using Input Values 
 
