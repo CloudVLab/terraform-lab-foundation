@@ -1,5 +1,5 @@
 gcp_project_id = "qwiklabs-resources"
 gcp_region     = "us-central1"
 gcp_zone       = "us-central1-a"
-vm_name        = "test-vm"
-username       = "test-suite@qwiklabs.com"
+gcp_username   = "test-suite@qwiklabs.com"
+gce_name       = "test-vm"
