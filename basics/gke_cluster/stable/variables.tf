@@ -104,4 +104,3 @@ variable "gce_scopes" {
       "https://www.googleapis.com/auth/monitoring",
   ]
 }
-
