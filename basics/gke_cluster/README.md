@@ -1,17 +1,28 @@
 # Terraform: Google Kubernetes Engine
 
+| Channel | Status |
+|---------|--------|
+| Stable  | TBC    | 
+| Beta    | TBC    | 
+
 Create a GKE cluster based on a Terraform configuration
 
 ## Using Input Values 
 
 __NOTE:__ Qwiklabs requires some values to be defined as part of the provisioning process. 
 
+#### Qwiklabs Properties
 ```
 gcp_project_id = "my-gcp-project"
 gcp_region     = "us-central1"
 gcp_zone       = "us-central1-a"
+```
+
+#### Custom Properties
+
+```
 cluster_name   = "tester-gke"
-gcp_username       = "name@domain.com"
+gcp_username   = "name@domain.com"
 ```
 
 ## Accessing Output Values 

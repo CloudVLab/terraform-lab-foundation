@@ -1,11 +1,11 @@
-# Terraform: Virtual Private Cloud 
+# Terraform: Firewall 
 
 | Channel | Status |
 |---------|--------|
 | Stable  | TBC    | 
 | Beta    | TBC    | 
 
-Create a virtual private cloud network based on a Terraform configuration
+Create a Firewall policy based on a Terraform configuration
 
 ## Using Input Values 
 
@@ -21,19 +21,18 @@ gcp_zone       = "us-central1-a"
 #### Custom Properties
 
 ```
-vpc_network             = "dev-network"
-vpc_network_description = "My network"
-vpc_subnet              = "dev-subnet"
-vpc_region              = "us-central1"
-vpc_subnet_cidr         = "10.128.0.0/16"
+fwr_name         = "allow-ssh-network" 
+fwr_network      = "default" 
+fwr_source_range = [ "0.0.0.0/0" ]
+fwr_direction    = "INGRESS"
+fwr_protocol     = "tcp"
+fwr_ports        = [ "22" ]
 ```
 
 ## Accessing Output Values 
 
 | Field | Description |
 |-------|-------------|
-| vpc_network_name | The name of the VPC network |
-| vpc_network_name | The name of the VPC subnet  |
 
 ## Adding a Commit 
 
