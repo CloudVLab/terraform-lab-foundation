@@ -24,7 +24,7 @@ Example configurations that can be used with the Qwiklabs Platform
 
 #### Networking
 - [x] [VPC](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/vpc_network/README.md)
-- [ ] [Firewall](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/firewall_rulebase/README.md)
+- [x] [Firewall](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/vpc_firewall/README.md)
 
 #### AI/ML
 - [ ] [Vertex AI Notebook](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/vertex_notebook/README.md)
