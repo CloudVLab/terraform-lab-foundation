@@ -1,12 +1,12 @@
 # Channels
 
-Releases are provided for the following channels:
+Release schedule for the supported channels:
 
-| Audience | Channel | Updates   | branch      | Description |
-|----------|---------|-----------|-------------|-------------|
-| Prod | Stable  | Monthly   | main | Use this for the most stable versions of scripts |
-| QA   | Beta    | Weekly    | test | Use this for the beta access to code updates |
-| Dev  | Dev     | Nightly   | *    | Use this to develop new Terraform building blocks and solutions | 
+| Channel | Audience | Updates   | branch | Description |
+|---------|----------|-----------|--------|-------------|
+| Stable  | Prod     | Monthly   | main | Use this for the most stable versions of scripts |
+| Beta    | QA       | Weekly    | test | Use this for the beta access to code updates |
+| Dev     | Dev      | Nightly   | *    | Use this to develop new Terraform building blocks and solutions | 
 
 A continuous integration workflow is used to automatically update the Stable/Beta channels.
 The current state of the Stable/Beta branches are represented by a status badge.
@@ -15,7 +15,7 @@ The current state of the Stable/Beta branches are represented by a status badge.
 
 ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=2585d58a-918e-4bf1-b4de-e1c3a2ed949c)
 
-Stable channel code will use the modules/stable folder.
+Stable channel code will use the [modules]/stable folder.
 
 | Local | Staging | Production |
 |-------|---------|------------|
