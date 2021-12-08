@@ -7,9 +7,10 @@ Terraform Lab Foundation comprises of a number of parts:
 * Qwiklab compatible samples
 * Common use case examples 
 * Automated testing of Terraform scripts
+* Plug and Play components
 
 ## Building Blocks 
-Example configurations that can be used with the Qwiklabs Platform
+Example configurations that can be used to build content on the Qwiklabs Platform
 
 #### Compute
 - [x] [GCE](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/gce_instance/README.md)
@@ -32,8 +33,13 @@ Example configurations that can be used with the Qwiklabs Platform
 #### Big Data 
 - [ ] [BigQuery](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/bigquery_data/README.md)
 
+#### Identity and Access Management
+- [ ] [Service Account](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/service_account/README.md)
+- [ ] [API Access](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/api_access/README.md)
 
 ## Technical Solutions
+
+Example solutions pre-built for the Qwiklabs platform
 
 - [x] [Cloud Code - Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_cloud_code/README.md)
 - [x] [Web Developer - Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_web/README.md)
@@ -43,6 +49,14 @@ Example configurations that can be used with the Qwiklabs Platform
 
 
 ## Channels
+
+Release schedule for the supported channels:
+
+| Channel | Audience | Description |
+|---------|----------|-------------|
+| Stable  | Prod     | Use this for the most stable versions of scripts |
+| Beta    | QA       | Use this for the beta access to code updates |
+| Dev     | Dev      | Use this to develop new Terraform building blocks and solutions | 
 
 Content authors should use the `stable` channel.
 
