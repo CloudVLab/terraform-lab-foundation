@@ -5,6 +5,8 @@ General solutions based on Terraform
 
 - [x] Cloud Code IDE
 - [x] Web IDE
+- [x] BigQuery Pitch Perfect Query 
+
 
 ## Adding a Commit 
 
