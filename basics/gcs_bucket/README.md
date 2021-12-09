@@ -24,7 +24,18 @@ gcp_zone             = "us-central1-a"
 
 ```
 gcs_bucket_extension = "my_bucket"
+gcs_storage_class    = "MULTI_REGIONAL"
 ```
+
+| STORAGE CLASS |
+|---------------|
+| STANDARD |
+| MULTI_REGIONAL |
+| REGIONAL | 
+| NEARLINE |
+| COLDLINE |
+| ARCHIVE  |
+
 
 __NOTE:__ Buckets are prefixed with the `project_id` to ensure they are globally unique.
 

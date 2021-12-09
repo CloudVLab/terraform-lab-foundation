@@ -3,10 +3,11 @@
 #
 # TODO: Move to building block
 resource "google_storage_bucket" "cloud-bucket" {
-  name          = "${var.gcp_project_id}-${var.gcs_bucket_extension}" 
-  location      = "US"
-  force_destroy = true
+  name                        = "${var.gcp_project_id}-${var.gcs_bucket_extension}"
+  location                    = var.gcp_region 
+  project                     = var.gcp_project_id
+  storage_class               = var.gcs_storage_class
 
-  project       = var.gcp_project_id 
+  force_destroy               = true
   uniform_bucket_level_access = true
 }
