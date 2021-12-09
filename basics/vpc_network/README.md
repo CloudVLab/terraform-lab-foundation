@@ -37,7 +37,7 @@ vpc_subnet_cidr         = "10.128.0.0/16"
 
 ## Adding a Commit 
 
-Commits to the repository will initiate the automated QA proces.
+Commits to the repository will initiate the automated QA process.
 
 It is highly recommended that modules are tested locally before making a commit.
 

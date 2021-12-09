@@ -49,7 +49,7 @@ Ensure the value for the `gcs_bucket_extension` is unique within the project.
 
 ## Adding a Commit 
 
-Commits to the repository will initiate the automated QA proces.
+Commits to the repository will initiate the automated QA process.
 
 It is highly recommended that modules are tested locally before making a commit.
 

@@ -33,7 +33,7 @@ username       = "name@domain.com"
 
 ## Adding a Commit 
 
-Commits to the repository will initiate the automated QA proces.
+Commits to the repository will initiate the automated QA process
 
 It is highly recommended that modules are tested locally before making a commit.
 
