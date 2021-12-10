@@ -73,5 +73,8 @@ resource "google_notebooks_instance" "vertex_instance" {
     image_family = var.vai_image_family 
   }
 
+  # Startup-script
+  post_startup_script = var.vai_post_startup_script 
+
   depends_on = [ google_project_service.notebooks-api ]
 }

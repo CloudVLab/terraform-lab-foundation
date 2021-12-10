@@ -90,6 +90,13 @@ variable "vai_machine_network" {
 }
 
 # Custom properties with defaults 
+variable "vai_post_startup_script" {
+  type        = string
+  description = "Path to a bash script to execute"
+  default     = "gs://spls/lab-init"
+}
+
+# Custom properties with defaults 
 variable "vai_scopes" {
   type        = list(string)
   description = "GCE service account scope"
