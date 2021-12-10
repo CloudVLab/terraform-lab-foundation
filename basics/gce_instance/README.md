@@ -20,8 +20,13 @@ gcp_zone       = "us-central1-a"
 
 #### Custom Properties
 ```
-vm_name        = "tester-vm"
-username       = "name@domain.com"
+gce_name            = var.tfResourceName
+gce_machine_type    = "n1-highmem-4"
+gce_tags            = ["lab-vm"]
+gce_machine_image   = "debian-cloud/debian-10" 
+gce_machine_network = "default"
+gce_scopes          = ["cloud-platform"]
+gce_startup_script  = "${file("./lab-init")}"
 ```
 
 ## Accessing Output Values 

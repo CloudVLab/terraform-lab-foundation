@@ -91,3 +91,10 @@ variable "gce_scopes" {
   description = "GCE service account scope"
   default     = ["cloud-platform"]
 }
+
+# Custom properties with defaults 
+variable "gce_startup_script" {
+  type        = string
+  description = "GCE startup script"
+  default     = "echo Welcome to Project Octopus > /tmp/octopus.txt" 
+}
