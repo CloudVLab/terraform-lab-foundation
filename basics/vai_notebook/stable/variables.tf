@@ -23,78 +23,82 @@ variable "gcp_zone" {
 ## Output variable definitions - Override from Custom Properties 
 ## --------------------------------------------------------------
 
-# with the same name for any lab that uses this script.
-variable "gcp_username" {
-  type        = string
-  description = "Name of Qwiklabs user"
-  default     = "qwiklabs-student" 
-}
-
 # Expected custom_properties key to be declared in `qwiklabs.yaml` 
 # with the same name for any lab that uses this script.
-variable "gce_name" {
+variable "vai_notebook_name" {
   type        = string
-  description = "GCE VM instance name."
-  default     = "tf-test-gce" 
+  description = "Vertex VM instance name."
 }
 
+# with the same name for any lab that uses this script.
+variable "vai_username" {
+  type        = string
+  description = "Name of Qwiklabs user"
+}
 
 ## --------------------------------------------------------------
 ## Custom variable definitions - Override from Custom Properties
 ## --------------------------------------------------------------
 
 # Custom properties with defaults 
-variable "gce_region" {
+variable "vai_region" {
   type        = string 
   description = "Region to create resources in."
   default     = "us-central1" 
 }
 
 # Custom properties with defaults 
-variable "gce_zone" {
+variable "vai_zone" {
   type        = string 
   description = "Zone to create resources in."
   default     = "us-central1-f" 
 }
 
 # Custom properties with defaults 
-variable "gce_machine_type" {
+variable "vai_machine_type" {
   type        = string 
   description = "Machine type to use for GCE"
-  default     = "n1-standard-1" 
+  default     = "e2-medium" 
 }
 
 # Custom properties with defaults 
-variable "gce_tags" {
+variable "vai_tags" {
   type        = list(string)
   description = "GCE virtual machine tags"
   default     = ["lab-vm"]
 }
 
 # Custom properties with defaults 
-variable "gce_machine_image" {
+variable "vai_machine_image" {
   type        = string
   description = "GCE virtual machine image"
-  default     = "debian-cloud/debian-10"
+  default     = "deeplearning-platform-release"
 }
 
 # Custom properties with defaults 
-variable "gce_machine_network" {
+variable "vai_image_family" {
+  type        = string
+  description = "GCE image family"
+  default     = "tf-latest-cpu"
+}
+
+# Custom properties with defaults 
+variable "vai_machine_network" {
   type        = string
   description = "GCE virtual machine network"
   default     = "default"
 }
 
 # Custom properties with defaults 
-variable "gce_scopes" {
-  type        = list(string)
-  description = "GCE service account scope"
-  default     = ["cloud-platform"]
+variable "vai_post_startup_script" {
+  type        = string
+  description = "Path to a bash script to execute"
+  default     = "gs://spls/lab-init"
 }
 
 # Custom properties with defaults 
-variable "gce_startup_script" {
-  type        = string
-  description = "GCE startup script"
-  default     = "echo Welcome to Project Octopus > /tmp/octopus.txt" 
+variable "vai_scopes" {
+  type        = list(string)
+  description = "GCE service account scope"
+  default     = ["cloud-platform"]
 }

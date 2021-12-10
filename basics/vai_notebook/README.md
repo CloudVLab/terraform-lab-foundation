@@ -1,11 +1,11 @@
-# Terraform: Virtual Private Cloud 
+# Terraform: Vertex AI Notebook 
 
 | Channel | Status |
 |---------|--------|
 | Stable  | TBC    | 
 | Beta    | TBC    | 
 
-Create a virtual private cloud network based on a Terraform configuration
+Create a Vertex AI workbench based on a Terraform configuration
 
 ## Using Input Values 
 
@@ -21,19 +21,17 @@ gcp_zone       = "us-central1-a"
 #### Custom Properties
 
 ```
-vpc_network             = "dev-network"
-vpc_network_description = "My network"
-vpc_subnet              = "dev-subnet"
-vpc_region              = "us-central1"
-vpc_subnet_cidr         = "10.128.0.0/16"
+vai_notebook_name       = var.tfResourceName
+vai_username            = var.tfUsername
+vai_region              = var.gcp_region
+vai_zone                = var.gcp_zone
+vai_post_startup_script = "gs://spls/lab-init"
 ```
 
 ## Accessing Output Values 
 
 | Field | Description |
 |-------|-------------|
-| vpc_network_name | The name of the VPC network |
-| vpc_network_name | The name of the VPC subnet  |
 
 ## Adding a Commit 
 

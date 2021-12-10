@@ -28,7 +28,7 @@ Example configurations that can be used to build content on the Qwiklabs Platfor
 - [x] [Firewall](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/vpc_firewall/README.md)
 
 #### AI/ML
-- [ ] [Vertex AI Notebook](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/vertex_notebook/README.md)
+- [x] [Vertex AI Notebook](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/vai_notebook/README.md)
 
 #### Big Data 
 - [ ] [BigQuery](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/bigquery_data/README.md)
