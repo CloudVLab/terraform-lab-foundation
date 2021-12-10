@@ -2,11 +2,12 @@
 
 # Create a Dataset
 resource "google_bigquery_dataset" "default" {
-  dataset_id                  = "soccer"
-  friendly_name               = "BigQuery soccer dataset"
-  description                 = "Soccer dataset for sports analysis"
-  location                    = "US"
-  default_table_expiration_ms = 3600000
+  dataset_id    = "soccer"
+  friendly_name = "BigQuery soccer dataset"
+  description   = "Soccer dataset for sports analysis"
+  location      = var.gcp_region
+  project       = var.gcp_project_id
+  #default_table_expiration_ms = 3600000
 
   labels = {
     env = "prod"
@@ -30,21 +31,21 @@ resource "time_sleep" "job1_wait_10_seconds" {
 # Create a new BQ Table: competitions
 resource "google_bigquery_table" "competitions" {
   deletion_protection = false
-  dataset_id = google_bigquery_dataset.default.dataset_id
-  table_id   = "competitions"
-  description = "Soccer competitions"
+  dataset_id          = google_bigquery_dataset.default.dataset_id
+  table_id            = "competitions"
+  description         = "Soccer competitions"
 
-  depends_on = [ google_bigquery_dataset.default, time_sleep.table1_wait_10_seconds ]
+  depends_on = [google_bigquery_dataset.default, time_sleep.table1_wait_10_seconds]
   # depends_on = [ google_bigquery_dataset.default ]
 }
 
 # BQ Job to load data from Cloud Storage
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_job
 resource "google_bigquery_job" "job1" {
-  job_id     = "job_load_1"
+  job_id = "job_load_1"
 
   labels = {
-    "my_job" ="load_competitions"
+    "my_job" = "load_competitions"
   }
 
   load {
@@ -53,20 +54,20 @@ resource "google_bigquery_job" "job1" {
     ]
 
     destination_table {
-      project_id = var.gcp_project_id 
+      project_id = var.gcp_project_id
       dataset_id = google_bigquery_dataset.default.dataset_id
       table_id   = google_bigquery_table.competitions.table_id
     }
 
     #skip_leading_rows = 1
     schema_update_options = ["ALLOW_FIELD_RELAXATION", "ALLOW_FIELD_ADDITION"]
-    write_disposition = "WRITE_APPEND"
+    write_disposition     = "WRITE_APPEND"
     #write_disposition = "WRITE_TRUNCATE"
     source_format = "NEWLINE_DELIMITED_JSON"
-    autodetect = true
+    autodetect    = true
   }
 
-  depends_on = [ google_bigquery_table.competitions, time_sleep.job1_wait_10_seconds ]
+  depends_on = [google_bigquery_table.competitions, time_sleep.job1_wait_10_seconds]
 }
 
 
@@ -88,18 +89,18 @@ resource "time_sleep" "job2_wait_10_seconds" {
 # Create a new BQ Table
 resource "google_bigquery_table" "matches" {
   deletion_protection = false
-  dataset_id = google_bigquery_dataset.default.dataset_id
-  table_id   = "matches"
-  description = "Soccer matches"
-  depends_on = [ google_bigquery_dataset.default, time_sleep.table2_wait_10_seconds ]
+  dataset_id          = google_bigquery_dataset.default.dataset_id
+  table_id            = "matches"
+  description         = "Soccer matches"
+  depends_on          = [google_bigquery_dataset.default, time_sleep.table2_wait_10_seconds]
 }
 
 # Run a BQ Job to load data from Cloud Storage
 resource "google_bigquery_job" "job2" {
-  job_id     = "job_load_2"
+  job_id = "job_load_2"
 
   labels = {
-    "my_job" ="load_matches"
+    "my_job" = "load_matches"
   }
 
   load {
@@ -108,19 +109,19 @@ resource "google_bigquery_job" "job2" {
     ]
 
     destination_table {
-      project_id = var.gcp_project_id 
+      project_id = var.gcp_project_id
       dataset_id = google_bigquery_dataset.default.dataset_id
       table_id   = google_bigquery_table.matches.table_id
     }
 
     #skip_leading_rows = 1
     schema_update_options = ["ALLOW_FIELD_RELAXATION", "ALLOW_FIELD_ADDITION"]
-    write_disposition = "WRITE_APPEND"
+    write_disposition     = "WRITE_APPEND"
     #write_disposition = "WRITE_TRUNCATE"
     source_format = "NEWLINE_DELIMITED_JSON"
-    autodetect = true
+    autodetect    = true
   }
-  depends_on = [ google_bigquery_table.matches, time_sleep.job2_wait_10_seconds ]
+  depends_on = [google_bigquery_table.matches, time_sleep.job2_wait_10_seconds]
 }
 
 #-----------------------------------------------------------------------------
@@ -140,19 +141,19 @@ resource "time_sleep" "job3_wait_10_seconds" {
 # Create a new BQ Table
 resource "google_bigquery_table" "teams" {
   deletion_protection = false
-  dataset_id = google_bigquery_dataset.default.dataset_id
-  table_id   = "teams"
-  description = "Soccer teams"
-  depends_on = [ google_bigquery_dataset.default, time_sleep.table3_wait_10_seconds ]
+  dataset_id          = google_bigquery_dataset.default.dataset_id
+  table_id            = "teams"
+  description         = "Soccer teams"
+  depends_on          = [google_bigquery_dataset.default, time_sleep.table3_wait_10_seconds]
   # depends_on = [ google_bigquery_dataset.default, google_bigquery_table.matches ]
 }
 
 # Run a BQ Job to load data from Cloud Storage
 resource "google_bigquery_job" "job3" {
-  job_id     = "job_load_3"
+  job_id = "job_load_3"
 
   labels = {
-    "my_job" ="load_teams"
+    "my_job" = "load_teams"
   }
 
   load {
@@ -161,19 +162,19 @@ resource "google_bigquery_job" "job3" {
     ]
 
     destination_table {
-      project_id = var.gcp_project_id 
+      project_id = var.gcp_project_id
       dataset_id = google_bigquery_dataset.default.dataset_id
       table_id   = google_bigquery_table.teams.table_id
     }
 
     #skip_leading_rows = 1
     schema_update_options = ["ALLOW_FIELD_RELAXATION", "ALLOW_FIELD_ADDITION"]
-    write_disposition = "WRITE_APPEND"
+    write_disposition     = "WRITE_APPEND"
     #write_disposition = "WRITE_TRUNCATE"
     source_format = "NEWLINE_DELIMITED_JSON"
-    autodetect = true
+    autodetect    = true
   }
-  depends_on = [ google_bigquery_table.teams, time_sleep.job3_wait_10_seconds ]
+  depends_on = [google_bigquery_table.teams, time_sleep.job3_wait_10_seconds]
 }
 
 #-----------------------------------------------------------------------------
@@ -193,19 +194,19 @@ resource "time_sleep" "job4_wait_10_seconds" {
 # Create a new BQ Table
 resource "google_bigquery_table" "players" {
   deletion_protection = false
-  dataset_id = google_bigquery_dataset.default.dataset_id
-  table_id   = "players"
-  description = "Soccer players"
-  depends_on = [ google_bigquery_dataset.default, time_sleep.table4_wait_10_seconds ]
+  dataset_id          = google_bigquery_dataset.default.dataset_id
+  table_id            = "players"
+  description         = "Soccer players"
+  depends_on          = [google_bigquery_dataset.default, time_sleep.table4_wait_10_seconds]
   # depends_on = [ google_bigquery_dataset.default, google_bigquery_table.teams ]
 }
 
 # Run a BQ Job to load data from Cloud Storage
 resource "google_bigquery_job" "job4" {
-  job_id     = "job_load_4"
+  job_id = "job_load_4"
 
   labels = {
-    "my_job" ="load_players"
+    "my_job" = "load_players"
   }
 
   load {
@@ -214,19 +215,19 @@ resource "google_bigquery_job" "job4" {
     ]
 
     destination_table {
-      project_id = var.gcp_project_id 
+      project_id = var.gcp_project_id
       dataset_id = google_bigquery_dataset.default.dataset_id
       table_id   = google_bigquery_table.players.table_id
     }
 
     #skip_leading_rows = 1
     schema_update_options = ["ALLOW_FIELD_RELAXATION", "ALLOW_FIELD_ADDITION"]
-    write_disposition = "WRITE_APPEND"
+    write_disposition     = "WRITE_APPEND"
     #write_disposition = "WRITE_TRUNCATE"
     source_format = "NEWLINE_DELIMITED_JSON"
-    autodetect = true
+    autodetect    = true
   }
-  depends_on = [ google_bigquery_table.players, time_sleep.job4_wait_10_seconds ]
+  depends_on = [google_bigquery_table.players, time_sleep.job4_wait_10_seconds]
 }
 
 #-----------------------------------------------------------------------------
@@ -246,19 +247,19 @@ resource "time_sleep" "job5_wait_10_seconds" {
 # Create a new BQ Table
 resource "google_bigquery_table" "events" {
   deletion_protection = false
-  dataset_id = google_bigquery_dataset.default.dataset_id
-  table_id   = "events"
-  description = "Soccer events"
-  depends_on = [ google_bigquery_dataset.default, time_sleep.table5_wait_10_seconds ]
+  dataset_id          = google_bigquery_dataset.default.dataset_id
+  table_id            = "events"
+  description         = "Soccer events"
+  depends_on          = [google_bigquery_dataset.default, time_sleep.table5_wait_10_seconds]
   # depends_on = [ google_bigquery_dataset.default, google_bigquery_table.players ]
 }
 
 # Run a BQ Job to load data from Cloud Storage
 resource "google_bigquery_job" "job5" {
-  job_id     = "job_load_5"
+  job_id = "job_load_5"
 
   labels = {
-    "my_job" ="load_events"
+    "my_job" = "load_events"
   }
 
   load {
@@ -267,19 +268,19 @@ resource "google_bigquery_job" "job5" {
     ]
 
     destination_table {
-      project_id = var.gcp_project_id 
+      project_id = var.gcp_project_id
       dataset_id = google_bigquery_dataset.default.dataset_id
       table_id   = google_bigquery_table.events.table_id
     }
 
     #skip_leading_rows = 1
     schema_update_options = ["ALLOW_FIELD_RELAXATION", "ALLOW_FIELD_ADDITION"]
-    write_disposition = "WRITE_APPEND"
+    write_disposition     = "WRITE_APPEND"
     #write_disposition = "WRITE_TRUNCATE"
     source_format = "NEWLINE_DELIMITED_JSON"
-    autodetect = true
+    autodetect    = true
   }
-  depends_on = [ google_bigquery_table.events, time_sleep.job5_wait_10_seconds ]
+  depends_on = [google_bigquery_table.events, time_sleep.job5_wait_10_seconds]
 }
 
 #-----------------------------------------------------------------------------
@@ -299,19 +300,19 @@ resource "time_sleep" "job6_wait_10_seconds" {
 # Create a new BQ Table
 resource "google_bigquery_table" "tags2name" {
   deletion_protection = false
-  dataset_id = google_bigquery_dataset.default.dataset_id
-  table_id   = "tags2name"
-  description = "Soccer metadata"
-  depends_on = [ google_bigquery_dataset.default, time_sleep.table6_wait_10_seconds ]
+  dataset_id          = google_bigquery_dataset.default.dataset_id
+  table_id            = "tags2name"
+  description         = "Soccer metadata"
+  depends_on          = [google_bigquery_dataset.default, time_sleep.table6_wait_10_seconds]
   # depends_on = [ google_bigquery_dataset.default, google_bigquery_table.events ]
 }
 
 # Run a BQ Job to load data from Cloud Storage
 resource "google_bigquery_job" "job6" {
-  job_id     = "job_load_6"
+  job_id = "job_load_6"
 
   labels = {
-    "my_job" ="load_tags2name"
+    "my_job" = "load_tags2name"
   }
 
   load {
@@ -320,17 +321,17 @@ resource "google_bigquery_job" "job6" {
     ]
 
     destination_table {
-      project_id = var.gcp_project_id 
+      project_id = var.gcp_project_id
       dataset_id = google_bigquery_dataset.default.dataset_id
       table_id   = google_bigquery_table.tags2name.table_id
     }
 
-    skip_leading_rows = 1
+    skip_leading_rows     = 1
     schema_update_options = ["ALLOW_FIELD_RELAXATION", "ALLOW_FIELD_ADDITION"]
-    write_disposition = "WRITE_APPEND"
+    write_disposition     = "WRITE_APPEND"
     #write_disposition = "WRITE_TRUNCATE"
     source_format = "CSV"
-    autodetect = true
+    autodetect    = true
   }
-  depends_on = [ google_bigquery_table.tags2name, time_sleep.job6_wait_10_seconds ]
+  depends_on = [google_bigquery_table.tags2name, time_sleep.job6_wait_10_seconds]
 }
