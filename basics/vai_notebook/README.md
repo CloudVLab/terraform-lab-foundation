@@ -21,10 +21,11 @@ gcp_zone       = "us-central1-a"
 #### Custom Properties
 
 ```
-vai_notebook_name = var.tfResourceName
-vai_username      = var.tfUsername
-vai_region        = var.gcp_region
-vai_zone          = var.gcp_zone
+vai_notebook_name       = var.tfResourceName
+vai_username            = var.tfUsername
+vai_region              = var.gcp_region
+vai_zone                = var.gcp_zone
+vai_post_startup_script = "gs://spls/lab-init"
 ```
 
 ## Accessing Output Values 
