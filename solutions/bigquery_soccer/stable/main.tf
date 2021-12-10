@@ -42,7 +42,8 @@ resource "google_bigquery_table" "competitions" {
 # BQ Job to load data from Cloud Storage
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_job
 resource "google_bigquery_job" "job1" {
-  job_id = "job_load_1"
+  job_id   = "job_load_1"
+  location = var.gcp_region
 
   labels = {
     "my_job" = "load_competitions"
@@ -97,7 +98,8 @@ resource "google_bigquery_table" "matches" {
 
 # Run a BQ Job to load data from Cloud Storage
 resource "google_bigquery_job" "job2" {
-  job_id = "job_load_2"
+  job_id   = "job_load_2"
+  location = var.gcp_region
 
   labels = {
     "my_job" = "load_matches"
@@ -150,7 +152,8 @@ resource "google_bigquery_table" "teams" {
 
 # Run a BQ Job to load data from Cloud Storage
 resource "google_bigquery_job" "job3" {
-  job_id = "job_load_3"
+  job_id   = "job_load_3"
+  location = var.gcp_region
 
   labels = {
     "my_job" = "load_teams"
@@ -203,7 +206,8 @@ resource "google_bigquery_table" "players" {
 
 # Run a BQ Job to load data from Cloud Storage
 resource "google_bigquery_job" "job4" {
-  job_id = "job_load_4"
+  job_id   = "job_load_4"
+  location = var.gcp_region
 
   labels = {
     "my_job" = "load_players"
@@ -256,7 +260,8 @@ resource "google_bigquery_table" "events" {
 
 # Run a BQ Job to load data from Cloud Storage
 resource "google_bigquery_job" "job5" {
-  job_id = "job_load_5"
+  job_id   = "job_load_5"
+  location = var.gcp_region
 
   labels = {
     "my_job" = "load_events"
@@ -309,7 +314,8 @@ resource "google_bigquery_table" "tags2name" {
 
 # Run a BQ Job to load data from Cloud Storage
 resource "google_bigquery_job" "job6" {
-  job_id = "job_load_6"
+  job_id   = "job_load_6"
+  location = var.gcp_region
 
   labels = {
     "my_job" = "load_tags2name"
