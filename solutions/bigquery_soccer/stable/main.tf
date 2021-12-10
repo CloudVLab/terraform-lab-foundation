@@ -5,8 +5,9 @@ resource "google_bigquery_dataset" "default" {
   dataset_id                  = "soccer"
   friendly_name               = "BigQuery soccer dataset"
   description                 = "Soccer dataset for sports analysis"
-  location                    = "US"
-  default_table_expiration_ms = 3600000
+  location                    = gcp_region
+  project                     = gcp_project_id
+  #default_table_expiration_ms = 3600000
 
   labels = {
     env = "prod"
