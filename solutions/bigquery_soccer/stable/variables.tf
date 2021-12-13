@@ -27,4 +27,10 @@ variable "gcp_zone" {
 ## --------------------------------------------------------------
 ## Custom variable definitions - Override from Custom Properties
 ## --------------------------------------------------------------
-# Custom properties with defaults 
+# Default value passed in
+variable "bq_location" {
+  type        = string
+  description = "Region to create resources in."
+  default     = "US"
+}
+
