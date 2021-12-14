@@ -12,6 +12,9 @@ Terraform Lab Foundation comprises of a number of parts:
 ## Building Blocks 
 Example configurations that can be used to build content on the Qwiklabs Platform
 
+#### API and Services
+- [x] [API](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/api_service/README.md)
+
 #### Compute
 - [x] [GCE](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/gce_instance/README.md)
 - [x] [GKE](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/gke_cluster/README.md)
