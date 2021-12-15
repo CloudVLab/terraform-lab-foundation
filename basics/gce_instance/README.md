@@ -35,7 +35,7 @@ __NOTE:__
 
 ## Example
 
-View the [example configuration](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/basics/gce_instance/example) to get started.
+View the [example configuration](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/basics/gce_instance/example/README.md) to get started.
 
 ## Accessing Output Values 
 
