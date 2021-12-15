@@ -33,6 +33,10 @@ __NOTE:__
 - [x] The startup_script should only be used for short lived tasks
 - [x] Do not use scripts to call other scripts
 
+## Example
+
+View the [example configuration](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/basics/gce_instance/example) to get started.
+
 ## Accessing Output Values 
 
 | Field | Description |
