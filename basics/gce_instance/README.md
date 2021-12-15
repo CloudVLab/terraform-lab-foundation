@@ -28,6 +28,10 @@ gce_machine_network = "default"
 gce_scopes          = ["cloud-platform"]
 gce_startup_script  = "${file("./lab-init")}"
 ```
+__NOTE:__
+- [x] Naming convention for a startup-script is `lab-init`
+- [x] The startup_script should only be used for short lived tasks
+- [x] Do not use scripts to call other scripts
 
 ## Accessing Output Values 
 
