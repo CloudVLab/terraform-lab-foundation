@@ -19,15 +19,15 @@ The example is based on the following hierarchy:
     └── variables.tf
 ```
 
-__NOTE:__ The convention is that Terraform configuration is found in a
-directory named `tf`.
+__NOTE:__ The Terraform examples assume a configuration sub-directory 
+named `tf` is present.
 
 ## Qwiklabs Yaml
 
 #### Custom Properties
 
 The `qwiklabs.yaml` configuration file is used to set the definition of 
-custom properties e.g. tfResourceName and tfUsername:
+custom properties e.g. `tfResourceName` and `tfUsername`:
 
 ```
 1  - type: gcp_project
@@ -47,7 +47,7 @@ custom properties e.g. tfResourceName and tfUsername:
 #### Visible Outputs
 
 The `qwiklabs.yaml` configuration file is used to set the definition of 
-student visible outputs e.g. gce_external_ip and gce_instance_name: 
+student visible outputs e.g. `gce_external_ip` and `gce_instance_name`: 
 
 ```
  1  student_visible_outputs:
