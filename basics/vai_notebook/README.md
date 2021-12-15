@@ -28,6 +28,10 @@ vai_zone                = var.gcp_zone
 vai_post_startup_script = "gs://spls/lab-init"
 ```
 
+## Example
+
+View the [example configuration](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/basics/vai_notebook/example) to get started.
+
 ## Accessing Output Values 
 
 | Field | Description |
