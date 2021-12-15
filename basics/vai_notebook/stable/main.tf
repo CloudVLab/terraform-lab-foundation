@@ -49,13 +49,13 @@ resource "google_project_iam_binding" "vertex_viewer_bind" {
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/notebooks_instance
 #
-
 resource "google_notebooks_instance" "vertex_instance" {
   name         = var.vai_notebook_name 
   location     = var.vai_zone 
   machine_type = var.vai_machine_type 
+  tags         = var.vai_tags
 
-  instance_owners = [ "$var.vai_username" ]
+  #instance_owners = [ "$var.vai_username" ]
 
   install_gpu_driver = false
   #  no_public_ip = true
