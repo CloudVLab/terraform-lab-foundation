@@ -29,6 +29,10 @@ gce_scopes          = ["cloud-platform"]
 gce_startup_script  = "${file("./lab-init")}"
 ```
 
+## Example
+
+View the [example configuration](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/basics/gce_instance/example) to get started.
+
 ## Accessing Output Values 
 
 | Field | Description |
