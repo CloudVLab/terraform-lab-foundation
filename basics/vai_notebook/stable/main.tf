@@ -53,6 +53,7 @@ resource "google_notebooks_instance" "vertex_instance" {
   name         = var.vai_notebook_name 
   location     = var.vai_zone 
   machine_type = var.vai_machine_type 
+  tags         = [ "http-server", "https-server" ]
 
   instance_owners = [ "$var.vai_username" ]
 
