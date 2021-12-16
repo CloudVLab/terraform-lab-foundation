@@ -37,7 +37,8 @@ resource "google_service_account" "service_account" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam
 #
 resource "google_project_iam_binding" "vertex_viewer_bind" {
-  role    = "roles/viewer"
+  #role    = "roles/viewer"
+  role    = "roles/owner"
   project = var.gcp_project_id
   members = [
     "serviceAccount:vertex-ai@${var.gcp_project_id}.iam.gserviceaccount.com",
@@ -48,14 +49,13 @@ resource "google_project_iam_binding" "vertex_viewer_bind" {
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/notebooks_instance
 #
-
 resource "google_notebooks_instance" "vertex_instance" {
   name         = var.vai_notebook_name 
   location     = var.vai_zone 
   machine_type = var.vai_machine_type 
-  tags         = [ "http-server", "https-server" ]
+  tags         = var.vai_tags
 
-  instance_owners = [ "$var.vai_username" ]
+  #instance_owners = [ "$var.vai_username" ]
 
   install_gpu_driver = false
   #  no_public_ip = true
