@@ -22,5 +22,5 @@ module "la_gce" {
   gce_machine_network = "default" 
   #gce_machine_network = google_compute_subnetwork.dev_subnet.name
   #gce_scopes          = ["cloud-platform"] 
-  gce_startup_script   = "${file("./lab-init")}"
+  #gce_startup_script   = "${file("./scripts/lab-init")}"
 }
