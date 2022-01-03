@@ -63,7 +63,7 @@ module "la_fw" {
     # Allow List
     allow = [{
       protocol     = "icmp"
-      ports        = [ "all" ]
+      ports        = null 
     },
     {
       protocol     = "tcp"
@@ -97,7 +97,7 @@ module "la_fw" {
     # Allow List
     allow = [{
       protocol     = "icmp"
-      ports        = [ "all" ]
+      ports        = null 
     },
     {
       protocol     = "tcp"
@@ -163,7 +163,7 @@ module "la_fw" {
     },
     {
       protocol     = "icmp"
-      ports        = [ "all" ]
+      ports        = null 
     }]
 
     # Deny List
@@ -348,10 +348,7 @@ module "la_gce" {
   gce_machine_type    = var.gceMachineType
   gce_tags            = var.gceInstanceTags 
   #gce_machine_image   = "debian-cloud/debian-10" 
-  gce_machine_network = module.la_vpc.vpc_network_name
+  gce_machine_network = module.la_vpc.vpc_subnet.name
   gce_scopes          = ["cloud-platform"] 
   #gce_startup_script   = "${file("./scripts/lab-init")}"
-
-  # Dependency - VPC Access connector 
-  #depends_on = [google_vpc_access_connector.connector]
 }
