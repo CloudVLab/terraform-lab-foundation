@@ -339,10 +339,10 @@ module "la_gce" {
   gcp_project_id = var.gcp_project_id
   gcp_region     = var.gcp_region
   gcp_zone       = var.gcp_zone
-  gcp_username   = var.tfUsername
+  gcp_username   = var.gcp_username
 
   # Customise the GCE instance
-  gce_name            = var.tfResourceName
+  gce_name            = var.gceInstanceName
   gce_region          = var.gcp_region
   gce_zone            = var.gceInstanceZone
   gce_machine_type    = var.gceMachineType

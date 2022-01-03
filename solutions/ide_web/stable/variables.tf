@@ -33,18 +33,6 @@ variable "gcp_username" {
 ## Custom variable definitions - Override from Custom Properties
 ## --------------------------------------------------------------
 
-
-variable "tfUsername" {
-  type        = string
-  description = "User account to the applied"
-}
-
-variable "tfResourceName" {
-  type        = string
-  description = "Resource name to the applied"
-}
-
-
 variable "vpcConnectorMachineType" {
   type        = string
   description = "VPC Access Connector Machine Type"
