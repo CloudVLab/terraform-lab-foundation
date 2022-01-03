@@ -255,37 +255,34 @@ data "google_compute_image" "image_family" {
   project = "qwiklabs-resources"
 }
 
+# GCE:    Virtual Machine
+# Local:  modules/[channel]
+# Remote: github.com://CloudVLab/terraform-lab-foundation//[module]/[channel]
 
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance
 #
-resource "google_compute_instance" "default" {
 
-  name         = var.gceInstanceName 
-  machine_type = var.gceMachineType
-  zone         = var.gceInstanceZone 
+# Module: Google Compute Engine
+module "la_gce" {
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/gce_instance/stable"
 
-  tags = var.gceInstanceTags
+  # Pass values to the module
+  gcp_project_id = var.gcp_project_id
+  gcp_region     = var.gcp_region
+  gcp_zone       = var.gcp_zone
+  gcp_username   = var.tfUsername
 
-  boot_disk {
-    initialize_params {
-      image = data.google_compute_image.image_family.self_link 
-    }
-  }
-
-  network_interface {
-    subnetwork      = google_compute_subnetwork.dev_subnet.name
-
-    access_config {
-      // Ephemeral IP
-    }
-  }
-
-  service_account {
-    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    # email  = google_service_account.default.email
-    scopes = var.gceInstanceScope
-  }
+  # Customise the GCE instance
+  gce_name            = var.tfResourceName
+  gce_region          = var.gcp_region
+  gce_zone            = var.gceInstanceZone
+  gce_machine_type    = var.gceMachineType
+  gce_tags            = var.gceInstanceTags 
+  #gce_machine_image   = "debian-cloud/debian-10" 
+  gce_machine_network = google_compute_subnetwork.dev_subnet.name
+  gce_scopes          = ["cloud-platform"] 
+  #gce_startup_script   = "${file("./scripts/lab-init")}"
 
   # Dependency - VPC Access connector 
   depends_on = [google_vpc_access_connector.connector]
