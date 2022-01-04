@@ -4,21 +4,22 @@
 
 resource "google_compute_instance" "gce_virtual_machine" {
 
-  name         = "${var.gce_name}"
-  machine_type = "${var.gce_machine_type}"
-  zone         = "${var.gcp_zone}"
+  name         = var.gce_name
+  machine_type = var.gce_machine_type
+  zone         = var.gcp_zone
+  project      = var.gcp_project_id
 
-  tags = "${var.gce_tags}"
+  tags = var.gce_tags
 
   boot_disk {
     initialize_params {
-      image = "${var.gce_machine_image}"
+      image = var.gce_machine_image
     }
   }
 
   network_interface {
-    #network = "${var.gce_machine_network}"
-    subnetwork = "${var.gce_machine_network}"
+    #network = var.gce_machine_network
+    subnetwork = var.gce_machine_network
 
     access_config {
       // Ephemeral IP
@@ -36,6 +37,6 @@ resource "google_compute_instance" "gce_virtual_machine" {
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     # email  = google_service_account.default.email
-    scopes = "${var.gce_scopes}"
+    scopes = var.gce_scopes
   }
 }

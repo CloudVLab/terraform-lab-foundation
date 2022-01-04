@@ -1,0 +1,6 @@
+#!/bin/sh
+# Mandatory Prefix
+echo "STARTUP-SCRIPT START"
+echo "DO_SOMETHING_HERE"
+# Mandatory Postfix
+echo "STARTUP-SCRIPT END"
