@@ -1,7 +1,7 @@
 # Module: Virtual Private Cloud 
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork
-#
+
 module "la_vpc" {
   ## NOTE: When changing the source parameter, `terraform init` is required
 
@@ -25,10 +25,37 @@ module "la_vpc" {
   vpc_subnet_cidr         = "10.128.0.0/16" 
 }
 
+# Reference:
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/vpc_access_connector
+
+module "la_serverless_vpc_access" {
+  ## NOTE: When changing the source parameter, `terraform init` is required
+
+  ## Local Modules - working
+  ## Module subdirectory needs to be defined within the TF directory
+  # source = "./basics/vpc_network/stable"
+
+  ## REMOTE: GitHub (Public) access - working 
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/vpc_connector/stable"
+
+  # Pass values to the module
+  gcp_project_id = var.gcp_project_id
+  gcp_region     = var.gcp_region
+  gcp_zone       = var.gcp_zone
+
+  # Customise the GCS instance
+  sva_name                   = "ideconn"
+  sva_network                = module.la_vpc.vpc_network_name
+  sva_subnet_cidr            = "10.8.0.0/28" 
+  sva_connector_machine_type = "f1-micro" 
+
+  depends_on = [ module.la_vpc ]
+}
 
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall
 # https://github.com/terraform-google-modules/terraform-google-network/tree/master/modules/firewall-rules
+
 module "la_fw" {
   ## NOTE: When changing the source parameter, `terraform init` is required
 
@@ -155,11 +182,11 @@ module "la_fw" {
     # Allow List
     allow = [{
       protocol     = "tcp"
-      ports        = [ "all" ]
+      ports        = null 
     },
     {
       protocol     = "udp"
-      ports        = [ "all" ]
+      ports        = null 
     },
     {
       protocol     = "icmp"
@@ -178,37 +205,46 @@ module "la_fw" {
   depends_on = [ module.la_vpc.vpc_network_name ]
 }
 
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_target_instance
+data "google_compute_image" "image_family" {
+  family  = var.gceMachineImage 
+  project = "qwiklabs-resources"
+}
+
+# GCE:    Virtual Machine
+# Local:  modules/[channel]
+# Remote: github.com://CloudVLab/terraform-lab-foundation//[module]/[channel]
+
 # Reference:
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/vpc_access_connector
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance
+#
 
-# Enable the vpc access service
-resource "google_project_service" "vpcaccess-api" {
-  project = var.gcp_project_id
-  service = "vpcaccess.googleapis.com"
+# Module: Google Compute Engine
+module "la_gce" {
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/gce_instance/stable"
 
-  timeouts {
-    create = "30m"
-    update = "40m"
-  }
+  # Pass values to the module
+  gcp_project_id = var.gcp_project_id
+  gcp_region     = var.gcp_region
+  gcp_zone       = var.gcp_zone
+  gcp_username   = var.gcp_username
 
-  # disable_dependent_services = true
+  # Customise the GCE instance
+  gce_name            = var.gceInstanceName
+  gce_region          = var.gcp_region
+  gce_zone            = var.gceInstanceZone
+  gce_machine_type    = var.gceMachineType
+  gce_tags            = var.gceInstanceTags 
+  gce_machine_image   = data.google_compute_image.image_family.self_link 
+  gce_machine_network = module.la_vpc.vpc_subnetwork_name
+  #gce_machine_network = module.la_vpc.vpc_network_name
+  #gce_machine_network = default 
+  gce_scopes          = ["cloud-platform"] 
+  #gce_startup_script   = "${file("./scripts/lab-init")}"
+
+  # Dependency - Serverless VPC Access connector 
+  depends_on = [ module.la_serverless_vpc_access.sva_connection_name ]
 }
-
-resource "google_vpc_access_connector" "connector" {
-  provider      = google-beta
-  name          = "ideconn"
-  region        = var.gcp_region
-  network       = module.la_vpc.vpc_network_name
-  ip_cidr_range = "10.8.0.0/28"
-
-  # Note: valid options: f1-micro, e2-micro, e2-standard-4
-  machine_type = var.vpcConnectorMachineType 
-
-  depends_on = [
-    google_project_service.vpcaccess-api, module.la_vpc.vpc_network_name 
-  ]
-}
-
 
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_run_service
@@ -245,7 +281,8 @@ resource "google_cloud_run_service" "ide" {
         "autoscaling.knative.dev/maxScale" = "3"
         "autoscaling.knative.dev/minScale" = "1"
         "run.googleapis.com/vpc-access-egress" = "all"
-        "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.connector.name
+        # "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.connector.name
+        "run.googleapis.com/vpc-access-connector" = module.la_serverless_vpc_access.sva_connection_name
       }
     }
   }
@@ -256,7 +293,7 @@ resource "google_cloud_run_service" "ide" {
   }
 
   # Dependency - Cloud Run API enabled
-  depends_on = [ google_project_service.run, module.la_gce ]
+  depends_on = [ google_project_service.run, module.la_gce.gce_instance_name ]
 }
 
 
@@ -278,7 +315,8 @@ resource "google_cloud_run_service" "browser" {
         "autoscaling.knative.dev/maxScale" = "3"
         "autoscaling.knative.dev/minScale" = "1"
         "run.googleapis.com/vpc-access-egress" = "all"
-        "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.connector.name
+        # "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.connector.name
+        "run.googleapis.com/vpc-access-connector" = module.la_serverless_vpc_access.sva_connection_name
       }
     }
   }
@@ -289,7 +327,7 @@ resource "google_cloud_run_service" "browser" {
   }
 
   # Dependency - Cloud Run API enabled
-  depends_on = [ google_project_service.run, module.la_gce ]
+  depends_on = [ google_project_service.run, module.la_gce.gce_instance_name ]
 }
 
 data "google_iam_policy" "noauth" {
@@ -317,38 +355,3 @@ resource "google_cloud_run_service_iam_policy" "browser_noauth" {
   policy_data = data.google_iam_policy.noauth.policy_data
 }
 
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_target_instance
-data "google_compute_image" "image_family" {
-  family  = var.gceMachineImage 
-  project = "qwiklabs-resources"
-}
-
-# GCE:    Virtual Machine
-# Local:  modules/[channel]
-# Remote: github.com://CloudVLab/terraform-lab-foundation//[module]/[channel]
-
-# Reference:
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance
-#
-
-# Module: Google Compute Engine
-module "la_gce" {
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/gce_instance/stable"
-
-  # Pass values to the module
-  gcp_project_id = var.gcp_project_id
-  gcp_region     = var.gcp_region
-  gcp_zone       = var.gcp_zone
-  gcp_username   = var.gcp_username
-
-  # Customise the GCE instance
-  gce_name            = var.gceInstanceName
-  gce_region          = var.gcp_region
-  gce_zone            = var.gceInstanceZone
-  gce_machine_type    = var.gceMachineType
-  gce_tags            = var.gceInstanceTags 
-  #gce_machine_image   = "debian-cloud/debian-10" 
-  gce_machine_network = module.la_vpc.vpc_subnet.name
-  gce_scopes          = ["cloud-platform"] 
-  #gce_startup_script   = "${file("./scripts/lab-init")}"
-}
