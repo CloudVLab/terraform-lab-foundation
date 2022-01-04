@@ -22,10 +22,10 @@ gcp_zone       = "us-central1-a"
 #### Custom Properties
 
 ```
-vpc_name                   = "ideconn"
-vpc_network                = "default"
-vpc_subnet_cidr            = "10.8.0.0/28"
-vpc_connector_machine_type = "f1-micro" 
+sva_name                   = "ideconn"
+sva_network                = "default"
+sva_subnet_cidr            = "10.8.0.0/28"
+sva_connector_machine_type = "f1-micro" 
 ```
 
 __NOTE:__ Valid VPC Connector Machine Type are:
@@ -38,6 +38,7 @@ __NOTE:__ Valid VPC Connector Machine Type are:
 
 | Field | Description |
 |-------|-------------|
+| sva_connection_name | The name of the Serverless VPC Access created |
 
 ## Adding a Commit 
 

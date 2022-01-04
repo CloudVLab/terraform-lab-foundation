@@ -28,28 +28,28 @@ variable "gcp_zone" {
 ## --------------------------------------------------------------
 
 # Default value passed in
-variable "vpc_name" {
+variable "sva_name" {
   type        = string
   description = "Name of the VPC connector."
   default     = "ideconn" 
 }
 
 # Default value passed in
-variable "vpc_network" {
+variable "sva_network" {
   type        = string
   description = "Name of the VPC network to use."
   default     = "default" 
 }
 
 # Default value passed in
-variable "vpc_subnet_cidr" {
+variable "sva_subnet_cidr" {
   type        = string
   description = "VPC subnetwork to cidr."
   default     = "10.8.0.0/28" 
 }
 
 # Default value passed in
-variable "vpc_connector_machine_type" {
+variable "sva_connector_machine_type" {
   type        = string
   description = "VPC connector machine default."
   default     = "f1-micro" 
