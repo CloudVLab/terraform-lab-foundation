@@ -18,8 +18,8 @@ resource "google_compute_instance" "gce_virtual_machine" {
   }
 
   network_interface {
-    #network = var.gce_machine_network
-    subnetwork = var.gce_machine_network
+    network = var.gce_machine_network == "default" ? var.gce_machine_network : null
+    subnetwork = var.gce_machine_network == "default" ? null : var.gce_machine_network
 
     access_config {
       // Ephemeral IP
