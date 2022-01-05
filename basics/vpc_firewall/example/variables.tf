@@ -29,6 +29,13 @@ variable "gcp_zone" {
 ## Custom variable definitions
 ## --------------------------------------------------------------
 
+# Default value passed in
+variable "fwr_network" {
+  type        = string
+  description = "Custom VPC network."
+  default     = "default" 
+}
+
 variable "fwr_rules" {
   description = "List of custom rule definitions (refer to variables file for syntax)."
   default     = []
@@ -54,46 +61,4 @@ variable "fwr_rules" {
       metadata = string
     })
   }))
-}
-
-# Default value passed in
-variable "fwr_name" {
-  type        = string
-  description = "Name of rule."
-  default     = "allow-ssh-network" 
-}
-
-# Default value passed in
-variable "fwr_network" {
-  type        = string
-  description = "Custom VPC network."
-  default     = "default" 
-}
-
-# Default value passed in
-variable "fwr_source_range" {
-  type        = list 
-  description = "Network range."
-  default     = [ "0.0.0.0/0" ] 
-}
-
-# Default value passed in
-variable "fwr_direction" {
-  type        = string
-  description = "Direction of traffic."
-  default     = "INGRESS" 
-}
-
-# Default value passed in
-variable "fwr_protocol" {
-  type        = string
-  description = "Traffic protocol."
-  default     = "tcp" 
-}
-
-# Default value passed in
-variable "fwr_ports" {
-  type        = list
-  description = "Traffic protocol."
-  default     = [ "22" ] 
 }
