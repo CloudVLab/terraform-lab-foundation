@@ -21,12 +21,44 @@ gcp_zone       = "us-central1-a"
 #### Custom Properties
 
 ```
-fwr_name         = "allow-ssh-network" 
 fwr_network      = "default" 
-fwr_source_range = [ "0.0.0.0/0" ]
-fwr_direction    = "INGRESS"
-fwr_protocol     = "tcp"
-fwr_ports        = [ "22" ]
+
+fwr_rules = [
+  {
+    fwr_name                    = "serverless-to-vpc-connector"
+    fwr_description             = "serverless-to-vpc-connector"
+    fwr_source_ranges           = [ "107.178.230.64/26", "35.199.224.0/19" ]
+    fwr_destination_ranges      = null
+    fwr_source_tags             = null
+    fwr_source_service_accounts = null
+    fwr_target_tags             = ["vpc-connector"]
+    fwr_target_service_accounts = null
+    fwr_priority                = "1000"
+    fwr_direction               = "INGRESS"
+
+    # Allow List
+    allow = [{
+      protocol     = "icmp"
+      ports        = null
+    },
+    {
+      protocol     = "tcp"
+      ports        = [ "667" ]
+    },
+    {
+      protocol     = "udp"
+      ports        = [ "665-666" ]
+    }]
+
+    # Deny List
+    deny = []
+
+    log_config = {
+      metadata = "INCLUDE_ALL_METADATA"
+    }
+
+  }
+]
 ```
 
 ## Accessing Output Values 
