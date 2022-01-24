@@ -46,6 +46,7 @@ Example solutions pre-built for the Qwiklabs platform
 
 - [x] [Cloud Code - Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_cloud_code/README.md)
 - [x] [Web Developer - Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_web/README.md)
+- [x] [AppSheet - CloudSQL MySQL](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/appsheet_cloudsql/README.md)
 - [ ] Proxy
 - [ ] VPC SC
 - [ ] Custom VM

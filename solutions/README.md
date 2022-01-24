@@ -6,6 +6,9 @@ General solutions based on Terraform
 - [x] Cloud Code IDE
 - [x] Web IDE
 - [x] BigQuery Pitch Perfect Query 
+- [x] AppSheet connecting to Cloud SQL [MySQL]
+- [ ] SSL Reverse Proxy 
+- [ ] Vertex Workbench Proxy 
 
 
 ## Adding a Commit 
