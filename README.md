@@ -33,6 +33,9 @@ Example configurations that can be used to build content on the Qwiklabs Platfor
 #### AI/ML
 - [x] [Vertex AI Notebook](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/vai_notebook/README.md)
 
+#### Databases 
+- [x] [Cloud SQL](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/cloudsql/README.md)
+
 #### Big Data 
 - [ ] [BigQuery](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/bigquery_data/README.md)
 
@@ -47,6 +50,7 @@ Example solutions pre-built for the Qwiklabs platform
 - [x] [Cloud Code - Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_cloud_code/README.md)
 - [x] [Web Developer - Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_web/README.md)
 - [x] [AppSheet - CloudSQL MySQL](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/appsheet_cloudsql/README.md)
+- [x] [BigQuery - Sports Analytics](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/bigquery_soccer/README.md)
 - [ ] Proxy
 - [ ] VPC SC
 - [ ] Custom VM
