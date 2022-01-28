@@ -12,7 +12,12 @@ output "vpc_subnetwork_name" {
   description = "Name of the VPC subnet"
 }
 
-output "vpc_self_link" {
+output "vpc_subnet_self_link" {
   value       = "${google_compute_subnetwork.dev_subnet.self_link}"
   description = "Self Link to the VPC subnet"
+}
+
+output "vpc_network_self_link" {
+  value       = "${google_compute_network.dev_network.self_link}"
+  description = "Self Link to the VPC Network"
 }

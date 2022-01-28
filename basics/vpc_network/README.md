@@ -33,7 +33,9 @@ vpc_subnet_cidr         = "10.128.0.0/16"
 | Field | Description |
 |-------|-------------|
 | vpc_network_name | The name of the VPC network |
-| vpc_network_name | The name of the VPC subnet  |
+| vpc_subnetwork_name | The name of the VPC subnet  |
+| vpc_subnet_self_link | Self Link to the VPC subnet  |
+| vpc_network_self_link| Self Link to the VPC network |
 
 ## Adding a Commit 
 
