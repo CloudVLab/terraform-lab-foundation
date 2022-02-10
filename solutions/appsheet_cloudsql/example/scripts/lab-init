@@ -1,0 +1,41 @@
+#!/bin/sh
+## https://www.shellcheck.net/
+echo "STARTUP-SCRIPT START"
+sudo apt-get update
+sudo apt-get install -y default-mysql-server
+
+SQL_USER="db_user"
+export SQL_USER
+
+SQL_PASSWORD="Password01"
+export SQL_PASSWORD
+
+# SQL_URL="gs://spls/test-database/"
+SQL_URL="gs://cloud-training/OCBL343/"
+export SQL_URL
+
+# SQL_FILENAME="mysqlsampledatabase.sql"
+SQL_FILENAME="create_mysql_schema.sql"
+export SQL_FILENAME
+
+SQL_SOURCE="$SQL_URL$SQL_FILENAME"
+export SQL_SOURCE
+
+# Download the test database
+gsutil cp "$SQL_SOURCE" /tmp
+
+# Get the instance external IP
+MYSQL_IP="$(gcloud compute instances list --format="value(EXTERNAL_IP)")"
+export MYSQL_IP
+
+# Add the instance external IP to the authorized network
+echo "Y" | gcloud sql instances patch mysql --authorized-networks="$MYSQL_IP"/32,34.87.131.237/32,35.245.209.204/32,35.203.191.15/32,35.247.56.116/32,35.240.247.148/32,34.87.159.166/32,34.87.233.115/32,35.244.107.184/32,35.204.102.20/32,35.204.159.159/32,35.239.203.99/32,34.87.103.64/32,35.239.112.17/32,34.86.96.199/32,35.245.229.252/32,34.83.247.7/32,35.247.40.210/32,35.197.185.203/32,35.244.126.141/32,35.204.213.55/32,34.91.161.74/32,35.222.253.144/32,34.71.7.214/32,35.194.89.186/32
+
+# Get the MySQL Public IP
+DATABASE_IP="$(gcloud sql instances describe mysql --format="value(ipAddresses.ipAddress)")"
+export DATABASE_IP
+
+# Connect to the database + load source
+mysql -h "$DATABASE_IP" -u "$SQL_USER" -p"$SQL_PASSWORD" < /tmp/"$SQL_FILENAME"
+
+echo "STARTUP-SCRIPT END"
