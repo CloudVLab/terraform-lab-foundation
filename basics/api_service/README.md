@@ -12,7 +12,7 @@ Enable Googleapis services using a Terraform configuration
 __NOTE:__ Qwiklabs requires some values to be defined as part of the provisioning process. 
 
 #### Qwiklabs Properties
-```
+```bash
 gcp_project_id = "my-gcp-project"
 gcp_region     = "us-central1"
 gcp_zone       = "us-central1-a"
@@ -20,8 +20,8 @@ gcp_zone       = "us-central1-a"
 
 #### Custom Properties
 
-```
-api_service_name = var.tfPubSubApi
+```bash
+api_service_name = "run.googleapis.com"
 ```
 
 ## Accessing Output Values 
