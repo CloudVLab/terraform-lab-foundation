@@ -1,5 +1,7 @@
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network
+
+# Network
 resource "google_compute_network" "dev_network" {
   name = "dev-network"
   description = "Developer network"
@@ -8,6 +10,8 @@ resource "google_compute_network" "dev_network" {
 
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork
+
+# Subnet
 resource "google_compute_subnetwork" "dev_subnet" {
   name          = "dev-subnetwork"
   ip_cidr_range = "10.128.0.0/16"
@@ -17,6 +21,8 @@ resource "google_compute_subnetwork" "dev_subnet" {
 
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall
+
+# Firewall: Allow Serverless to VPC connector
 resource "google_compute_firewall" "serverless-to-vpc-connector" {
   name    = "serverless-to-vpc-connector"
   network = google_compute_network.dev_network.name
@@ -43,6 +49,7 @@ resource "google_compute_firewall" "serverless-to-vpc-connector" {
   depends_on = [ google_compute_network.dev_network ]
 }
 
+# Firewall: Allow VPC connector to Serverless
 resource "google_compute_firewall" "vpc-connector-to-serverless" {
   name    = "vpc-connector-to-serverless"
   network = google_compute_network.dev_network.name
@@ -68,7 +75,7 @@ resource "google_compute_firewall" "vpc-connector-to-serverless" {
   depends_on = [ google_compute_network.dev_network ]
 }
 
-
+# Firewall: Allow Healthcheck
 resource "google_compute_firewall" "vpc-connector-health-check" {
   name    = "vpc-connector-health-check"
   network = google_compute_network.dev_network.name
@@ -86,7 +93,7 @@ resource "google_compute_firewall" "vpc-connector-health-check" {
   depends_on = [ google_compute_network.dev_network ]
 }
 
-
+# Firewall: Allow TCP/UDP/ICMP
 resource "google_compute_firewall" "vpc-connector-egress" {
   name    = "vpc-connector-egress"
   network = google_compute_network.dev_network.name
@@ -108,12 +115,28 @@ resource "google_compute_firewall" "vpc-connector-egress" {
   depends_on = [ google_compute_network.dev_network ]
 }
 
+# Firewall: Allow SSH
+resource "google_compute_firewall" "vm-ssh" {
+  name    = "vm-ssh"
+  network = google_compute_network.dev_network.name
+  direction = "INGRESS"
+
+  # Enable INGRESS
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_tags = ["lab-vm"]
+
+  depends_on = [ google_compute_network.dev_network ]
+}
 
 
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/vpc_access_connector
 
-# Enable the vpc access service
+# Enable the VPC access service
 resource "google_project_service" "vpcaccess-api" {
   project = var.gcp_project_id
   service = "vpcaccess.googleapis.com"
@@ -126,6 +149,7 @@ resource "google_project_service" "vpcaccess-api" {
   # disable_dependent_services = true
 }
 
+# Enable VPC connector
 resource "google_vpc_access_connector" "connector" {
   provider      = google-beta
   name          = "ideconn"
@@ -144,7 +168,8 @@ resource "google_vpc_access_connector" "connector" {
 
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_run_service
-#
+
+
 # Enable the Cloud Run service
 resource "google_project_service" "run" {
   project = var.gcp_project_id
@@ -158,7 +183,7 @@ resource "google_project_service" "run" {
   # disable_dependent_services = true
 }
 
-
+# Cloud Run: IDE
 resource "google_cloud_run_service" "ide" {
   name     = "ide-service" 
   location = var.gcrRegion
@@ -192,6 +217,7 @@ resource "google_cloud_run_service" "ide" {
 }
 
 
+# Cloud Run: Browser 
 resource "google_cloud_run_service" "browser" {
   name     = "browser-service"
   location = var.gcrRegion
@@ -224,6 +250,7 @@ resource "google_cloud_run_service" "browser" {
   depends_on = [google_project_service.run, google_compute_instance.default]
 }
 
+# Cloud Run: IAM Policy
 data "google_iam_policy" "noauth" {
   binding {
     role = "roles/run.invoker"
@@ -233,6 +260,7 @@ data "google_iam_policy" "noauth" {
   }
 }
 
+# Cloud Run: IDE Policy
 resource "google_cloud_run_service_iam_policy" "ide_noauth" {
   location    = google_cloud_run_service.ide.location
   project     = google_cloud_run_service.ide.project
@@ -241,6 +269,7 @@ resource "google_cloud_run_service_iam_policy" "ide_noauth" {
   policy_data = data.google_iam_policy.noauth.policy_data
 }
 
+# Cloud Run: Browser Policy
 resource "google_cloud_run_service_iam_policy" "browser_noauth" {
   location    = google_cloud_run_service.browser.location
   project     = google_cloud_run_service.browser.project
@@ -250,6 +279,8 @@ resource "google_cloud_run_service_iam_policy" "browser_noauth" {
 }
 
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_target_instance
+
+# Compute Image: qwiklabs-resources
 data "google_compute_image" "image_family" {
   family  = var.gceMachineImage 
   project = "qwiklabs-resources"
@@ -259,6 +290,8 @@ data "google_compute_image" "image_family" {
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance
 #
+
+# GCE: Instance
 resource "google_compute_instance" "default" {
 
   name         = var.gceInstanceName 
@@ -301,6 +334,8 @@ resource "google_compute_instance" "default" {
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket
 #
+
+# Cloud Storage: Project bucket 
 resource "google_storage_bucket" "cert-bucket" {
   name          = "${var.gcp_project_id}-bucket" 
   location      = "US"
