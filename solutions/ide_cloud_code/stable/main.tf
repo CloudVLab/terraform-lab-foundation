@@ -284,6 +284,10 @@ resource "google_container_cluster" "primary" {
     master_ipv4_cidr_block  = var.gkeMasterIPv4CIDRBlock
   }
 
+  # https://github.com/hashicorp/terraform-provider-google/issues/10782
+  ip_allocation_policy {
+  }
+
   # Enable GKE Autopilot
   enable_autopilot = true
 
