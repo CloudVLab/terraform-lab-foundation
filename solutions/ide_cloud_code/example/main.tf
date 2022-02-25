@@ -38,7 +38,11 @@ module "la_ide" {
   # gceInstanceZone  = "us-central1-f"
   # gceInstanceTags  = ["lab-vm"]
   # gceMachineType   = "e2-standard-2"
-  # gceInstanceScope = ["cloud-platform"] 
+  # gceInstanceScope = ["cloud-platform"]
+
+  ## Custom Bools for GKE Security
+  isPrivateCluster = true
+  isCustomNetwork = true
 
   ## Properties: Cloud Run
   # gcrRegion        = "us-central1"

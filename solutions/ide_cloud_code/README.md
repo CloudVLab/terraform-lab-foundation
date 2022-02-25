@@ -7,12 +7,14 @@ Create an Integrated Development Environment based on a Terraform configuration
 __NOTE:__ Qwiklabs requires some values to be defined as part of the provisioning process. 
 
 ```
-gcp_project_id  = "my-gcp-project"
-gcp_region      = "us-central1"
-gcp_zone        = "us-central1-a"
-vm_name         = "tester-vm"
-gcp_username    = "name@domain.com"
-gceMachineImage = "cloud-code-codeserver"
+gcp_project_id   = "my-gcp-project"
+gcp_region       = "us-central1"
+gcp_zone         = "us-central1-a"
+gceInstanceName  = "tester-vm"
+gcp_username     = "name@domain.com"
+gceMachineImage  = "cloud-code-codeserver"
+isPrivateCluster = true
+isCustomNetwork  = true
 ```
 
 ## Accessing Output Values 
