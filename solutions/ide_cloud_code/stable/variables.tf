@@ -121,6 +121,16 @@ variable "gceInstanceScope" {
   default     = ["cloud-platform"]
 }
 
+variable "isPrivateCluster" {
+  default = true
+  description = "True to spin up a private, secure cluster. False to spin up a public cluster."
+}
+
+variable "isCustomNetwork" {
+  default = true
+  description = "True to utilize custom network resources. False to switch to default network."
+}
+
 
 ## GKE Settings
 #

@@ -275,13 +275,13 @@ resource "google_container_cluster" "primary" {
   location = var.gcp_region
 
   # Define VPC configuration
-  network    = google_compute_network.dev_network.name
-  subnetwork = google_compute_subnetwork.dev_subnet.name
+  network    = var.isCustomNetwork ? google_compute_network.dev_network.name : "default"
+  subnetwork = var.isCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
 
   private_cluster_config {
     enable_private_endpoint = false
-    enable_private_nodes    = true
-    master_ipv4_cidr_block  = var.gkeMasterIPv4CIDRBlock
+    enable_private_nodes    = var.isPrivateCluster ? true : false
+    master_ipv4_cidr_block  = var.isPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
   }
 
   # Enable GKE Autopilot
