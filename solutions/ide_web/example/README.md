@@ -1,5 +1,12 @@
 # Terraform: IDE Web 
 
+## Script
+
+Add the example Terraform code module to your project
+```bash
+curl  -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_web/example/install.sh | bash
+```
+
 ## Example
 
 The example is based on the following hierarchy:
