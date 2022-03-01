@@ -17,7 +17,7 @@ fi
 
 # Download if the file does not exist
 if [ ! -f $DIRECTORY/$FILE1 ]; then
-curl -LO $FILE1_URL -o "$DIRECTORY/$FILE1"
+curl -LO $FILE1_URL -o "./$DIRECTORY/$FILE1"
 fi 
 
 ## # Download if the file does not exist
