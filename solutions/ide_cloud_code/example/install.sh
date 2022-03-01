@@ -17,20 +17,20 @@ fi
 
 # Download if the file does not exist
 if [ ! -f $DIRECTORY/$FILE1 ]; then
-curl -LO $FILE1_URL -o $FILE1
+curl -LO $FILE1_URL -o $DIRECTORY/$FILE1
 fi 
 
 # Download if the file does not exist
 if [ ! -f $DIRECTORY/$FILE2 ]; then
-curl -LO $FILE2_URL -o $FILE2
+curl -LO $FILE2_URL -o $DIRECTORY/$FILE2
 fi
 
 # Download if the file does not exist
 if [ ! -f $DIRECTORY/$FILE3 ]; then
-curl -LO $FILE3_URL -o $FILE3
+curl -LO $FILE3_URL -o $DIRECTORY/$FILE3
 fi
 
 # Download if the file does not exist
 if [ ! -f $DIRECTORY/$FILE4 ]; then
-curl -LO $FILE4_URL -o $FILE4
+curl -LO $FILE4_URL -o $DIRECTORY/$FILE4
 fi
