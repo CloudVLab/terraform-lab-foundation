@@ -275,8 +275,8 @@ resource "google_container_cluster" "primary" {
   location = var.gcp_region
 
   # Define VPC configuration
-  network    = var.isCustomNetwork ? google_compute_network.dev_network.name : "default"
-  subnetwork = var.isCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
+  network    = var.gkeIsCustomNetwork ? google_compute_network.dev_network.name : "default"
+  subnetwork = var.gkeIsCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
 
   private_cluster_config {
     enable_private_endpoint = false
