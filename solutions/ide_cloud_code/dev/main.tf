@@ -270,9 +270,9 @@ resource "google_compute_instance" "default" {
 
 # GKE cluster
 resource "google_container_cluster" "primary" {
-  provider = google-beta
-  name     = var.gkeClusterName
-  location = var.gcp_region
+  provider    = google-beta
+  name        = var.gkeClusterName
+  location    = var.gcp_region
   description = "dev cluster for testing"
 
   # Set value if not using GKE Autopilot
@@ -288,10 +288,9 @@ resource "google_container_cluster" "primary" {
     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
   }
 
-  addons_config {
-    enable_binary_authorization = var.gkeIsBinAuth 
-    enable_autopilot            = var.gkeIsAutopilot ? true : false
-  }
+  # Condition setting to variable variable. If not defined, default to false
+  # enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : false 
+  enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : false 
 
   # Release channel GKE clusters.
   release_channel {
