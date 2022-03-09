@@ -288,8 +288,10 @@ resource "google_container_cluster" "primary" {
     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
   }
 
-  enable_binary_authorization = var.gkeIsBinAuth 
-  enable_autopilot            = var.gkeIsAutopilot ? true : false
+  addons_config {
+    enable_binary_authorization = var.gkeIsBinAuth 
+    enable_autopilot            = var.gkeIsAutopilot ? true : false
+  }
 
   # Release channel GKE clusters.
   release_channel {
