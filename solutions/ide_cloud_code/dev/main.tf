@@ -289,7 +289,7 @@ resource "google_container_cluster" "primary" {
   }
 
   # Condition setting to variable variable. If not defined, default to false
-  enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : false 
+  # enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : false 
   enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : false 
 
   # Release channel GKE clusters.
