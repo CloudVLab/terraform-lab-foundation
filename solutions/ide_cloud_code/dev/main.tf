@@ -287,6 +287,16 @@ resource "google_container_cluster" "primary" {
     enable_private_nodes    = var.gkeIsPrivateCluster ? true : false
     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
   }
+    
+#  addons_config {
+#     disabled = var.istio_disabled
+#     auth     = var.istio_auth
+#  }
+
+  ip_allocation_policy {
+  }
+
+  networking_mode = var.gkeNetworkingMode ? "VPC_NATIVE" : "ROUTES"
 
   # Condition setting to variable variable. If not defined, default to false
   # enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : false 
