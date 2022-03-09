@@ -372,20 +372,14 @@ resource "google_container_cluster" "prod_cluster" {
   network    = var.gkeIsCustomNetwork ? google_compute_network.dev_network.name : "default"
   subnetwork = var.gkeIsCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
 
+  # Set this value if not using GKE Autopilot
+  initial_node_count = var.gkeIsAutopilot ==true ? null : var.gkeInitialNodeCount
+
   # Condition setting to variable. If defined set to variable, otherwise default to null 
   enable_binary_authorization = var.gkeIsBinAuth == true ? var.gkeIsBinAuth : null 
 
   # Condition setting to variable. If defined set to variable, default to null 
   enable_autopilot            = var.gkeIsAutopilot == true ? var.gkeIsAutopilot : null 
-
-  # Set this value if not using GKE Autopilot
-  initial_node_count = var.gkeIsAutopilot ==true ? null : var.gkeInitialNodeCount
-
-  # Condition setting to variable. If defined set to variable, otherwise default to false 
-  enable_binary_authorization = var.gkeIsBinAuth == true ? true : false
-
-  # Condition setting to variable. If defined set to variable, default to false
-  enable_autopilot            = var.gkeIsAutopilot == true ? true : false 
 
   private_cluster_config {
     enable_private_endpoint = var.gkeIsPrivateEndpoint 
