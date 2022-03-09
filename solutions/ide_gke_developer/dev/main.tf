@@ -283,10 +283,13 @@ resource "google_container_cluster" "dev_cluster" {
   # Set networking mode
   networking_mode = var.gkeNetworkingMode ? var.gkeModeVpcNative : var.gkeModeRoutes 
 
-  # Condition setting to variable. If defined set to variable, otherwise default to false 
-  enable_binary_authorization = var.gkeIsBinAuth == true ? var.gkeIsBinAuth : false 
+  # Set this value if not using GKE Autopilot
+  initial_node_count = var.gkeIsAutopilot ==true ? null : var.gkeInitialNodeCount
 
-  # Condition setting to variable. If defined set to variable, default to false
+  # Condition setting to variable. If defined set to variable, otherwise default to null 
+  enable_binary_authorization = var.gkeIsBinAuth == true ? var.gkeIsBinAuth : null 
+
+  # Condition setting to variable. If defined set to variable, default to null 
   enable_autopilot            = var.gkeIsAutopilot == true ? var.gkeIsAutopilot : null 
 
   private_cluster_config {
@@ -312,94 +315,97 @@ resource "google_container_cluster" "dev_cluster" {
   ##   depends_on = [google_compute_instance.default]
 }
 
-## # GKE cluster
-## resource "google_container_cluster" "preprod_cluster" {
-##   provider    = google-beta
-##   name        = "preprod-cluster" 
-##   location    = var.gcp_region
-##   description = "pre-prod cluster"
-## 
-##   # Define VPC configuration
-##   network    = var.gkeIsCustomNetwork ? google_compute_network.dev_network.name : "default"
-##   subnetwork = var.gkeIsCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
-## 
-##   # Set networking mode
-##   networking_mode = var.gkeNetworkingMode ? var.gkeModeVpcNative : var.gkeModeRoutes 
-## 
-##   # Set this value if not using GKE Autopilot
-##   initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
-## 
-##   # Condition setting to variable. If defined set to variable, otherwise default to false 
-##   enable_binary_authorization = var.gkeIsBinAuth == true ? true : false
-## 
-##   # Condition setting to variable. If defined set to variable, default to false
-##   enable_autopilot            = var.gkeIsAutopilot == true ? true : false 
-## 
-##   private_cluster_config {
-##     enable_private_endpoint = var.gkeIsPrivateEndpoint 
-##     enable_private_nodes    = var.gkeIsPrivateCluster ? true : false
-##     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock2 : null
-##   }
-##     
-## #  addons_config {
-## #     disabled = var.istio_disabled
-## #     auth     = var.istio_auth
-## #  }
-## 
-##   ip_allocation_policy {
-##   }
-## 
-##   # Release channel GKE clusters.
-##   release_channel {
-##     channel = "STABLE"
-##   }
-## 
-##   # Dependency - Cloud Run API enabled
-##   ##   depends_on = [google_compute_instance.default]
-## }
-## 
-## # GKE cluster
-## resource "google_container_cluster" "prod_cluster" {
-##   provider    = google-beta
-##   name        = "prod-cluster" 
-##   location    = var.gcp_region
-##   description = "prod cluster"
-## 
-##   # Define VPC configuration
-##   network    = var.gkeIsCustomNetwork ? google_compute_network.dev_network.name : "default"
-##   subnetwork = var.gkeIsCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
-## 
-##   # Set networking mode
-##   networking_mode = var.gkeNetworkingMode ? var.gkeModeVpcNative : var.gkeModeRoutes 
-## 
-##   # Set this value if not using GKE Autopilot
-##   initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
-## 
-##   # Condition setting to variable. If defined set to variable, otherwise default to false 
-##   enable_binary_authorization = var.gkeIsBinAuth == true ? true : false
-## 
-##   # Condition setting to variable. If defined set to variable, default to false
-##   enable_autopilot            = var.gkeIsAutopilot == true ? true : false 
-## 
-##   private_cluster_config {
-##     enable_private_endpoint = var.gkeIsPrivateEndpoint 
-##     enable_private_nodes    = var.gkeIsPrivateCluster ? true : false
-##     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock3 : null
-##   }
-##     
-## #  addons_config {
-## #     disabled = var.istio_disabled
-## #     auth     = var.istio_auth
-## #  }
-## 
-##   ip_allocation_policy {
-##   }
-## 
-##   # Release channel GKE clusters.
-##   release_channel {
-##     channel = "STABLE"
-##   }
-## 
-##   # Dependency - Cloud Run API enabled
-##   ##   depends_on = [google_compute_instance.default]
-## }
+# GKE cluster
+resource "google_container_cluster" "preprod_cluster" {
+  provider    = google-beta
+  name        = "preprod-cluster" 
+  location    = var.gcp_region
+  description = "pre-prod cluster"
+
+  # Define VPC configuration
+  network    = var.gkeIsCustomNetwork ? google_compute_network.dev_network.name : "default"
+  subnetwork = var.gkeIsCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
+
+  # Set networking mode
+  networking_mode = var.gkeNetworkingMode ? var.gkeModeVpcNative : var.gkeModeRoutes 
+
+  # Set this value if not using GKE Autopilot
+  initial_node_count = var.gkeIsAutopilot ==true ? null : var.gkeInitialNodeCount
+
+  # Condition setting to variable. If defined set to variable, otherwise default to null 
+  enable_binary_authorization = var.gkeIsBinAuth == true ? var.gkeIsBinAuth : null 
+
+  # Condition setting to variable. If defined set to variable, default to null 
+  enable_autopilot            = var.gkeIsAutopilot == true ? var.gkeIsAutopilot : null 
+
+  private_cluster_config {
+    enable_private_endpoint = var.gkeIsPrivateEndpoint 
+    enable_private_nodes    = var.gkeIsPrivateCluster ? true : false
+    master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock2 : null
+  }
+    
+#  addons_config {
+#     disabled = var.istio_disabled
+#     auth     = var.istio_auth
+#  }
+
+  ip_allocation_policy {
+  }
+
+  # Release channel GKE clusters.
+  release_channel {
+    channel = "STABLE"
+  }
+
+  # Dependency - Cloud Run API enabled
+  ##   depends_on = [google_compute_instance.default]
+}
+
+# GKE cluster
+resource "google_container_cluster" "prod_cluster" {
+  provider    = google-beta
+  name        = "prod-cluster" 
+  location    = var.gcp_region
+  description = "prod cluster"
+
+  # Define VPC configuration
+  network    = var.gkeIsCustomNetwork ? google_compute_network.dev_network.name : "default"
+  subnetwork = var.gkeIsCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
+
+  # Condition setting to variable. If defined set to variable, otherwise default to null 
+  enable_binary_authorization = var.gkeIsBinAuth == true ? var.gkeIsBinAuth : null 
+
+  # Condition setting to variable. If defined set to variable, default to null 
+  enable_autopilot            = var.gkeIsAutopilot == true ? var.gkeIsAutopilot : null 
+
+  # Set this value if not using GKE Autopilot
+  initial_node_count = var.gkeIsAutopilot ==true ? null : var.gkeInitialNodeCount
+
+  # Condition setting to variable. If defined set to variable, otherwise default to false 
+  enable_binary_authorization = var.gkeIsBinAuth == true ? true : false
+
+  # Condition setting to variable. If defined set to variable, default to false
+  enable_autopilot            = var.gkeIsAutopilot == true ? true : false 
+
+  private_cluster_config {
+    enable_private_endpoint = var.gkeIsPrivateEndpoint 
+    enable_private_nodes    = var.gkeIsPrivateCluster ? true : false
+    master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock3 : null
+  }
+    
+#  addons_config {
+#     disabled = var.istio_disabled
+#     auth     = var.istio_auth
+#  }
+
+  ip_allocation_policy {
+  }
+
+  # Release channel GKE clusters.
+  release_channel {
+    channel = "STABLE"
+  }
+
+  # Dependency - Cloud Run API enabled
+  ##   depends_on = [google_compute_instance.default]
+}
