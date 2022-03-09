@@ -273,6 +273,7 @@ resource "google_container_cluster" "primary" {
   provider = google-beta
   name     = var.gkeClusterName
   location = var.gcp_region
+  description = "dev cluster for testing"
 
   # Set value if not using GKE Autopilot
   initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
@@ -282,14 +283,13 @@ resource "google_container_cluster" "primary" {
   subnetwork = var.gkeIsCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
 
   private_cluster_config {
-    enable_binauthz         = var.gkeIsBinAuth 
     enable_private_endpoint = var.gkeIsPrivateEndpoint 
     enable_private_nodes    = var.gkeIsPrivateCluster ? true : false
     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
   }
 
-  # Enable GKE Autopilot
-  enable_autopilot = var.gkeIsAutopilot ? true : false
+  enable_binary_authorization = var.gkeIsBinAuth 
+  enable_autopilot            = var.gkeIsAutopilot ? true : false
 
   # Release channel GKE clusters.
   release_channel {

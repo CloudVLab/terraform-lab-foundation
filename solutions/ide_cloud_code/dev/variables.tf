@@ -124,6 +124,12 @@ variable "gceInstanceScope" {
 ## GKE Settings
 #
 
+variable "gkeDescription" {
+  type        = string 
+  description = "Description to apply to the cluster."
+  default     = "Lab cluster - using default description" 
+}
+
 variable "gkeIsPrivateCluster" {
   type        = bool
   description = "Set as True to spin up a private, secure cluster. False to spin up a public cluster."
