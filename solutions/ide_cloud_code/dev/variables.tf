@@ -130,6 +130,12 @@ variable "gkeIsPrivateCluster" {
   default     = true
 }
 
+variable "gkeIsPrivateEndpoint" {
+  type        = bool
+  description = "Set as True use the cluster private endpoint and disable public endpoint. False means cluster cluster/public endpoint can be used."
+  default     = false 
+}
+
 variable "gkeIsCustomNetwork" {
   type        = bool
   description = "Set as True to utilize custom network resources. False to switch to default network."
@@ -140,6 +146,18 @@ variable "gkeIsAutopilot" {
   type        = bool
   description = "Set as True to utilize custom network resources. False to switch to default network."
   default     = true
+}
+
+variable "gkeIsBinAuth" {
+  type        = bool 
+  description = "Set as True to enable Binary Authorization" 
+  default     = false 
+}
+
+variable "gkeInitialNodeCount" {
+  type        = string 
+  description = "Set the initial number of nodes" 
+  default     = "1"
 }
 
 # Custom properties with defaults 
