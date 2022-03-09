@@ -289,9 +289,6 @@ resource "google_container_cluster" "dev_cluster" {
   # Condition setting to variable. If defined set to variable, default to false
   enable_autopilot            = var.gkeIsAutopilot == true ? true : false 
 
-  # Condition setting to variable. If defined set to variable, default to false
-  enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : false 
-
   private_cluster_config {
     enable_private_endpoint = var.gkeIsPrivateEndpoint 
     enable_private_nodes    = var.gkeIsPrivateCluster ? true : false
