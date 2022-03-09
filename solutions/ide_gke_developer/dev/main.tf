@@ -287,7 +287,7 @@ resource "google_container_cluster" "dev_cluster" {
   enable_binary_authorization = var.gkeIsBinAuth == true ? var.gkeIsBinAuth : false 
 
   # Condition setting to variable. If defined set to variable, default to false
-  enable_autopilot            = var.gkeIsAutopilot == true ? var.gkeIsAutopilot : false 
+  enable_autopilot            = var.gkeIsAutopilot == true ? var.gkeIsAutopilot : null 
 
   private_cluster_config {
     enable_private_endpoint = var.gkeIsPrivateEndpoint 
