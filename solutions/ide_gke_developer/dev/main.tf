@@ -284,10 +284,10 @@ resource "google_container_cluster" "dev_cluster" {
   networking_mode = var.gkeNetworkingMode ? var.gkeModeVpcNative : var.gkeModeRoutes 
 
   # Condition setting to variable. If defined set to variable, otherwise default to false 
-  enable_binary_authorization = var.gkeIsAutopilot == true ? false : true 
+  enable_binary_authorization = var.gkeIsBinAuth == true ? var.gkeIsBinAuth : false 
 
   # Condition setting to variable. If defined set to variable, default to false
-  enable_autopilot            = var.gkeIsAutopilot == true ? true : false 
+  enable_autopilot            = var.gkeIsAutopilot == true ? var.gkeIsAutopilot : false 
 
   private_cluster_config {
     enable_private_endpoint = var.gkeIsPrivateEndpoint 
