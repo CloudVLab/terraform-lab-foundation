@@ -275,7 +275,7 @@ resource "google_container_cluster" "primary" {
   location = var.gcp_region
 
   # Set value if not using GKE Autopilot
-  initial_node_count = var.gkeIsAutopilot ? null : var.InitialNodeCount
+  initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
 
   # Define VPC configuration
   network    = var.gkeIsCustomNetwork ? google_compute_network.dev_network.name : "default"
