@@ -283,11 +283,11 @@ resource "google_container_cluster" "dev_cluster" {
   # Set networking mode
   networking_mode = var.gkeNetworkingMode ? var.gkeModeVpcNative : var.gkeModeRoutes 
 
-  # Set this value if not using GKE Autopilot
-  initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
-
   # Condition setting to variable. If defined set to variable, otherwise default to false 
-  enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : false
+  enable_binary_authorization = var.gkeIsBinAuth == true ? true : false
+
+  # Condition setting to variable. If defined set to variable, default to false
+  enable_autopilot            = var.gkeIsAutopilot == true ? true : false 
 
   # Condition setting to variable. If defined set to variable, default to false
   enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : false 
@@ -333,10 +333,10 @@ resource "google_container_cluster" "preprod_cluster" {
   initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
 
   # Condition setting to variable. If defined set to variable, otherwise default to false 
-  enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : false
+  enable_binary_authorization = var.gkeIsBinAuth == true ? true : false
 
   # Condition setting to variable. If defined set to variable, default to false
-  enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : false 
+  enable_autopilot            = var.gkeIsAutopilot == true ? true : false 
 
   private_cluster_config {
     enable_private_endpoint = var.gkeIsPrivateEndpoint 
@@ -379,10 +379,10 @@ resource "google_container_cluster" "prod_cluster" {
   initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
 
   # Condition setting to variable. If defined set to variable, otherwise default to false 
-  enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : false
+  enable_binary_authorization = var.gkeIsBinAuth == true ? true : false
 
   # Condition setting to variable. If defined set to variable, default to false
-  enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : false 
+  enable_autopilot            = var.gkeIsAutopilot == true ? true : false 
 
   private_cluster_config {
     enable_private_endpoint = var.gkeIsPrivateEndpoint 
