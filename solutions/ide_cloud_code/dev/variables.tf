@@ -25,10 +25,10 @@ variable "gcp_zone" {
 ## Ensure these values are defined in Qwiklabs.yaml
 
 # with the same name for any lab that uses this script.
-variable "gcp_username" {
-  type        = string
-  description = "Name of Qwiklabs user"
-}
+## variable "gcp_username" {
+##   type        = string
+##   description = "Name of Qwiklabs user"
+## }
 
 ## --------------------------------------------------------------
 ## Custom variable definitions - Override from Custom Properties
