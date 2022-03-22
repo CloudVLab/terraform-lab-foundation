@@ -235,7 +235,7 @@ resource "google_notebooks_instance" "vertex_instance" {
 
   vm_image {
     project      = var.gceImageProject 
-    image_family = var.gceImageFamily 
+    image_family = var.gceInstanceImage
   }
 
   # Startup-script
