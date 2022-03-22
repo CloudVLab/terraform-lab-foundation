@@ -54,5 +54,5 @@ named `tf` is present.
  6    - label: "GCP Password"
  7      reference: user_0.password
  8    - label: "Vertex Workbench"
- 9      reference: project_0.startup_script.vertex_notebook_url
+ 9      reference: project_0.startup_script.notebook_service_url
 ```
