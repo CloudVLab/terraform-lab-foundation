@@ -23,7 +23,7 @@ gcrMemberPermission  = "allUsers"
 
 | Field | Description |
 |-------|-------------|
-| vertex_notebook_url | The service URL for the notebook |
+| notebook_service_url| The service URL for the notebook |
 
 ## Adding a Commit 
 
