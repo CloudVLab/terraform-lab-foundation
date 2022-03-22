@@ -9,7 +9,7 @@ General solutions based on Terraform
 - [x] BigQuery Pitch Perfect Query 
 - [x] AppSheet connecting to Cloud SQL [MySQL]
 - [ ] SSL Reverse Proxy 
-- [ ] Vertex Workbench Proxy 
+- [x] Vertex Workbench Proxy 
 
 
 ## Adding a Commit 
