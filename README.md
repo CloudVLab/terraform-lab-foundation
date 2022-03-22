@@ -47,8 +47,9 @@ Example configurations that can be used to build content on the Qwiklabs Platfor
 
 Example solutions pre-built for the Qwiklabs platform
 
-- [x] [Cloud Code - Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_cloud_code/README.md)
-- [x] [Web Developer - Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_web/README.md)
+- [x] [Cloud Code - Proxy Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_cloud_code/README.md)
+- [x] [Web Developer - Proxy Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_web/README.md)
+- [x] [Vertex AI Notebook - Proxy Workbench](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/proxy_vertex_workbench/README.md)
 - [x] [AppSheet - CloudSQL MySQL](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/appsheet_cloudsql/README.md)
 - [x] [BigQuery - Sports Analytics](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/bigquery_soccer/README.md)
 - [ ] Proxy
