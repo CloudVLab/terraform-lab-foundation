@@ -21,7 +21,7 @@ resource "google_container_cluster" "primary" {
 
   ## NOTE: Set null value where false value is set
   # Set this value if not using GKE Autopilot
-  initial_node_count = var.gkeIntialNodeCount ? var.gkeInitialNodeCount : null
+  initial_node_count = var.gkeInitialNodeCount ? var.gkeInitialNodeCount : null
   #initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
 
   ## NOTE: Set null value where false value is set
