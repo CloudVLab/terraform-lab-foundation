@@ -19,14 +19,18 @@ resource "google_container_cluster" "primary" {
   # Set networking mode
   networking_mode = var.gkeNetworkingMode ? var.gkeModeVpcNative : var.gkeModeRoutes 
 
+  ## NOTE: Set null value where false value is set
   # Set this value if not using GKE Autopilot
-  initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
+  initial_node_count = var.gkeIntialNodeCount ? var.gkeInitialNodeCount : null
+  #initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
 
+  ## NOTE: Set null value where false value is set
   # Condition setting to variable. If defined set to variable, otherwise default to false 
-  enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : false
+  enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : null 
 
+  ## NOTE: Set null value where false value is set
   # Condition setting to variable. If defined set to variable, default to false
-  enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : false 
+  enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : null 
 
   private_cluster_config {
     enable_private_endpoint = var.gkeIsPrivateEndpoint 
