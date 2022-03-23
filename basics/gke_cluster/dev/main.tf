@@ -47,8 +47,8 @@ resource "google_container_cluster" "primary" {
   ## TODO: Need to refine this 
   # Enable Alias IPs
   ip_allocation_policy {
-    cluster_ipv4_cidr_block  = var.gkeIsPrivateCluster ? "/14" : null
-    services_ipv4_cidr_block = var.gkeIsPrivateCluster ? "/20" : null
+##    cluster_ipv4_cidr_block  = var.gkeIsPrivateCluster ? "/14" : null
+##    services_ipv4_cidr_block = var.gkeIsPrivateCluster ? "/20" : null
   }
 
   # Release channel GKE clusters.
