@@ -23,6 +23,7 @@ variable "gcp_zone" {
 ## Output variable definitions - Override from Custom Properties 
 ## --------------------------------------------------------------
 
+### Retired - please use gkeClusterName instead
 # Expected custom_properties key to be declared in `qwiklabs.yaml` 
 # with the same name for any lab that uses this script.
 variable "gke_cluster_name" {
@@ -43,6 +44,13 @@ variable "gcp_username" {
 ## Custom variable definitions - Override from Custom Properties
 ## --------------------------------------------------------------
 
+# Custom properties with defaults 
+variable "gkeClusterName" {
+  type        = string
+  description = "GKE Cluster name."
+  default     = "dev-cluster" 
+}
+
 variable "gkeDescription" {
   type        = string 
   description = "Description to apply to the cluster."
@@ -59,12 +67,6 @@ variable "gkeIsPrivateEndpoint" {
   type        = bool
   description = "Set as True use the cluster private endpoint and disable public endpoint. False means cluster cluster/public endpoint can be used."
   default     = false 
-}
-
-variable "gkeIsCustomNetwork" {
-  type        = bool
-  description = "Set as True to utilize custom network resources. False to switch to default network."
-  default     = true
 }
 
 variable "gkeNetworkingMode" {
@@ -92,13 +94,6 @@ variable "gkeInitialNodeCount" {
 }
 
 # Custom properties with defaults 
-variable "gkeClusterName" {
-  type        = string
-  description = "GKE Cluster name."
-  default     = "dev-cluster" 
-}
-
-# Custom properties with defaults 
 variable "gkeMasterIPv4CIDRBlock" {
   type        = string
   description = "GKE Master CIDR block"
@@ -117,4 +112,25 @@ variable "gkeModeRoutes" {
   type        = string
   description = "Networking mode - Routes"
   default     = "ROUTES"
+}
+
+# Custom properties with defaults
+variable "gkeIsCustomNetwork" {
+  type        = bool
+  description = "Set as True to utilize custom network resources. False to switch to default network."
+  default     = false 
+}
+
+# Custom properties with defaults 
+variable "gkeNetwork" {
+  type        = string
+  description = "Network route "
+  default     = "default"
+}
+
+# Custom properties with defaults 
+variable "gkeSubnetwork" {
+  type        = string
+  description = "Network route "
+  default     = "default"
 }
