@@ -72,13 +72,13 @@ variable "gkeIsPrivateEndpoint" {
 variable "gkeNetworkingMode" {
   type        = bool 
   description = "Set to true for VPC_NATIVE (IP aliasing), false for ROUTES (default)"
-  default     = "false" 
+  default     = false 
 }
 
 variable "gkeIsAutopilot" {
   type        = bool
   description = "Set as True to utilize custom network resources. False to switch to default network."
-  default     = true
+  default     = false 
 }
 
 variable "gkeIsBinAuth" {
