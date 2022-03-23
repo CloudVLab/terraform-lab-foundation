@@ -13,8 +13,8 @@ resource "google_container_cluster" "primary" {
   description = "dev cluster for testing"
 
   # Define VPC configuration
-  network    = var.gkeIsCustomNetwork ? var.gkeNetwork : "default"
-  subnetwork = var.gkeIsCustomNetwork ? var.gkeSubnetwork : "default"
+  network    = var.gkeIsCustomNetwork ? var.gkeNetwork : null 
+  subnetwork = var.gkeIsCustomNetwork ? var.gkeSubnetwork : null 
 
   # Set networking mode
   networking_mode = var.gkeNetworkingMode ? var.gkeModeVpcNative : var.gkeModeRoutes 
