@@ -1,5 +1,19 @@
 # Terraform: IDE Cloud Code 
 
+
+## Example
+
+The example is based on the following hierarchy:
+
+```
+.
+├── instructions
+│   ├── en.md
+│   └── img
+├── QL_OWNER
+└── qwiklabs.yaml 
+```
+
 ## Script
 
 Add the example Terraform code module to your project
@@ -7,10 +21,9 @@ Add the example Terraform code module to your project
 curl  -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloud_code/example/install.sh | bash
 ```
 
+## Task 1. Example
 
-## Example
-
-The example is based on the following hierarchy:
+The script will update the hierarchy:
 
 ```
 .
@@ -31,6 +44,8 @@ named `tf` is present.
 
 ## Qwiklabs Yaml
 
+Update the `qwiklabs.yaml` to include startup_script configuration i.e. Terraform
+
 #### Custom Properties
 
 ```
@@ -42,6 +57,9 @@ named `tf` is present.
 6      type: qwiklabs
 7      path: tf
 ```
+
+
+Update the `qwiklabs.yaml` to include visible output returned from the startup_script
 
 #### Visible Outputs
 
