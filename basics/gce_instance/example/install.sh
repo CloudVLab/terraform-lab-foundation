@@ -43,12 +43,12 @@ fi
 ## Scripts Directory
 
 # Create TF directory if not present
-if [ ! -d $SCRIPTS]; then
+if [ ! -d "$SCRIPTS" ]; then
   mkdir -p $SCRIPTS
 fi
 
 # Download if the file does not exist
-if [ ! -f $SCRIPTS/$SCRIPT ]; then
+if [ ! -f "$SCRIPTS/$SCRIPT" ]; then
 curl -L $SCRIPT_URL -o "$SCRIPTS/$SCRIPT"
 fi
 
