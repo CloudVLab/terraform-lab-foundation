@@ -11,17 +11,6 @@ variable "gcp_zone" {
   type = string
 }
 
-# Author Custom Values 
-variable "tfResourceName" {
-  type = string
-}
-
-# GCE:    Virtual Machine
-variable "tfUsername" {
-  type = string
-}
-
-
 # Source Repo
 variable "source_repo_name" {
   type    = string
