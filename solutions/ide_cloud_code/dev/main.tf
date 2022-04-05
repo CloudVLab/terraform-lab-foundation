@@ -303,10 +303,8 @@ resource "google_container_cluster" "primary" {
     
   master_authorized_networks_config {
     cidr_blocks {
-      {
-        cidr_block =  var.gkeIsPrivateCluster ? "0.0.0.0/0" : null
-        display_name = var.gkeIsPrivateCluster ? "Open-Access" : null
-      }
+      cidr_block   = var.gkeIsPrivateCluster ? "0.0.0.0/0" : null
+      display_name = var.gkeIsPrivateCluster ? "Open-Access" : null
     }
   }
 
