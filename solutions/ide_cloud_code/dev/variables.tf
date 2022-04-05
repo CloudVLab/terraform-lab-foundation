@@ -133,7 +133,7 @@ variable "gkeDescription" {
 variable "gkeIsPrivateCluster" {
   type        = bool
   description = "Set as True to spin up a private, secure cluster. False to spin up a public cluster."
-  default     = true
+  default     = false 
 }
 
 variable "gkeIsPrivateEndpoint" {

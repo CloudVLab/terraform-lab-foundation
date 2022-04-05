@@ -290,15 +290,14 @@ resource "google_container_cluster" "primary" {
   ## NOTE: Set null value where false value is set
   # Condition setting to variable. If defined set to variable, otherwise default to false 
   enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : null 
- 
-
+  
   ## NOTE: Set null value where false value is set
   # Condition setting to variable. If defined set to variable, default to false
   enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : null 
 
   private_cluster_config {
-    enable_private_endpoint = var.gkeIsPrivateEndpoint 
-    enable_private_nodes    = var.gkeIsPrivateCluster ? true : false
+    enable_private_endpoint = var.gkeIsPrivateCluster ? true : null
+    enable_private_nodes    = var.gkeIsPrivateCluster ? true : null 
     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
   }
     
