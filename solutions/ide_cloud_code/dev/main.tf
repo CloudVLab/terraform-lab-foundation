@@ -280,7 +280,8 @@ resource "google_container_cluster" "primary" {
   subnetwork = var.gkeIsCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
 
   # Set networking mode
-  networking_mode = var.gkeNetworkingMode ? var.gkeModeVpcNative : var.gkeModeRoutes 
+  # IP Alias requires VPC Native
+  networking_mode = var.gkeIsPrivateCluster ? var.gkeModeVpcNative : var.gkeModeRoutes 
 
   # Set this value if not using GKE Autopilot
   initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
@@ -309,6 +310,7 @@ resource "google_container_cluster" "primary" {
 #     auth     = var.istio_auth
 #  }
 
+  # IP Alias
   ip_allocation_policy {
   }
 
