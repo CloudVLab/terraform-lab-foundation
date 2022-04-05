@@ -16,3 +16,8 @@ output "ideInstanceName" {
   value       = "${var.gceInstanceName}"
   description = "Name of the GCE instance"
 }
+
+output "vpcNetworkName" {
+  value       = "${module.la_vpc.vpc_network_name}"
+  description = "Name of the GCE instance"
+}
