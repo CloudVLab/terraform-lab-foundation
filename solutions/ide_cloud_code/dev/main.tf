@@ -297,8 +297,8 @@ resource "google_container_cluster" "primary" {
   enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : null 
 
   private_cluster_config {
-    enable_private_endpoint = var.gkeIsPrivateCluster ? true : null
-    enable_private_nodes    = var.gkeIsPrivateCluster ? true : null 
+    enable_private_endpoint = var.gkeIsPrivateCluster ? true : false
+    enable_private_nodes    = var.gkeIsPrivateCluster ? true : false 
     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
   }
     
