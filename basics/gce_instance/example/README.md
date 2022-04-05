@@ -3,6 +3,26 @@
 ## Example
 
 The example is based on the following hierarchy:
+```
+.
+├── instructions
+│   ├── en.md
+│   └── img
+├── QL_OWNER
+└── qwiklabs.yaml 
+```
+
+## Add the module to the directory 
+
+Add the example Terraform code module to your project
+
+```
+curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/gce_instance/example/install.sh | bash
+```
+
+## View the updated directory 
+
+The example is based on the following hierarchy:
 
 ```
 .
@@ -23,11 +43,11 @@ The example is based on the following hierarchy:
 __NOTE:__ The Terraform examples assume a configuration sub-directory 
 named `tf` is present.
 
-## Qwiklabs Yaml
+## Update Qwiklabs Yaml
 
 #### Custom Properties
 
-The `qwiklabs.yaml` configuration file is used to set the definition of 
+The `qwiklabs.yaml` configuration file is used to set the optional definition of 
 custom properties e.g. `tfResourceName` and `tfUsername`:
 
 ```
