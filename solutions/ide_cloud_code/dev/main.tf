@@ -297,6 +297,15 @@ resource "google_container_cluster" "primary" {
     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
   }
     
+  master_authorized_networks_config {
+    cidr_blocks {
+      {
+        cidr_block =  var.gkeIsPrivateCluster ? "0.0.0.0/0" : null
+        display_name = var.gkeIsPrivateCluster ? "Open-Access" : null
+      }
+    }
+  }
+
 #  addons_config {
 #     disabled = var.istio_disabled
 #     auth     = var.istio_auth
