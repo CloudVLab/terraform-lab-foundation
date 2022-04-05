@@ -26,9 +26,12 @@ gce_tags            = ["lab-vm"]
 gce_machine_image   = "debian-cloud/debian-10" 
 gce_machine_network = "default"
 gce_scopes          = ["cloud-platform"]
+gce_service_account = "default"
 gce_startup_script  = "${file("./lab-init")}"
 ```
 __NOTE:__
+- [x] The default service account is compute developer
+- [x] To replace the default use the email of custom SA
 - [x] Naming convention for a startup-script is `lab-init`
 - [x] The startup_script should only be used for short lived tasks
 - [x] Do not use scripts to call other scripts

@@ -93,6 +93,14 @@ variable "gce_scopes" {
 }
 
 # Custom properties with defaults 
+## The default setting uses compute developer service account
+variable "gce_service_account" {
+  type        = string
+  description = "GCE Service Account"
+  default     = "default" 
+}
+
+# Custom properties with defaults 
 variable "gce_startup_script" {
   type        = string
   description = "GCE startup script"

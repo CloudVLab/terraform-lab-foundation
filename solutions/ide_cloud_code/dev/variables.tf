@@ -199,3 +199,16 @@ variable "gkeModeRoutes" {
   description = "Networking mode - Routes"
   default     = "ROUTES"
 }
+
+# Custom properties with defaults 
+variable "gkeNetwork" {
+  type        = string
+  description = "Network to use"
+  default     = "default"
+}
+# Custom properties with defaults 
+variable "gkeSubnetwork" {
+  type        = string
+  description = "Subnetwork to use"
+  default     = "default"
+}
