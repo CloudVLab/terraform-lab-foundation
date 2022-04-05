@@ -272,7 +272,7 @@ resource "google_compute_instance" "default" {
 resource "google_container_cluster" "primary" {
   provider = google-beta
   name     = var.gkeClusterName
-  location = var.gcp_region
+  location = var.gkeRegion
 
   # Define VPC configuration
   network    = var.isCustomNetwork ? google_compute_network.dev_network.name : "default"

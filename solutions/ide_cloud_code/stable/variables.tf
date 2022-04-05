@@ -147,3 +147,11 @@ variable "gkeMasterIPv4CIDRBlock" {
   type    = string
   default = "172.23.0.0/28"
 }
+
+# Custom properties with defaults 
+variable "gkeRegion" {
+  type        = string 
+  description = "Region to create resources in."
+  default     = "us-central1" 
+}
+
