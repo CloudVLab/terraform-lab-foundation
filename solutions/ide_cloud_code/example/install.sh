@@ -9,6 +9,8 @@ FILE3="runtime.yaml"
 FILE3_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloud_code/example/runtime.yaml"
 FILE4="variables.tf"
 FILE4_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloud_code/example/variables.tf"
+FILE5="provider.tf"
+FILE5_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloud_code/example/provider.tf"
 
 # Create TF directory if not present
 if [ ! -d $DIRECTORY ]; then
@@ -33,4 +35,9 @@ fi
 # Download if the file does not exist
 if [ ! -f $DIRECTORY/$FILE4 ]; then
 curl -L $FILE4_URL -o "$DIRECTORY/$FILE4"
+fi
+
+# Download if the file does not exist
+if [ ! -f $DIRECTORY/$FILE5 ]; then
+curl -L $FILE5_URL -o "$DIRECTORY/$FILE5"
 fi
