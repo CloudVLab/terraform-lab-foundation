@@ -280,7 +280,8 @@ resource "google_container_cluster" "primary" {
   subnetwork = var.gkeIsCustomNetwork ? var.gkeSubnetwork : null 
 
   # Set networking mode
-  networking_mode = var.gkeNetworkingMode ? var.gkeModeVpcNative : var.gkeModeRoutes 
+  # IP Alias requires VPC Native
+  networking_mode = var.gkeIsPrivateCluster ? var.gkeModeVpcNative : var.gkeModeRoutes 
 
   ## NOTE: Set null value where false value is set
   # Set this value if not using GKE Autopilot
@@ -312,6 +313,7 @@ resource "google_container_cluster" "primary" {
 #     disabled = var.istio_disabled
 #     auth     = var.istio_auth
 #  }
+
 
   ## TODO: Need to refine this 
   # Enable Alias IPs
