@@ -124,6 +124,13 @@ variable "gceInstanceScope" {
 ## GKE Settings
 #
 
+# Custom properties with defaults 
+variable "gkeLocation" {
+  type        = string 
+  description = "Regional or Zonal cluster master."
+  default     = "us-central1" 
+}
+
 variable "gkeDescription" {
   type        = string 
   description = "Description to apply to the cluster."

@@ -272,7 +272,7 @@ resource "google_compute_instance" "default" {
 resource "google_container_cluster" "primary" {
   provider    = google-beta
   name        = var.gkeClusterName
-  location    = var.gcp_region
+  location    = var.gkeLocation
   description = "dev cluster for testing"
 
   # Define VPC configuration
