@@ -285,8 +285,8 @@ resource "google_container_cluster" "primary" {
 
   ## NOTE: Set null value where false value is set
   # Set this value if not using GKE Autopilot
-  initial_node_count = var.gkeInitialNodeCount ? var.gkeInitialNodeCount : null
-  #initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
+  #initial_node_count = var.gkeInitialNodeCount ? var.gkeInitialNodeCount : null
+  initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
 
   ## NOTE: Set null value where false value is set
   # Condition setting to variable. If defined set to variable, otherwise default to false 
@@ -297,8 +297,8 @@ resource "google_container_cluster" "primary" {
   enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : null 
 
   private_cluster_config {
-    enable_private_endpoint = var.gkeIsPrivateCluster ? true : false
-    enable_private_nodes    = var.gkeIsPrivateCluster ? true : false 
+    enable_private_endpoint = var.gkeIsPrivateCluster ? var.gkeIsPrivateCluster : null 
+    enable_private_nodes    = var.gkeIsPrivateCluster ? var.gkeIsPrivateCluster : null 
     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
   }
     
