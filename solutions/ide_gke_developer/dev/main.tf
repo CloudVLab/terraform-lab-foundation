@@ -142,10 +142,10 @@ module "la_ide_proxy" {
 
   ## Local Modules - working
   ## Module subdirectory needs to be defined within the TF directory
-  source = "./solutions/ide_cloud_code/dev"
+  #source = "./solutions/ide_cloud_code/dev"
 
   ## REMOTE: GitHub (Public) access - working 
-  # source = "github.com/CloudVLab/terraform-lab-foundation//solutions/ide_gke_developer/dev"
+  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/lab_proxy/dev"
 
   ## Exchange values between Qwiklabs and Module
   gcp_project_id  = var.gcp_project_id 
