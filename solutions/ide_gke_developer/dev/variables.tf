@@ -28,6 +28,7 @@ variable "gcp_zone" {
 variable "gcp_username" {
   type        = string
   description = "Name of Qwiklabs user"
+  default     = "tester"
 }
 
 ## --------------------------------------------------------------
