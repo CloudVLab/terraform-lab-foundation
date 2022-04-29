@@ -1,405 +1,210 @@
-# Reference:
+# ------------------ IDE: Integrated Development Environment   
+# ------------------ Module Definition 
+#
+
+# Local:  modules/[channel]
+# Remote: github.com://CloudVLab/terraform-lab-foundation//[module]/[channel]
+
+# Module: Virtual Private Cloud
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_network
-resource "google_compute_network" "dev_network" {
-  name                    = var.vpcNetworkName
-  description             = "Developer network"
-  auto_create_subnetworks = false
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork
+
+module "la_vpc" {
+  ## NOTE: When changing the source parameter, `terraform init` is required
+
+  ## Local Modules - working
+  ## Module subdirectory needs to be defined within the TF directory
+  # source = "./basics/vpc_network/stable"
+
+  ## REMOTE: GitHub (Public) access - working
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/vpc_network/stable"
+
+  # Pass values to the module
+  gcp_project_id = var.gcp_project_id
+  gcp_region     = var.gcp_region
+  gcp_zone       = var.gcp_zone
+
+  # Customise the GCS instance
+  vpc_network             = "dev-network"
+  vpc_network_description = "Developer network"
+  vpc_subnet              = "dev-subnetwork"
+  vpc_region              = "us-central1"
+  vpc_subnet_cidr         = "10.128.0.0/16"
 }
 
-# Reference:
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork
-resource "google_compute_subnetwork" "dev_subnet" {
-  name          = var.vpcSubnetName
-  ip_cidr_range = "10.128.0.0/16"
-  region        = var.gcp_region
-  network       = google_compute_network.dev_network.id
-}
 
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall
-resource "google_compute_firewall" "serverless-to-vpc-connector" {
-  name          = "serverless-to-vpc-connector"
-  network       = google_compute_network.dev_network.name
-  source_ranges = ["107.178.230.64/26", "35.199.224.0/19"]
-  direction     = "INGRESS"
+# https://github.com/terraform-google-modules/terraform-google-network/tree/master/modules/firewall-rules
 
-  # Enable INGRESS
-  allow {
-    protocol = "icmp"
+module "la_fw" {
+  ## NOTE: When changing the source parameter, `terraform init` is required
+
+  ## REMOTE: GitHub (Public) access - working 
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/vpc_firewall/stable"
+
+  # Pass values to the module
+  gcp_project_id = var.gcp_project_id
+  gcp_region     = var.gcp_region
+  gcp_zone       = var.gcp_zone
+
+  ## Ex: Default Network
+  # fwr_network      = "default" 
+  ## Ex: Custom Network - Network Output variable
+  fwr_network      = module.la_vpc.vpc_network_name
+
+  # Firewall Policy - Repeatable list of objects
+  fwr_rules = [
+  {
+    fwr_name                    = "serverless-to-vpc-connector"
+    fwr_description             = "serverless-to-vpc-connector"
+    fwr_source_ranges           = [ "107.178.230.64/26", "35.199.224.0/19" ]
+    fwr_destination_ranges      = null
+    fwr_source_tags             = null
+    fwr_source_service_accounts = null
+    fwr_target_tags             = ["vpc-connector"]
+    fwr_target_service_accounts = null
+    fwr_priority                = "1000"
+    fwr_direction               = "INGRESS"
+
+    # Allow List
+    allow = [{
+      protocol     = "icmp"
+      ports        = null 
+    },
+    {
+      protocol     = "tcp"
+      ports        = [ "667" ]
+    },
+    {
+      protocol     = "udp"
+      ports        = [ "665-666" ]
+    }]
+
+    # Deny List
+    deny = []
+
+    log_config = {
+      metadata = "INCLUDE_ALL_METADATA"
+    }
+
+  },
+  {
+    fwr_name                    = "vpc-connector-egress"
+    fwr_description             = "vpc-connector-egress"
+    fwr_source_ranges           = null 
+    fwr_destination_ranges      = null
+    fwr_source_tags             = [ "vpc-connector" ] 
+    fwr_source_service_accounts = null
+    fwr_target_tags             = null 
+    fwr_target_service_accounts = null
+    fwr_priority                = "1000"
+    fwr_direction               = "INGRESS"
+
+    # Allow List
+    allow = [{
+      protocol     = "tcp"
+      ports        = null 
+    },
+    {
+      protocol     = "udp"
+      ports        = null 
+    },
+    {
+      protocol     = "icmp"
+      ports        = null 
+    }]
+
+    # Deny List
+    deny = []
+
+    log_config = {
+      metadata = "INCLUDE_ALL_METADATA"
+    }
   }
-  allow {
-    protocol = "tcp"
-    ports    = ["667"]
-  }
-
-  allow {
-    protocol = "udp"
-    ports    = ["665-666"]
-  }
-
-  # source_tags = ["web"]
-  target_tags = ["vpc-connector"]
-
-  depends_on = [google_compute_network.dev_network]
-}
-
-resource "google_compute_firewall" "vpc-connector-to-serverless" {
-  name               = "vpc-connector-to-serverless"
-  network            = google_compute_network.dev_network.name
-  destination_ranges = ["107.178.230.64/26", "35.199.224.0/19"]
-  direction          = "EGRESS"
-
-  # Enable EGRESS
-  allow {
-    protocol = "icmp"
-  }
-  allow {
-    protocol = "tcp"
-    ports    = ["667"]
-  }
-
-  allow {
-    protocol = "udp"
-    ports    = ["665-666"]
-  }
-
-  target_tags = ["vpc-connector"]
-
-  depends_on = [google_compute_network.dev_network]
-}
-
-
-resource "google_compute_firewall" "vpc-connector-health-check" {
-  name          = "vpc-connector-health-check"
-  network       = google_compute_network.dev_network.name
-  source_ranges = ["130.211.0.0/22", "35.191.0.0/16", "108.170.220.0/23"]
-  direction     = "INGRESS"
-
-  # Enable INGRESS
-  allow {
-    protocol = "tcp"
-    ports    = ["667"]
-  }
-
-  target_tags = ["vpc-connector"]
-
-  depends_on = [google_compute_network.dev_network]
-}
-
-
-resource "google_compute_firewall" "vpc-connector-egress" {
-  name      = "vpc-connector-egress"
-  network   = google_compute_network.dev_network.name
-  direction = "INGRESS"
-
-  # Enable INGRESS
-  allow {
-    protocol = "tcp"
-  }
-  allow {
-    protocol = "udp"
-  }
-  allow {
-    protocol = "icmp"
-  }
-
-  source_tags = ["vpc-connector"]
-
-  depends_on = [google_compute_network.dev_network]
-}
-
-
-
-# Reference:
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/vpc_access_connector
-
-# Enable the vpc access service
-resource "google_project_service" "vpcaccess-api" {
-  project = var.gcp_project_id
-  service = "vpcaccess.googleapis.com"
-
-  timeouts {
-    create = "30m"
-    update = "40m"
-  }
-
-  # disable_dependent_services = true
-}
-
-resource "google_vpc_access_connector" "connector" {
-  provider      = google-beta
-  name          = "ideconn"
-  region        = var.gcp_region
-  network       = google_compute_network.dev_network.name
-  ip_cidr_range = "10.8.0.0/28"
-
-  # Note: valid options: f1-micro, e2-micro, e2-standard-4
-  machine_type = var.vpcConnectorMachineType
-
-  depends_on = [
-    google_project_service.vpcaccess-api, google_compute_network.dev_network
   ]
+
+  ## Firewall depends on existence of Network
+  depends_on = [ module.la_vpc.vpc_network_name ]
 }
 
 
-# Reference:
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/cloud_run_service
-#
-# Enable the Cloud Run service
-resource "google_project_service" "run" {
-  project = var.gcp_project_id
-  service = "run.googleapis.com"
+# Solution: IDE environment 
+# Local:  modules/stable
+# Remote: github.com/CloudVLab/terraform-lab-foundation//solutions/ide_cloud_code/stable
 
-  timeouts {
-    create = "30m"
-    update = "40m"
-  }
+# Output Value(s):
+# - ideEditorService  : URL of IDE Service
 
-  # disable_dependent_services = true
+module "la_ide_proxy" {
+  ## NOTE: When changing the `source` parameter
+  ## `terraform init` is required
+
+  ## Local Modules - working
+  ## Module subdirectory needs to be defined within the TF directory
+  #source = "./solutions/ide_cloud_code/dev"
+
+  ## REMOTE: GitHub (Public) access - working 
+  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/lab_proxy/dev"
+
+  ## Exchange values between Qwiklabs and Module
+  gcp_project_id  = var.gcp_project_id 
+  gcp_region      = var.gcp_region 
+  gcp_zone        = var.gcp_zone 
+  
+  ## Properties: VPC
+  vpcNetworkName  = module.la_vpc.vpc_network_name
+  vpcSubnetName   = module.la_vpc.vpc_subnetwork_name
+
+  ## IDE depends on existence of Network
+  depends_on = [ module.la_vpc.vpc_network_name ]
 }
 
 
-resource "google_cloud_run_service" "ide" {
-  name     = var.gcrIDEService
-  location = var.gcrRegion
+# Solution: GCE instance with custom image
+# Local:  modules/stable
+# Remote: github.com/CloudVLab/terraform-lab-foundation//basics/gce_instance/stable
 
-  template {
-    spec {
-      containers {
-        image = "gcr.io/qwiklabs-resources/ide-proxy:latest"
-      }
-      container_concurrency = 2
-    }
-
-    # Add support for vpc connector
-    metadata {
-      annotations = {
-        "autoscaling.knative.dev/maxScale"        = "3"
-        "autoscaling.knative.dev/minScale"        = "1"
-        "run.googleapis.com/vpc-access-egress"    = "all"
-        "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.connector.name
-      }
-    }
-  }
-
-  traffic {
-    percent         = 100
-    latest_revision = true
-  }
-
-  # Dependency - Cloud Run API enabled
-  # depends_on = [google_project_service.run]
-  depends_on = [google_project_service.run, google_compute_instance.default]
-}
-
-
-data "google_iam_policy" "noauth" {
-  binding {
-    role = "roles/run.invoker"
-    members = [
-      "allUsers",
-    ]
-  }
-}
-
-resource "google_cloud_run_service_iam_policy" "noauth" {
-  location = google_cloud_run_service.ide.location
-  project  = google_cloud_run_service.ide.project
-  service  = google_cloud_run_service.ide.name
-
-  policy_data = data.google_iam_policy.noauth.policy_data
-}
+# Output Value(s):
+# - ideEditorService  : URL of IDE Service
+# - ideBrowserService : URL of Browser Service
+# - ideInstanceName   : URL of Browser Service
 
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_target_instance
 data "google_compute_image" "image_family" {
-  family  = var.gceMachineImage
+  family  = "cloud-code-codeserver" 
   project = "qwiklabs-resources"
 }
 
+# Module: Google Compute Engine
+module "la_gce" {
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/gce_instance/stable"
 
-# Reference:
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_instance
-#
-resource "google_compute_instance" "default" {
+  # Pass values to the module
+  gcp_project_id = var.gcp_project_id
+  gcp_region     = var.gcp_region
+  gcp_zone       = var.gcp_zone
 
-  name         = var.gceInstanceName
-  machine_type = var.gceMachineType
-  zone         = var.gceInstanceZone
+  # Customise the GCE instance
+  gce_region          = var.gcp_region 
+  gce_zone            = var.gcp_zone 
+  gce_machine_image   = data.google_compute_image.image_family.self_link
+  gce_machine_network = module.la_vpc.vpc_subnetwork_name
 
-  tags = var.gceInstanceTags
-
-  boot_disk {
-    initialize_params {
-      image = data.google_compute_image.image_family.self_link
-    }
-  }
-
-  network_interface {
-    # network       = google_compute_network.dev_network.name
-    subnetwork = google_compute_subnetwork.dev_subnet.name
-
-    access_config {
-      // Ephemeral IP
-    }
-  }
-
-  # Add Key/Value pair e.g. SSH keys here
-  # metadata = {
-  #  foo = "bar"
-  # }
-
-  # metadata_startup_script = "echo Welcome to Octopus > /tmp/octopus.txt"
-
-  service_account {
-    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    # email  = google_service_account.default.email
-    scopes = var.gceInstanceScope
-  }
-
-  # Dependency - VPC Access connector 
-  depends_on = [google_vpc_access_connector.connector]
+  ## IDE depends on existence of Network
+  depends_on = [ module.la_vpc.vpc_network_name]
 }
 
 
-## # Reference:
-## # https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/using_gke_with_terraform
-## #
+## # Module: Google Kubernetes Engine
+## module "la_gke_standard" {
+##   source = "github.com/CloudVLab/terraform-lab-foundation//basics/gke_cluster/stable"
 ## 
-## ##---------------------------------------------------------------------------
-## ## Container Cluster: Separate Managed Node Pool Example
+##   # Pass values to the module
+##   gcp_project_id = var.gcp_project_id
+##   gcp_region     = var.gcp_region
+##   gcp_zone       = var.gcp_zone
 ## 
-## # GKE cluster
-## resource "google_container_cluster" "dev_cluster" {
-##   provider    = google-beta
-##   name        = "dev-cluster" 
-##   #name        = var.gkeClusterName
-##   location    = var.gcp_region
-##   description = "dev cluster"
-## 
-##   # Define VPC configuration
-##   network    = var.gkeIsCustomNetwork ? google_compute_network.dev_network.name : "default"
-##   subnetwork = var.gkeIsCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
-## 
-##   # Set networking mode
-##   networking_mode = var.gkeNetworkingMode ? var.gkeModeVpcNative : var.gkeModeRoutes 
-## 
-##   # Set this value if not using GKE Autopilot
-##   initial_node_count = var.gkeIsAutopilot ==true ? null : var.gkeInitialNodeCount
-## 
-##   # Condition setting to variable. If defined set to variable, otherwise default to null 
-##   enable_binary_authorization = var.gkeIsBinAuth == true ? var.gkeIsBinAuth : null 
-## 
-##   # Condition setting to variable. If defined set to variable, default to null 
-##   enable_autopilot            = var.gkeIsAutopilot == true ? var.gkeIsAutopilot : null 
-## 
-##   private_cluster_config {
-##     enable_private_endpoint = var.gkeIsPrivateEndpoint 
-##     enable_private_nodes    = var.gkeIsPrivateCluster ? true : false
-##     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
-##   }
-##     
-## #  addons_config {
-## #     disabled = var.istio_disabled
-## #     auth     = var.istio_auth
-## #  }
-## 
-##   ip_allocation_policy {
-##   }
-## 
-##   # Release channel GKE clusters.
-##   release_channel {
-##     channel = "STABLE"
-##   }
-## 
-##   # Dependency - Cloud Run API enabled
-##   ##   depends_on = [google_compute_instance.default]
-## }
-## 
-## # GKE cluster
-## resource "google_container_cluster" "preprod_cluster" {
-##   provider    = google-beta
-##   name        = "preprod-cluster" 
-##   location    = var.gcp_region
-##   description = "pre-prod cluster"
-## 
-##   # Define VPC configuration
-##   network    = var.gkeIsCustomNetwork ? google_compute_network.dev_network.name : "default"
-##   subnetwork = var.gkeIsCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
-## 
-##   # Set networking mode
-##   networking_mode = var.gkeNetworkingMode ? var.gkeModeVpcNative : var.gkeModeRoutes 
-## 
-##   # Set this value if not using GKE Autopilot
-##   initial_node_count = var.gkeIsAutopilot ==true ? null : var.gkeInitialNodeCount
-## 
-##   # Condition setting to variable. If defined set to variable, otherwise default to null 
-##   enable_binary_authorization = var.gkeIsBinAuth == true ? var.gkeIsBinAuth : null 
-## 
-##   # Condition setting to variable. If defined set to variable, default to null 
-##   enable_autopilot            = var.gkeIsAutopilot == true ? var.gkeIsAutopilot : null 
-## 
-##   private_cluster_config {
-##     enable_private_endpoint = var.gkeIsPrivateEndpoint 
-##     enable_private_nodes    = var.gkeIsPrivateCluster ? true : false
-##     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock2 : null
-##   }
-##     
-## #  addons_config {
-## #     disabled = var.istio_disabled
-## #     auth     = var.istio_auth
-## #  }
-## 
-##   ip_allocation_policy {
-##   }
-## 
-##   # Release channel GKE clusters.
-##   release_channel {
-##     channel = "STABLE"
-##   }
-## 
-##   # Dependency - Cloud Run API enabled
-##   ##   depends_on = [google_compute_instance.default]
-## }
-## 
-## # GKE cluster
-## resource "google_container_cluster" "prod_cluster" {
-##   provider    = google-beta
-##   name        = "prod-cluster" 
-##   location    = var.gcp_region
-##   description = "prod cluster"
-## 
-##   # Define VPC configuration
-##   network    = var.gkeIsCustomNetwork ? google_compute_network.dev_network.name : "default"
-##   subnetwork = var.gkeIsCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
-## 
-##   # Set this value if not using GKE Autopilot
-##   initial_node_count = var.gkeIsAutopilot ==true ? null : var.gkeInitialNodeCount
-## 
-##   # Condition setting to variable. If defined set to variable, otherwise default to null 
-##   enable_binary_authorization = var.gkeIsBinAuth == true ? var.gkeIsBinAuth : null 
-## 
-##   # Condition setting to variable. If defined set to variable, default to null 
-##   enable_autopilot            = var.gkeIsAutopilot == true ? var.gkeIsAutopilot : null 
-## 
-##   private_cluster_config {
-##     enable_private_endpoint = var.gkeIsPrivateEndpoint 
-##     enable_private_nodes    = var.gkeIsPrivateCluster ? true : false
-##     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock3 : null
-##   }
-##     
-## #  addons_config {
-## #     disabled = var.istio_disabled
-## #     auth     = var.istio_auth
-## #  }
-## 
-##   ip_allocation_policy {
-##   }
-## 
-##   # Release channel GKE clusters.
-##   release_channel {
-##     channel = "STABLE"
-##   }
-## 
-##   # Dependency - Cloud Run API enabled
-##   ##   depends_on = [google_compute_instance.default]
+##   # Customise the GKE instance
+##   gke_name             = "lab_cluster" 
 ## }
