@@ -12,6 +12,7 @@ resource "google_project_service" "vpcaccess-api" {
   }
 
   # disable_dependent_services = true
+}
 
 resource "google_vpc_access_connector" "connector" {
   provider      = google-beta
