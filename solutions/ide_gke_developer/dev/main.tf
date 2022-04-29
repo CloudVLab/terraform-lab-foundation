@@ -224,7 +224,7 @@ resource "google_compute_instance" "default" {
 
   name         = var.gceInstanceName
   machine_type = var.gceMachineType
-  zone         = var.gcp_region
+  zone         = var.gcp_zone
 
   tags = var.gceInstanceTags
 
