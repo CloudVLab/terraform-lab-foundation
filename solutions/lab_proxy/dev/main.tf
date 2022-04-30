@@ -52,7 +52,8 @@ resource "google_cloud_run_service" "ide" {
   template {
     spec {
       containers {
-        image = "gcr.io/qwiklabs-resources/ide-proxy:latest"
+        # image = "gcr.io/qwiklabs-resources/ide-proxy:latest"
+        image = var.gcrContainerImage 
       }
       container_concurrency = 2
     }
