@@ -1,10 +1,10 @@
-# Terraform: IDE Cloud Code 
+# Terraform: Lab Proxy 
 
 ## Script
 
 Add the example Terraform code module to your project
 ```bash
-curl  -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloud_code/example/install.sh | bash
+curl  -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/lab_proxy/example/install.sh | bash
 ```
 
 
@@ -53,4 +53,6 @@ named `tf` is present.
  5      reference: user_0.username
  6    - label: "GCP Password"
  7      reference: user_0.password
+ 8    - label: "IDE"
+ 9      reference: project_0.startup_script.service_url
 ```
