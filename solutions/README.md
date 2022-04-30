@@ -3,13 +3,13 @@
 General solutions based on Terraform
 
 
-- [x] Cloud Code IDE
-- [x] Web IDE
-- [x] Tensorflow IDE
-- [x] BigQuery Pitch Perfect Query 
-- [x] AppSheet connecting to Cloud SQL [MySQL]
-- [ ] SSL Reverse Proxy 
-- [x] Vertex Workbench Proxy 
+- [x] Developer - SSL Reverse Proxy Cloud Code
+- [x] Developer - SSL Reverse Proxy Web
+- [x] Developer - SSL Reverse Proxu Tensorflow
+- [x] BigQuery  - DataSet, Table creation and loading CSV/JSON 
+- [x] AppSheet  - Accessing Cloud SQL [MySQL]
+- [x] Lab Proxy - SSL Reverse Proxy 
+- [x] Vertex Workbench - SSL Reverse Proxy Notebook 
 
 
 ## Adding a Commit 
