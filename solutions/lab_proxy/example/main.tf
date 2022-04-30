@@ -28,6 +28,11 @@ module "la_ide_proxy" {
   ## vpcNetworkName  = module.la_vpc.vpc_network_name
   ## vpcSubnetName   = module.la_vpc.vpc_subnetwork_name
 
+  ## Properties: Cloud Run 
+  gcrContainerImage = "gcr.io/qwiklabs-resources/ide-service:latest" 
+  gcrServiceName    = "learning-journey"
+  gcrRegion         = var.gcp_region
+
   ## IDE depends on existence of Network
   ## depends_on = [ module.la_vpc.vpc_network_name ]
 }

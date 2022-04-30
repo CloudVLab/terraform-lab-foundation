@@ -44,7 +44,7 @@ variable "vpcConnectorMachineType" {
   default     = "e2-micro" 
 }
 
-variable "gcrIDEService" {
+variable "gcrServiceName" {
   type        = string
   description = "Name of the proxy service"
   default     = "ide-service"
