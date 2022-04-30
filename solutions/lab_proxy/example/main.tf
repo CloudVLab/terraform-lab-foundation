@@ -29,7 +29,7 @@ module "la_ide_proxy" {
   ## vpcSubnetName   = module.la_vpc.vpc_subnetwork_name
 
   ## Properties: Cloud Run 
-  gcrContainerImage = "gcr.io/qwiklabs-resources/twine-proxy" 
+  gcrContainerImage = "gcr.io/qwiklabs-resources/ide-service:latest" 
   gcrServiceName    = "learning-journey"
   gcrRegion         = var.gcp_region
 
