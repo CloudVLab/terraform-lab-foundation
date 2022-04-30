@@ -50,6 +50,12 @@ variable "gcrIDEService" {
   default     = "ide-service"
 }
 
+variable "gcrContainerImage" {
+  type        = string
+  description = "Name of the container"
+  default     = "gcr.io/qwiklabs-resources/ide-proxy:latest"
+}
+
 variable "gcrRegion" {
   type        = string
   description = "GCE virtual machine image family"
