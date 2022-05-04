@@ -106,3 +106,10 @@ variable "gce_startup_script" {
   description = "GCE startup script"
   default     = "echo Welcome to Project Octopus > /tmp/octopus.txt" 
 }
+
+# Custom properties with defaults 
+variable "gce_can_ip_forward" {
+  type        = bool 
+  description = "Allow IP forwarding"
+  default     = "false" 
+}
