@@ -9,7 +9,8 @@ resource "google_compute_instance" "gce_virtual_machine" {
   zone         = var.gcp_zone
   project      = var.gcp_project_id
 
-  tags = var.gce_tags
+  tags           = var.gce_tags
+  can_ip_forward = var.gce_can_ip_forward
 
   boot_disk {
     initialize_params {
