@@ -2,16 +2,24 @@
 
 ## Script
 
-Add the example Terraform code module to your project
-```bash
-curl  -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/proxy-vertex-workbench/example/install.sh | bash
-```
-
-
 ## Example
 
 The example is based on the following hierarchy:
+```
+.
+├── instructions
+│   ├── en.md
+│   └── img
+├── QL_OWNER
+└── qwiklabs.yaml 
+```
 
+Add the example Terraform code module to your project
+```bash
+curl  -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/proxy_vertex_workbench/example/install.sh | bash
+```
+
+The example is based on the following hierarchy:
 ```
 .
 ├── instructions
@@ -33,6 +41,8 @@ named `tf` is present.
 
 #### Custom Properties
 
+Add a startup_script section to `qwiklabs.yaml` to run Terraform
+
 ```
 1  - type: gcp_project
 2    id: project_0
@@ -44,6 +54,8 @@ named `tf` is present.
 ```
 
 #### Visible Outputs
+
+Add a custom output to show the URL of the Vertex Notebook service
 
 ```
  1  student_visible_outputs:
