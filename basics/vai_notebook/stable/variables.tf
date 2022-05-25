@@ -23,22 +23,24 @@ variable "gcp_zone" {
 ## Output variable definitions - Override from Custom Properties 
 ## --------------------------------------------------------------
 
+# with the same name for any lab that uses this script.
+## variable "vai_username" {
+##   type        = string
+##   description = "Name of Qwiklabs user"
+##   default     = "tester" 
+## }
+
+## --------------------------------------------------------------
+## Custom variable definitions - Override from Custom Properties
+## --------------------------------------------------------------
+
 # Expected custom_properties key to be declared in `qwiklabs.yaml` 
 # with the same name for any lab that uses this script.
 variable "vai_notebook_name" {
   type        = string
   description = "Vertex VM instance name."
+  default     = "cloudlearningservices" 
 }
-
-# with the same name for any lab that uses this script.
-variable "vai_username" {
-  type        = string
-  description = "Name of Qwiklabs user"
-}
-
-## --------------------------------------------------------------
-## Custom variable definitions - Override from Custom Properties
-## --------------------------------------------------------------
 
 # Custom properties with defaults 
 variable "vai_region" {

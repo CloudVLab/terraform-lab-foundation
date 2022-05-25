@@ -19,8 +19,7 @@ module "la_vai_notebook" {
   gcp_zone       = var.gcp_zone 
 
   ## Custom Properties
-  vai_notebook_name = var.tfResourceName
-  vai_username      = var.tfUsername
+  # vai_notebook_name = "custom-notebook-name" 
   vai_region        = var.gcp_region
   vai_zone          = var.gcp_zone
 }
