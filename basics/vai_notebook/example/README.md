@@ -40,3 +40,22 @@ The example is based on the following heirarchy:
     └── variables.tf
 ```
 
+__NOTE:__ The Terraform examples assume a configuration sub-directory 
+named `tf` is present.
+
+## Qwiklabs Yaml
+
+#### Custom Properties
+
+Add a startup_script section to `qwiklabs.yaml` to run Terraform
+
+```
+1  - type: gcp_project
+2    id: project_0
+3    variant: gcpd
+4    ssh_key_user: user_0
+5    startup_script:
+6      type: qwiklabs
+7      path: tf
+```
+
