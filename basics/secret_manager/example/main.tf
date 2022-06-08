@@ -1,10 +1,10 @@
-# API Service:   Enable GoogleAPIs 
+# Secret Manager:  Create Secret Manager message 
 # Local:  modules/[channel]
 # Remote: github.com://CloudVLab/terraform-lab-foundation//[module]/[channel]
 
-# Module: Google Compute Engine
-module "la_api_run" {
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/api_service/stable"
+# Module: Secret Manager 
+module "la_secret_manager" {
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/secret_manager/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id

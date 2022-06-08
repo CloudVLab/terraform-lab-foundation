@@ -4,7 +4,7 @@
 
 The example is based on the following hierarchy:
 
-```
+```yaml
 .
 ├── instructions
 │   ├── en.md
@@ -22,7 +22,7 @@ curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/se
 
 The example is based on the following hierarchy:
 
-```
+```yaml
 .
 ├── instructions
 │   ├── en.md
