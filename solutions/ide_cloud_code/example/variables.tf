@@ -18,20 +18,3 @@ variable "gcp_zone" {
 # ------------------  Custom Properties
 #
 
-# QWIKLAB.YAML definitions
-# variable: tfUsername 
-variable "tfUsername" {
-  type = string
-}
-
-# variable: tfResorceName 
-variable "tfResourceName" {
-  type = string
-}
-
-# variable: tfMachineImage 
-variable "tfMachineImage" {
-  type = string
-}
-
-
