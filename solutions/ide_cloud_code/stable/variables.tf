@@ -28,6 +28,7 @@ variable "gcp_zone" {
 variable "gcp_username" {
   type        = string
   description = "Name of Qwiklabs user"
+  default     = "tester"
 }
 
 ## --------------------------------------------------------------
@@ -70,8 +71,8 @@ variable "gcrRegion" {
 variable "gceMachineImage" {
   type        = string
   description = "GCE virtual machine image family"
-#  default     = "ide-codeserver"
-  default     = "debian-cloud/debian-10"
+  default     = "cloud-code-codeserver"
+#  default     = "debian-cloud/debian-10"
 }
 
 variable "gceProjectMachineImage" {
