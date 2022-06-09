@@ -72,3 +72,19 @@ Update the `qwiklabs.yaml` to include visible output returned from the startup_s
  6    - label: "GCP Password"
  7      reference: user_0.password
 ```
+
+
+Add a custom property by referencing the Terrform output variables.
+Append the values to the `student_visible_outputs` section in the `qwiklabs.yaml`
+
+```
+ 1  student_visible_outputs:
+ 2    - label: "Open Google Console"
+ 3      reference: project_0.console_url
+ 4    - label: "GCP Username"
+ 5      reference: user_0.username
+ 6    - label: "GCP Password"
+ 7      reference: user_0.password
+ 8    - label: "Cloudshell"
+ 9      reference: project_0.startup_script.service_url
+```
