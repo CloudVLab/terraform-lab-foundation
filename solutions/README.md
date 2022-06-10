@@ -2,7 +2,7 @@
 
 General solutions based on Terraform
 
-
+- [x] Developer - SSL Reverse Proxy Cloudshell
 - [x] Developer - SSL Reverse Proxy Cloud Code
 - [x] Developer - SSL Reverse Proxy Web
 - [x] Developer - SSL Reverse Proxu Tensorflow
@@ -10,7 +10,6 @@ General solutions based on Terraform
 - [x] AppSheet  - Accessing Cloud SQL [MySQL]
 - [x] Lab Proxy - SSL Reverse Proxy 
 - [x] Vertex Workbench - SSL Reverse Proxy Notebook 
-
 
 ## Adding a Commit 
 
