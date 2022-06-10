@@ -3,6 +3,7 @@
 General solutions based on Terraform
 
 
+- [x] Cloudshell IDE
 - [x] Cloud Code IDE
 - [x] Web IDE
 - [x] Tensorflow IDE
