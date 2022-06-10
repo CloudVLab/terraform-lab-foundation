@@ -276,25 +276,29 @@ resource "google_container_cluster" "primary" {
   description = "dev cluster for testing"
 
   # Define VPC configuration
-  network    = var.gkeIsCustomNetwork ? google_compute_network.dev_network.name : "default"
-  subnetwork = var.gkeIsCustomNetwork ? google_compute_subnetwork.dev_subnet.name : "default"
+  network    = var.gkeIsCustomNetwork ? var.gkeNetwork : null 
+  subnetwork = var.gkeIsCustomNetwork ? var.gkeSubnetwork : null 
 
   # Set networking mode
   # IP Alias requires VPC Native
   networking_mode = var.gkeIsPrivateCluster ? var.gkeModeVpcNative : var.gkeModeRoutes 
 
+  ## NOTE: Set null value where false value is set
   # Set this value if not using GKE Autopilot
+  #initial_node_count = var.gkeInitialNodeCount ? var.gkeInitialNodeCount : null
   initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
 
+  ## NOTE: Set null value where false value is set
   # Condition setting to variable. If defined set to variable, otherwise default to false 
   enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : null 
-
+  
+  ## NOTE: Set null value where false value is set
   # Condition setting to variable. If defined set to variable, default to false
   enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : null 
 
   private_cluster_config {
-    enable_private_endpoint = var.gkeIsPrivateCluster ? true : false
-    enable_private_nodes    = var.gkeIsPrivateCluster ? true : false 
+    enable_private_endpoint = var.gkeIsPrivateCluster
+    enable_private_nodes    = var.gkeIsPrivateCluster ? var.gkeIsPrivateCluster : null 
     master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
   }
     
@@ -310,8 +314,12 @@ resource "google_container_cluster" "primary" {
 #     auth     = var.istio_auth
 #  }
 
-  # IP Alias
+
+  ## TODO: Need to refine this 
+  # Enable Alias IPs
   ip_allocation_policy {
+##    cluster_ipv4_cidr_block  = var.gkeIsPrivateCluster ? "/14" : null
+##    services_ipv4_cidr_block = var.gkeIsPrivateCluster ? "/20" : null
   }
 
   # Release channel GKE clusters.

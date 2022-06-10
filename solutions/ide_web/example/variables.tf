@@ -19,19 +19,21 @@ variable "gcp_zone" {
 #
 
 # QWIKLAB.YAML definitions
+# Example: Pass Variable from qwiklabs.yaml
+
 # variable: tfUsername 
-variable "tfUsername" {
-  type = string
-}
-
-# variable: tfResorceName 
-variable "tfResourceName" {
-  type = string
-}
-
-# variable: tfMachineImage 
-variable "tfMachineImage" {
-  type = string
-}
+## variable "tfUsername" {
+##   type = string
+## }
+## 
+## # variable: tfResorceName 
+## variable "tfResourceName" {
+##   type = string
+## }
+## 
+## # variable: tfMachineImage 
+## variable "tfMachineImage" {
+##   type = string
+## }
 
 

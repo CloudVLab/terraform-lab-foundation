@@ -9,7 +9,8 @@ resource "google_compute_instance" "gce_virtual_machine" {
   zone         = var.gcp_zone
   project      = var.gcp_project_id
 
-  tags = var.gce_tags
+  tags           = var.gce_tags
+  can_ip_forward = var.gce_can_ip_forward
 
   boot_disk {
     initialize_params {
@@ -37,6 +38,7 @@ resource "google_compute_instance" "gce_virtual_machine" {
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     # email  = google_service_account.default.email
+    ## email = var.gce_service_account == "default" ? null : var.gce_service_account
     scopes = var.gce_scopes
   }
 }

@@ -29,6 +29,7 @@ Example configurations that can be used to build content on the Qwiklabs Platfor
 #### Networking
 - [x] [VPC](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/vpc_network/README.md)
 - [x] [Firewall](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/vpc_firewall/README.md)
+- [x] [VPC Connector](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/vpc_connector/README.md)
 
 #### AI/ML
 - [x] [Vertex AI Notebook](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/vai_notebook/README.md)
@@ -49,11 +50,11 @@ Example solutions pre-built for the Qwiklabs platform
 
 - [x] [Cloudshell - Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_cloudshell/README.md)
 - [x] [Cloud Code - Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_cloud_code/README.md)
-- [x] [Web Developer - Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_web/README.md)
+- [x] [Web Developer - Proxy Integrated Development Environment](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/ide_web/README.md)
+- [x] [Vertex AI Notebook - Proxy Workbench](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/proxy_vertex_workbench/README.md)
 - [x] [AppSheet - CloudSQL MySQL](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/appsheet_cloudsql/README.md)
 - [x] [BigQuery - Sports Analytics](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/bigquery_soccer/README.md)
-- [ ] Proxy
-- [ ] VPC SC
+- [x] [Proxy - General Proxy](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/solutions/lab_proxy/README.md)
 - [ ] Custom VM
 
 
@@ -69,7 +70,7 @@ Release schedule for the supported channels:
 
 Content authors should use the `stable` channel.
 
-Scripts are main/basicstained via channels - see [CHANNELS.md](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/CHANNELS.md) for more information.
+Scripts are maintained via channels - see [CHANNELS.md](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/CHANNELS.md) for more information.
 
 ## Contributing
 

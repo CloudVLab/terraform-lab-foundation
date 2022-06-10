@@ -1,5 +1,19 @@
 # Terraform: IDE Cloud Code 
 
+
+## Example
+
+The example is based on the following hierarchy:
+
+```
+.
+├── instructions
+│   ├── en.md
+│   └── img
+├── QL_OWNER
+└── qwiklabs.yaml 
+```
+
 ## Script
 
 Add the example Terraform code module to your project
@@ -7,10 +21,9 @@ Add the example Terraform code module to your project
 curl  -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloud_code/example/install.sh | bash
 ```
 
+## Task 1. Example
 
-## Example
-
-The example is based on the following hierarchy:
+The script will update the hierarchy:
 
 ```
 .
@@ -31,6 +44,8 @@ named `tf` is present.
 
 ## Qwiklabs Yaml
 
+Update the `qwiklabs.yaml` to include startup_script configuration i.e. Terraform
+
 #### Custom Properties
 
 ```
@@ -43,6 +58,9 @@ named `tf` is present.
 7      path: tf
 ```
 
+
+Update the `qwiklabs.yaml` to include visible output returned from the startup_script
+
 #### Visible Outputs
 
 ```
@@ -53,4 +71,20 @@ named `tf` is present.
  5      reference: user_0.username
  6    - label: "GCP Password"
  7      reference: user_0.password
+```
+
+
+Add a custom property by referencing the Terrform output variables.
+Append the values to the `student_visible_outputs` section in the `qwiklabs.yaml`
+
+```
+ 1  student_visible_outputs:
+ 2    - label: "Open Google Console"
+ 3      reference: project_0.console_url
+ 4    - label: "GCP Username"
+ 5      reference: user_0.username
+ 6    - label: "GCP Password"
+ 7      reference: user_0.password
+ 8    - label: "Cloudshell"
+ 9      reference: project_0.startup_script.service_url
 ```

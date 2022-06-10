@@ -29,10 +29,9 @@ module "la_ide" {
   gcp_project_id  = var.gcp_project_id 
   gcp_region      = var.gcp_region 
   gcp_zone        = var.gcp_zone 
-  gcp_username    = var.tfUsername
+  gcp_username    = "tester" 
 
   ## Properties: GCE 
-  # gceMachineImage  = var.tfMachineImage
   gceMachineImage    = "cloud-code-codeserver" 
   # gceInstanceName  = "cloudlearningservices" 
   # gceInstanceZone  = "us-central1-f"

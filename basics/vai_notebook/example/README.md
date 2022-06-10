@@ -10,6 +10,28 @@ The example is based on the following hierarchy:
 │   ├── en.md
 │   └── img
 ├── QL_OWNER
+└── qwiklabs.yaml 
+```
+
+
+
+## Add the module to the directory
+
+Add the example Terraform code module to your project
+```
+curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/vai_notebook/example/install.sh | bash
+```
+
+
+## View the update directory
+
+The example is based on the following heirarchy:
+```
+.
+├── instructions
+│   ├── en.md
+│   └── img
+├── QL_OWNER
 ├── qwiklabs.yaml
 └── tf
     ├── main.tf
@@ -25,8 +47,7 @@ named `tf` is present.
 
 #### Custom Properties
 
-The `qwiklabs.yaml` configuration file is used to set the definition of 
-custom properties e.g. `tfResourceName` and `tfUsername`:
+Add a startup_script section to `qwiklabs.yaml` to run Terraform
 
 ```
 1  - type: gcp_project
@@ -36,9 +57,5 @@ custom properties e.g. `tfResourceName` and `tfUsername`:
 5    startup_script:
 6      type: qwiklabs
 7      path: tf
-8      custom_properties:
-9      - key: tfResourceName
-10        value: test-notebook
-11      - key: tfUsername
-12        reference: user_0.username
 ```
+
