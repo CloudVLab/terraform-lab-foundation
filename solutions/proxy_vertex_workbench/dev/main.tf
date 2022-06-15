@@ -3,9 +3,9 @@
 
 # Network
 resource "google_compute_network" "dev_network" {
-  name = "dev-network"
-  project = var.gcp_project_id
-  description = "Developer network"
+  name                    = "dev-network"
+  project                 = var.gcp_project_id
+  description             = "Developer network"
   auto_create_subnetworks = false
 }
 
@@ -18,6 +18,7 @@ resource "google_compute_subnetwork" "dev_subnet" {
   ip_cidr_range = "10.128.0.0/16"
   region        = var.gcp_region
   network       = google_compute_network.dev_network.id
+  project       = var.gcp_project_id
 }
 
 # Reference:
@@ -25,10 +26,11 @@ resource "google_compute_subnetwork" "dev_subnet" {
 
 # Firewall: Allow Serverless to VPC connector
 resource "google_compute_firewall" "serverless-to-vpc-connector" {
-  name    = "serverless-to-vpc-connector"
-  network = google_compute_network.dev_network.name
+  name          = "serverless-to-vpc-connector"
+  network       = google_compute_network.dev_network.name
+  project       = var.gcp_project_id
   source_ranges = ["107.178.230.64/26", "35.199.224.0/19"]
-  direction = "INGRESS"
+  direction     = "INGRESS"
 
   # Enable INGRESS
   allow {
@@ -47,15 +49,16 @@ resource "google_compute_firewall" "serverless-to-vpc-connector" {
   # source_tags = ["web"]
   target_tags = ["vpc-connector"]
 
-  depends_on = [ google_compute_network.dev_network ]
+  depends_on = [google_compute_network.dev_network]
 }
 
 # Firewall: Allow VPC connector to Serverless
 resource "google_compute_firewall" "vpc-connector-to-serverless" {
-  name    = "vpc-connector-to-serverless"
-  network = google_compute_network.dev_network.name
+  name               = "vpc-connector-to-serverless"
+  network            = google_compute_network.dev_network.name
+  project            = var.gcp_project_id
   destination_ranges = ["107.178.230.64/26", "35.199.224.0/19"]
-  direction = "EGRESS"
+  direction          = "EGRESS"
 
   # Enable EGRESS
   allow {
@@ -73,15 +76,16 @@ resource "google_compute_firewall" "vpc-connector-to-serverless" {
 
   target_tags = ["vpc-connector"]
 
-  depends_on = [ google_compute_network.dev_network ]
+  depends_on = [google_compute_network.dev_network]
 }
 
 # Firewall: Allow Healthcheck
 resource "google_compute_firewall" "vpc-connector-health-check" {
-  name    = "vpc-connector-health-check"
-  network = google_compute_network.dev_network.name
+  name          = "vpc-connector-health-check"
+  network       = google_compute_network.dev_network.name
+  project       = var.gcp_project_id
   source_ranges = ["130.211.0.0/22", "35.191.0.0/16", "108.170.220.0/23"]
-  direction = "INGRESS"
+  direction     = "INGRESS"
 
   # Enable INGRESS
   allow {
@@ -91,13 +95,14 @@ resource "google_compute_firewall" "vpc-connector-health-check" {
 
   target_tags = ["vpc-connector"]
 
-  depends_on = [ google_compute_network.dev_network ]
+  depends_on = [google_compute_network.dev_network]
 }
 
 # Firewall: Allow TCP/UDP/ICMP
 resource "google_compute_firewall" "vpc-connector-egress" {
-  name    = "vpc-connector-egress"
-  network = google_compute_network.dev_network.name
+  name      = "vpc-connector-egress"
+  network   = google_compute_network.dev_network.name
+  project   = var.gcp_project_id
   direction = "INGRESS"
 
   # Enable INGRESS
@@ -113,14 +118,15 @@ resource "google_compute_firewall" "vpc-connector-egress" {
 
   source_tags = ["vpc-connector"]
 
-  depends_on = [ google_compute_network.dev_network ]
+  depends_on = [google_compute_network.dev_network]
 }
 
 # Firewall: Allow SSH
 resource "google_compute_firewall" "vm-ssh" {
-  name    = "dev-network-allow-ssh"
-  network = google_compute_network.dev_network.name
-  direction = "INGRESS"
+  name          = "dev-network-allow-ssh"
+  network       = google_compute_network.dev_network.name
+  project       = var.gcp_project_id
+  direction     = "INGRESS"
   source_ranges = ["0.0.0.0/0"]
 
   # Enable INGRESS
@@ -132,7 +138,7 @@ resource "google_compute_firewall" "vm-ssh" {
   # Vertex default tags: "deeplearning-vm" "notebook-instance"
   source_tags = ["deeplearning-vm", "notebook-instance"]
 
-  depends_on = [ google_compute_network.dev_network ]
+  depends_on = [google_compute_network.dev_network]
 }
 
 
@@ -154,15 +160,16 @@ resource "google_project_service" "vpcaccess-api" {
 
 # Enable VPC connector
 resource "google_vpc_access_connector" "connector" {
-  name          = "ideconn"
-  provider      = google-beta
-  region        = var.gcp_region
+  name     = "ideconn"
+  provider = google-beta
+  project  = var.gcp_project_id
+  region   = var.gcp_region
   ## network       = google_compute_network.dev_network.name
-  network = google_compute_network.dev_network.id
+  network       = google_compute_network.dev_network.id
   ip_cidr_range = "10.8.0.0/28"
 
   # Note: valid options: f1-micro, e2-micro, e2-standard-4
-  machine_type = var.vpcConnectorMachineType 
+  machine_type = var.vpcConnectorMachineType
 
   # https://github.com/google/exposure-notifications-server/issues/932
   # vpc_access_connector_max_throughput= 300
@@ -192,6 +199,7 @@ resource "google_project_service" "notebooks-api" {
 resource "google_service_account" "service_account" {
   account_id   = "vertex-ai"
   display_name = "Vertex AI Service Account"
+  project      = var.gcp_project_id
 }
 
 
@@ -217,7 +225,7 @@ resource "google_notebooks_instance" "vertex_instance" {
   name         = var.vm_name
   location     = var.vm_zone
   machine_type = var.gceMachineType
-  tags         = var.gceInstanceTags 
+  tags         = var.gceInstanceTags
 
   #instance_owners = ["$var.username"]
 
@@ -227,19 +235,19 @@ resource "google_notebooks_instance" "vertex_instance" {
   no_proxy_access = true
 
   network = google_compute_network.dev_network.id
-  subnet = google_compute_subnetwork.dev_subnet.id
+  subnet  = google_compute_subnetwork.dev_subnet.id
 
   labels = {
     host = "vertexai_notebook"
   }
 
   vm_image {
-    project      = var.gceImageProject 
+    project      = var.gceImageProject
     image_family = var.gceInstanceImage
   }
 
   # Startup-script
-  post_startup_script = var.gcePostStartupScript 
+  post_startup_script = var.gcePostStartupScript
 
   depends_on = [google_project_service.notebooks-api, google_compute_subnetwork.dev_subnet]
   ## depends_on = [google_project_service.notebooks-api, google_compute_subnetwork.dev_subnet]
@@ -251,7 +259,7 @@ resource "google_notebooks_instance" "vertex_instance" {
 # Enable the Cloud Run service
 resource "google_project_service" "run" {
   project = var.gcp_project_id
-  service = var.gcrGoogleService 
+  service = var.gcrGoogleService
 
   timeouts {
     create = "30m"
@@ -263,13 +271,13 @@ resource "google_project_service" "run" {
 
 # Cloud Run: IDE
 resource "google_cloud_run_service" "jupyter" {
-  name     = var.gcrServiceName 
+  name     = var.gcrServiceName
   location = var.gcrRegion
 
   template {
     spec {
       containers {
-        image = var.gcrImagePrimary 
+        image = var.gcrImagePrimary
       }
       container_concurrency = 2
     }
@@ -277,16 +285,16 @@ resource "google_cloud_run_service" "jupyter" {
     # Add support for vpc connector
     metadata {
       annotations = {
-        "autoscaling.knative.dev/maxScale" = "3"
-        "autoscaling.knative.dev/minScale" = "1"
-        "run.googleapis.com/vpc-access-egress" = "all"
+        "autoscaling.knative.dev/maxScale"        = "3"
+        "autoscaling.knative.dev/minScale"        = "1"
+        "run.googleapis.com/vpc-access-egress"    = "all"
         "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.connector.name
       }
     }
   }
 
   traffic {
-    percent = 100
+    percent         = 100
     latest_revision = true
   }
 
@@ -297,7 +305,7 @@ resource "google_cloud_run_service" "jupyter" {
 # Cloud Run: IAM Policy
 data "google_iam_policy" "noauth" {
   binding {
-    role = var.gcrRolePermission 
+    role = var.gcrRolePermission
     members = [
       var.gcrMemberPermission,
     ]
@@ -306,9 +314,9 @@ data "google_iam_policy" "noauth" {
 
 # Cloud Run: Workbench Policy
 resource "google_cloud_run_service_iam_policy" "vertex_noauth" {
-  location    = google_cloud_run_service.jupyter.location
-  project     = google_cloud_run_service.jupyter.project
-  service     = google_cloud_run_service.jupyter.name
+  location = google_cloud_run_service.jupyter.location
+  project  = google_cloud_run_service.jupyter.project
+  service  = google_cloud_run_service.jupyter.name
 
   policy_data = data.google_iam_policy.noauth.policy_data
 }
