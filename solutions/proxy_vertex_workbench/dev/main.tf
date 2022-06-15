@@ -158,9 +158,19 @@ resource "google_project_service" "vpcaccess-api" {
   # disable_dependent_services = true
 }
 
+https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string
+resource "random_id" "vpc" {
+  keepers = {
+    connector_id = var.gcp_project_id
+  }
+
+  byte_length = 16
+}
+
 # Enable VPC connector
 resource "google_vpc_access_connector" "connector" {
-  name     = "ideconn"
+  ## Max 25 characters
+  name     = random_id.vpc.connector_id
   provider = google-beta
   project  = var.gcp_project_id
   region   = var.gcp_region
@@ -274,7 +284,6 @@ resource "google_project_service" "run" {
 resource "google_cloud_run_service" "jupyter" {
   name     = var.gcrServiceName
   location = var.gcrRegion
-  project  = var.gcp_project_id
 
   template {
     spec {
