@@ -118,6 +118,7 @@ resource "google_compute_firewall" "vpc-connector-egress" {
 
   source_tags = ["vpc-connector"]
 
+
   depends_on = [google_compute_network.dev_network]
 }
 
@@ -160,16 +161,17 @@ resource "google_project_service" "vpcaccess-api" {
 
 ## https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string
 ## https://www.phillipsj.net/posts/random-things-with-terraform/
-resource "random_id" "vpc-connector" {
-  prefix = "ideconn" 
-
-  byte_length = 16
+## ^[a-z][-a-z0-9]{0,23}[a-z0-9]$.
+resource "random_string" "vpc-connector" {
+  length    = 16
+  special = false
+  upper     = false
 }
 
 # Enable VPC connector
 resource "google_vpc_access_connector" "connector" {
   ## Max 25 characters
-  name     = random_id.vpc-connector.id
+  name     = random_string.vpc-connector.id
   provider = google-beta
   project  = var.gcp_project_id
   region   = var.gcp_region
