@@ -31,30 +31,30 @@ variable "gcp_zone" {
 
 # Custom properties with defaults 
 variable "vm_name" {
-  type        = string 
+  type        = string
   description = "Region to create resources in."
-  default     = "cls-notebook" 
+  default     = "cls-notebook"
 }
 
 # Custom properties with defaults 
 variable "vm_region" {
-  type        = string 
+  type        = string
   description = "Region to create resources in."
-  default     = "us-central1" 
+  default     = "us-central1"
 }
 
 # Custom properties with defaults 
 variable "vm_zone" {
-  type        = string 
+  type        = string
   description = "Zone to create resources in."
-  default     = "us-central1-a" 
+  default     = "us-central1-a"
 }
 
 # Custom properties with defaults 
 variable "machine_type" {
-  type        = string 
+  type        = string
   description = "Machine type to use for GCE"
-  default     = "n1-standard-1" 
+  default     = "n1-standard-1"
 }
 
 # Custom properties with defaults 
@@ -93,64 +93,64 @@ variable "vpcConnectorMachineType" {
   type        = string
   description = "VPC Access Connector Machine Type"
   # Note: valid options: f1-micro, e2-micro, e2-standard-4
-  default     = "e2-micro"
+  default = "e2-micro"
 }
 
 # Custom properties with defaults 
 variable "gcrServiceName" {
-  type        = string 
+  type        = string
   description = "Name of the Cloud Run."
-  default     = "workbench-service" 
+  default     = "workbench-service"
 }
 
 # Custom properties with defaults 
 variable "gcrRegion" {
-  type        = string 
+  type        = string
   description = "Region to create resources in."
-  default     = "us-central1" 
+  default     = "us-central1"
 }
 
 # Custom properties with defaults 
 variable "gcrImagePrimary" {
-  type        = string 
+  type        = string
   description = "Image to be run by Cloud Run"
   default     = "gcr.io/qwiklabs-resources/notebook-proxy:latest"
 }
 
 # Custom properties with defaults 
 variable "gcrGoogleService" {
-  type        = string 
+  type        = string
   description = "Google APIs Cloud Run Service."
-  default     = "run.googleapis.com" 
+  default     = "run.googleapis.com"
 }
 
 # Custom properties with defaults 
 variable "gcrRolePermission" {
-  type        = string 
+  type        = string
   description = "Assign role IAM permissions"
-  default     = "roles/run.invoker" 
+  default     = "roles/run.invoker"
 }
 
 # Custom properties with defaults 
 variable "gcrMemberPermission" {
-  type        = string 
+  type        = string
   description = "Assign member IAM permissions"
-  default     = "allUsers" 
+  default     = "allUsers"
 }
 
 
 # Custom properties with defaults 
 variable "gceInstanceName" {
-  type        = string 
+  type        = string
   description = "Name of virtual machine."
-  default     = "cloudlearningservices" 
+  default     = "cloudlearningservices"
 }
 
 # Custom properties with defaults 
 variable "gceInstanceZone" {
-  type        = string 
+  type        = string
   description = "Zone to create resources in."
-  default     = "us-central1-f" 
+  default     = "us-central1-f"
 }
 
 # Custom properties with defaults 
@@ -174,9 +174,9 @@ variable "gceInstanceImage" {
 
 # Custom properties with defaults 
 variable "gceMachineType" {
-  type        = string 
+  type        = string
   description = "Machine type to use for GCE"
-  default     = "e2-medium" 
+  default     = "e2-medium"
 }
 
 # Custom properties with defaults 
