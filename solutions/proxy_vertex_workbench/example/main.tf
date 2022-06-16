@@ -21,7 +21,7 @@ module "la_vertex_workbench" {
   #source = "./solutions/vertex_proxy_workbench/dev"
 
   ## REMOTE: GitHub (Public) access - working 
-  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/proxy_vertex_workbench/dev"
+  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/proxy_vertex_workbench/stable"
 
   ## Exchange values between Qwiklabs and Module
   gcp_project_id  = var.gcp_project_id 
@@ -29,21 +29,7 @@ module "la_vertex_workbench" {
   gcp_zone        = var.gcp_zone 
 
   ## Properties: GCE 
-  # gceInstanceImage    = "tf-latest-cpu" 
-  # gceImageProject     = "deeplearning-platform-release"
-  # gceInstanceName     = "cloudlearningservices" 
-  # gceInstanceZone     = "us-central1-f"
-  # gceInstanceTags     = ["lab-vm"]
-  # gceMachineType      = "e2-standard-2"
-  # gceInstanceScope    = ["cloud-platform"]
-
-  ## Properties: Cloud Run
-  # gcrServiceName      = "workbench-service"
-  # gcrRegion           = "us-central1"
-  # gcrImagePrimary     = "gcr.io/qwiklabs-resources/notebook-proxy:latest"
-  # gcrGoogleService    = "run.googleapis.com"
-  # gcrRolePermission   = "roles/run.invoker"
-  # gcrMemberPermission = "allUsers"
-  # gcrRegion           = "us-central1"
+  ## https://cloud.google.com/vertex-ai/docs/workbench/user-managed/images
+  ## gcePostStartupScript = "https://storage.googleapis.com/spls/[LAB_ID]/lab-init.sh"
 }
 
