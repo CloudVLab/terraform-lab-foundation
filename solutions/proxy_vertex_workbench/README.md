@@ -13,10 +13,19 @@ gcp_zone             = "us-central1-a"
 gceImageFamily       = "tf-latest-cpu"
 gceImageProject      = "deeplearning-platform-release"
 gceMachineType       = "e2-medium"
-gcePostStartupScript = "Public URL"
 gcrServiceName       = "workbench-service"
 gcrRolePermission    = "roles/run.invoker"
 gcrMemberPermission  = "allUsers"
+```
+
+__NOTE:__ 
+
+* The Jupyter notebook uses a post startup script to update the access control
+list. __Do not remove this configuration__.
+* The `training-data-analyst` repo is automatically cloned to the notebook 
+
+```
+gcePostStartupScript = "Public URL"
 ```
 
 ## Accessing Output Values 
