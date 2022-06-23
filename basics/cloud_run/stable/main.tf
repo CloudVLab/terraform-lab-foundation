@@ -23,6 +23,12 @@ resource "google_cloud_run_service" "proxy" {
     spec {
       containers {
         image = var.gcrImage 
+
+        ## Add PROJECT_ID as environment variable
+        env {
+          name  = PROJECT_ID
+          value = var.gcp_project_id
+        }
       }
       container_concurrency = 2
     }
