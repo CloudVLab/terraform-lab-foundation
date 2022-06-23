@@ -33,7 +33,6 @@ resource "google_cloud_run_service" "proxy" {
         "autoscaling.knative.dev/maxScale"        = "3"
         "autoscaling.knative.dev/minScale"        = "1"
         "run.googleapis.com/vpc-access-egress"    = "all"
-        "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.connector.name
       }
     }
   }
