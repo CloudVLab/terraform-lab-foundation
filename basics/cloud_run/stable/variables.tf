@@ -39,7 +39,7 @@ variable "gcrRegion" {
 variable "gcrImage" {
   type        = string
   description = "GCE virtual machine image family"
-  default     = "gcr.io/qwiklabs-resources/ide-proxy:latest"
+  default     = "gcr.io/qwiklabs-resources/automl-proxy:latest"
 }
 
 variable "gcrEnvs" {
