@@ -20,8 +20,9 @@ gcp_zone       = "us-central1-a"
 
 #### Custom Properties
 ```
-gcr_service_account = "default"
-gcr_startup_script  = "${file("./lab-init")}"
+gcrService = "automl-proxy"
+gcrRegion  = "us-central1"
+gcrImage   = "gcr.io/qwiklabs-resources/automl-proxy:latest"
 ```
 __NOTE:__
 - [x] The default service account is compute developer
@@ -38,7 +39,6 @@ View the [example configuration](https://github.com/CloudVLab/terraform-lab-foun
 
 | Field | Description |
 |-------|-------------|
-| gcr_service_url | The external IP assigned to the GCE instance |
 
 ## Adding a Commit 
 
