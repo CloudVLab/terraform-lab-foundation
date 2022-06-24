@@ -24,12 +24,6 @@ gcrService = "automl-proxy"
 gcrRegion  = "us-central1"
 gcrImage   = "gcr.io/qwiklabs-resources/automl-proxy:latest"
 ```
-__NOTE:__
-- [x] The default service account is compute developer
-- [x] To replace the default use the email of custom SA
-- [x] Naming convention for a startup-script is `lab-init`
-- [x] The startup_script should only be used for short lived tasks
-- [x] Do not use scripts to call other scripts
 
 ## Example
 
