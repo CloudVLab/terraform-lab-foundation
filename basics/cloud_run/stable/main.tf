@@ -27,8 +27,8 @@ resource "google_cloud_run_service" "proxy" {
         dynamic "env" {
           for_each = var.gcrEnvs
           content {
-            name = each.key
-            value = each.value
+            name = env.key
+            value = env.value
           }
         }
       }
