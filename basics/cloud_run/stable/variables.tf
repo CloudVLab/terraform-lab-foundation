@@ -45,8 +45,8 @@ variable "gcrImage" {
 variable "gcrEnvs" {
   description = "List of custom rule definitions (refer to variables file for syntax)."
   default     = []
-  type = list(object({
-    gcr_env_name  = string
+  type = list(map({
+    gcr_env_name  = string,
     gcr_env_value = string
   }))
 }
