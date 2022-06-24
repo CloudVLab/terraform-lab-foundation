@@ -14,7 +14,6 @@ resource "google_project_service" "run" {
   # disable_dependent_services = true
 }
 
-
 resource "google_cloud_run_service" "proxy" {
   name     = var.gcrService
   location = var.gcrRegion
@@ -24,10 +23,13 @@ resource "google_cloud_run_service" "proxy" {
       containers {
         image = var.gcrImage 
 
-        ## Add PROJECT_ID as environment variable
-        env {
-          name  = "PROJECT_ID"
-          value = var.gcp_project_id
+        ## Add environment variable
+        dynamic "env" {
+          for_each = var.gcr_envs
+          content {
+            name = each.key
+            value = each.value
+          }
         }
       }
       container_concurrency = 2
