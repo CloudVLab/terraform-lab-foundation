@@ -1,32 +1,28 @@
 # ------------------ Module Definition 
+
 #
 
 # Local:  modules/[channel]
 # Remote: github.com://CloudVLab/terraform-lab-foundation//[module]/[channel]
 
-# Solution: IDE environment 
-# Local:  modules/stable
-# Remote: github.com/CloudVLab/terraform-lab-foundation//solutions/ide_web/stable
-
+# Module: AutoML  
 module "la_automl_proxy" {
-  ## NOTE: When changing the `source` parameter
-  ## `terraform init` is required
+  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/proxy_automl/main"
 
-  ## REMOTE: GitHub (Public) access - working 
-  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/proxy_automl/dev"
+  # Pass values to the module
+  gcp_project_id = var.gcp_project_id
+  gcp_region     = var.gcp_region
+  gcp_zone       = var.gcp_zone
 
-  ## Exchange values between Qwiklabs and Module
-  gcp_project_id  = var.gcp_project_id 
-  gcp_region      = var.gcp_region 
-  gcp_zone        = var.gcp_zone 
+  ## --------------------------------------------------------------
+  ## AutoML Proxy - Cloud Run Service  
+  ## Default: Use Environment Variables
+  ## --------------------------------------------------------------
 
-  ## Properties: AutoML Proxy 
-  cr_env     =  [
-    { gcr_env_name = "PROJECT_ID",      gcr_env_value = var.gcp_project_id },
-    { gcr_env_name = "ENDPOINT_ID",     gcr_env_value = "4078176588351406080" },
-    { gcr_env_name = "GATEWAY_URL",     gcr_env_value = "https://automl-gateway-kjyo252taq-uc.a.run.app/v1" },
-    { gcr_env_name = "GATEWAY_PROJECT", gcr_env_value = "qwiklabs-resources" }
+  ## Add Environment Variables
+  ## Consult Docs to add required settings
+  cr_env      = [
+    { gcr_env_name = "XXXXXXXX", gcr_env_value = "YYYYYYYYY" }
   ]
 
 }
-
