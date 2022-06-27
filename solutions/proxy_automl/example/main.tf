@@ -7,7 +7,7 @@
 
 # Module: AutoML  
 module "la_automl_proxy" {
-  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/proxy_automl/main"
+  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/proxy_automl/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
