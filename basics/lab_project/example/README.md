@@ -1,4 +1,4 @@
-# Terraform: Google Compute Engine
+# Terraform: Lab Project 
 
 ## Example
 
@@ -17,7 +17,7 @@ The example is based on the following hierarchy:
 Add the example Terraform code module to your project
 
 ```
-curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/gce_instance/example/install.sh | bash
+curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/lab_project/example/install.sh | bash
 ```
 
 ## View the updated directory 
@@ -32,12 +32,6 @@ The example is based on the following hierarchy:
 ├── QL_OWNER
 ├── qwiklabs.yaml
 └── tf
-    ├── scripts 
-    │   └── lab-init
-    ├── main.tf
-    ├── outputs.tf
-    ├── runtime.yaml
-    └── variables.tf
 ```
 
 __NOTE:__ The Terraform examples assume a configuration sub-directory 
@@ -58,11 +52,6 @@ custom properties e.g. `tfResourceName` and `tfUsername`:
 5    startup_script:
 6      type: qwiklabs
 7      path: tf
-8      custom_properties:
-9      - key: tfResourceName
-10        value: test-vm
-11      - key: tfUsername
-12        reference: user_0.username
 ```
 
 #### Visible Outputs
@@ -80,6 +69,12 @@ student visible outputs e.g. `gce_external_ip` and `gce_instance_name`:
  7      reference: user_0.password
  8    - label: External IP
  9      reference: project_0.startup_script.gce_external_ip
- 10   - label: VM Name
- 11     reference: project_0.startup_script.gce_instance_name
+ 10   - label: Project Id 
+ 11     reference: project_0.startup_script.project_id
+ 10   - label: Project Number 
+ 11     reference: project_0.startup_script.project_number
+ 10   - label: Project Region 
+ 11     reference: project_0.startup_script.project_region
+ 10   - label: Project Zone 
+ 11     reference: project_0.startup_script.project_zone
 ```
