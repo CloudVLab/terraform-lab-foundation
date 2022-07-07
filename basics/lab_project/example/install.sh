@@ -34,17 +34,3 @@ fi
 if [ ! -f $DIRECTORY/$FILE4 ]; then
 curl -L $FILE4_URL -o "$DIRECTORY/$FILE4"
 fi
-
-## ---------------------------------------------------------------------------
-## Scripts Directory
-
-# Create TF directory if not present
-if [ ! -d "$SCRIPTS" ]; then
-  mkdir -p $SCRIPTS
-fi
-
-# Download if the file does not exist
-if [ ! -f "$SCRIPTS/$SCRIPT" ]; then
-curl -L $SCRIPT_URL -o "$SCRIPTS/$SCRIPT"
-fi
-
