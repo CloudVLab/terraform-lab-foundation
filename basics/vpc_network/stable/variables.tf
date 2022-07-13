@@ -76,3 +76,17 @@ variable "vpc_subnet_cidr" {
   description = "VPC subnetwork to cidr."
   default     = "10.128.0.0/16" 
 }
+
+# Default value passed in
+variable "vpc_private_google_access" {
+  type        = bool 
+  description = "VPC Private Google Access."
+  default     = true 
+}
+
+# Default value passed in
+variable "vpc_flow_logs" {
+  type        = bool 
+  description = "VPC Flow Logs."
+  default     = false 
+}

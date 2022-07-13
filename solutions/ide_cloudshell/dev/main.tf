@@ -17,7 +17,7 @@ resource "google_compute_subnetwork" "dev_subnet" {
   ip_cidr_range            = "10.128.0.0/16"
   region                   = var.gcp_region
   network                  = google_compute_network.dev_network.id
-  private_ip_google_access = var.vpcPrivateGooleAccess 
+  private_ip_google_access = var.vpcPrivateGoogleAccess
   enable_flow_logs         = var.vpcFlowLogs 
 }
 
