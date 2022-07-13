@@ -17,5 +17,5 @@ resource "google_compute_subnetwork" "dev_subnet" {
   network       = google_compute_network.dev_network.id
   project       = var.gcp_project_id
   private_ip_google_access = var.vpc_private_google_access
-  enable_flow_logs = var.vpc_flow_logs 
+  log_config    = var.vpc_flow_logs 
 }
