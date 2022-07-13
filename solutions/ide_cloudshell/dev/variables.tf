@@ -41,6 +41,18 @@ variable "vpcConnectorMachineType" {
   default     = "e2-micro"
 }
 
+variable "vpcPrivateGoogleAccess" {
+  type        = bool 
+  description = "Enable IPv4 Private Google Access"
+  default     = true 
+}
+
+variable "vpcFlowLogs" {
+  type        = bool 
+  description = "VPC Flow Logs"
+  default     = false 
+}
+
 # Custom properties with defaults 
 variable "gcrRegion" {
   type        = string 
