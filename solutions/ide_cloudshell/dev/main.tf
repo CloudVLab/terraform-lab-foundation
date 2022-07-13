@@ -18,7 +18,11 @@ resource "google_compute_subnetwork" "dev_subnet" {
   region                   = var.gcp_region
   network                  = google_compute_network.dev_network.id
   private_ip_google_access = var.vpcPrivateGoogleAccess
-  log_config               = var.vpcFlowLogs 
+##  log_config {
+##    aggregation_interval = "INTERVAL_10_MIN"
+##    flow_sampling        = 0.5
+##    metadata             = "INCLUDE_ALL_METADATA"
+##  }
 }
 
 # Reference:
