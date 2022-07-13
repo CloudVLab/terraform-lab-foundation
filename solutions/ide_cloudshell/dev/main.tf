@@ -13,10 +13,12 @@ resource "google_compute_network" "dev_network" {
 
 # Subnet
 resource "google_compute_subnetwork" "dev_subnet" {
-  name          = "dev-subnetwork"
-  ip_cidr_range = "10.128.0.0/16"
-  region        = var.gcp_region
-  network       = google_compute_network.dev_network.id
+  name                     = "dev-subnetwork"
+  ip_cidr_range            = "10.128.0.0/16"
+  region                   = var.gcp_region
+  network                  = google_compute_network.dev_network.id
+  private_ip_google_access = var.vpcPrivateGooleAccess 
+  enable_flow_logs         = var.vpcFlowLogs 
 }
 
 # Reference:
