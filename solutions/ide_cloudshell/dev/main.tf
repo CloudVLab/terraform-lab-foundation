@@ -15,7 +15,7 @@ resource "google_compute_network" "dev_network" {
 resource "google_compute_subnetwork" "dev_subnet" {
   name          = "dev-subnetwork"
   ip_cidr_range = "10.128.0.0/16"
-  region        = "us-central1"
+  region        = var.gcp_region
   network       = google_compute_network.dev_network.id
 }
 
@@ -203,7 +203,7 @@ resource "google_project_service" "run" {
 # Cloud Run: IDE
 resource "google_cloud_run_service" "ide" {
   name     = "ide-service" 
-  location = var.gcrRegion
+  location = var.gcp_region
 
   template {
     spec {
@@ -237,7 +237,7 @@ resource "google_cloud_run_service" "ide" {
 # Cloud Run: Browser 
 resource "google_cloud_run_service" "browser" {
   name     = "browser-service"
-  location = var.gcrRegion
+  location = var.gcp_region
 
   template {
     spec {
@@ -313,7 +313,7 @@ resource "google_compute_instance" "default" {
 
   name         = var.gceInstanceName 
   machine_type = var.gceMachineType
-  zone         = var.gceInstanceZone 
+  zone         = var.gcp_zone 
 
   tags = var.gceInstanceTags
 
