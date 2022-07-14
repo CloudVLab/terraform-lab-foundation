@@ -1,14 +1,18 @@
 #!/bin/sh
 
+SCRIPTS="tf/scripts"
+SCRIPT="lab-init"
+SCRIPT_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/cloud_labshell/example/scripts/lab-init"
+
 DIRECTORY="tf"
 FILE1="main.tf"
-FILE1_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloudshell/example/main.tf"
+FILE1_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/cloud_labshell/example/main.tf"
 FILE2="outputs.tf"
-FILE2_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloudshell/example/outputs.tf"
+FILE2_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/cloud_labshell/example/outputs.tf"
 FILE3="runtime.yaml"
-FILE3_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloudshell/example/runtime.yaml"
+FILE3_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/cloud_labshell/example/runtime.yaml"
 FILE4="variables.tf"
-FILE4_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloudshell/example/variables.tf"
+FILE4_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/cloud_labshell/example/variables.tf"
 
 # Create TF directory if not present
 if [ ! -d $DIRECTORY ]; then
@@ -33,4 +37,17 @@ fi
 # Download if the file does not exist
 if [ ! -f $DIRECTORY/$FILE4 ]; then
 curl -L $FILE4_URL -o "$DIRECTORY/$FILE4"
+fi
+
+## ---------------------------------------------------------------------------
+## Scripts Directory
+
+# Create TF directory if not present
+if [ ! -d "$SCRIPTS" ]; then
+    mkdir -p $SCRIPTS
+fi
+
+# Download if the file does not exist
+if [ ! -f "$SCRIPTS/$SCRIPT" ]; then
+  curl -L $SCRIPT_URL -o "$SCRIPTS/$SCRIPT"
 fi
