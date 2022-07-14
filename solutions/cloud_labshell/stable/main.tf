@@ -140,19 +140,19 @@ resource "google_compute_firewall" "vpc-connector-egress" {
 
 # IAP Tunnel: Allow IAP 
 resource "google_compute_firewall" "vm-iap" {
-  name    = "vm-iap"
-  network = google_compute_network.dev_network.name
+  name          = "vm-iap"
+  network       = google_compute_network.dev_network.name
   source_ranges = ["35.235.240.0/20"]
-  direction = "INGRESS"
+  direction     = "INGRESS"
 
   # Enable INGRESS
   allow {
-    protocol = "tcp"
+    protocol    = "tcp"
   }
 
-  source_tags = ["lab-vm"]
+  source_tags   = ["lab-vm"]
 
-  depends_on = [ google_compute_network.dev_network ]
+  depends_on    = [ google_compute_network.dev_network ]
 }
 
 
@@ -206,15 +206,15 @@ resource "google_project_service" "run" {
   # disable_dependent_services = true
 }
 
-# Cloud Run: IDE
-resource "google_cloud_run_service" "ide" {
-  name     = "ide-service" 
+# Cloud Run: Cloud Labshell 
+resource "google_cloud_run_service" "terminal" {
+  name     = var.gcrPrimaryServiceName 
   location = var.gcp_region
 
   template {
     spec {
       containers {
-        image = var.gcrImageIde
+        image = var.gcrContainerImage
       }
       container_concurrency = 2
     }
@@ -240,38 +240,38 @@ resource "google_cloud_run_service" "ide" {
 }
 
 
-# Cloud Run: Browser 
-resource "google_cloud_run_service" "browser" {
-  name     = "browser-service"
-  location = var.gcp_region
-
-  template {
-    spec {
-      containers {
-        image = var.gcrImageBrowser
-      }
-      container_concurrency = 2
-    }
-
-    # Add support for vpc connector
-    metadata {
-      annotations = {
-        "autoscaling.knative.dev/maxScale" = "3"
-        "autoscaling.knative.dev/minScale" = "1"
-        "run.googleapis.com/vpc-access-egress" = "all"
-        "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.connector.name
-      }
-    }
-  }
-
-  traffic {
-    percent = 100
-    latest_revision = true
-  }
-
-  # Dependency - Cloud Run API enabled
-  depends_on = [google_project_service.run, google_compute_instance.default]
-}
+## # Cloud Run: Browser 
+## resource "google_cloud_run_service" "browser" {
+##   name     = "browser-service"
+##   location = var.gcp_region
+## 
+##   template {
+##     spec {
+##       containers {
+##         image = var.gcrImageBrowser
+##       }
+##       container_concurrency = 2
+##     }
+## 
+##     # Add support for vpc connector
+##     metadata {
+##       annotations = {
+##         "autoscaling.knative.dev/maxScale" = "3"
+##         "autoscaling.knative.dev/minScale" = "1"
+##         "run.googleapis.com/vpc-access-egress" = "all"
+##         "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.connector.name
+##       }
+##     }
+##   }
+## 
+##   traffic {
+##     percent = 100
+##     latest_revision = true
+##   }
+## 
+##   # Dependency - Cloud Run API enabled
+##   depends_on = [google_project_service.run, google_compute_instance.default]
+## }
 
 # Cloud Run: IAM Policy
 data "google_iam_policy" "noauth" {
@@ -292,14 +292,14 @@ resource "google_cloud_run_service_iam_policy" "ide_noauth" {
   policy_data = data.google_iam_policy.noauth.policy_data
 }
 
-# Cloud Run: Browser Policy
-resource "google_cloud_run_service_iam_policy" "browser_noauth" {
-  location    = google_cloud_run_service.browser.location
-  project     = google_cloud_run_service.browser.project
-  service     = google_cloud_run_service.browser.name
-
-  policy_data = data.google_iam_policy.noauth.policy_data
-}
+## # Cloud Run: Browser Policy
+## resource "google_cloud_run_service_iam_policy" "browser_noauth" {
+##   location    = google_cloud_run_service.browser.location
+##   project     = google_cloud_run_service.browser.project
+##   service     = google_cloud_run_service.browser.name
+## 
+##   policy_data = data.google_iam_policy.noauth.policy_data
+## }
 
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_target_instance
 

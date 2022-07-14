@@ -54,6 +54,13 @@ variable "vpcFlowLogs" {
 }
 
 # Custom properties with defaults 
+variable "gcrPrimaryServiceName" {
+  type        = string 
+  description = "Name of service
+  default     = "labshell-service" 
+}
+
+# Custom properties with defaults 
 variable "gcrRegion" {
   type        = string 
   description = "Region to create resources in."
@@ -61,7 +68,7 @@ variable "gcrRegion" {
 }
 
 # Custom properties with defaults 
-variable "gcrImageIde" {
+variable "gcrContainerImage" {
   type        = string 
   description = "Image to be run by Cloud Run"
   default     = "gcr.io/qwiklabs-resources/ide-proxy:latest" 
