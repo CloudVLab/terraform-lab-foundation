@@ -285,9 +285,9 @@ data "google_iam_policy" "noauth" {
 
 # Cloud Run: IDE Policy
 resource "google_cloud_run_service_iam_policy" "ide_noauth" {
-  location    = google_cloud_run_service.ide.location
-  project     = google_cloud_run_service.ide.project
-  service     = google_cloud_run_service.ide.name
+  location    = google_cloud_run_service.terminal.location
+  project     = google_cloud_run_service.terminal.project
+  service     = google_cloud_run_service.terminal.name
 
   policy_data = data.google_iam_policy.noauth.policy_data
 }
