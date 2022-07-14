@@ -95,10 +95,17 @@ variable "gceInstanceTags" {
   default     = ["lab-vm"]
 }
 
+variable "gceImageProject" {
+  type        = string
+  description = "GCE machine image project"
+  default     = "qwiklabs-resources"
+}
+
 variable "gceMachineImage" {
   type        = string
   description = "GCE virtual machine image family"
-  default     = "cloudshell-codeserver"
+  default     = "test-labshell-cloud"
+  ## default     = "labshell-cloud"
 }
 
 # Custom properties with defaults 
