@@ -306,7 +306,7 @@ resource "google_cloud_run_service_iam_policy" "browser_noauth" {
 # Compute Image: qwiklabs-resources
 data "google_compute_image" "image_family" {
   family  = var.gceMachineImage 
-  project = "qwiklabs-resources"
+  project = var.gceImageProject 
 }
 
 
@@ -332,6 +332,8 @@ resource "google_compute_instance" "default" {
   network_interface {
     subnetwork      = google_compute_subnetwork.dev_subnet.name
 
+## Buganizer: https://b.corp.google.com/issues/238128500
+## Overview: Minimize use of external IPs
 ##    access_config {
 ##      // Ephemeral IP
 ##    }
