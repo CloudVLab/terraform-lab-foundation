@@ -56,7 +56,7 @@ variable "vpcFlowLogs" {
 # Custom properties with defaults 
 variable "gcrPrimaryServiceName" {
   type        = string 
-  description = "Name of service
+  description = "Name of service"
   default     = "labshell-service" 
 }
 
