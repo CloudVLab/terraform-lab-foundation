@@ -79,7 +79,7 @@ variable "machine_network" {
 }
 
 # Custom properties with defaults 
-"vm_scopes" {
+variable "vm_scopes" {
   type        = list(string)
   description = "GCE service account scope"
   default     = ["cloud-platform"]
