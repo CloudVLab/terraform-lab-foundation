@@ -233,8 +233,8 @@ resource "google_project_iam_binding" "vertex_viewer_bind" {
 #
 
 resource "google_notebooks_instance" "vertex_instance" {
-  name         = var.vm_name
-  location     = var.vm_zone
+  name         = var.gceInstanceName
+  location     = var.gceInstanceZone
   project      = var.gcp_project_id
   machine_type = var.gceMachineType
   tags         = var.gceInstanceTags
