@@ -28,9 +28,3 @@ variable "gcp_zone" {
 ## Custom variable definitions
 ## --------------------------------------------------------------
 
-# Default value passed in
-variable "gcs_bucket_extension" {
-  type        = string
-  description = "Name of the storage bucket to create."
-  default     = "bucket" 
-}

@@ -4,10 +4,10 @@ module "la_gcs" {
 
   ## Local Modules - working
   ## Module subdirectory needs to be defined within the TF directory
-  source = "./basics/gcs_bucket/stable"
+  #source = "./basics/gcs_bucket/stable"
 
   ## REMOTE: GitHub (Public) access - working 
-  #source = "github.com/CloudVLab/terraform-lab-foundation//basics/gcs_bucket/stable"
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/gcs_bucket/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
@@ -15,6 +15,6 @@ module "la_gcs" {
   gcp_zone       = var.gcp_zone
 
   # Customise the GCS instance
-  gcs_bucket_extension = "my_bucket" 
-  #gcs_storage_class   = "MULTI_REGIONAL"
+  gcs_bucket_extension = "bucket" 
+  gcs_storage_class   = "STANDARD"
 }
