@@ -10,7 +10,7 @@
 resource "google_container_cluster" "primary" {
   provider = google-beta
   name     = var.gke_cluster_name
-  location = var.gcp_region
+  location = var.gke_location
   
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
@@ -39,19 +39,19 @@ resource "google_container_cluster" "primary" {
 # Separately Managed Node Pool
 resource "google_container_node_pool" "primary_nodes" {
   name       = "${google_container_cluster.primary.name}-node-pool"
-  location   = var.gcp_region
+  location   = var.gke_location
   cluster    = google_container_cluster.primary.name
   node_count = var.gke_num_nodes
 
   node_config {
-    oauth_scopes = var.gce_scopes 
+    oauth_scopes = var.gke_scopes 
 
     labels = {
       env = var.gke_cluster_name
     }
 
     # preemptible  = true
-    machine_type = var.gce_machine_type
+    machine_type = var.gke_machine_type
     # tags         = var.gke_tags 
     tags         = ["gke-vm", "${var.gke_cluster_name}"]
     metadata = {
