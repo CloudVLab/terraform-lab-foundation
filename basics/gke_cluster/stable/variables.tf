@@ -28,12 +28,7 @@ variable "gcp_zone" {
 variable "gke_cluster_name" {
   type        = string
   description = "GKE Cluster name."
-}
-
-# with the same name for any lab that uses this script.
-variable "gcp_username" {
-  type        = string
-  description = "Name of Qwiklabs user"
+  default     = "lab-cluster-test"
 }
 
 
@@ -41,20 +36,18 @@ variable "gcp_username" {
 ## Custom variable definitions - Override from Custom Properties
 ## --------------------------------------------------------------
 
+
 variable "gke_num_nodes" {
   type        = number 
   description = "number of gke nodes"
   default     = 2 
 }
 
-variable "gke_username" {
-  default     = ""
-  description = "gke username"
-}
-
-variable "gke_password" {
-  default     = ""
-  description = "gke password"
+# Custom properties with defaults 
+variable "gke_location" {
+  type        = string
+  description = "Regional or Zonal"
+  default     = "us-central1-a"
 }
 
 # Custom properties with Addons
@@ -72,30 +65,22 @@ variable "gke_istio_auth" {
   default     = "AUTH_NONE"
 }
 
-
 # Custom properties with defaults 
-variable "gce_machine_image" {
-  type        = string
-  description = "GCE virtual machine image"
-  default     = "debian-cloud/debian-10"
-}
-
-# Custom properties with defaults 
-variable "gce_machine_type" {
+variable "gke_machine_type" {
   type        = string
   description = "GCE machine type"
-  default     = "n1-standard-1"
+  default     = "e2-standard-2"
 }
 
 # Custom properties with defaults 
-variable "gce_machine_network" {
+variable "gke_machine_network" {
   type        = string
   description = "GCE virtual machine network"
   default     = "default"
 }
 
 # Custom properties with defaults 
-variable "gce_scopes" {
+variable "gke_scopes" {
   type        = list(string)
   description = "GCE service account scope"
   # default     = ["https://www.googleapis.com/auth/cloud-platform"]
