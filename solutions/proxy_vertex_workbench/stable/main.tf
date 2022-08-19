@@ -163,15 +163,15 @@ resource "google_project_service" "vpcaccess-api" {
 ## https://www.phillipsj.net/posts/random-things-with-terraform/
 ## ^[a-z][-a-z0-9]{0,23}[a-z0-9]$.
 resource "random_string" "vpc-connector" {
-  length    = 16
-  special = false
+  length    = 10
+  special   = false
   upper     = false
 }
 
 # Enable VPC connector
 resource "google_vpc_access_connector" "connector" {
   ## Max 25 characters
-  name     = random_string.vpc-connector.id
+  name     = "vpcconn-${random_string.vpc-connector.id}"
   provider = google-beta
   project  = var.gcp_project_id
   region   = var.gcp_region
