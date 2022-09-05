@@ -48,9 +48,7 @@ resource "google_service_account" "service_account" {
 resource "google_project_iam_member" "vertex_viewer_bind" {
   role    = "roles/viewer"
   project = var.gcp_project_id
-  members = [
-    "serviceAccount:vertex-ai@${var.gcp_project_id}.iam.gserviceaccount.com",
-  ]
+  member = "serviceAccount:vertex-ai@${var.gcp_project_id}.iam.gserviceaccount.com"
   depends_on = [google_service_account.service_account]
 }
 
