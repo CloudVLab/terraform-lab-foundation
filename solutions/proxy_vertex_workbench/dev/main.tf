@@ -163,9 +163,9 @@ resource "google_project_service" "vpcaccess-api" {
 ## https://www.phillipsj.net/posts/random-things-with-terraform/
 ## ^[a-z][-a-z0-9]{0,23}[a-z0-9]$.
 resource "random_string" "vpc-connector" {
-  length    = 10
-  special   = false
-  upper     = false
+  length  = 10
+  special = false
+  upper   = false
 }
 
 # Enable VPC connector
@@ -232,9 +232,8 @@ resource "google_service_account" "service_account" {
 resource "google_project_iam_member" "vertex_role_bind" {
   role    = "roles/editor"
   project = var.gcp_project_id
-  members = [
-    "serviceAccount:vertex-ai@${var.gcp_project_id}.iam.gserviceaccount.com",
-  ]
+  member  = "serviceAccount:vertex-ai@${var.gcp_project_id}.iam.gserviceaccount.com"
+
   depends_on = [google_service_account.service_account]
 }
 
@@ -295,7 +294,7 @@ resource "google_project_service" "run" {
 resource "google_cloud_run_service" "jupyter" {
   name     = var.gcrServiceName
   location = var.gcrRegion
-  project = var.gcp_project_id
+  project  = var.gcp_project_id
 
   template {
     spec {
