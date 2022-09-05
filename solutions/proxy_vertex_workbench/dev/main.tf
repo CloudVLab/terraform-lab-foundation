@@ -163,19 +163,18 @@ resource "google_project_service" "vpcaccess-api" {
 ## https://www.phillipsj.net/posts/random-things-with-terraform/
 ## ^[a-z][-a-z0-9]{0,23}[a-z0-9]$.
 resource "random_string" "vpc-connector" {
-  length    = 16
-  special = false
+  length    = 10
+  special   = false
   upper     = false
 }
 
 # Enable VPC connector
 resource "google_vpc_access_connector" "connector" {
   ## Max 25 characters
-  name     = random_string.vpc-connector.id
-  provider = google-beta
-  project  = var.gcp_project_id
-  region   = var.gcp_region
-  ## network       = google_compute_network.dev_network.name
+  name          = "vpcconn-${random_string.vpc-connector.id}"
+  provider      = google-beta
+  project       = var.gcp_project_id
+  region        = var.gcp_region
   network       = google_compute_network.dev_network.id
   ip_cidr_range = "10.8.0.0/28"
 
@@ -217,8 +216,20 @@ resource "google_service_account" "service_account" {
 # Reference
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam
 #
-resource "google_project_iam_binding" "vertex_viewer_bind" {
-  #role    = "roles/viewer"
+# Authoritative Binding
+## resource "google_project_iam_binding" "vertex_role_bind" {
+##   #role    = "roles/viewer"
+##   role    = "roles/editor"
+##   project = var.gcp_project_id
+##   members = [
+##     "serviceAccount:vertex-ai@${var.gcp_project_id}.iam.gserviceaccount.com",
+##   ]
+##   depends_on = [google_service_account.service_account]
+## }
+
+
+# Non Authoritative Binding
+resource "google_project_iam_member" "vertex_role_bind" {
   role    = "roles/editor"
   project = var.gcp_project_id
   members = [
@@ -226,7 +237,6 @@ resource "google_project_iam_binding" "vertex_viewer_bind" {
   ]
   depends_on = [google_service_account.service_account]
 }
-
 
 # Reference:
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/notebooks_instance
