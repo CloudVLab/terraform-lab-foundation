@@ -24,11 +24,11 @@ variable "gcp_zone" {
 ## --------------------------------------------------------------
 
 # with the same name for any lab that uses this script.
-## variable "vai_username" {
-##   type        = string
-##   description = "Name of Qwiklabs user"
-##   default     = "tester" 
-## }
+variable "iam_user" {
+  type        = string
+  description = "Name of Qwiklabs user"
+  default     = "tester@gmail.com" 
+}
 
 ## --------------------------------------------------------------
 ## Custom variable definitions - Override from Custom Properties
