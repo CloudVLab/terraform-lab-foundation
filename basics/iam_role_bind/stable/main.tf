@@ -3,7 +3,8 @@
 #
 resource "google_service_account" "service_account" {
   account_id   = var.iam_sa_name 
-  display_name = var.iam_sa_description 
+  description  = var.iam_sa_description 
+  display_name = var.iam_sa 
 }
 
 ## https://www.terraform.io/language/values/locals#using-local-values
