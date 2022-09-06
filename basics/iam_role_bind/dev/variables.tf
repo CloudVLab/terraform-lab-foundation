@@ -48,7 +48,6 @@ variable "iam_sa_description" {
   default     = "Custom service account" 
 }
 
-
 # with the same name for any lab that uses this script.
 variable "iam_role" {
   type        = string
