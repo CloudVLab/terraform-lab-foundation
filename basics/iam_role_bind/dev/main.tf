@@ -2,29 +2,28 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_service_account
 #
 resource "google_service_account" "service_account" {
-  account_id   = "billing-qwiklabs"
-  display_name = "Billing Service Account"
+  account_id   = var.iam_sa_name 
+  display_name = var.iam_sa_description 
 }
 
-resource "google_service_account" "tester_account" {
-  account_id   = "billing-test"
-  display_name = "Test Billing Service Account"
+## https://www.terraform.io/language/values/locals#using-local-values
+locals {
+  ## Avoid repetition on expression
+  service_account = "serviceAccount:${google_service_account.service_account.account_id}@${var.gcp_project_id}.iam.gserviceaccount.com"
 }
 
 
-# Reference
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam
-## Authoritative Binding - Wipes existing users with this role
-resource "google_project_iam_binding" "iam_role_override" {
-  role    = "roles/billing.user"
+## Non Authoritative Binding - Wipes existing users with this role
+resource "google_project_iam_member" "sa_iam_bind" {
+  role    = var.iam_role 
   project = var.gcp_project_id
-  members = [
-    "user:${var.iam_user}",
-#    "serviceAccount:${google_service_account.service_account.account_id}@${var.gcp_project_id}.iam.gserviceaccount.com",
-#    "serviceAccount:${google_service_account.tester_account.account_id}@${var.gcp_project_id}.iam.gserviceaccount.com",
-  ]
+  ## member  = "serviceAccount:${google_service_account.service_account.account_id}@${var.gcp_project_id}.iam.gserviceaccount.com"
+  member  = local.service_account
 
-## Add IAM Conditional access
+  ## Move to a new module for defining user bindings
+  ## member  = "user:${var.iam_user}"
+  
+  ## Add IAM Conditional access
 ##  condition {
 ##    title       = "expires_after_2019_12_31"
 ##    description = "Expiring at midnight of 2019-12-31"
@@ -34,19 +33,25 @@ resource "google_project_iam_binding" "iam_role_override" {
   depends_on = [google_service_account.service_account]
 }
 
-## Non Authoritative Binding - Wipes existing users with this role
-## resource "google_project_iam_member" "iam_role_new" {
+
+# Reference
+# https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam
+## ## Authoritative Binding - Wipes existing users with this role
+## resource "google_project_iam_binding" "override_iam_bind" {
 ##   role    = "roles/viewer"
 ##   project = var.gcp_project_id
-##   member  = "serviceAccount:${google_service_account.service_account.account_id}@${var.gcp_project_id}.iam.gserviceaccount.com"
-##   member  = "user:${var.iam_user}"
-##   
-## Add IAM Conditional access
-##   condition {
-##     title       = "expires_after_2019_12_31"
-##     description = "Expiring at midnight of 2019-12-31"
-##     expression  = "request.time < timestamp(\"2020-01-01T00:00:00Z\")"
-##   }
-##
+##   members = [
+## #    "user:${var.iam_user}",
+##     "serviceAccount:${google_service_account.service_account.account_id}@${var.gcp_project_id}.iam.gserviceaccount.com",
+##   ]
+## 
+## ## Add IAM Conditional access
+## ##  condition {
+## ##    title       = "expires_after_2019_12_31"
+## ##    description = "Expiring at midnight of 2019-12-31"
+## ##    expression  = "request.time < timestamp(\"2020-01-01T00:00:00Z\")"
+## ##  }
+## 
 ##   depends_on = [google_service_account.service_account]
 ## }
+
