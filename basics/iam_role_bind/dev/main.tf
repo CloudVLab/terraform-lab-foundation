@@ -14,7 +14,7 @@ resource "google_service_account" "tester_account" {
 
 # Reference
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam
-Authoritative Binding - Wipes existing users with this role
+## Authoritative Binding - Wipes existing users with this role
 resource "google_project_iam_binding" "iam_role_override" {
   role    = "roles/billing.user"
   project = var.gcp_project_id
