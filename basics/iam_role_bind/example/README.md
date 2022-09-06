@@ -1,4 +1,4 @@
-# Terraform: Vertex AI Notebook 
+# Terraform: IAM Role Bind 
 
 ## Example
 
@@ -19,7 +19,7 @@ The example is based on the following hierarchy:
 
 Add the example Terraform code module to your project
 ```
-curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/vai_notebook/example/install.sh | bash
+curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/iam_role_bind/example/install.sh | bash
 ```
 
 

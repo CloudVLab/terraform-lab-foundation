@@ -2,13 +2,13 @@
 
 DIRECTORY="tf"
 FILE1="main.tf"
-FILE1_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/vai_notebook/example/main.tf"
+FILE1_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/iam_role_bind/example/main.tf"
 FILE2="outputs.tf"
-FILE2_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/vai_notebook/example/outputs.tf"
+FILE2_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/iam_role_bind/example/outputs.tf"
 FILE3="runtime.yaml"
-FILE3_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/vai_notebook/example/runtime.yaml"
+FILE3_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/iam_role_bind/example/runtime.yaml"
 FILE4="variables.tf"
-FILE4_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/vai_notebook/example/variables.tf"
+FILE4_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/iam_role_bind/example/variables.tf"
 
 # Create TF directory if not present
 if [ ! -d $DIRECTORY ]; then
