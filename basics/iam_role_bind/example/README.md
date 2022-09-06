@@ -57,5 +57,19 @@ Add a startup_script section to `qwiklabs.yaml` to run Terraform
 5    startup_script:
 6      type: qwiklabs
 7      path: tf
+8      custom_properties:
+9      - key: tfUser_0
+10       reference: user_0.username
 ```
 
+The above example passes the username through to the Terraform script.
+If you wish to use a different account, override the `iam_user` value with a valid email account.
+
+The general overrides values are illustrated below:
+
+| Field | Default | Comment |
+|-------|---------|---------|
+| iam_user | tester@gmail.com | Username value |
+| iam_sa_name | custom-sa | Custom service account name |
+| iam_sa_description  | Customer service account for application | Service account description |
+| iam_role | roles/viewer | IAM Role to be assigned |
