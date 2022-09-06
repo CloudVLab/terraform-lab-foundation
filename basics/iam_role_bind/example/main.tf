@@ -12,10 +12,10 @@ module "la_role_bind" {
   ## source = "./basics/iam_role_bind/stable"
 
   ## REMOTE: GitHub (Public) access - working 
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/iam_role_bind/dev?ref=tlf_iam"
+  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/iam_role_bind/dev?ref=tlf_iam"
 
   ## REMOTE: GitHub (Public) access - working 
-  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/iam_role_bind/stable"
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/iam_role_bind/stable"
 
   ## Exchange values between Qwiklabs and Module
   gcp_project_id = var.gcp_project_id
@@ -23,4 +23,9 @@ module "la_role_bind" {
   gcp_zone       = var.gcp_zone 
 
   ## Custom Properties
+  # Pass reference to the student username
+  iam_user           = var.tfUser_0
+  iam_sa_name        = "sa_name"
+  iam_sa_description = "sa description" 
+  iam_role           = "roles/viewer"
 }

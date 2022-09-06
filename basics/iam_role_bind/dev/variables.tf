@@ -54,4 +54,3 @@ variable "iam_role" {
   description = "Role to bind to the user account"
   default     = "roles/viewer" 
 }
-
