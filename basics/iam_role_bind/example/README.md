@@ -69,7 +69,6 @@ The general overrides values are illustrated below:
 
 | Field | Default | Comment |
 |-------|---------|---------|
-| iam_user | tester@gmail.com | Username value |
 | iam_sa_name | custom-sa | Custom service account name |
 | iam_sa_description  | Customer service account for application | Service account description |
 | iam_role | roles/viewer | IAM Role to be assigned |

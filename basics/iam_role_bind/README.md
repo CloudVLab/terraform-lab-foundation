@@ -2,7 +2,8 @@
 
 | Channel | Status |
 |---------|--------|
-| Dev     | TBC    | 
+| Dev     | WIP    | 
+| Stable  | TBC    | 
 
 Create a IAM binding for a role
 
@@ -20,8 +21,9 @@ gcp_zone       = "us-central1-a"
 #### Custom Properties
 
 ```
-iam_user = var.tfAccount
-iam_role = var.tfRole
+iam_sa_name        = "custom-sa" 
+iam_sa_description = "Custom SA" 
+iam_role           = "roles/viewer" 
 ```
 
 ## Example
