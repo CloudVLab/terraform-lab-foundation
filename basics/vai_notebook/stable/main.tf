@@ -35,14 +35,20 @@ resource "google_service_account" "service_account" {
 
 # Reference
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/google_project_iam
-#
-resource "google_project_iam_binding" "vertex_viewer_bind" {
-  role    = "roles/viewer"
-  # role    = "roles/owner"
-  project = var.gcp_project_id
-  members = [
-    "serviceAccount:vertex-ai@${var.gcp_project_id}.iam.gserviceaccount.com",
-  ]
+# Authorative for a given role.
+## resource "google_project_iam_binding" "vertex_viewer_bind" {
+##   role    = "roles/viewer"
+##   project = var.gcp_project_id
+##   members = [
+##     "serviceAccount:vertex-ai@${var.gcp_project_id}.iam.gserviceaccount.com",
+##   ]
+##   depends_on = [google_service_account.service_account]
+## }
+
+resource "google_project_iam_member" "vertex_viewer_bind" {
+  role       = "roles/viewer"
+  project    = var.gcp_project_id
+  member     = "serviceAccount:vertex-ai@${var.gcp_project_id}.iam.gserviceaccount.com"
   depends_on = [google_service_account.service_account]
 }
 
@@ -50,9 +56,9 @@ resource "google_project_iam_binding" "vertex_viewer_bind" {
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/notebooks_instance
 #
 resource "google_notebooks_instance" "vertex_instance" {
-  name         = var.vai_notebook_name 
-  location     = var.vai_zone 
-  machine_type = var.vai_machine_type 
+  name         = var.vai_notebook_name
+  location     = var.vai_zone
+  machine_type = var.vai_machine_type
   tags         = var.vai_tags
 
   #instance_owners = [ "$var.vai_username" ]
@@ -70,12 +76,12 @@ resource "google_notebooks_instance" "vertex_instance" {
   }
 
   vm_image {
-    project      = var.vai_machine_image 
-    image_family = var.vai_image_family 
+    project      = var.vai_machine_image
+    image_family = var.vai_image_family
   }
 
   # Startup-script
-  post_startup_script = var.vai_post_startup_script 
+  post_startup_script = var.vai_post_startup_script
 
-  depends_on = [ google_project_service.notebooks-api ]
+  depends_on = [google_project_service.notebooks-api]
 }

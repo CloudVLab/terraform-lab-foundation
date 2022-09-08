@@ -43,6 +43,7 @@ Example configurations that can be used to build content on the Qwiklabs Platfor
 #### Identity and Access Management
 - [ ] [Service Account](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/service_account/README.md)
 - [ ] [API Access](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/api_access/README.md)
+- [ ] [Role Binding](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/iam_role_bind/README.md)
 
 ## Technical Solutions
 

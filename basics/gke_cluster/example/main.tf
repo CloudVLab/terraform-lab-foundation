@@ -16,5 +16,5 @@ module "la_gce" {
   gke_cluster_name    = "test-cluster"
   gke_location        = var.gcp_zone
   gke_machine_type    = "e2-standard-2"
-  gke_num_node        = 2 
+  gke_num_nodes       = 2 
 }

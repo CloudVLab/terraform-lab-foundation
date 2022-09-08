@@ -4,6 +4,7 @@ General basics components based on Terraform
 
 ## IAM
 - [x] Enable API service 
+- [x] Role Binding 
 
 ## Storage
 - [x] Cloud Storage Bucket 
