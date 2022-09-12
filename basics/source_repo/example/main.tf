@@ -4,7 +4,7 @@
 
 # Module: Source Repo 
 module "la_repo" {
-  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/source_repo/stable?ref=tlf-gsr"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/source_repo/stable?ref=tlf_gsr"
   source = "github.com/CloudVLab/terraform-lab-foundation//basics/source_repo/stable"
 
   # Pass values to the module
