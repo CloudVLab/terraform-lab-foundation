@@ -14,5 +14,4 @@ module "la_repo" {
 
   # Customise the Source Repository
   gsr_name       = "my-repo"
-  gsrProject     = gcp_project_id 
 }
