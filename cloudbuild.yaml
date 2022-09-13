@@ -1,7 +1,8 @@
 steps:
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   id: 'Clone terraform-lab-foundation'
-  git: git
+  entrypoint: git
   args: ['clone', 'https://github.com/CloudVLab/terraform-lab-foundation.git']
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  args: ['gsutil', '-m', 'rsync', '-d', '-R', 'terraform-lab-foundation', 'gs://teraform-lab-foundation']
+  id: 'Rsync terraform-lab-foundation'
+  args: ['gsutil', '-m', 'rsync', '-d', '-R', 'terraform-lab-foundation', 'gs://terraform-lab-foundation']
