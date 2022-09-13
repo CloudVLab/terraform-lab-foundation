@@ -45,6 +45,9 @@ Example configurations that can be used to build content on the Qwiklabs Platfor
 - [ ] [API Access](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/api_access/README.md)
 - [ ] [Role Binding](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/iam_role_bind/README.md)
 
+#### Source Repository 
+- [ ] [Source Repo](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/source_repo/README.md)
+
 ## Technical Solutions
 
 Example solutions pre-built for the Qwiklabs platform
