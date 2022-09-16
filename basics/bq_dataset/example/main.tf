@@ -6,7 +6,8 @@ module "la_bq_dataset" {
   ## Module subdirectory needs to be defined within the TF directory
 
   ## REMOTE: GitHub (Public) access - working 
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/bq_dataset/stable"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/bq_dataset/stable"
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/bq_dataset/stable?ref=tlf_bq"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
