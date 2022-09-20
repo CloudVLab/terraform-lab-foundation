@@ -1,0 +1,2 @@
+## Expose BQ properties
+
