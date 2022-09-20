@@ -21,7 +21,7 @@ module "la_bq_table" {
   bq_table_id          = "exampletable"
   bq_job_id            = "examplejob"
   bq_location          = "US"
-  bq_job_label         = "Job description"
+  bq_job_label         = { "my_job" = "lab_job" }
   bq_job_source        = [ "gs://datasource" ]
   bq_job_format        = "CSV"
 }
