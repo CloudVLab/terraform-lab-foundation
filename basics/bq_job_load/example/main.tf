@@ -7,8 +7,8 @@ module "la_bq_table" {
 
   ## REMOTE: GitHub (Public) access - working 
   # source = "github.com/CloudVLab/terraform-lab-foundation//basics/bq_table/stable"
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/bq_table/stable?ref=tlf_bq"
-  # source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/bq_table/stable"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/bq_table/stable?ref=tlf_bq"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/bq_table/stable"
 
 
   # Pass values to the module
