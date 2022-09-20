@@ -37,9 +37,9 @@ variable "bq_location" {
 }
 
 variable "bq_job_label" {
-  type        = string
-  description = "Name of the table."
-  default     = "BQ Job Load for the lab"
+  type        = map 
+  description = "Label for the job to be performed."
+  default     = { "my_job" = "BQ Job Load for the lab" }
 }
 
 variable "bq_job_source" {

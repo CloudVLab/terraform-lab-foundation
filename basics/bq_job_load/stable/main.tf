@@ -4,9 +4,7 @@ resource "google_bigquery_job" "job" {
   job_id        = var.bq_job_id 
   location      = var.bq_location
 
-  labels = {
-    "my_job" = var.bq_job_label
-  }
+  labels = var.bq_job_label 
 
   load {
     source_uris = var.bq_job_source
