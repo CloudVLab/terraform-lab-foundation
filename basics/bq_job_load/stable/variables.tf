@@ -43,7 +43,7 @@ variable "bq_job_label" {
 }
 
 variable "bq_job_source" {
-  type        = string
+  type        = list 
   description = "Name of the table."
   default     = [ "gs://spls/test.csv" ]
 }
