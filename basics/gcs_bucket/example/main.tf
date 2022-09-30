@@ -16,5 +16,6 @@ module "la_gcs" {
 
   # Customise the GCS instance
   gcs_bucket_extension = "bucket" 
-  gcs_storage_class   = "STANDARD"
+  gcs_storage_class    = "STANDARD"
+  gcs_append_project   = true 
 }
