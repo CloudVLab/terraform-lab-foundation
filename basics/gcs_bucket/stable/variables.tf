@@ -43,7 +43,7 @@ variable "gcs_storage_class" {
   default     = "MULTI_REGIONAL"
 }
 
-variable "gcs_append_project"
+variable "gcs_append_project" {
   type        = bool
   description = "Append the Project ID to bucket name"
   default     = true
