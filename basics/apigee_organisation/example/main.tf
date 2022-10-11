@@ -1,5 +1,5 @@
 # Module: Apigee Organisation
-module "apigee" {
+module "apigee_org" {
   source   = "github.com/SureSkills/terraform-lab-foundation//basics/apigee_organisation/stable"
   # source = "./custom/apigee/stable"
 
