@@ -4,8 +4,8 @@
 
 # Module: AutoML  
 module "la_cloud_run" {
-  #source = "github.com/CloudVLab/terraform-lab-foundation//basics/gce_instance/stable?ref=tlf-basics"
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/gce_instance/stable"
+  #source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable?ref=tlf-basics"
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
