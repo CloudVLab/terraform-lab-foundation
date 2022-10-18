@@ -16,4 +16,5 @@ module "la_cloud_run" {
   #gcrService = "automl-proxy"
   #gcrImage   = "gcr.io/qwiklabs-resources/ide-proxy:latest"
   #gcrRegion  = "us-central1"
+  #gcrEnvs    = [ { "URL", "https://storage.googleapis.com/spl-api/test2.json" } ]
 }
