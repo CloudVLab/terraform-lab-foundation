@@ -16,18 +16,19 @@ resource "google_project_service" "run" {
 
 resource "google_cloud_run_service" "proxy" {
   name     = var.gcrService
+  project  = var.gcp_project_id
   location = var.gcrRegion
 
   template {
     spec {
       containers {
-        image = var.gcrImage 
+        image = var.gcrImage
 
         ## Add environment variable
         dynamic "env" {
           for_each = var.gcrEnvs
           content {
-            name = env.value.gcr_env_name
+            name  = env.value.gcr_env_name
             value = env.value.gcr_env_value
           }
         }
@@ -38,8 +39,8 @@ resource "google_cloud_run_service" "proxy" {
     # Add support for vpc connector
     metadata {
       annotations = {
-        "autoscaling.knative.dev/maxScale"        = "3"
-        "autoscaling.knative.dev/minScale"        = "1"
+        "autoscaling.knative.dev/maxScale" = "3"
+        "autoscaling.knative.dev/minScale" = "1"
       }
     }
   }
