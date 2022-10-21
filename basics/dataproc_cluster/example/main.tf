@@ -1,7 +1,7 @@
 # Module: Google Compute Engine
 module "la_dataproc" {
   ## NOTE: Need to update the REMOTE path
-  source = "./stable"
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/dataproc_cluster/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id

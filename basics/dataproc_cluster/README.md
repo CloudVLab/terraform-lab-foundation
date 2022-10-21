@@ -1,4 +1,4 @@
-# Terraform: Google Compute Engine
+# Terraform: Dataproc Cluster
 
 | Channel | Status |
 |---------|--------|
@@ -18,34 +18,9 @@ gcp_region     = "us-central1"
 gcp_zone       = "us-central1-a"
 ```
 
-#### Custom Properties
-```
-gce_name            = var.tfResourceName
-gce_machine_type    = "n1-highmem-4"
-gce_tags            = ["lab-vm"]
-gce_machine_image   = "debian-cloud/debian-10"
-gce_machine_network = "default"
-gce_scopes          = ["cloud-platform"]
-gce_service_account = "default"
-gce_startup_script  = "${file("./lab-init")}"
-```
-__NOTE:__
-- [x] The default service account is compute developer
-- [x] To replace the default use the email of custom SA
-- [x] Naming convention for a startup-script is `lab-init`
-- [x] The startup_script should only be used for short lived tasks
-- [x] Do not use scripts to call other scripts
-
 ## Example
 
-View the [example configuration](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/basics/gce_instance/example) to get started.
-
-## Accessing Output Values
-
-| Field | Description |
-|-------|-------------|
-| gce_external_ip | The external IP assigned to the GCE instance |
-| gce_instance_name | The name of the GCE instance |
+View the [example configuration](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/basics/dataproc_cluster/example) to get started.
 
 ## Adding a Commit
 
