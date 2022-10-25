@@ -10,7 +10,7 @@ module "la_vpc" {
   # source = "./basics/vpc_network/stable"
 
   ## REMOTE: GitHub (Public) access - working
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/vpc_network/stable"
+  source = "github.com/SureSkills/terraform-lab-foundation//solutions/pti_bcvmm_lab04/vpc_network/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id

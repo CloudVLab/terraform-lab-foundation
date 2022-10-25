@@ -4,7 +4,7 @@
 
 # Module: Google Compute Engine
 module "la_gce" {
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/gce_instance/stable"
+  source = "github.com/SureSkills/terraform-lab-foundation//solutions/pti_bcvmm_lab04/gce_instance/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id

@@ -6,7 +6,7 @@ module "la_fw" {
   ## NOTE: When changing the source parameter, `terraform init` is required
 
   ## REMOTE: GitHub (Public) access - working 
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/vpc_firewall/stable"
+  source = "github.com/SureSkills/terraform-lab-foundation//solutions/pti_bcvmm_lab04/vpc_firewall/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
