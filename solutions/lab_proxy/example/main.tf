@@ -9,7 +9,7 @@
 # Output Value(s):
 # - ideEditorService  : URL of IDE Service
 
-module "la_ide_proxy" {
+module "lab_proxy" {
   ## NOTE: When changing the `source` parameter
   ## `terraform init` is required
 
