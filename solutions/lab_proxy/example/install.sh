@@ -1,14 +1,16 @@
 #!/bin/sh
 
+BRANCH="dev"
+
 DIRECTORY="tf"
 FILE1="main.tf"
-FILE1_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloud_code/example/main.tf"
+FILE1_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}/solutions/lab_proxy/example/main.tf"
 FILE2="outputs.tf"
-FILE2_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloud_code/example/outputs.tf"
+FILE2_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}/solutions/lab_proxy/example/outputs.tf"
 FILE3="runtime.yaml"
-FILE3_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloud_code/example/runtime.yaml"
+FILE3_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}/solutions/lab_proxy/example/runtime.yaml"
 FILE4="variables.tf"
-FILE4_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloud_code/example/variables.tf"
+FILE4_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}/solutions/lab_proxy/example/variables.tf"
 
 # Create TF directory if not present
 if [ ! -d $DIRECTORY ]; then
