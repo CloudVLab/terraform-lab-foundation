@@ -1,6 +1,6 @@
 #!/bin/sh
 
-BRANCH="dev"
+BRANCH="main"
 
 DIRECTORY="tf"
 FILE1="main.tf"
