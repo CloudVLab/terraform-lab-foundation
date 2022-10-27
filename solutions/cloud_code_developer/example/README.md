@@ -4,7 +4,7 @@
 
 Add the example Terraform code module to your project
 ```bash
-curl  -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloud_code/example/install.sh | bash
+curl -L https://storage.googleapis.com/terraform-lab-foundation/solutions/cloud_code_developer/example/install.sh | bash
 ```
 
 
