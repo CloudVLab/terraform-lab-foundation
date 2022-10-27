@@ -24,7 +24,7 @@ resource "google_vpc_access_connector" "connector" {
   # Note: valid options: f1-micro, e2-micro, e2-standard-4
   machine_type = var.vpcConnectorMachineType
 
-  #depends_on = [ google_project_service.vpcaccess-api ]
+  depends_on = [ google_project_service.vpcaccess-api ]
 }
 
 
@@ -76,7 +76,6 @@ resource "google_cloud_run_service" "ide" {
 
   # Dependency - Cloud Run API enabled
   depends_on = [google_project_service.run, google_vpc_access_connector.connector ] 
-  # depends_on = [google_project_service.run, google_compute_instance.default]
 }
 
 
