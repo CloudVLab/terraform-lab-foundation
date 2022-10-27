@@ -75,7 +75,7 @@ resource "google_cloud_run_service" "ide" {
   }
 
   # Dependency - Cloud Run API enabled
-  depends_on = [google_project_service.run]
+  depends_on = [google_project_service.run, google_vpc_access_connector.connector ] 
   # depends_on = [google_project_service.run, google_compute_instance.default]
 }
 
