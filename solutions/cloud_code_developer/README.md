@@ -1,6 +1,6 @@
-# Terraform: IDE 
+# Terraform: Cloud Code Developer 
 
-Create an Integrated Development Environment based on a Terraform configuration
+Create a Terraform configuration
 
 ## Using Input Values 
 

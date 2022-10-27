@@ -1,4 +1,4 @@
-# ------------------ IDE: Integrated Development Environment   
+# ------------------ Cloud Code Developer Module: Integrated Development Environment   
 # ------------------ Module Definition 
 #
 
@@ -7,14 +7,16 @@
 
 # Solution: IDE environment 
 # Local:  modules/stable
-# Remote: github.com/CloudVLab/terraform-lab-foundation//solutions/ide_cloud_code/stable
+# Remote: github.com/CloudVLab/terraform-lab-foundation//solutions/cloud_code_developer/stable
+# Remote: github.com/CloudVLab/terraform-lab-foundation//solutions/cloud_code_developer/beta
+# Remote: github.com/CloudVLab/terraform-lab-foundation//solutions/cloud_code_developer/dev
 
 # Output Value(s):
-# - ideEditorService  : URL of IDE Service
-# - ideBrowserService : URL of Browser Service
-# - ideInstanceName   : URL of Browser Service
+# - service_url:            URL of IDE Service
+# - live_service_url:       URL of Browser Proxy Service
+# - resource_instance_name: Name of the GCE instance
 
-module "la_ide" {
+module "la_ccd" {
   ## NOTE: When changing the `source` parameter
   ## `terraform init` is required
 
@@ -26,25 +28,25 @@ module "la_ide" {
   source = "github.com/CloudVLab/terraform-lab-foundation//solutions/ide_cloud_code/stable"
 
   ## Exchange values between Qwiklabs and Module
-  gcp_project_id  = var.gcp_project_id 
-  gcp_region      = var.gcp_region 
-  gcp_zone        = var.gcp_zone 
-  gcp_username    = var.tfUsername
+  gcp_project_id     = var.gcp_project_id 
+  gcp_region         = var.gcp_region 
+  gcp_zone           = var.gcp_zone 
+  gcp_username       = var.tfUsername
 
   ## Properties: GCE 
   # gceMachineImage  = var.tfMachineImage
   gceMachineImage    = "cloud-code-codeserver" 
   # gceInstanceName  = "cloudlearningservices" 
-  # gceInstanceZone  = "us-central1-f"
+  # gceInstanceZone  = var.gcp_zone 
   # gceInstanceTags  = ["lab-vm"]
   # gceMachineType   = "e2-standard-2"
   # gceInstanceScope = ["cloud-platform"]
 
   ## Custom Bools for GKE Security
-  isPrivateCluster = true
-  isCustomNetwork = true
+  isPrivateCluster   = true
+  isCustomNetwork    = true
 
   ## Properties: Cloud Run
-  # gcrRegion        = "us-central1"
+  # gcrRegion        = var.gcp_region
 }
 
