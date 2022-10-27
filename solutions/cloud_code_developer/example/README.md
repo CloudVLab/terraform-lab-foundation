@@ -53,4 +53,6 @@ named `tf` is present.
  5      reference: user_0.username
  6    - label: "GCP Password"
  7      reference: user_0.password
+ 6    - label: "IDE"
+ 7      reference: project_0.startup_script.service_url 
 ```
