@@ -2,16 +2,18 @@
 
 BRANCH="main"
 MODULE="cloud_code_developer"
+URL="gcs::https://storage.googleapis.com/github.com/terraform-lab-foundation"
+#URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
 
 DIRECTORY="tf"
 FILE1="main.tf"
-FILE1_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}/solutions/${MODULE}/example/main.tf"
+FILE1_URL="${URL}/solutions/${MODULE}/example/main.tf"
 FILE2="outputs.tf"
-FILE2_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}/solutions/${MODULE}/example/outputs.tf"
+FILE2_URL="${URL}/https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}/solutions/${MODULE}/example/outputs.tf"
 FILE3="runtime.yaml"
-FILE3_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}/solutions/${MODULE}/example/runtime.yaml"
+FILE3_URL="${URL}/https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}/solutions/${MODULE}/example/runtime.yaml"
 FILE4="variables.tf"
-FILE4_URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}/solutions/${MODULE}/example/variables.tf"
+FILE4_URL="${URL}/https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}/solutions/${MODULE}/example/variables.tf"
 
 # Create TF directory if not present
 if [ ! -d $DIRECTORY ]; then
