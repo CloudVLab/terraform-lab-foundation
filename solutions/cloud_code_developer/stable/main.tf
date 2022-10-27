@@ -17,8 +17,8 @@ module "la_vpc" {
   # source = "./basics/vpc_network/stable"
 
   ## REMOTE: GitHub (Public) access - working
-  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/vpc_network/stable"
-  source = "gcs::https://storage.googleapis.com/terraform-lab-foundation/basics/vpc_network/stable"
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/vpc_network/stable"
+  ## source = "gcs::https://storage.googleapis.com/terraform-lab-foundation/basics/vpc_network/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
@@ -42,8 +42,8 @@ module "la_fw" {
   ## NOTE: When changing the source parameter, `terraform init` is required
 
   ## REMOTE: GitHub (Public) access - working 
-  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/vpc_firewall/stable"
-  source = "gcs::https://storage.googleapis.com/terraform-lab-foundation/basics/vpc_firewall/stable"
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/vpc_firewall/stable"
+  ## source = "gcs::https://storage.googleapis.com/terraform-lab-foundation/basics/vpc_firewall/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
@@ -147,8 +147,8 @@ module "la_ide_proxy" {
   #source = "./solutions/ide_cloud_code/dev"
 
   ## REMOTE: GitHub (Public) access - working 
-  ## source = "github.com/CloudVLab/terraform-lab-foundation//solutions/lab_proxy/dev"
-  source = "gcs::https://storage.googleapis.com/terraform-lab-foundation/solutions/lab_proxy/dev"
+  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/lab_proxy/dev"
+  ## source = "gcs::https://storage.googleapis.com/terraform-lab-foundation/solutions/lab_proxy/dev"
 
   ## Exchange values between Qwiklabs and Module
   gcp_project_id  = var.gcp_project_id 
@@ -180,8 +180,8 @@ data "google_compute_image" "image_family" {
 
 # Module: Google Compute Engine
 module "la_gce" {
-  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/gce_instance/stable"
-  source = "gcs::https://storage.googleapis.com/terraform-lab-foundation/basics/gce_instance/stable"
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/gce_instance/stable"
+  ## source = "gcs::https://storage.googleapis.com/terraform-lab-foundation/basics/gce_instance/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
