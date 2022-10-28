@@ -22,7 +22,6 @@ resource "google_container_cluster" "primary" {
   ## NOTE: Set null value where false value is set
   # Set this value if not using GKE Autopilot
   initial_node_count = var.gkeInitialNodeCount ? var.gkeInitialNodeCount : null
-  #initial_node_count = var.gkeIsAutopilot ? null : var.gkeInitialNodeCount
 
   ## NOTE: Set null value where false value is set
   # Condition setting to variable. If defined set to variable, otherwise default to false 
@@ -30,7 +29,7 @@ resource "google_container_cluster" "primary" {
  
   node_config {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
-    service_account = google_service_account.default.email
+##    service_account = google_service_account.default.email
     machine_type = var.gkeMachine 
 ##    oauth_scopes = [
 ##      "https://www.googleapis.com/auth/cloud-platform"
@@ -51,10 +50,6 @@ resource "google_container_cluster" "primary" {
 #    master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
 #  }
     
-#  addons_config {
-#     disabled = var.istio_disabled
-#     auth     = var.istio_auth
-#  }
 
   ## TODO: Need to refine this 
   # Enable Alias IPs
@@ -67,7 +62,4 @@ resource "google_container_cluster" "primary" {
   release_channel {
     channel = "STABLE"
   }
-
-  # Dependency - Cloud Run API enabled
-  ##   depends_on = [google_compute_instance.default]
 }
