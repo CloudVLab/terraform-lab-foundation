@@ -1,0 +1,7 @@
+#!/bin/sh
+# Mandatory Prefix
+echo "STARTUP-SCRIPT START"
+echo "Local script" > /tmp/octopus.txt
+echo "DO_SOMETHING_HERE"
+# Mandatory Postfix
+echo "STARTUP-SCRIPT END"
