@@ -7,19 +7,19 @@ output "service_url" {
   description = "URL of the IDE service"
 }
 
-output "resource_instance_name" {
+output "gce_instance_name" {
   value       = module.la_ccd.ideInstanceName
   description = "Name of the GCE instance"
 }
 
 # Name of the VPC
-output "ideVPC" {
-  value       = "${module.la_vpc.vpc_network_name}"
+output "vpc_name" {
+  value       = "${module.la_ccd.ideVPC}"
   description = "Name of the VPC"
 }
 
 # Name of the Subnet
-output "ideSubnet" {
-  value       = "${module.la_vpc.vpc_subnetwork_name}"
+output "subnet_name" {
+  value       = "${module.la_ccd.ideSubnet}"
   description = "Name of the Subnet"
 }
