@@ -9,12 +9,12 @@
 resource "google_container_cluster" "primary" {
   provider    = google-beta
   name        = var.gkeClusterName
-  location    = var.gcp_region
+  location    = var.gkeLocation
   description = var.gkeDescription 
 
   # Define VPC configuration
-  network    = var.gkeIsCustomNetwork ? var.gkeNetwork : null 
-  subnetwork = var.gkeIsCustomNetwork ? var.gkeSubnetwork : null 
+  network    = var.gkeNetwork 
+  subnetwork = var.gkeSubnetwork 
 
   # Set networking mode
   networking_mode = var.gkeNetworkingMode ? var.gkeModeVpcNative : var.gkeModeRoutes 
@@ -28,6 +28,18 @@ resource "google_container_cluster" "primary" {
   # Condition setting to variable. If defined set to variable, otherwise default to false 
 #  enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : null 
  
+  node_config {
+    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
+    service_account = google_service_account.default.email
+    machine_type = var.gkeMachine 
+##    oauth_scopes = [
+##      "https://www.googleapis.com/auth/cloud-platform"
+##    ]
+##    labels = {
+##      foo = "bar"
+##    }
+##    tags = ["foo", "bar"]
+  }
 
   ## NOTE: Set null value where false value is set
   # Condition setting to variable. If defined set to variable, default to false
