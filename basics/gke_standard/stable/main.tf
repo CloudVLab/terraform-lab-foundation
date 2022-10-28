@@ -10,7 +10,7 @@ resource "google_container_cluster" "primary" {
   provider    = google-beta
   name        = var.gkeClusterName
   location    = var.gcp_region
-  description = "dev cluster for testing"
+  description = var.gkeDescription 
 
   # Define VPC configuration
   network    = var.gkeIsCustomNetwork ? var.gkeNetwork : null 
@@ -26,7 +26,7 @@ resource "google_container_cluster" "primary" {
 
   ## NOTE: Set null value where false value is set
   # Condition setting to variable. If defined set to variable, otherwise default to false 
-  enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : null 
+#  enable_binary_authorization = var.gkeIsBinAuth ? var.gkeIsBinAuth : null 
  
 
   ## NOTE: Set null value where false value is set
@@ -47,8 +47,8 @@ resource "google_container_cluster" "primary" {
   ## TODO: Need to refine this 
   # Enable Alias IPs
   ip_allocation_policy {
-##    cluster_ipv4_cidr_block  = var.gkeIsPrivateCluster ? "/14" : null
-##    services_ipv4_cidr_block = var.gkeIsPrivateCluster ? "/20" : null
+    cluster_ipv4_cidr_block  = var.gkeIsPrivateCluster ? "/14" : null
+    services_ipv4_cidr_block = var.gkeIsPrivateCluster ? "/20" : null
   }
 
   # Release channel GKE clusters.
