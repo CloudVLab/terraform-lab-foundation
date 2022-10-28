@@ -13,16 +13,16 @@ gcp_zone         = "us-central1-a"
 gceInstanceName  = "tester-vm"
 gcp_username     = "name@domain.com"
 gceMachineImage  = "cloud-code-codeserver"
-isPrivateCluster = true
-isCustomNetwork  = true
 ```
 
 ## Accessing Output Values 
 
 | Field | Description |
 |-------|-------------|
-| ide_service_url | The service URL for the ide |
-| ide_instance_name | The name of the GCE instance |
+| ideEditorService | The service URL for the ide |
+| ideInstanceName | The name of the GCE instance |
+| ideVPC | The name of VPC |
+| ideSubnet | The name of the Subnet |
 
 ## Adding a Commit 
 
