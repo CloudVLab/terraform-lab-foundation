@@ -36,5 +36,6 @@ module "la_ccd" {
 
   ## Properties: GCE 
   gceStartup         = "echo Hello"
+  # "${file("./scripts/lab-init")}"
 }
 

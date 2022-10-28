@@ -16,6 +16,11 @@ gceMachineImage  = "cloud-code-codeserver"
 gceStartup       = "echo Hello"
 ```
 
+Note:
+
+gceStartup can be a simple embedded script or use an external script
+* `gceStartup = "echo Hello"`                  # embedded example
+* `gcpStart = "${file("./scripts/lab-init")}"` # external script access the file `scripts/lab-init`
 ## Accessing Output Values 
 
 | Field | Description |
