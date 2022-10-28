@@ -193,11 +193,11 @@ module "la_gce" {
   gce_zone            = var.gcp_zone 
   gce_machine_image   = data.google_compute_image.image_family.self_link
   gce_machine_network = module.la_vpc.vpc_subnetwork_name
+  gce_startup_script  = var.gcp_startup  
 
   ## IDE depends on existence of Network
   depends_on = [ module.la_vpc.vpc_network_name]
 }
-
 
 ## # Module: Google Kubernetes Engine
 ## module "la_gke_standard" {

@@ -18,3 +18,10 @@ variable "gcp_zone" {
   type        = string
   description = "Zone to create resources in."
 }
+
+# Default value passed in
+variable "gcp_startup" {
+  type        = string
+  description = "Zone to create resources in."
+  default     = "echo Welcome Cloud Code Developer > /tmp/octopus.txt"
+}
