@@ -24,7 +24,7 @@ gcp_zone       = "us-central1-a"
 gkeClusterName   = "tester-gke"
 gkeDescription   = "Lab cluster"
 gkeNetwork       = "default"
-gkeSubnet        = "default"
+gkeSubnetwork    = "default"
 ```
 
 ## Accessing Output Values 
