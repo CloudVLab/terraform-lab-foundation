@@ -42,6 +42,18 @@ variable "gkeDescription" {
   default     = "Lab cluster - using default description" 
 }
 
+variable "gkeLocation" {
+  type        = string 
+  description = "Machine type to use in the cluster."
+  default     = "us-central1-a" 
+}
+
+variable "gkeMachine" {
+  type        = string 
+  description = "Machine type to use in the cluster."
+  default     = "e2-medium" 
+}
+
 variable "gkeIsPrivateCluster" {
   type        = bool
   description = "Set as True to spin up a private, secure cluster. False to spin up a public cluster."

@@ -13,6 +13,7 @@ module "la_gke_std" {
   gcp_zone            = var.gcp_zone
 
   # Customise the GKE cluster 
+  gkeLocation       = gcp_zone 
   gkeClusterName    = "test-cluster"
   gkeDescription    = "Lab Cluster"
   gkeNetwork        = "default"

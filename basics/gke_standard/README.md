@@ -21,11 +21,17 @@ gcp_zone       = "us-central1-a"
 #### Custom Properties
 
 ```
+gkeLocation      = gke_zone | gke_region
 gkeClusterName   = "tester-gke"
 gkeDescription   = "Lab cluster"
 gkeNetwork       = "default"
 gkeSubnet        = "default"
 ```
+
+
+Note: 
+* gkeLocation: Either zonal (e.g. gcp_zone) or regional (e.g. (gcp_region)
+
 
 ## Accessing Output Values 
 
