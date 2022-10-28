@@ -31,13 +31,13 @@ resource "google_container_cluster" "primary" {
 
   ## NOTE: Set null value where false value is set
   # Condition setting to variable. If defined set to variable, default to false
-  enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : null 
+  # enable_autopilot            = var.gkeIsAutopilot ? var.gkeIsAutopilot : null 
 
-  private_cluster_config {
-    enable_private_endpoint = var.gkeIsPrivateEndpoint 
-    enable_private_nodes    = var.gkeIsPrivateCluster ? true : false
-    master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
-  }
+#  private_cluster_config {
+#    enable_private_endpoint = var.gkeIsPrivateEndpoint 
+#    enable_private_nodes    = var.gkeIsPrivateCluster ? true : false
+#    master_ipv4_cidr_block  = var.gkeIsPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
+#  }
     
 #  addons_config {
 #     disabled = var.istio_disabled
