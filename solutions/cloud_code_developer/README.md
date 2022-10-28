@@ -13,6 +13,7 @@ gcp_zone         = "us-central1-a"
 gceInstanceName  = "tester-vm"
 gcp_username     = "name@domain.com"
 gceMachineImage  = "cloud-code-codeserver"
+gceStartup       = "echo Hello"
 ```
 
 ## Accessing Output Values 

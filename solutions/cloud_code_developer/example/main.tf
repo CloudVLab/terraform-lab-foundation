@@ -33,22 +33,8 @@ module "la_ccd" {
   gcp_project_id     = var.gcp_project_id 
   gcp_region         = var.gcp_region 
   gcp_zone           = var.gcp_zone 
-  gcp_username       = var.tfUsername
 
   ## Properties: GCE 
-  # gceMachineImage  = var.tfMachineImage
-  gceMachineImage    = "cloud-code-codeserver" 
-  # gceInstanceName  = "cloudlearningservices" 
-  # gceInstanceZone  = var.gcp_zone 
-  # gceInstanceTags  = ["lab-vm"]
-  # gceMachineType   = "e2-standard-2"
-  # gceInstanceScope = ["cloud-platform"]
-
-  ## Custom Bools for GKE Security
-  isPrivateCluster   = true
-  isCustomNetwork    = true
-
-  ## Properties: Cloud Run
-  # gcrRegion        = var.gcp_region
+  gceStartup         = "echo Hello"
 }
 
