@@ -15,7 +15,7 @@ module "la_gcs" {
 
   ## Local Modules - working
   ## Module subdirectory needs to be defined within the TF directory
-  #source = "./basics/gcs_bucket/stable"
+  # source = "./basics/gcs_bucket/stable"
 
   ## REMOTE: GitHub (Public) access - working
   source = "github.com/CloudVLab/terraform-lab-foundation//basics/gcs_bucket/stable"

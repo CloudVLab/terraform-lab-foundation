@@ -18,4 +18,4 @@ steps:
 substitutions:
   _PROVIDER_VER: 1.0.1
   _TERRAFORM_DIR: basics/dataproc_cluster/stable
-tags: ['dataproc','cluster']
+tags: ['dataproc','cluster','terraform-lab-foundation']

@@ -1,11 +1,11 @@
-#resource "google_service_account" "default" {
+# resource "google_service_account" "default" {
 #  account_id   = "service-account-id"
 #  display_name = "Service Account"
-#}
+# }
 
 resource "google_dataproc_cluster" "mycluster" {
   name     = "dataproc-cluster"
-  region   = "us-central1"
+  region   = var.gcp_region
   graceful_decommission_timeout = "120s"
 
   cluster_config {
@@ -13,7 +13,7 @@ resource "google_dataproc_cluster" "mycluster" {
 
     master_config {
       num_instances = 1
-      machine_type  = "n1-standard-2"
+      machine_type  = var.machine_type
       disk_config {
         boot_disk_type    = "pd-ssd"
         boot_disk_size_gb = 30
@@ -22,7 +22,7 @@ resource "google_dataproc_cluster" "mycluster" {
 
     worker_config {
       num_instances    = 2
-      machine_type     = "n1-standard-2"
+      machine_type     = var.machine_type
       disk_config {
         boot_disk_size_gb = 30
         num_local_ssds    = 1
@@ -52,7 +52,7 @@ resource "google_dataproc_cluster" "mycluster" {
 
     # You can define multiple initialization_action blocks
     initialization_action {
-      script      = "gs://cloud-training/initscripts/de-dataproc-init.sh"
+      script      = var.init_script
       timeout_sec = 500
     }
   }
