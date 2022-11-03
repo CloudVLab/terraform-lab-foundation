@@ -29,19 +29,19 @@ variable "gcp_zone" {
 ## --------------------------------------------------------------
 
 # Custom properties with defaults
-variable "gcp_ae_location" {
+variable "gae_location" {
   type        = string
   description = "Location of App Engine to create resources in."
   default     = "us-central"
 }
 
-variable "hasFirestoreDb" {
+variable "gae_hasDatabase" {
   type        = bool 
-  description = "App Engine enable Cloud Firestore."
+  description = "App Engine created with a Database."
   default     = false 
 }
 
-variable "gcp_db_type" {
+variable "gae_db_type" {
   type        = string
   description = "The type of database i.e. CLOUD_FIRESTORE | CLOUD_DATASTORE_COMPATIBILITY" 
   default     = "CLOUD_FIRESTORE"

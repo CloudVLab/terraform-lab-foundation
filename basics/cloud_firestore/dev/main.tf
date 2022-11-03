@@ -4,8 +4,8 @@
 
 resource "google_app_engine_application" "app" {
   project       = var.gcp_project_id
-  location_id   = var.gcp_ae_location 
-  database_type = var.hasFirestoreDb ? var.gcp_db_type : null 
+  location_id   = var.gae_location 
+  database_type = var.gae_hasDatabase ? var.gae_db_type : null 
 }
 
 ## # Reference:
@@ -55,7 +55,7 @@ resource "google_app_engine_application" "app" {
 ## 
 ##   depends_on = [ google_app_engine_application.app ]
 ## }
-## 
+e# 
 ## 
 ## #
 ## ## Cloud Storage 
