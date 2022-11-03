@@ -3,7 +3,7 @@
 # Remote: github.com://CloudVLab/terraform-lab-foundation//[module]/[channel]
 
 # Module: App Engine + Cloud Firestore
-module "la_gae_firestore" {
+module "la_gae_database" {
   source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_firestore/stable"
 
   # Pass values to the module
