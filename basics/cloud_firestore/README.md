@@ -1,4 +1,4 @@
-# Terraform: Cloud Firestore Database 
+# Terraform: App Engine + Cloud Firestore Database 
 
 Create a Terraform configuration
 
@@ -15,12 +15,14 @@ gcp_zone       = "us-central1-a"
 
 ## Custom Properties
 ```
-gcp_ae_location = "US"
-hasFirestoreDb  = false
+gae_location    = "US"
+gae_hasDatabase = true
+gae_db_type     = "CLOUD_FIRESTORE" 
 ```
 
 __NOTE:__
-The `gcp_db_type` value can be set where a database should be provisioned
+The gae_hasDatabase field is used to determine if a database should be added to AppEngine.
+The `gcp_db_type` value can be set where a database should be provisioned:
 - [x] `gcp_db_type = "CLOUD FIRESTORE" ` is the default setting
 - [x] `gcp_db_type = "CLOUD_DATASTORE_COMPATIBILITY"` 
 
