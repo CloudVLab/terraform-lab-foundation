@@ -22,7 +22,7 @@ gfd_document_data = { default= {"field_1"= {"stringValue"="Test"}} }
 
 ## Example
 
-View the [example configuration](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/basics/cloud_firestore/example) to get started.
+View the [example configuration](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/basics/firestore_document/example) to get started.
 
 ## Accessing Output Values 
 
