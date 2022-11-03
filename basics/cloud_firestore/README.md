@@ -1,4 +1,4 @@
-# Terraform: Cloud Firestore 
+# Terraform: Cloud Firestore Database 
 
 Create a Terraform configuration
 
@@ -13,10 +13,22 @@ gcp_region     = "us-central1"
 gcp_zone       = "us-central1-a"
 ```
 
+## Custom Properties
+```
+gcp_ae_location = "US"
+hasFirestoreDb  = false
+```
+
+__NOTE:__
+The `gcp_db_type` value can be set where a database should be provisioned
+- [x] `gcp_db_type = "CLOUD FIRESTORE" ` is the default setting
+- [x] `gcp_db_type = "CLOUD_DATASTORE_COMPATIBILITY"` 
+
+
 
 ## Example
 
-View the [example configuration](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/basics/gce_instance/example) to get started.
+View the [example configuration](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/basics/cloud_firestore/example) to get started.
 
 ## Accessing Output Values 
 
