@@ -1,4 +1,4 @@
-# Terraform: App Engine + Cloud Firestore 
+# Terraform: App Engine
 
 ## Example
 
@@ -17,7 +17,7 @@ The example is based on the following hierarchy:
 Add the example Terraform code module to your project
 
 ```
-curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/cloud_firestore/example/install.sh | bash
+curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/app_engine/example/install.sh | bash
 ```
 
 ## View the updated directory 

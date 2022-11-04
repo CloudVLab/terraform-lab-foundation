@@ -18,4 +18,4 @@ steps:
 substitutions:  
   _PROVIDER_VER: 1.0.1
   _TERRAFORM_DIR: basics/cloud_firestore/stable
-tags: ['terraform-lab-foundation','firestore', 'database']  
+tags: ['terraform-lab-foundation','firestore', 'app-engine']  
