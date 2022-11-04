@@ -1,7 +1,7 @@
 #!/bin/sh
 
 BRANCH="main"
-MODULE="cloud_firestore"
+MODULE="app_engine"
 URL="https://storage.googleapis.com/terraform-lab-foundation"
 #URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
 
