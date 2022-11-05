@@ -1,19 +1,20 @@
 #!/bin/sh
 
 BRANCH="main"
+TYPE="basics"
 MODULE="firestore_document"
 URL="https://storage.googleapis.com/terraform-lab-foundation"
 #URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
 
 DIRECTORY="tf"
 FILE1="main.tf"
-FILE1_URL="${URL}/solutions/${MODULE}/example/main.tf"
+FILE1_URL="${URL}/${TYPE}/${MODULE}/example/main.tf"
 FILE2="outputs.tf"
-FILE2_URL="${URL}/solutions/${MODULE}/example/outputs.tf"
+FILE2_URL="${URL}/${TYPE}/${MODULE}/example/outputs.tf"
 FILE3="runtime.yaml"
-FILE3_URL="${URL}/solutions/${MODULE}/example/runtime.yaml"
+FILE3_URL="${URL}/${TYPE}/${MODULE}/example/runtime.yaml"
 FILE4="variables.tf"
-FILE4_URL="${URL}/solutions/${MODULE}/example/variables.tf"
+FILE4_URL="${URL}/${TYPE}/${MODULE}/example/variables.tf"
 
 
 # Create TF directory if not present
