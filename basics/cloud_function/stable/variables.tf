@@ -29,6 +29,27 @@ variable "gcp_zone" {
 ## --------------------------------------------------------------
 
 # Default value passed in
+variable "gcs_bucket_extension" {
+  type        = string
+  description = "Name of the Cloud Function."
+  default     = "bucket"
+}
+
+# Default value passed in
+variable "gcf_archive_object" {
+  type        = string
+  description = "Name of the Cloud Function."
+  default     = "function.zip"
+}
+
+# Default value passed in
+variable "gcf_archive_source" {
+  type        = string
+  description = "Name of the Cloud Function."
+  default     = "./cf/function.zip"
+}
+
+# Default value passed in
 variable "gcf_name" {
   type        = string
   description = "Name of the Cloud Function."
@@ -53,15 +74,20 @@ variable "gcf_target_bucket" {
   default     = "mybucket"
 }
 
-variable "gcf_local_source" {
-  type        = string
-  description = "Source location for Cloud Function."
-  default     = "./cf/function.zip"
-}
-
 variable "gcf_entry_point" {
   type        = string
   description = "Runtime of the Cloud Function."
   default     = "helloCF"
 }
 
+variable "gcf_role_bind" {
+  type        = string
+  description = "IAM role binding."
+  default     = "roles/cloudfunctions.invoker"
+}
+
+variable "gcf_member_account" {
+  type        = string
+  description = "IAM member account."
+  default     = "allUsers"
+}

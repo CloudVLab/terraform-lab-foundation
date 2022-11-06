@@ -1,4 +1,3 @@
-
 #
 ## Cloud Storage 
 #-----------------------------------------------------------------------------
@@ -14,9 +13,9 @@ resource "google_storage_bucket" "bucket" {
 }
 
 resource "google_storage_bucket_object" "archive" {
-  name   = "cloudio.zip"
+  name   = var.gcf_archive_object 
   bucket = google_storage_bucket.bucket.name
-  source = "./cloudio/cloudio.zip"
+  source = var.gcf_archive_source 
 }
 
 #
@@ -25,7 +24,7 @@ resource "google_storage_bucket_object" "archive" {
 #
 ## NEW Module: Cloud Function
 
-resource "google_cloudfunctions_function" "cloudio_function" {
+resource "google_cloudfunctions_function" "custom_function" {
   name                  = var.gcf_name 
   project               = var.gcp_project_id
   region                = var.gcp_region
@@ -56,8 +55,8 @@ resource "google_cloudfunctions_function" "cloudio_function" {
 resource "google_cloudfunctions_function_iam_member" "invoker" {
   project        = var.gcp_project_id
   region         = var.gcp_region
-  cloud_function = google_cloudfunctions_function.cloudio_function.name
+  cloud_function = google_cloudfunctions_function.custom_function.name
 
-  role   = "roles/cloudfunctions.invoker"
-  member = "allUsers"
+  role           = var.gcf_role_bind 
+  member         = var.gcf_member_account 
 }

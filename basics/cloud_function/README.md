@@ -15,9 +15,16 @@ gcp_zone       = "us-central1-a"
 
 ## Custom Properties
 ```
+gcs_bucket_extension = "bucket"
+gcs_archive_object   = "function.zip"
+gcs_archive_source   = "./cf/function.zip"
+gcf_name             = "test_function"
+gcf_description      = "Test Cloud Function"
+gcf_runtime          = "nodejs16"
+gcf_entry_point      = "helloCF"
+gcf_role_bind        = "roles/cloudfunctions.invoker"
+gcf_member_account   = "allUsers"
 ```
-
-
 
 ## Example
 
