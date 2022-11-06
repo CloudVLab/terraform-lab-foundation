@@ -6,6 +6,10 @@ MODULE="cloud_function"
 URL="https://storage.googleapis.com/terraform-lab-foundation"
 #URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
 
+FUNCTION_DIR="tf/cf"
+FUNCTION_ZIP="function.zip"
+FUNCTION_URL="${URL}/${TYPE}/${MODULE}/example/cf/${FUNCTION_ZIP}"
+
 DIRECTORY="tf"
 FILE1="main.tf"
 FILE1_URL="${URL}/${TYPE}/${MODULE}/example/main.tf"
@@ -40,4 +44,17 @@ fi
 # Download if the file does not exist
 if [ ! -f $DIRECTORY/$FILE4 ]; then
 curl -L $FILE4_URL -o "$DIRECTORY/$FILE4"
+fi
+
+## ---------------------------------------------------------------------------
+## Scripts Directory
+
+# Create TF directory if not present
+if [ ! -d "$FUNCTION_DIR" ]; then
+    mkdir -p $FUNCTION_DIR
+fi
+
+# Download if the file does not exist
+if [ ! -f "$FUNCTION_DIR/$FUNCTION_ZIP" ]; then
+  curl -L $FUNCTION_URL -o "$FUNCTION_DIR/$FUNCTION_ZIP"
 fi
