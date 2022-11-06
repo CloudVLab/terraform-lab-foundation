@@ -14,5 +14,5 @@ module "la_firestore_document" {
   # Customise the Firestore Document
   gfd_collection_id = "mycollection" 
   gfd_document_id   = "mydocument" 
-  gfd_document_data = { default= {"field_1"= {"stringValue"="Test"}} } 
+  gfd_document_data = {"field_1"= {"stringValue"="Test"}}
 }
