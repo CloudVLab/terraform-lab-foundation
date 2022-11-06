@@ -2,7 +2,7 @@
 
 BRANCH="main"
 TYPE="basics"
-MODULE="cloud_functions"
+MODULE="cloud_function"
 URL="https://storage.googleapis.com/terraform-lab-foundation"
 #URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
 
