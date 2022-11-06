@@ -32,10 +32,10 @@ resource "google_cloudfunctions_function" "custom_function" {
   runtime               = var.gcf_runtime
 
   available_memory_mb   = 128
-  # source_archive_bucket = google_storage_bucket.bucket.name
-  # source_archive_object = google_storage_bucket_object.archive.name
-  source_archive_bucket = var.gcf_target_bucket 
-  source_archive_object = var.gcf_local_source 
+  source_archive_bucket = google_storage_bucket.bucket.name
+  source_archive_object = google_storage_bucket_object.archive.name
+  # source_archive_bucket = var.gcf_target_bucket 
+  # source_archive_object = var.gcf_archive_source
   trigger_http          = true
   entry_point           = var.gcf_entry_point 
 
