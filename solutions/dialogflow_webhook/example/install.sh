@@ -1,7 +1,7 @@
 #!/bin/sh
 
 BRANCH="main"
-TYPE="soltions"
+TYPE="solutions"
 MODULE="dialogflow_webhook"
 URL="https://storage.googleapis.com/terraform-lab-foundation"
 #URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
