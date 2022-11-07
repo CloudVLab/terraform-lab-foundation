@@ -71,7 +71,7 @@ module "la_firestore_rock" {
   gfd_document_data = var.mp_data_rock
 
   # Provision the Cloud Firestore
-  depends_on = [module.la_gae ]
+  depends_on = [module.la_pop]
 }
 
 module "la_firestore_classical" {
@@ -88,7 +88,7 @@ module "la_firestore_classical" {
   gfd_document_data = var.mp_data_classical
 
   # Provision the Cloud Firestore
-  depends_on = [module.la_gae ]
+  depends_on = [module.la_rock]
 }
 
 #
@@ -126,7 +126,7 @@ module "la_firestore_925" {
   gfd_document_data = var.ac_data_925
 
   # Provision the Cloud Firestore
-  depends_on = [module.la_gae ]
+  depends_on = [module.la_firestore_415]
 }
 
 module "la_firestore_650" {
@@ -143,7 +143,7 @@ module "la_firestore_650" {
   gfd_document_data = var.ac_data_650
 
   # Provision the Cloud Firestore
-  depends_on = [module.la_gae ]
+  depends_on = [module.la_firestore_925 ]
 }
 
 #
