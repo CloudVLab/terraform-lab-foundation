@@ -147,3 +147,23 @@ variable "ac_data_650" {
 # Cloud Function Variables
 ##------------------------------------------------------------
 #
+
+variable "function_1_zip" {
+  type    = string
+  default = "mostplayed.zip"
+}
+
+variable "function_1_source" {
+  type    = string
+  default = "./cf/mostplayed.zip"
+}
+
+variable "function_2_zip" {
+  type    = string
+  default = "mostplayed.zip"
+}
+
+variable "function_2_source" {
+  type    = string
+  default = "./cf/account.zip"
+}
