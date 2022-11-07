@@ -1,0 +1,1 @@
+## Expose Firestore Document properties
