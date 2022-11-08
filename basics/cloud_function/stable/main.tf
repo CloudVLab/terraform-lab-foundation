@@ -13,11 +13,11 @@ resource "google_storage_bucket" "bucket" {
 }
 
 resource "google_storage_bucket_object" "archive" {
-  #name   = var.gcf_archive_object 
-  name   = "mostplayed.zip" 
+  name   = var.gcf_archive_object 
+  #name   = "mostplayed.zip" 
   bucket = google_storage_bucket.bucket.name
-  #source = var.gcf_archive_source 
-  source = "./cf/mostplayed.zip" 
+  source = var.gcf_archive_source 
+  #source = "./cf/mostplayed.zip" 
 
   depends_on = [ google_storage_bucket.bucket ]
 }
