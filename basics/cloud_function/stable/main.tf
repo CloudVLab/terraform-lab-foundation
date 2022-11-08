@@ -18,6 +18,8 @@ resource "google_storage_bucket_object" "archive" {
   bucket = google_storage_bucket.bucket.name
   #source = var.gcf_archive_source 
   source = "./cf/mostplayed.zip" 
+
+  depends_on = [ google_storage_bucket.bucket ]
 }
 
 #
@@ -44,6 +46,8 @@ resource "google_cloudfunctions_function" "custom_function" {
   environment_variables = {
     PROJECT_ID= var.gcp_project_id
   }
+
+  depends_on = [ google_storage_bucket_object.archive ]
 }
 
 #
