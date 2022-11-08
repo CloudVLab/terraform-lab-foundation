@@ -20,9 +20,9 @@ module "la_gcf_mp" {
   source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_function/stable"
 
   # Pass values to the module
-  gcp_project_id = var.gcp_project_id
-  gcp_region     = var.gcp_region
-  gcp_zone       = var.gcp_zone
+  gcp_project_id       = var.gcp_project_id
+  gcp_region           = var.gcp_region
+  gcp_zone             = var.gcp_zone
 
   # Customise the Cloud Storage
   gcs_bucket_extension = "mp"
@@ -41,9 +41,9 @@ module "la_gcf_ac" {
   source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_function/stable"
 
   # Pass values to the module
-  gcp_project_id = var.gcp_project_id
-  gcp_region     = var.gcp_region
-  gcp_zone       = var.gcp_zone
+  gcp_project_id       = var.gcp_project_id
+  gcp_region           = var.gcp_region
+  gcp_zone             = var.gcp_zone
 
   # Customise the Cloud Storage
   gcs_bucket_extension = "ac"
