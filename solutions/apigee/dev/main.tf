@@ -24,8 +24,8 @@ resource "google_compute_instance" "gce_virtual_machine" {
 
   # Add Key/Value pair e.g. SSH keys here
   metadata = {
-    childProjectZone            = "us-east1-b"
-    childProjectRegion          = "us-east1"
+    childProjectZone            = var.gcp_zone
+    childProjectRegion          = var.gcp_region
     parentProject               = "qwiklabs-resources"
     parentProjectStorageBucket  = "apigeexlabs"
     parentProjectDNSZone        = "apigee-dns"
