@@ -14,8 +14,15 @@ General basics components based on Terraform
 - [x] Kubernetes Engine cluster (Standard)
 - [ ] Kubernetes Engine cluster (Autopilot)
 
+## Serverless 
+- [x] Cloud Function (Gen v1)
+- [x] Cloud Run
+- [x] App Engine 
+
 ## Database
 - [x] Cloud SQL database 
+- [x] Cloud Firestore 
+- [x] Big Query
 
 ## AI/ML 
 - [x] Vertex Workbench Notebook 
@@ -27,6 +34,10 @@ General basics components based on Terraform
 
 ## Source Repository 
 - [x] Add a Source Repo 
+
+## Security
+- [x] Secret Manager
+
 
 
 ## Adding a Commit 
