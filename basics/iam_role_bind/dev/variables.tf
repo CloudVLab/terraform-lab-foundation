@@ -20,14 +20,14 @@ variable "gcp_zone" {
 }
 
 ## --------------------------------------------------------------
-## Variable definitions - Override from Custom Properties 
+## Variable definitions - Override from Custom Properties
 ## --------------------------------------------------------------
 
 # with the same name for any lab that uses this script.
 variable "iam_user" {
   type        = string
   description = "Name of Qwiklabs user"
-  default     = "tester@gmail.com" 
+  default     = "tester@gmail.com"
 }
 
 ## --------------------------------------------------------------
@@ -38,19 +38,25 @@ variable "iam_user" {
 variable "iam_sa_name" {
   type        = string
   description = "Role to bind to the user account"
-  default     = "tester-qwiklabs" 
+  default     = "tester-qwiklabs"
 }
 
 # with the same name for any lab that uses this script.
 variable "iam_sa_description" {
   type        = string
   description = "Custom Service Account for IAM binding"
-  default     = "Custom service account" 
+  default     = "Custom service account"
 }
 
 # with the same name for any lab that uses this script.
 variable "iam_role" {
   type        = string
   description = "Role to bind to the user account"
-  default     = "roles/viewer" 
+  default     = "roles/viewer"
+}
+
+# with the same name for any lab that uses this script.
+variable "iam_sa" {
+  type        = string
+  description = "display name"
 }

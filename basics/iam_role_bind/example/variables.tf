@@ -17,3 +17,8 @@ variable "gcp_zone" {
 # ------------------  Custom Properties
 #
 
+# with the same name for any lab that uses this script.
+variable "iam_sa" {
+  type        = string
+  description = "display name"
+}
