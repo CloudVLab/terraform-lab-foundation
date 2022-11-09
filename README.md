@@ -72,7 +72,9 @@ Release schedule for the supported channels:
 | Beta    | QA       | Use this for the beta access to code updates |
 | Dev     | Dev      | Use this to develop new Terraform building blocks and solutions | 
 
-Content authors should use the `stable` channel.
+__NOTE:__
+* Content authors should use the `stable` channel.
+* Module developers should use the `dev` channel.
 
 Scripts are maintained via channels - see [CHANNELS.md](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/CHANNELS.md) for more information.
 
