@@ -26,19 +26,20 @@ resource "google_compute_instance" "gce_virtual_machine" {
   metadata = {
     childProjectZone            = var.gcp_zone
     childProjectRegion          = var.gcp_region
-    parentProject               = "qwiklabs-resources"
-    parentProjectStorageBucket  = "apigeexlabs"
-    parentProjectDNSZone        = "apigee-dns"
-    parentProjectSvcAccountPass = "SuperSecret123!"
-    parentProjectSourceRepo     = "apigeexlabs"
-    parentProjectSourceBranch   = "cloudlearning-tf"
-    parentProjectLabDirName     = "apigeex-cloudlearning"
-    parentProjectLabType        = "CloudLearning"
-    createProdEnvironment       = "no"
-    startup-script-url          = "${var.startup_script_url}"
-    childProjectSvcAccountJSON  = base64decode(google_service_account_key.mykey.private_key)
+    parentProject               = var.parentProject
+    parentProjectStorageBucket  = var.parentProjectStorageBucket
+    parentProjectDNSZone        = var.parentProjectDNSZone
+    parentProjectSvcAccountPass = var.parentProjectSvcAccountPass
+    parentProjectSourceRepo     = var.parentProjectSourceRepo
+    parentProjectSourceBranch   = var.parentProjectSourceBranch
+    parentProjectLabDirName     = var.parentProjectLabDirName
+    parentProjectLabType        = var.parentProjectLabType
+    createProdEnvironment       = var.createProdEnvironment
+    startup-script-url          = var.startup_script_url
     childProjectUsername        = ""
-    childProject                = "${var.gcp_project_id}"
+    childProject                = var.gcp_project_id
+    childProjectSvcAccountJSON  = base64decode(google_service_account_key.mykey.private_key)
+
   }
   # Override to perform startup script
   # metadata_startup_script = file("${path.module}/bootstrap-cloudlearning.sh")

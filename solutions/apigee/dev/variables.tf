@@ -11,15 +11,12 @@ variable "gcp_project_id" {
 variable "gcp_region" {
   type        = string
   description = "Region to create resources in."
-  default     = "us-east1"
-
 }
 
 # Default value passed in
 variable "gcp_zone" {
   type        = string
   description = "Zone to create resources in."
-  default     = "us-east1-b"
 }
 
 #variable "gcp_project_number" {
@@ -55,14 +52,12 @@ variable "gce_name" {
 variable "gce_region" {
   type        = string
   description = "Region to create resources in."
-  default     = "us-east1"
 }
 
 # Custom properties with defaults 
 variable "gce_zone" {
   type        = string
   description = "Zone to create resources in."
-  default     = "us-east1-b"
 }
 
 # Custom properties with defaults 
