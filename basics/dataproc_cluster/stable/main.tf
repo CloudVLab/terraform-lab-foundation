@@ -9,7 +9,7 @@ resource "google_dataproc_cluster" "mycluster" {
   graceful_decommission_timeout = "120s"
 
   cluster_config {
-    staging_bucket = var.gcp_project_id
+    staging_bucket = "${var.gcp_project_id}"-staging
 
     master_config {
       num_instances = 1
