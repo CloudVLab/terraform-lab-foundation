@@ -103,7 +103,7 @@ variable "gce_service_account" {
 # Custom properties with defaults 
 ## The default Metadata setting 
 variable "gce_metadata" {
-  type        = map 
+  type        = map(string) 
   description = "GCE Metadata object"
   default     = {"foo" = "bar"} 
 }
