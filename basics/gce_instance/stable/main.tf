@@ -28,9 +28,8 @@ resource "google_compute_instance" "gce_virtual_machine" {
   }
 
   # Add Key/Value pair e.g. SSH keys here
-  # metadata = {
-  #  foo = "bar"
-  # }
+  metadata = var.gce_metadata
+
 
   # Override to perform startup script
   metadata_startup_script = var.gce_startup_script 

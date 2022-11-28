@@ -101,6 +101,14 @@ variable "gce_service_account" {
 }
 
 # Custom properties with defaults 
+## The default Metadata setting 
+variable "gce_metadata" {
+  type        = map 
+  description = "GCE Metadata object"
+  default     = {"foo" = "bar"} 
+}
+
+# Custom properties with defaults 
 variable "gce_startup_script" {
   type        = string
   description = "GCE startup script"
