@@ -28,11 +28,11 @@ resource "google_compute_instance" "gce_virtual_machine" {
   }
 
   # Add Key/Value pair e.g. SSH keys here
-  metadata = var.gce_metadata
+  metadata = var.gce_metadata == null ? null : var.gce_metadata
 
 
   # Override to perform startup script
-  metadata_startup_script = var.gce_startup_script 
+  metadata_startup_script = var.gce_startup_script == null ? null : var.gce_startup_script 
 
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
