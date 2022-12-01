@@ -105,14 +105,14 @@ variable "gce_service_account" {
 variable "gce_metadata" {
   type        = map(string)
   description = "GCE Metadata object"
-  default     = {"foo" = "bar"} 
+  # default     = {"foo" = "bar"} 
 }
 
 # Custom properties with defaults 
 variable "gce_startup_script" {
   type        = string
   description = "GCE startup script"
-  default     = "echo Welcome to Project Octopus > /tmp/octopus.txt" 
+  # default     = "echo Welcome to Project Octopus > /tmp/octopus.txt" 
 }
 
 # Custom properties with defaults 
