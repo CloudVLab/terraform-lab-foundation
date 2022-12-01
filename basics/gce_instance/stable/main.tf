@@ -6,7 +6,7 @@ resource "google_compute_instance" "gce_virtual_machine" {
 
   name         = var.gce_name
   machine_type = var.gce_machine_type
-  zone         = var.gce_zone
+  zone         = var.gce_zone == null ? gcp_zone : gce_zone
   project      = var.gcp_project_id
 
   tags           = var.gce_tags
