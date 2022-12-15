@@ -2,7 +2,7 @@
 ## Custom variable defintions
 ## --------------------------------------------------------------
 
-variable "notebook_name" {
+output "notebook_name" {
   value        = "${var.vai_notebook_name}"
   description = "Vertex VM instance name."
 }
