@@ -1,4 +1,4 @@
-# Terraform: Google Cloud Storage 
+# Terraform: BQ Table
 
 ## Example
 
