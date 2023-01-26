@@ -58,7 +58,7 @@ resource "google_container_cluster" "tfer-gke" {
   enable_tpu                  = "false"
 #  initial_node_count          = "0"
 
-  cluster_ipv4_cidr = "10.24.0.0/14"
+  # cluster_ipv4_cidr = "10.24.0.0/14"
 
   # Enable IP Aliasing
   ip_allocation_policy {
