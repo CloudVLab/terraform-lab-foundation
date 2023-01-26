@@ -59,10 +59,10 @@ resource "google_container_cluster" "tfer-gke" {
   enable_tpu                  = "false"
 #  initial_node_count          = "0"
 
-##  ip_allocation_policy {
-##    cluster_ipv4_cidr_block  = "10.24.0.0/14"
-##    services_ipv4_cidr_block = "10.28.0.0/20"
-##  }
+  ip_allocation_policy {
+    cluster_ipv4_cidr_block  = "10.24.0.0/14"
+    services_ipv4_cidr_block = "10.28.0.0/20"
+  }
 
 
   logging_config {
