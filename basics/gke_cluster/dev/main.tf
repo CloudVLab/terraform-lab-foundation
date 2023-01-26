@@ -42,9 +42,15 @@ resource "google_container_cluster" "tfer-gke" {
     state = "DECRYPTED"
   }
 
+  binary_authorization {
+    # Equates to old enable_binary_authorization = "true"
+    # evaluation_mode = PROJECT_SINGLETON_POLICY_ENFORCE
+    evaluation_mode = DISABLED
+  }
+
   default_max_pods_per_node   = "110"
   #enable_binary_authorization = "false"
-  binary_authorization = "false"
+  #binary_authorization = "false"
   enable_intranode_visibility = "false"
   enable_kubernetes_alpha     = "false"
   enable_l4_ilb_subsetting    = "false"
