@@ -36,14 +36,15 @@ resource "google_container_cluster" "tfer-gke" {
     enabled = "false"
   }
 
-  cluster_ipv4_cidr = "10.24.0.0/14"
+#  cluster_ipv4_cidr = "10.24.0.0/14"
 
   database_encryption {
     state = "DECRYPTED"
   }
 
   default_max_pods_per_node   = "110"
-  enable_binary_authorization = "false"
+  #enable_binary_authorization = "false"
+  binary_authorization = "false"
   enable_intranode_visibility = "false"
   enable_kubernetes_alpha     = "false"
   enable_l4_ilb_subsetting    = "false"
@@ -52,10 +53,10 @@ resource "google_container_cluster" "tfer-gke" {
   enable_tpu                  = "false"
 #  initial_node_count          = "0"
 
-  ip_allocation_policy {
-    cluster_ipv4_cidr_block  = "10.24.0.0/14"
-    services_ipv4_cidr_block = "10.28.0.0/20"
-  }
+##  ip_allocation_policy {
+##    cluster_ipv4_cidr_block  = "10.24.0.0/14"
+##    services_ipv4_cidr_block = "10.28.0.0/20"
+##  }
 
 
   logging_config {
