@@ -191,9 +191,9 @@ resource "google_container_node_pool" "tfer-gke_default-pool" {
 
     spot = "false"
 
-    workload_metadata_config {
-      mode = "GKE_METADATA"
-    }
+#    workload_metadata_config {
+#      mode = "GKE_METADATA"
+#    }
   }
 
   upgrade_settings {
