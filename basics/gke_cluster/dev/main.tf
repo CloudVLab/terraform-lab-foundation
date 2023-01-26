@@ -50,7 +50,7 @@ resource "google_container_cluster" "tfer-gke" {
   enable_legacy_abac          = "false"
   enable_shielded_nodes       = "true"
   enable_tpu                  = "false"
-  initial_node_count          = "0"
+#  initial_node_count          = "0"
 
   ip_allocation_policy {
     cluster_ipv4_cidr_block  = "10.24.0.0/14"
@@ -76,11 +76,11 @@ resource "google_container_cluster" "tfer-gke" {
   }
 
   monitoring_service = "monitoring.googleapis.com/kubernetes"
-  name               = "gke"
+#  name               = "gke"
   # network            = "projects/qwiklabs-gcp-04-22edd551c1ab/global/networks/default"
   # subnetwork = "projects/qwiklabs-gcp-04-22edd551c1ab/regions/us-central1/subnetworks/default"
-  network    = google_compute_network.vpc.name
-  subnetwork = google_compute_subnetwork.subnet.name
+  # network    = google_compute_network.vpc.name
+  # subnetwork = google_compute_subnetwork.subnet.name
 
   network_policy {
     enabled  = "false"
@@ -165,7 +165,7 @@ resource "google_container_cluster" "primary" {
 
 resource "google_container_node_pool" "tfer-gke_default-pool" {
   project        = var.gcp_project_id 
-  node_locations = [ $var.gcp_zone ]
+  node_locations = [ "${var.gcp_zone}" ]
 
   node_count     = "3"
 
