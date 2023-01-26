@@ -158,12 +158,12 @@ resource "google_container_node_pool" "tfer-gke_default-pool" {
   max_pods_per_node = "110"
   name              = "default-pool"
 
-  network_config {
-    create_pod_range     = "false"
-    enable_private_nodes = "false"
-    pod_ipv4_cidr_block  = "10.24.0.0/14"
-#    pod_range            = "gke-gke-pods-be6a9ca7"
-  }
+##  network_config {
+##    create_pod_range     = "false"
+##    enable_private_nodes = "false"
+##    pod_ipv4_cidr_block  = "10.24.0.0/14"
+##    pod_range            = "gke-gke-pods-be6a9ca7"
+##  }
 
   node_config {
     disk_size_gb    = "100"
