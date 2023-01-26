@@ -69,7 +69,7 @@ resource "google_container_cluster" "tfer-gke" {
     enable_components = ["SYSTEM_COMPONENTS", "WORKLOADS"]
   }
 
-  logging_service = "logging.googleapis.com/kubernetes"
+  # logging_service = "logging.googleapis.com/kubernetes"
 
   master_auth {
     client_certificate_config {
@@ -81,7 +81,7 @@ resource "google_container_cluster" "tfer-gke" {
     enable_components = ["SYSTEM_COMPONENTS"]
   }
 
-  monitoring_service = "monitoring.googleapis.com/kubernetes"
+  # monitoring_service = "monitoring.googleapis.com/kubernetes"
 #  name               = "gke"
   # network            = "projects/qwiklabs-gcp-04-22edd551c1ab/global/networks/default"
   # subnetwork = "projects/qwiklabs-gcp-04-22edd551c1ab/regions/us-central1/subnetworks/default"
