@@ -44,8 +44,8 @@ resource "google_container_cluster" "tfer-gke" {
 
   binary_authorization {
     # Equates to old enable_binary_authorization = "true"
-    # evaluation_mode = PROJECT_SINGLETON_POLICY_ENFORCE
-    evaluation_mode = DISABLED
+    # evaluation_mode = "PROJECT_SINGLETON_POLICY_ENFORCE"
+    evaluation_mode = "DISABLED"
   }
 
   default_max_pods_per_node   = "110"
