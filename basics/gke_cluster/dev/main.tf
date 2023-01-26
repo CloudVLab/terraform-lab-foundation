@@ -11,7 +11,7 @@ resource "google_container_cluster" "tfer-gke" {
   provider = google-beta
   project  = var.gcp_project 
   name     = var.gke_cluster_name
-  location = var.gke_location
+  location = var.gcp_zone 
   
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
@@ -57,7 +57,6 @@ resource "google_container_cluster" "tfer-gke" {
     services_ipv4_cidr_block = "10.28.0.0/20"
   }
 
-  location = var.gcp_zone 
 
   logging_config {
     enable_components = ["SYSTEM_COMPONENTS", "WORKLOADS"]
