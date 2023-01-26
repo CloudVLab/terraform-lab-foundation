@@ -36,7 +36,6 @@ resource "google_container_cluster" "tfer-gke" {
     enabled = "false"
   }
 
-#  cluster_ipv4_cidr = "10.24.0.0/14"
 
   database_encryption {
     state = "DECRYPTED"
@@ -59,9 +58,12 @@ resource "google_container_cluster" "tfer-gke" {
   enable_tpu                  = "false"
 #  initial_node_count          = "0"
 
+  cluster_ipv4_cidr = "10.24.0.0/14"
+
+  # Enable IP Aliasing
   ip_allocation_policy {
-    cluster_ipv4_cidr_block  = "10.24.0.0/14"
-    services_ipv4_cidr_block = "10.28.0.0/20"
+#    cluster_ipv4_cidr_block  = "10.24.0.0/14"
+#    services_ipv4_cidr_block = "10.28.0.0/20"
   }
 
 
