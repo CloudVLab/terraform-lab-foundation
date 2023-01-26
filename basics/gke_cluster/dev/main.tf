@@ -145,7 +145,7 @@ resource "google_container_node_pool" "tfer-gke_default-pool" {
   node_count     = "3"
 
   cluster            = "${google_container_cluster.tfer-gke.name}"
-  initial_node_count = "3"
+  # initial_node_count = "3"
   location           = var.gcp_zone 
 
   management {
