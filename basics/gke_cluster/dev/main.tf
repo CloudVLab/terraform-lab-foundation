@@ -19,8 +19,8 @@ resource "google_container_cluster" "tfer-gke" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  network    = google_compute_network.vpc.name
-  subnetwork = google_compute_subnetwork.subnet.name
+  network    = "default"
+  subnetwork = "default" 
 
   addons_config {
     gce_persistent_disk_csi_driver_config {
@@ -129,37 +129,6 @@ resource "google_container_cluster" "tfer-gke" {
     workload_pool = "qwiklabs-gcp-04-22edd551c1ab.svc.id.goog"
   }
 }
-
-resource "google_container_cluster" "primary" {
-  provider = google-beta
-  name     = var.gke_cluster_name
-  location = var.gke_location
-  
-  # We can't create a cluster with no node pool defined, but we want to only use
-  # separately managed node pools. So we create the smallest possible default
-  # node pool and immediately delete it.
-  remove_default_node_pool = true
-  initial_node_count       = 1
-
-  network    = google_compute_network.vpc.name
-  subnetwork = google_compute_subnetwork.subnet.name
-
-  # Monitoring Service
-  ## Defaults to monitoring.googleapis.com/kubernetes
-  ## monitoring_config {
-  ##   monitoring_service = "monitoring.googleapis.com/kubernetes"
-  ##   enable_components  = "SYSTEM_COMPONENTS"
-  ## }
-
-  # Enable this section to use Istio AddOn
-  # addons_config {
-  #   istio_config {
-  #     disabled = var.istio_disabled 
-  #     auth     = var.istio_auth
-  #   }
-  # }
-}
-
 
 
 resource "google_container_node_pool" "tfer-gke_default-pool" {
