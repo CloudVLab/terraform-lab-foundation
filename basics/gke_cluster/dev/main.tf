@@ -101,7 +101,7 @@ resource "google_container_cluster" "tfer-gke" {
     }
   }
 
-  node_version = "1.24.8-gke.2000"
+#  node_version = "1.24.8-gke.2000"
 
   notification_config {
     pubsub {
@@ -123,18 +123,18 @@ resource "google_container_cluster" "tfer-gke" {
     channel = "REGULAR"
   }
 
-  resource_labels = {
-    mesh_id = "proj-946522468759"
-  }
+#  resource_labels = {
+#    mesh_id = "proj-946522468759"
+#  }
 
   service_external_ips_config {
     enabled = "false"
   }
 
 
-  workload_identity_config {
-    workload_pool = "qwiklabs-gcp-04-22edd551c1ab.svc.id.goog"
-  }
+#  workload_identity_config {
+#    workload_pool = "iklabs-gcp-04-22edd551c1ab.svc.id.goog"
+#  }
 }
 
 
@@ -178,9 +178,9 @@ resource "google_container_node_pool" "tfer-gke_default-pool" {
     oauth_scopes = ["https://www.googleapis.com/auth/devstorage.read_only", "https://www.googleapis.com/auth/logging.write", "https://www.googleapis.com/auth/monitoring", "https://www.googleapis.com/auth/service.management.readonly", "https://www.googleapis.com/auth/servicecontrol", "https://www.googleapis.com/auth/trace.append"]
     preemptible  = "false"
 
-    resource_labels = {
-      mesh_id = "proj-946522468759"
-    }
+#    resource_labels = {
+#      mesh_id = "proj-946522468759"
+#    }
 
     service_account = "default"
 
@@ -202,5 +202,5 @@ resource "google_container_node_pool" "tfer-gke_default-pool" {
     strategy        = "SURGE"
   }
 
-  version = "1.24.8-gke.2000"
+#  version = "1.24.8-gke.2000"
 }
