@@ -137,7 +137,7 @@ resource "google_container_cluster" "tfer-gke" {
 
   workload_identity_config {
 #    workload_pool = "iklabs-gcp-04-22edd551c1ab.svc.id.goog"
-    workload_pool = var.gkeWorkloadPool 
+    workload_pool = "${var.gcp_project_id}.svc.id.goog"
   }
 }
 
