@@ -10,7 +10,7 @@
 resource "google_container_cluster" "tfer-gke" {
   provider = google-beta
   project  = var.gcp_project_id 
-  name     = var.gke_cluster_name
+  name     = var.gkeClusterName
   location = var.gcp_zone 
   
   # We can't create a cluster with no node pool defined, but we want to only use
@@ -19,8 +19,8 @@ resource "google_container_cluster" "tfer-gke" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  network    = "default"
-  subnetwork = "default" 
+  network    = var.gkeNetwork 
+  subnetwork = var.gkeSubnetwork 
 
   addons_config {
     gce_persistent_disk_csi_driver_config {
@@ -95,7 +95,7 @@ resource "google_container_cluster" "tfer-gke" {
     provider = "PROVIDER_UNSPECIFIED"
   }
 
-  networking_mode = "VPC_NATIVE"
+  networking_mode = var.gkeModeVpcNative
 
   node_pool_defaults {
     node_config_defaults {
