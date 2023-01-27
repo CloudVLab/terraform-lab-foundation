@@ -150,7 +150,7 @@ variable "gkePoolName" {
 }
 
 # Custom properties with defaults 
-variable "gkeWorkloadPoolName" {
+variable "gkeWorkloadPool" {
   type        = string
   description = "Network route "
   default     = "pool-12345"
