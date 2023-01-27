@@ -3,6 +3,6 @@
 ## --------------------------------------------------------------
 
 output "gke_instance_name" {
-  value       = "${var.gke_cluster_name}"
+  value       = "${var.gkeClusterName}"
   description = "Name of the GKE instance"
 }
