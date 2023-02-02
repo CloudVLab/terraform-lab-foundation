@@ -134,3 +134,24 @@ variable "gkeSubnetwork" {
   description = "Network route "
   default     = "default"
 }
+
+# Custom properties with defaults 
+variable "gkeLabelMeshId" {
+  type        = string
+  description = "Network route "
+  default     = "mesh-12345"
+}
+
+# Custom properties with defaults 
+variable "gkePoolName" {
+  type        = string
+  description = "Network route "
+  default     = "pool-12345"
+}
+
+# Custom properties with defaults 
+variable "gkeWorkloadPool" {
+  type        = string
+  description = "Network route "
+  default     = "pool.svc.id.goog"
+}

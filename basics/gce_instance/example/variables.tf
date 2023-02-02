@@ -10,18 +10,3 @@ variable "gcp_region" {
 variable "gcp_zone" {
   type = string
 }
-
-# Source Repo
-variable "source_repo_name" {
-  type    = string
-  default = "https://github.com/rosera/tts-modules"
-}
-
-# Source Repo
-variable "source_repo_branch" {
-  type    = string
-  default = "main"
-}
-
-
-
