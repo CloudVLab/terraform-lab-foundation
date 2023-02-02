@@ -153,5 +153,5 @@ variable "gkePoolName" {
 variable "gkeWorkloadPool" {
   type        = string
   description = "Network route "
-  default     = "pool-12345"
+  default     = "pool.svc.id.goog"
 }
