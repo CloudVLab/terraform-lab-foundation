@@ -2,6 +2,11 @@
 ## Custom variable defintions
 ## --------------------------------------------------------------
 
+output "notebook_name" {
+  value        = "${var.vai_notebook_name}"
+  description = "Vertex VM instance name."
+}
+
 # output "gce_instance_name" {
 #   value       = "${var.vm_name}"
 #   description = "Name of the GCE instance"

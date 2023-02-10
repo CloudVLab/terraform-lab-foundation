@@ -2,6 +2,7 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_job
 resource "google_bigquery_job" "job" {
   job_id        = var.bq_job_id 
+  project       = var.gcp_project_id
   location      = var.bq_location
 
   labels = var.bq_job_label 
