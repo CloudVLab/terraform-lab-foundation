@@ -2,6 +2,25 @@
 
 ## Example
 
+```
+.
+├── instructions
+│   ├── en.md
+│   └── img
+├── QL_OWNER
+└── qwiklabs.yaml 
+```
+
+## Add the module to the directory 
+
+Add the example Terraform code module to your project
+
+```
+curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/gcs_bucket/example/install.sh | bash
+```
+
+## View the updated directory 
+
 The example is based on the following hierarchy:
 
 ```
