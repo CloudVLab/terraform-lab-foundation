@@ -1,3 +1,4 @@
+#!/bin/sh
 BRANCH="main"
 MODULE="bq_table_view"
 TYPE="basics"
