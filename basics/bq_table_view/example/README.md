@@ -1,4 +1,4 @@
-# Terraform: BQ Table
+# Terraform: BQ Table View
 
 ## Example
 
@@ -17,7 +17,7 @@ The example is based on the following hierarchy:
 Add the example Terraform code module to your project
 
 ```
-curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/bq_table/example/install.sh | bash
+curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/bq_table_view/example/install.sh | bash
 ```
 
 ## View the updated directory 
@@ -71,6 +71,6 @@ student visible outputs
  5      reference: user_0.username
  6    - label: "GCP Password"
  7      reference: user_0.password
- 8    - label: BigQuery Table
- 9      reference: project_0.startup_script.bq_table_id
+ 8    - label: BigQuery Table View
+ 9      reference: project_0.startup_script.bq_table_view_id
 ```
