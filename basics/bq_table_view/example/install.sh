@@ -1,8 +1,8 @@
 #!/bin/sh
 BRANCH="main"
-MODULE="bq_dataset"
+MODULE="bq_table_view"
 TYPE="basics"
-CHANNEL="STABLE"
+CHANNEL="DEV"
 
 # Set the endpoint for the module
 if [ "$CHANNEL" = "STABLE" ]; then
