@@ -1,4 +1,4 @@
-# Terraform: BigQuery Table 
+# Terraform: BigQuery Table View
 
 | Channel | Status |
 |---------|--------|
@@ -27,6 +27,10 @@ gcp_zone             = var.gcp_zone
 bq_table_id = "ttable"
 bq_table_description = "This is an example table"
 bq_dataset_id = "soccer"
+
+## View configuration
+bq_view_query        = "SELECT * FROM  `bigquery-public-data.utility_us.zipcode_area` WHERE  state_code = \"CA\"  ORDER BY area_land_miles ASC LIMIT 100 publicviews.myview"
+bq_view_legacy_sql   = false
 ```
 
 
