@@ -20,10 +20,10 @@ module "la_ide" {
 
   ## Local Modules - working
   ## Module subdirectory needs to be defined within the TF directory
-  source = "./solutions/ide_web/stable"
+  # source = "./solutions/ide_web/stable"
 
   ## REMOTE: GitHub (Public) access - working 
-  #source = "github.com/CloudVLab/terraform-lab-foundation//solutions/ide_web/stable"
+  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/ide_web/stable"
 
   ## Exchange values between Qwiklabs and Module
   gcp_project_id  = var.gcp_project_id 
@@ -32,15 +32,9 @@ module "la_ide" {
   gcp_username    = var.tfUsername
 
   ## Properties: GCE 
-  # gceMachineImage  = var.tfMachineImage
   gceMachineImage    = "web-codeserver" 
-  # gceInstanceName  = "cloudlearningservices" 
-  # gceInstanceZone  = "us-central1-f"
-  # gceInstanceTags  = ["lab-vm"]
-  # gceMachineType   = "e2-standard-2"
-  # gceInstanceScope = ["cloud-platform"] 
 
   ## Properties: Cloud Run
-  # gcrRegion        = "us-central1"
+  gcrRegion        = var.gcp_region 
 }
 
