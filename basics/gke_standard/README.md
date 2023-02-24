@@ -3,7 +3,6 @@
 | Channel | Status |
 |---------|--------|
 | Stable  | TBC    | 
-| Beta    | TBC    | 
 
 Create a Terraform configuration
 
@@ -29,15 +28,16 @@ gkeSubnetwork    = "default"
 ```
 
 
-Note: 
-* gkeLocation: Either zonal (e.g. gcp_zone) or regional (e.g. (gcp_region)
+Note: gkeLocation Either 
+* `zonal` (e.g. gcp_zone) 
+* `regional` (e.g. (gcp_region)
 
 
 ## Accessing Output Values 
 
 | Field | Description |
 |-------|-------------|
-| gkeName | The name of the GKE cluster |
+| gkeClusterName | The name of the GKE cluster |
 
 ## Adding a Commit 
 
