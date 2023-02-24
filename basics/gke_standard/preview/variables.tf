@@ -23,21 +23,6 @@ variable "gcp_zone" {
 ## Output variable definitions - Override from Custom Properties 
 ## --------------------------------------------------------------
 
-### Retired - please use gkeClusterName instead
-# Expected custom_properties key to be declared in `qwiklabs.yaml` 
-# with the same name for any lab that uses this script.
-variable "gkeClusterName" {
-  type        = string
-  description = "GKE Cluster name."
-  default     = "test-cluster"
-}
-
-# with the same name for any lab that uses this script.
-variable "gcp_username" {
-  type        = string
-  description = "Name of Qwiklabs user"
-  default     = "student"
-}
 
 
 ## --------------------------------------------------------------
@@ -57,10 +42,22 @@ variable "gkeDescription" {
   default     = "Lab cluster - using default description" 
 }
 
+variable "gkeLocation" {
+  type        = string 
+  description = "Machine type to use in the cluster."
+  default     = "us-central1-a" 
+}
+
+variable "gkeMachine" {
+  type        = string 
+  description = "Machine type to use in the cluster."
+  default     = "e2-medium" 
+}
+
 variable "gkeIsPrivateCluster" {
   type        = bool
   description = "Set as True to spin up a private, secure cluster. False to spin up a public cluster."
-  default     = true
+  default     = false 
 }
 
 variable "gkeIsPrivateEndpoint" {
@@ -133,25 +130,4 @@ variable "gkeSubnetwork" {
   type        = string
   description = "Network route "
   default     = "default"
-}
-
-# Custom properties with defaults 
-variable "gkeLabelMeshId" {
-  type        = string
-  description = "Network route "
-  default     = "mesh-12345"
-}
-
-# Custom properties with defaults 
-variable "gkePoolName" {
-  type        = string
-  description = "Network route "
-  default     = "pool-12345"
-}
-
-# Custom properties with defaults 
-variable "gkeWorkloadPool" {
-  type        = string
-  description = "Network route "
-  default     = "pool.svc.id.goog"
 }
