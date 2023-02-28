@@ -294,7 +294,8 @@ resource "google_project_service" "run" {
 # Cloud Run: IDE
 resource "google_cloud_run_service" "jupyter" {
   name     = var.gcrServiceName
-  location = var.gcrRegion
+  # location = var.gcrRegion
+  location = var.gcp_region
   project  = var.gcp_project_id
 
   template {

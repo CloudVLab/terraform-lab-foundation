@@ -186,7 +186,8 @@ resource "google_project_service" "run" {
 # Cloud Run: IDE
 resource "google_cloud_run_service" "ide" {
   name     = "ide-service" 
-  location = var.gcrRegion
+  # location = var.gcrRegion
+  location = var.gcp_region
 
   template {
     spec {
@@ -220,7 +221,8 @@ resource "google_cloud_run_service" "ide" {
 # Cloud Run: Browser 
 resource "google_cloud_run_service" "browser" {
   name     = "browser-service"
-  location = var.gcrRegion
+  # location = var.gcrRegion
+  location = var.gcp_region
 
   template {
     spec {
