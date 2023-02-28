@@ -47,7 +47,8 @@ resource "google_project_service" "run" {
 
 resource "google_cloud_run_service" "ide" {
   name     = var.gcrServiceName
-  location = var.gcrRegion
+  # location = var.gcrRegion
+  location = var.gcp_region
 
   template {
     spec {
