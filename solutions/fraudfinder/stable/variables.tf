@@ -19,11 +19,6 @@ variable "gcp_zone" {
   description = "Zone to create resources in."
 }
 
-variable "gcp_sa_key_file" {
-  type        = string
-  description = "key file location"
-}
-
 variable "gcp_user_id" {
   type        = string
   description = "User Id"
