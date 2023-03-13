@@ -1,16 +1,16 @@
 #!/bin/sh
 BRANCH="main"
 MODULE="fraudfinder"
-TYPE="basics"
+TYPE="solutions"
 CHANNEL="STABLE"
 
 # Set the endpoint for the module
 if [ "$CHANNEL" = "STABLE" ]; then
   ## STABLE Channel
-  URL="https://storage.googleapis.com/terraform-lab-foundation/${BRANCH}"
+  URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
 else
   ## DEV/BETA Channel
-  URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
+  URL="https://raw.githubusercontent.com/CloudVLab/terraform-lab-foundation/${BRANCH}/"
 fi 
 
 DIRECTORY="tf"
