@@ -1,4 +1,4 @@
-# Terraform: Cloud Function
+# Terraform: Cloud Function (GEN 2)
 
 Create a Terraform configuration
 

@@ -28,7 +28,7 @@ resource "google_storage_bucket_object" "archive" {
 #
 ## NEW Module: Cloud Function
 
-resource "google_cloudfunctions_function" "custom_function" {
+resource "google_cloudfunctions2_function" "custom_function" {
   name                  = var.gcf_name 
   project               = var.gcp_project_id
   location              = var.gcp_region
