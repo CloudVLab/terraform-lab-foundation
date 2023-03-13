@@ -2,9 +2,15 @@
 
 Terraform configuration to create:
 
-- [x] BigQuery Dataset
-- [x] BigQuery Table
-- [x] BigQuery Job - Loads CSV + JSON
+- [x] Enable Googleapis 
+- [x] Random generator 
+- [x] Service Account
+- [x] Google Cloud Storage 
+- [x] IAM Google Cloud Storage 
+- [x] Local file configuration 
+- [x] Vertex Notebook instance 
+- [x] Cloud PubSub subscription 
+
 
 ## Using Input Values 
 
