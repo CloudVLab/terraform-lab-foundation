@@ -65,7 +65,7 @@ resource "google_cloudfunctions2_function" "custom_function" {
 resource "google_cloudfunctions2_function_iam_member" "invoker" {
   project        = var.gcp_project_id
   location       = var.gcp_region
-  cloud_function = google_cloudfunctions_function.custom_function.name
+  cloud_function = google_cloudfunctions2_function.custom_function.name
   role           = var.gcf_role_bind 
   member         = var.gcf_member_account 
 }
