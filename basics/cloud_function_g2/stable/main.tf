@@ -34,13 +34,14 @@ resource "google_cloudfunctions2_function" "custom_function" {
   location              = var.gcp_region
   description           = var.gcf_description 
 
-  available_memory_mb   = 128
   build_config {
     runtime               = var.gcf_runtime
     entry_point           = var.gcf_entry_point 
     source {
-      bucket = google_storage_bucket.bucket.name
-      object = google_storage_bucket_object.archive.name
+      storage_source {
+        bucket = google_storage_bucket.bucket.name
+        object = google_storage_bucket_object.archive.name
+      }
     }
   }
 
