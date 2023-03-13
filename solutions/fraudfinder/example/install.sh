@@ -1,16 +1,17 @@
 #!/bin/sh
 BRANCH="main"
-MODULE="fraudfinder"
-TYPE="solutions"
 CHANNEL="STABLE"
+TYPE="solutions"
+MODULE="fraudfinder"
 
 # Set the endpoint for the module
 if [ "$CHANNEL" = "STABLE" ]; then
   ## STABLE Channel
-  URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
+  URL="https://storage.googleapis.com/terraform-lab-foundation/"
+  # URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
 else
   ## DEV/BETA Channel
-  URL="https://raw.githubusercontent.com/CloudVLab/terraform-lab-foundation/${BRANCH}/"
+  URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
 fi 
 
 DIRECTORY="tf"
@@ -25,7 +26,7 @@ FILE4_URL="${URL}/${TYPE}/${MODULE}/example/variables.tf"
 
 # Create TF directory if not present
 if [ ! -d $DIRECTORY ]; then
-    mkdir $DIRECTORY 
+  mkdir $DIRECTORY 
 fi
 
 # Download if the file does not exist
