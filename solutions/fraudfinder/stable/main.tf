@@ -1,4 +1,10 @@
 /*
+  Get GCP project number (int)
+*/
+
+data "google_project" "project" {}
+
+/*
   Enable Required APIs
 */
 variable "gcp_service_list" {
@@ -13,7 +19,10 @@ variable "gcp_service_list" {
     "pubsub.googleapis.com",
     "cloudbuild.googleapis.com",
     "dataflow.googleapis.com",
-    "bigquery.googleapis.com"
+    "bigquery.googleapis.com",
+    "run.googleapis.com",
+    "artifactregistry.googleapis.com",
+    "iam.googleapis.com",
   ]
 }
 
@@ -36,62 +45,93 @@ resource "random_string" "rand" {
 }
 
 locals {
-  ID           = random_string.rand.result
-  NOTEBOOK_LOG = "/tmp/notebook_config.log"
+  ID                            = random_string.rand.result
+  NOTEBOOK_LOG                  = "/tmp/notebook_config.log"
+  compute_service_account_email = "${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+  cloud_build_service_account_email = "${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
 }
 
 /*
-  Create Service Account for MLOps Pipeline
-  Assign Appropriate IAM Permissions
+  Create Pub/Sub subscriptions
 */
-resource "google_service_account" "mlops_service_account" {
-  account_id   = "mlops-svc"
-  display_name = "MLOps Pipeline Service Account"
+
+resource "google_pubsub_subscription" "ff-tx-subscription" {
+  project = var.gcp_project_id
+  name    = "ff-tx-sub"
+  topic   = "projects/cymbal-fraudfinder/topics/ff-tx"
 }
 
-variable "mlops_service_account_role_member_list" {
-  description = "Roles needed for MLOps SA"
+resource "google_pubsub_subscription" "ff-tx-for-feat-eng-subscription" {
+  project = var.gcp_project_id
+  name    = "ff-tx-for-feat-eng-sub"
+  topic   = "projects/cymbal-fraudfinder/topics/ff-tx"
+}
+
+resource "google_pubsub_subscription" "ff-txlabels-subscription" {
+  project = var.gcp_project_id
+  name    = "ff-txlabels-sub"
+  topic   = "projects/cymbal-fraudfinder/topics/ff-txlabels"
+}
+
+/*
+  Assign Appropriate IAM Permissions to the compute SA
+*/
+
+
+variable "compute_service_account_project_iam_list" {
+  description = "Roles needed for compute SA"
   type        = list(string)
   default = [
-    "roles/aiplatform.serviceAgent",
-    "roles/cloudbuild.serviceAgent",
-    "roles/iam.serviceAccountUser",
-  ]
-}
-
-resource "google_service_account_iam_member" "mlops_service_account_iam_member" {
-  for_each           = toset(var.mlops_service_account_role_member_list)
-  service_account_id = google_service_account.mlops_service_account.id
-  member             = "serviceAccount:${google_service_account.mlops_service_account.email}"
-  role               = each.key
-
-}
-
-variable "mlops_service_account_project_iam_list" {
-  description = "Roles needed for MLOps SA"
-  type        = list(string)
-  default = [
-    "roles/aiplatform.admin",
-    "roles/bigquery.admin",
     "roles/storage.admin",
+    "roles/run.admin",
+    "roles/bigquery.admin",
+    "roles/aiplatform.admin",
+    "roles/resourcemanager.projectIamAdmin",
+    "roles/cloudbuild.builds.editor",
+    "roles/cloudbuild.integrations.editor",
     "roles/artifactregistry.admin",
     "roles/cloudfunctions.admin",
-    "roles/run.admin",
-    "roles/dataflow.admin"
+    "roles/dataflow.admin",
+    "roles/notebooks.admin",
+    "roles/pubsub.admin",
+    "roles/iam.serviceAccountAdmin",
   ]
-
 }
 
-resource "google_project_iam_member" "project" {
-  for_each = toset(var.mlops_service_account_project_iam_list)
+resource "google_project_iam_member" "servacct-compute-add-permissions" {
+  for_each = toset(var.compute_service_account_project_iam_list)
   project  = var.gcp_project_id
   role     = each.key
-  member   = "serviceAccount:${google_service_account.mlops_service_account.email}"
+  member   = "serviceAccount:${local.compute_service_account_email}"
 }
+
+/*
+  Assign Appropriate IAM Permissions to the Cloud Build SA
+*/
+
+variable "cloud_build_service_account_project_iam_list" {
+  description = "Roles needed for compute SA"
+  type        = list(string)
+  default = [
+    "roles/run.admin",
+    "roles/aiplatform.admin",
+    "roles/cloudbuild.builds.editor",
+    "roles/cloudbuild.integrations.editor",
+    "roles/iam.serviceAccountAdmin",
+  ]
+}
+
+resource "google_project_iam_member" "servacct-cloud-build-add-permissions" {
+  for_each = toset(var.cloud_build_service_account_project_iam_list)
+  project  = var.gcp_project_id
+  role     = each.key
+  member   = "serviceAccount:${local.cloud_build_service_account_email}"
+}
+
 
 /*
   Create GCP Storage Bucket
-  Set storage admin on bucket to MLOps SA and Lab user
+  Set storage admin on bucket to SA and Lab user
 */
 resource "google_storage_bucket" "fraudfinder_bucket" {
   name          = "${var.gcp_project_id}-fraudfinder"
@@ -104,7 +144,7 @@ resource "google_storage_bucket_iam_binding" "fraudfinder_bucket_iam_binding" {
   role   = "roles/storage.admin"
   members = [
     "user:${var.gcp_user_id}",
-    "serviceAccount:${google_service_account.mlops_service_account.email}"
+    "serviceAccount:${local.compute_service_account_email}"
   ]
 }
 
@@ -119,7 +159,7 @@ resource "google_storage_bucket_iam_binding" "lab_config_bucket_iam_binding" {
   role   = "roles/storage.admin"
   members = [
     "user:${var.gcp_user_id}",
-    "serviceAccount:${google_service_account.mlops_service_account.email}"
+    "serviceAccount:${local.compute_service_account_email}"
   ]
 }
 
@@ -133,6 +173,7 @@ resource "local_file" "notebook_config" {
 echo "Current user: `id`" >> ${local.NOTEBOOK_LOG} 2>&1
 echo "Creating pub/sub subscriptions" >> ${local.NOTEBOOK_LOG} 2>&1
 gcloud pubsub subscriptions create "ff-tx-sub" --topic="ff-tx" --topic-project="cymbal-fraudfinder" >> ${local.NOTEBOOK_LOG} 2>&1
+gcloud pubsub subscriptions create "ff-tx-for-feat-eng-sub" --topic="ff-tx" --topic-project="cymbal-fraudfinder"
 gcloud pubsub subscriptions create "ff-txlabels-sub" --topic="ff-txlabels" --topic-project="cymbal-fraudfinder" >> ${local.NOTEBOOK_LOG} 2>&1
 echo "Changing dir to /home/jupyter" >> ${local.NOTEBOOK_LOG} 2>&1
 cd /home/jupyter
@@ -200,21 +241,21 @@ resource "google_storage_bucket_object" "notebook_env_file" {
   Create Vertex AI Notebook
 */
 
-resource "google_notebooks_instance" "mlops-notebook" {
-  name               = "${var.gcp_project_id}-mlops-notebook"
+resource "google_notebooks_instance" "ff-notebook" {
+  name               = "ff-jupyterlab"
   project            = var.gcp_project_id
   location           = var.gcp_zone
-  machine_type       = "n1-standard-4" // n1-standard-1 $41.01 monthly estimate
+  machine_type       = "n1-standard-4" // n1-standard-1 $112.91 monthly estimate
   install_gpu_driver = false
-  instance_owners    = [var.gcp_user_id]
+  service_account    = "${local.compute_service_account_email}"
   vm_image { // https://cloud.google.com/vertex-ai/docs/workbench/user-managed/images
     project      = "deeplearning-platform-release"
-    image_family = "tf-ent-2-3-cu110-notebooks"
+    image_family = "common-cpu-notebooks"
   }
 
   post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/notebook_config.sh"
-
-  depends_on = [google_project_service.gcp_services, google_service_account.mlops_service_account, google_storage_bucket_object.notebook_config_script]
+  
+  depends_on = [google_project_service.gcp_services, google_storage_bucket_object.notebook_config_script]
 }
 
 # resource "google_artifact_registry_repository" "mlops-repo" {
