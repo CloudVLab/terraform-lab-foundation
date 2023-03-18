@@ -146,7 +146,8 @@ resource "google_container_node_pool" "tfer-gke_default-pool" {
   project        = var.gcp_project_id 
   node_locations = [ "${var.gcp_zone}" ]
 
-  node_count     = "3"
+  # node_count     = "3"
+  node_count     = var.gkeInitialNodeCount 
 
   cluster            = "${google_container_cluster.tfer-gke.name}"
   # initial_node_count = "3"
@@ -171,7 +172,7 @@ resource "google_container_node_pool" "tfer-gke_default-pool" {
   node_config {
     disk_size_gb    = "100"
     disk_type       = "pd-balanced"
-    image_type      = "COS_CONTAINERD"
+    image_type      = var.gkeImageType 
     local_ssd_count = "0"
     logging_variant = "DEFAULT"
     machine_type    = var.gkeMachineType
