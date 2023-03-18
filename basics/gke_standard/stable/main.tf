@@ -174,7 +174,7 @@ resource "google_container_node_pool" "tfer-gke_default-pool" {
     image_type      = "COS_CONTAINERD"
     local_ssd_count = "0"
     logging_variant = "DEFAULT"
-    machine_type    = "e2-standard-2"
+    machine_type    = var.gkeMachineType
 
     metadata = {
       disable-legacy-endpoints = "true"
