@@ -63,6 +63,12 @@ variable "gkeMachineType" {
   default     = "e2-standard-2" 
 }
 
+variable "gkeImageType" {
+  type        = string 
+  description = "Image Type to use."
+  default     = "COS_CONTAINERD"
+}
+
 variable "gkeIsPrivateCluster" {
   type        = bool
   description = "Set as True to spin up a private, secure cluster. False to spin up a public cluster."
