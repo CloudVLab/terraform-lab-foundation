@@ -48,15 +48,26 @@ resource "google_container_cluster" "tfer-gke" {
   }
 
   default_max_pods_per_node   = "110"
-  #enable_binary_authorization = "false"
-  #binary_authorization = "false"
+  enable_autopilot            = "false"
+  enable_binary_authorization = "false"
   enable_intranode_visibility = "false"
   enable_kubernetes_alpha     = "false"
   enable_l4_ilb_subsetting    = "false"
   enable_legacy_abac          = "false"
   enable_shielded_nodes       = "true"
   enable_tpu                  = "false"
-#  initial_node_count          = "0"
+  initial_node_count          = "0"
+
+##   default_max_pods_per_node   = "110"
+##   #enable_binary_authorization = "false"
+##   #binary_authorization = "false"
+##   enable_intranode_visibility = "false"
+##   enable_kubernetes_alpha     = "false"
+##   enable_l4_ilb_subsetting    = "false"
+##   enable_legacy_abac          = "false"
+##   enable_shielded_nodes       = "true"
+##   enable_tpu                  = "false"
+## #  initial_node_count          = "0"
 
   # cluster_ipv4_cidr = "10.24.0.0/14"
 
@@ -150,7 +161,7 @@ resource "google_container_node_pool" "tfer-gke_default-pool" {
   node_count     = var.gkeInitialNodeCount 
 
   cluster            = "${google_container_cluster.tfer-gke.name}"
-  # initial_node_count = "3"
+  initial_node_count = var.gkeInitialNodeCount 
   location           = var.gcp_zone 
 
   management {
