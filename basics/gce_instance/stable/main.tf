@@ -17,6 +17,8 @@ resource "google_compute_instance" "gce_virtual_machine" {
     device_name = var.gce_name
     initialize_params {
       image = var.gce_machine_image
+      size  = var.gce_disk_size 
+      type  = var.gce_disk_type
     }
   }
 
