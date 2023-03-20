@@ -13,6 +13,8 @@ resource "google_compute_instance" "gce_virtual_machine" {
   can_ip_forward = var.gce_can_ip_forward
 
   boot_disk {
+    # Set the Boot disk name to the name of the VM
+    device_name = var.gce_name
     initialize_params {
       image = var.gce_machine_image
     }
