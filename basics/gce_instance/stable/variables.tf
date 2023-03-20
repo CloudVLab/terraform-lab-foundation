@@ -79,9 +79,9 @@ variable "gce_machine_image" {
 }
 
 variable "gce_disk_size" {
-  type        = string
+  type        = number 
   description = "Boot Disk size"
-  default     = "10GB"
+  default     = 10
 }
 
 variable "gce_disk_type" {
