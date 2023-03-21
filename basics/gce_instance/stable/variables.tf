@@ -78,6 +78,18 @@ variable "gce_machine_image" {
   default     = "debian-cloud/debian-10"
 }
 
+variable "gce_disk_size" {
+  type        = number 
+  description = "Boot Disk size"
+  default     = 10
+}
+
+variable "gce_disk_type" {
+  type        = string
+  description = "Boot Disk Type"
+  default     = "pd-standard"
+}
+
 # Custom properties with defaults 
 variable "gce_machine_network" {
   type        = string
