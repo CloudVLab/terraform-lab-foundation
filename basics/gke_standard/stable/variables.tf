@@ -23,21 +23,6 @@ variable "gcp_zone" {
 ## Output variable definitions - Override from Custom Properties 
 ## --------------------------------------------------------------
 
-### Retired - please use gkeClusterName instead
-# Expected custom_properties key to be declared in `qwiklabs.yaml` 
-# with the same name for any lab that uses this script.
-## variable "gkeClusterName" {
-##   type        = string
-##   description = "GKE Cluster name."
-##   default     = "test-cluster"
-## }
-## 
-## # with the same name for any lab that uses this script.
-## variable "gcp_username" {
-##   type        = string
-##   description = "Name of Qwiklabs user"
-##   default     = "student"
-## }
 
 
 ## --------------------------------------------------------------
