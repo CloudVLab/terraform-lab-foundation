@@ -55,17 +55,7 @@ resource "google_container_cluster" "tfer-gke" {
   enable_legacy_abac          = "false"
   enable_shielded_nodes       = "true"
   enable_tpu                  = "false"
-  initial_node_count          = "0"
-
-##   default_max_pods_per_node   = "110"
-##   #enable_binary_authorization = "false"
-##   #binary_authorization = "false"
-##   enable_intranode_visibility = "false"
-##   enable_kubernetes_alpha     = "false"
-##   enable_l4_ilb_subsetting    = "false"
-##   enable_legacy_abac          = "false"
-##   enable_shielded_nodes       = "true"
-##   enable_tpu                  = "false"
+  initial_node_count          = 1 
 
   # cluster_ipv4_cidr = "10.24.0.0/14"
 
@@ -135,7 +125,6 @@ resource "google_container_cluster" "tfer-gke" {
   }
 
   resource_labels = {
-#    mesh_id = "proj-946522468759"
     mesh_id = var.gkeLabelMeshId 
   }
 
@@ -143,9 +132,7 @@ resource "google_container_cluster" "tfer-gke" {
     enabled = "false"
   }
 
-
   workload_identity_config {
-#    workload_pool = "iklabs-gcp-04-22edd551c1ab.svc.id.goog"
     workload_pool = "${var.gcp_project_id}.svc.id.goog"
   }
 }
