@@ -82,35 +82,18 @@ resource "google_pubsub_subscription" "ff-txlabels-subscription" {
   Create GCP Storage Bucket
   Set storage admin on bucket to SA and Lab user
 */
+
 resource "google_storage_bucket" "fraudfinder_bucket" {
   name          = "${var.gcp_project_id}-fraudfinder"
   location      = var.gcp_region
   force_destroy = true
 }
 
-# resource "google_storage_bucket_iam_binding" "fraudfinder_bucket_iam_binding" {
-#   bucket = google_storage_bucket.fraudfinder_bucket.name
-#   role   = "roles/storage.admin"
-#   members = [
-#     "user:${var.gcp_user_id}",
-#     "serviceAccount:${local.compute_service_account_email}"
-#   ]
-# }
-
 resource "google_storage_bucket" "lab_config_bucket" {
   name          = "${var.gcp_project_id}-labconfig-bucket"
   location      = var.gcp_region
   force_destroy = true
 }
-
-# resource "google_storage_bucket_iam_binding" "lab_config_bucket_iam_binding" {
-#   bucket = google_storage_bucket.lab_config_bucket.name
-#   role   = "roles/storage.admin"
-#   members = [
-#     "user:${var.gcp_user_id}",
-#     "serviceAccount:${local.compute_service_account_email}"
-#   ]
-# }
 
 /*
   Create config scripts & upload to buckets
@@ -142,9 +125,6 @@ su - jupyter -c "pip install --upgrade --no-warn-conflicts --no-warn-script-loca
     google-cloud-pipeline-components \
     kfp" >> ${local.NOTEBOOK_LOG} 2>&1
 
-# echo "Executing biqquery data copy script" >> ${local.NOTEBOOK_LOG} 2>&1
-# su - jupyter -c "python /home/jupyter/fraudfinder/scripts/copy_bigquery_data.py ${google_storage_bucket.fraudfinder_bucket.name}" >> ${local.NOTEBOOK_LOG} 2>&1
-
 EOF
 
   filename = "notebook_config.sh"
@@ -159,32 +139,6 @@ resource "google_storage_bucket_object" "notebook_config_script" {
     local_file.notebook_config
   ]
 }
-
-# resource "local_file" "config_data" {
-
-#   content = <<EOF
-# BUCKET_NAME          = "${google_storage_bucket.fraudfinder_bucket.name}"
-# PROJECT              = "${var.gcp_project_id}"
-# REGION               = "${var.gcp_region}"
-# ID                   = "${local.ID}"
-# FEATURESTORE_ID      = "fraudfinder_${local.ID}"
-# MODEL_NAME           = "fraudfinder_logreg_model"
-# ENDPOINT_NAME        = "fraudfinder_logreg_endpoint"
-# TRAINING_DS_SIZE     = "1000"
-# EOF
-
-#   filename = "notebook_env.py"
-# }
-
-# resource "google_storage_bucket_object" "notebook_env_file" {
-#   name   = "config/notebook_env.py"
-#   source = "notebook_env.py"
-#   bucket = google_storage_bucket.fraudfinder_bucket.name
-#   depends_on = [
-#     google_storage_bucket.fraudfinder_bucket,
-#     local_file.config_data
-#   ]
-# }
 
 /*
   Create Vertex AI Notebook
