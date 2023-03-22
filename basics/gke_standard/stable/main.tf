@@ -7,20 +7,20 @@
 
 # GKE cluster
 resource "google_container_cluster" "tfer-gke" {
-  provider = google-beta
-  project  = var.gcp_project_id 
-  name     = var.gkeClusterName
-  location = var.gcp_zone 
+  provider    = google-beta
+  project     = var.gcp_project_id
+  name        = var.gkeClusterName
+  location    = var.gcp_zone
   description = var.gkeDescription
-  
-  
+
+
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
   # node pool and immediately delete it.
   remove_default_node_pool = true
 
-  network    = var.gkeNetwork 
-  subnetwork = var.gkeSubnetwork 
+  network    = var.gkeNetwork
+  subnetwork = var.gkeSubnetwork
 
   addons_config {
     gce_persistent_disk_csi_driver_config {
@@ -47,7 +47,7 @@ resource "google_container_cluster" "tfer-gke" {
     evaluation_mode = "DISABLED"
   }
 
-  default_max_pods_per_node   = 110
+  default_max_pods_per_node = 110
   # enable_autopilot            = false
   # enable_binary_authorization = false
   enable_intranode_visibility = false
@@ -56,14 +56,14 @@ resource "google_container_cluster" "tfer-gke" {
   enable_legacy_abac          = false
   enable_shielded_nodes       = true
   enable_tpu                  = false
-  initial_node_count          = var.gkeInitialNodeCount 
+  initial_node_count          = var.gkeInitialNodeCount
 
   # cluster_ipv4_cidr = "10.24.0.0/14"
 
   # Enable IP Aliasing
   ip_allocation_policy {
-#    cluster_ipv4_cidr_block  = "10.24.0.0/14"
-#    services_ipv4_cidr_block = "10.28.0.0/20"
+    #    cluster_ipv4_cidr_block  = "10.24.0.0/14"
+    #    services_ipv4_cidr_block = "10.28.0.0/20"
   }
 
 
@@ -84,7 +84,7 @@ resource "google_container_cluster" "tfer-gke" {
   }
 
   # monitoring_service = "monitoring.googleapis.com/kubernetes"
-#  name               = "gke"
+  #  name               = "gke"
   # network            = "projects/qwiklabs-gcp-04-22edd551c1ab/global/networks/default"
   # subnetwork = "projects/qwiklabs-gcp-04-22edd551c1ab/regions/us-central1/subnetworks/default"
   # network    = google_compute_network.vpc.name
@@ -103,7 +103,7 @@ resource "google_container_cluster" "tfer-gke" {
     }
   }
 
-#  node_version = "1.24.8-gke.2000"
+  #  node_version = "1.24.8-gke.2000"
 
   notification_config {
     pubsub {
@@ -126,7 +126,7 @@ resource "google_container_cluster" "tfer-gke" {
   }
 
   resource_labels = {
-    mesh_id = var.gkeLabelMeshId 
+    mesh_id = var.gkeLabelMeshId
   }
 
   service_external_ips_config {
