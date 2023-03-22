@@ -13,9 +13,13 @@ module "la_gke_std" {
   gcp_zone            = var.gcp_zone
 
   # Customise the GKE cluster 
-  gkeLocation       = gcp_zone 
-  gkeClusterName    = "test-cluster"
-  gkeDescription    = "Lab Cluster"
-  gkeNetwork        = "default"
-  gkeSubnet         = "default"
+  gkeClusterName       = "migration-processing"
+  gkeMachineType       = "e2-standard-4"
+  # gkeImageType         = "WINDOWS_LTSC_CONTAINERD"
+  gkeImageType         = "UBUNTU_CONTAINERD"
+  gkeDescription       = "Migration Kubernetes Cluster"
+  gkeNetwork           = "default"
+  gkeSubnetwork        = "default"
+  gkeIsCustomNetwork   = false
+  gkeInitialNodeCount  = 2 
 }
