@@ -33,23 +33,23 @@ variable "gcp_zone" {
 variable "gkeClusterName" {
   type        = string
   description = "GKE Cluster name."
-  default     = "dev-cluster" 
+  default     = "dev-cluster"
 }
 
 variable "gkeDescription" {
-  type        = string 
+  type        = string
   description = "Description to apply to the cluster."
-  default     = "Lab cluster - using default description" 
+  default     = "Lab cluster - using default description"
 }
 
 variable "gkeMachineType" {
-  type        = string 
+  type        = string
   description = "Machine Type to use."
-  default     = "e2-standard-2" 
+  default     = "e2-standard-2"
 }
 
 variable "gkeImageType" {
-  type        = string 
+  type        = string
   description = "Image Type to use."
   default     = "COS_CONTAINERD"
 }
@@ -63,30 +63,30 @@ variable "gkeIsPrivateCluster" {
 variable "gkeIsPrivateEndpoint" {
   type        = bool
   description = "Set as True use the cluster private endpoint and disable public endpoint. False means cluster cluster/public endpoint can be used."
-  default     = false 
+  default     = false
 }
 
 variable "gkeNetworkingMode" {
-  type        = bool 
+  type        = bool
   description = "Set to true for VPC_NATIVE (IP aliasing), false for ROUTES (default)"
-  default     = false 
+  default     = false
 }
 
 variable "gkeIsAutopilot" {
   type        = bool
   description = "Set as True to utilize custom network resources. False to switch to default network."
-  default     = false 
+  default     = false
 }
 
 variable "gkeIsBinAuth" {
-  type        = bool 
-  description = "Set as True to enable Binary Authorization" 
-  default     = false 
+  type        = bool
+  description = "Set as True to enable Binary Authorization"
+  default     = false
 }
 
 variable "gkeInitialNodeCount" {
-  type        = string 
-  description = "Set the initial number of nodes" 
+  type        = string
+  description = "Set the initial number of nodes"
   default     = "1"
 }
 
@@ -115,7 +115,7 @@ variable "gkeModeRoutes" {
 variable "gkeIsCustomNetwork" {
   type        = bool
   description = "Set as True to utilize custom network resources. False to switch to default network."
-  default     = false 
+  default     = false
 }
 
 # Custom properties with defaults 
