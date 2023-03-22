@@ -14,6 +14,7 @@ module "la_gke_std" {
 
   # Customise the GKE cluster 
   gkeClusterName       = "migration-processing"
+  gkeDescription       = "Migration Kubernetes Cluster"
   gkeMachineType       = "e2-standard-4"
   # gkeImageType         = "WINDOWS_LTSC_CONTAINERD"
   gkeImageType         = "UBUNTU_CONTAINERD"
@@ -21,5 +22,5 @@ module "la_gke_std" {
   gkeNetwork           = "default"
   gkeSubnetwork        = "default"
   gkeIsCustomNetwork   = false
-  gkeInitialNodeCount  = 2 
+  gkeInitialNodeCount  = 1 
 }

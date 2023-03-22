@@ -11,6 +11,8 @@ resource "google_container_cluster" "tfer-gke" {
   project  = var.gcp_project_id 
   name     = var.gkeClusterName
   location = var.gcp_zone 
+  description = var.gkeDescription
+  
   
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
@@ -54,7 +56,7 @@ resource "google_container_cluster" "tfer-gke" {
   enable_legacy_abac          = false
   enable_shielded_nodes       = true
   enable_tpu                  = false
-  initial_node_count          = 1 
+  initial_node_count          = var.gkeInitialNodeCount 
 
   # cluster_ipv4_cidr = "10.24.0.0/14"
 

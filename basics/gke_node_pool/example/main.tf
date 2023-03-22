@@ -13,6 +13,7 @@ module "la_gke_node_pool" {
 
   # Customise the GKE cluster 
   gkeClusterName       = "migration-processing"
+  # gkeClusterName       = module.la_gke_std.gkeClusterName
   gkeMachineType       = "e2-standard-4"
   # gkeImageType         = "WINDOWS_LTSC_CONTAINERD"
   gkeImageType         = "UBUNTU_CONTAINERD"
