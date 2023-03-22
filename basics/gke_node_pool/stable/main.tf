@@ -9,7 +9,7 @@ resource "google_container_node_pool" "tfer-gke_default-pool" {
   # node_count     = 3
   # node_count = var.gkeInitialNodeCount
 
-  cluster            = google_container_cluster.tfer-gke.name
+  cluster            = var.gkeClusterName
   initial_node_count = var.gkeInitialNodeCount
   location           = var.gcp_zone
 
