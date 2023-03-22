@@ -2,7 +2,6 @@
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/using_gke_with_terraform
 #
 
-
 ##---------------------------------------------------------------------------
 ## Container Cluster: Separate Managed Node Pool Example
 
@@ -23,16 +22,16 @@ resource "google_container_cluster" "tfer-gke" {
 
   addons_config {
     gce_persistent_disk_csi_driver_config {
-      enabled = "true"
+      enabled = true
     }
 
     network_policy_config {
-      disabled = "true"
+      disabled = true
     }
   }
 
   cluster_autoscaling {
-    enabled = "false"
+    enabled = false
   }
 
 
@@ -46,15 +45,15 @@ resource "google_container_cluster" "tfer-gke" {
     evaluation_mode = "DISABLED"
   }
 
-  default_max_pods_per_node   = "110"
-  enable_autopilot            = "false"
-  enable_binary_authorization = "false"
-  enable_intranode_visibility = "false"
-  enable_kubernetes_alpha     = "false"
-  enable_l4_ilb_subsetting    = "false"
-  enable_legacy_abac          = "false"
-  enable_shielded_nodes       = "true"
-  enable_tpu                  = "false"
+  default_max_pods_per_node   = 110
+  # enable_autopilot            = false
+  # enable_binary_authorization = false
+  enable_intranode_visibility = false
+  enable_kubernetes_alpha     = false
+  enable_l4_ilb_subsetting    = false
+  enable_legacy_abac          = false
+  enable_shielded_nodes       = true
+  enable_tpu                  = false
   initial_node_count          = 1 
 
   # cluster_ipv4_cidr = "10.24.0.0/14"
@@ -74,7 +73,7 @@ resource "google_container_cluster" "tfer-gke" {
 
   master_auth {
     client_certificate_config {
-      issue_client_certificate = "false"
+      issue_client_certificate = false
     }
   }
 
@@ -90,7 +89,7 @@ resource "google_container_cluster" "tfer-gke" {
   # subnetwork = google_compute_subnetwork.subnet.name
 
   network_policy {
-    enabled  = "false"
+    enabled  = false
     provider = "PROVIDER_UNSPECIFIED"
   }
 
@@ -106,16 +105,16 @@ resource "google_container_cluster" "tfer-gke" {
 
   notification_config {
     pubsub {
-      enabled = "false"
+      enabled = false
     }
   }
 
   private_cluster_config {
-    enable_private_endpoint = "false"
-    enable_private_nodes    = "false"
+    enable_private_endpoint = false
+    enable_private_nodes    = false
 
     master_global_access_config {
-      enabled = "false"
+      enabled = false
     }
   }
 
@@ -129,7 +128,7 @@ resource "google_container_cluster" "tfer-gke" {
   }
 
   service_external_ips_config {
-    enabled = "false"
+    enabled = false
   }
 
   workload_identity_config {
