@@ -34,6 +34,9 @@ resource "google_container_cluster" "tfer-gke" {
 
   cluster_autoscaling {
     enabled = false
+    auto_provisioning_defaults {
+      image_type = var.gkeImageType 
+    }
   }
 
 
@@ -136,7 +139,4 @@ resource "google_container_cluster" "tfer-gke" {
     workload_pool = "${var.gcp_project_id}.svc.id.goog"
   }
 
-  auto_provisioning_defaults {
-    image_type = var.gkeImageType 
-  }
 }
