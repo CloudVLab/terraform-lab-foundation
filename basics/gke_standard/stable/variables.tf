@@ -54,6 +54,12 @@ variable "gkeImageType" {
   default     = "COS_CONTAINERD"
 }
 
+variable "gkeRemoveDefaultNodePool" {
+  type        = bool
+  description = "Set as True to delete Node Pool. Set as False to default the cluster"
+  default     = true
+}
+
 variable "gkeIsPrivateCluster" {
   type        = bool
   description = "Set as True to spin up a private, secure cluster. False to spin up a public cluster."
