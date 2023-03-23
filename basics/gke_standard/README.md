@@ -5,6 +5,10 @@
 | Stable  | TBC    | 
 
 Create a Terraform configuration
+To use this module ensure the following are added to your project:
+
+* GKE STANDARD
+* GKE NODE POOL 
 
 ## Using Input Values 
 
