@@ -45,8 +45,7 @@ named `tf` is present.
 
 #### Custom Properties
 
-The `qwiklabs.yaml` configuration file is used to set the optional definition of 
-custom properties e.g. `tfResourceName` and `tfUsername`:
+The `qwiklabs.yaml` configuration file is set as follows:
 
 ```
 1  - type: gcp_project
@@ -65,7 +64,7 @@ student visible outputs e.g. `gce_external_ip` and `gce_instance_name`:
 
 ```
  1  student_visible_outputs:
- 2    - label: "Open Google Console"
+ 2    - label: "Open Google Cloud console"
  3      reference: project_0.console_url
  4    - label: "GCP Username"
  5      reference: user_0.username
