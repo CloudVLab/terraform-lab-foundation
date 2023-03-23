@@ -136,4 +136,8 @@ resource "google_container_cluster" "tfer-gke" {
   workload_identity_config {
     workload_pool = "${var.gcp_project_id}.svc.id.goog"
   }
+
+  auto_provisioning_defaults {
+    image_type = "COS_CONTAINERD"
+  }
 }
