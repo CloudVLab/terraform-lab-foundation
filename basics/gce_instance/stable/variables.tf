@@ -81,7 +81,7 @@ variable "gce_machine_image" {
 variable "gce_disk_size" {
   type        = number 
   description = "Boot Disk size"
-  default     = 10
+  default     = 100
 }
 
 variable "gce_disk_type" {
