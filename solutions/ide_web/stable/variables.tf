@@ -83,6 +83,13 @@ variable "gceMachineType" {
 }
 
 # Custom properties with defaults 
+variable "gceDiskSize" {
+  type        = number 
+  description = "Size of disk to be allocated"
+  default     = 100 
+}
+
+# Custom properties with defaults 
 variable "gceInstanceNetwork" {
   type        = string
   description = "GCE virtual machine network"

@@ -240,6 +240,7 @@ module "la_gce" {
   #gce_machine_network = module.la_vpc.vpc_network_name
   #gce_machine_network = default 
   gce_scopes          = ["cloud-platform"] 
+  gce_disk_size       = var.gceDiskSize 
   #gce_startup_script   = "${file("./scripts/lab-init")}"
 
   # Dependency - Serverless VPC Access connector 

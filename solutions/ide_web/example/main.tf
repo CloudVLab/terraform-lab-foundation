@@ -29,10 +29,11 @@ module "la_ide" {
   gcp_project_id  = var.gcp_project_id 
   gcp_region      = var.gcp_region 
   gcp_zone        = var.gcp_zone 
-  gcp_username    = var.tfUsername
+  # gcp_username    = var.tfUsername
 
   ## Properties: GCE 
   gceMachineImage    = "web-codeserver" 
+  gceDiskSize        = 100 
 
   ## Properties: Cloud Run
   gcrRegion        = var.gcp_region 
