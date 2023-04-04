@@ -24,6 +24,6 @@ module "la_sa_role" {
 
   ## Custom Properties
   # Pass reference to the student username
-  iam_sa_name  = "test" 
+  iam_sa_name  = "test-sa" 
   iam_sa_roles = ["roles/viewer"] 
 }
