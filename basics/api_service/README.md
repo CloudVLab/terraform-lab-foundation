@@ -21,7 +21,7 @@ gcp_zone       = "us-central1-a"
 #### Custom Properties
 
 ```bash
-api_service_name = "run.googleapis.com"
+api_services = ["run.googleapis.com"]
 ```
 
 ## Accessing Output Values 
