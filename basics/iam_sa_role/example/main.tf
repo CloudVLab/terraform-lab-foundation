@@ -2,6 +2,15 @@
 # Local:  basics/iam_sa_role/dev
 # Remote: github//basics/iam_sa_role/stable
 
+## https://www.terraform.io/language/values/locals#using-local-values
+## EXPECTS: 
+## Output Variable from Module: la_service_account `module.la_sa.iam_service_account`
+## Reference: https://cloud.google.com/billing/docs/reference/rest/v1/Policy#Binding
+## TODO: Create/Set Service Account value
+locals {
+  service_account = "serviceAccount:${module.la_sa.iam_service_account}@${var.gcp_project_id}.iam.gserviceaccount.com"
+}
+
 module "la_sa_role" {
   ## NOTE: When changing the `source` parameter
   ## `terraform init` is required
@@ -23,7 +32,7 @@ module "la_sa_role" {
   gcp_zone       = var.gcp_zone 
 
   ## Custom Properties
-  # Pass reference to the student username
-  iam_sa_name  = "test-sa" 
+  # Pass the service account as principle member - non authorative binding
+  iam_sa_name  = local.service_account
   iam_sa_roles = ["roles/viewer"] 
 }
