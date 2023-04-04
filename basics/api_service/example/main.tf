@@ -4,7 +4,7 @@
 
 # Module: Google Compute Engine
 module "la_api_run" {
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/api_service/stable"
+  source = "github.com/CloudVLab/terraform-lab-foundation//basics/api_service/dev"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
@@ -12,5 +12,5 @@ module "la_api_run" {
   gcp_zone       = var.gcp_zone
 
   # Customise the GCE instance
-  api_service_name = "run.googleapis.com"  
+  api_services = [ "run.googleapis.com" ] 
 }
