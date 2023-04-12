@@ -146,17 +146,17 @@ resource "google_compute_instance" "asm_installer" {
   depends_on = [ google_service_account_iam_member.owner_sa_role_bind, google_container_cluster.gke ]
 }
 
-resource "google_project_iam_binding" "binding" {
-  project = var.gcp_project_id
-  role    = "roles/iam.serviceAccountOpenIdTokenCreator"
-  members = ["user:${var.gcp_username}@qwiklabs.net"]
-}
+# resource "google_project_iam_binding" "binding" {
+#   project = var.gcp_project_id
+#   role    = "roles/iam.serviceAccountOpenIdTokenCreator"
+#   members = ["user:${var.gcp_username}@qwiklabs.net"]
+# }
 
-resource "google_project_iam_binding" "binding1" {
-  project = var.gcp_project_id
-  role    = "roles/iam.serviceAccountTokenCreator"
-  members = ["user:${var.gcp_username}@qwiklabs.net"]
-}
+# resource "google_project_iam_binding" "binding1" {
+#   project = var.gcp_project_id
+#   role    = "roles/iam.serviceAccountTokenCreator"
+#   members = ["user:${var.gcp_username}@qwiklabs.net"]
+# }
 
 resource "google_project_iam_member" "compute-owner-bind1" {
   project = var.gcp_project_id
