@@ -20,10 +20,12 @@ gcp_zone       = "us-central1-a"
 
 #### Custom Properties
 
+Override in `qwiklabs.yaml` file custom_properties stanza.
+
 ```
 gke_cluster_name = "tester-gke"
-gcp_username   = "name@domain.com"
-ssh_pvt_key = 
+gcp_username   = user_0.local_username
+ssh_pvt_key = user_0.ssh_key
 ```
 
 ## Accessing Output Values 

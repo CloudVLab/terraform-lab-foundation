@@ -92,9 +92,80 @@ resource "google_container_cluster" "gke" {
   depends_on = [ module.mesh_api ]
 }
 
-# Compute SA needed to run 
+# Compute Engine default service account 
 resource "google_project_iam_member" "compute-owner-bind" {
   project = var.gcp_project_id
   role    = "roles/owner"
+  member  = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+}
+
+
+resource "google_service_account" "service_account" {
+  account_id   = "compute-startup"
+  display_name = "SA for lab startup"
+}
+
+resource "google_service_account_iam_member" "owner_sa_role_bind" {
+  service_account_id = data.google_compute_default_service_account.default.name
+  role               = "roles/owner"
+  member             = "serviceAccount:${google_service_account.service_account.email}"
+}
+
+resource "google_compute_instance" "asm_installer" {
+  name         = "asm-installer"
+  machine_type = "e2-standard-2"
+  zone         = var.gcp_zone
+  tags         = ["http", "https"]
+  
+  metadata_startup_script = file("${path.module}/install.sh")
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-11"
+    }
+  }
+  
+  network_interface {
+    network = "default"
+    access_config {
+      // Ephemeral public IP
+    }
+  }
+
+  service_account {
+    scopes = ["cloud-platform"]
+  }
+
+  metadata = {
+    gcp_username = "${var.gcp_username}"
+    gcp_zone = "${var.gcp_zone}"
+    gcp_region = "${var.gcp_region}"
+    gke_cluster_name = "${var.gke_cluster_name}"
+  }
+
+  depends_on = [ google_service_account_iam_member.owner_sa_role_bind, google_container_cluster.gke ]
+}
+
+resource "google_project_iam_binding" "binding" {
+  project = var.gcp_project_id
+  role    = "roles/iam.serviceAccountOpenIdTokenCreator"
+  members = ["user:${var.gcp_username}@qwiklabs.net"]
+}
+
+resource "google_project_iam_binding" "binding1" {
+  project = var.gcp_project_id
+  role    = "roles/iam.serviceAccountTokenCreator"
+  members = ["user:${var.gcp_username}@qwiklabs.net"]
+}
+
+resource "google_project_iam_member" "compute-owner-bind1" {
+  project = var.gcp_project_id
+  role    = "roles/iam.serviceAccountOpenIdTokenCreator"
+  member  = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+}
+
+resource "google_project_iam_member" "compute-owner-bind2" {
+  project = var.gcp_project_id
+  role    = "roles/iam.serviceAccountTokenCreator"
   member  = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
 }
