@@ -2,8 +2,8 @@
 # Local:  modules/[channel]
 # Remote: github.com://CloudVLab/terraform-lab-foundation//[module]/[channel]
 
-# Module: Google Compute Engine
-module "la_api_run" {
+# Module: Enable Google APIs
+module "la_api_batch" {
   source = "github.com/CloudVLab/terraform-lab-foundation//basics/api_service/dev"
 
   # Pass values to the module
