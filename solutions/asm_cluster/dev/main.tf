@@ -53,7 +53,7 @@ resource "google_container_cluster" "gke" {
 
   node_pool {
     node_config {
-      machine_type = "n1-standard-2"
+      machine_type = "e2-standard-4"
 
       oauth_scopes = [
         "https://www.googleapis.com/auth/cloud-platform"
