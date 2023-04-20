@@ -17,6 +17,6 @@ steps:
   dir: '${_TERRAFORM_DIR}' 
 substitutions:  
   _PROVIDER_VER: 1.0.1
-  _TERRAFORM_DIR: basics/asm_cluster/stable
+  _TERRAFORM_DIR: solutions/asm_cluster/stable
 tags: ['terraform-lab-foundation','asm', 'cluster']  
 timeout: 1200s
