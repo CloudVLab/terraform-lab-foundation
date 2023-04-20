@@ -9,7 +9,12 @@ Create a GKE cluster with Anthos Service Mesh installed based on a Terraform con
 
 ## Using Input Values 
 
-__NOTE:__ Qwiklabs requires some values to be defined as part of the provisioning process. 
+__NOTE:__ Qwiklabs requires some values to be defined as part of the provisioning process.
+
+#### Variant
+
+In order to consume this module, you must use a variant which allows at least 8vCPUs or more
+as per Anthos Service Mesh requirements.
 
 #### Qwiklabs Properties
 ```
