@@ -19,11 +19,11 @@ variable "gcp_service_list" {
     "cloudresourcemanager.googleapis.com",
     "compute.googleapis.com",
     "containerregistry.googleapis.com",
-    "dataflow.googleapis.com",
+    # "dataflow.googleapis.com",
     "iam.googleapis.com",
     "notebooks.googleapis.com",
-    "pubsub.googleapis.com",
-    "run.googleapis.com",
+    # "pubsub.googleapis.com",
+    # "run.googleapis.com",
   ]
 }
 
@@ -90,7 +90,7 @@ echo "Installing python packages" >> ${local.NOTEBOOK_LOG} 2&1
 su - jupyter -c "pip install --upgrade --no-warn-conflicts --no-warn-script-location --user \
     google-cloud-bigquery \
     google-cloud-pipeline-components \
-    google-cloud-aiplatform>=1.25.0 \
+    google-cloud-aiplatform \
     seaborn \
     kfp" >> ${local.NOTEBOOK_LOG} 2>&1
 
@@ -128,10 +128,10 @@ resource "google_notebooks_instance" "genai_notebook" {
   
   depends_on = [google_project_service.gcp_services, google_storage_bucket_object.notebook_config_script]
 }
+
 /*
   Assign Appropriate IAM Permissions to the compute SA
 */
-
 
 variable "compute_service_account_project_iam_list" {
   description = "Roles needed for compute SA"
@@ -142,10 +142,10 @@ variable "compute_service_account_project_iam_list" {
     "roles/bigquery.admin",
     "roles/cloudbuild.builds.editor",
     "roles/cloudbuild.integrations.editor",
-    "roles/cloudfunctions.admin",
+    # "roles/cloudfunctions.admin",
     "roles/iam.serviceAccountAdmin",
     "roles/notebooks.admin",
-    "roles/pubsub.admin",
+    # "roles/pubsub.admin",
     "roles/resourcemanager.projectIamAdmin",
     "roles/storage.admin",
   ]
@@ -162,23 +162,23 @@ resource "google_project_iam_member" "servacct-compute-add-permissions" {
   Assign Appropriate IAM Permissions to the Cloud Build SA
 */
         
-variable "cloud_build_service_account_project_iam_list" {
-  description = "Roles needed for compute SA"
-  type        = list(string)
-  default = [
-    "roles/run.admin",
-    "roles/cloudbuild.serviceAgent",
-    "roles/aiplatform.admin",
-    "roles/cloudbuild.builds.editor",
-    "roles/cloudbuild.integrations.editor",
-    "roles/iam.serviceAccountAdmin",
-  ]
-}
+# variable "cloud_build_service_account_project_iam_list" {
+#   description = "Roles needed for compute SA"
+#   type        = list(string)
+#   default = [
+#     "roles/run.admin",
+#     "roles/cloudbuild.serviceAgent",
+#     "roles/aiplatform.admin",
+#     "roles/cloudbuild.builds.editor",
+#     "roles/cloudbuild.integrations.editor",
+#     "roles/iam.serviceAccountAdmin",
+#   ]
+# }
 
-resource "google_project_iam_member" "servacct-cloud-build-add-permissions" {
-  for_each = toset(var.cloud_build_service_account_project_iam_list)
-  project  = var.gcp_project_id
-  role     = each.key
-  member   = "serviceAccount:${local.cloud_build_service_account_email}"
-  depends_on = [google_notebooks_instance.genai_notebook]
-}
+# resource "google_project_iam_member" "servacct-cloud-build-add-permissions" {
+#   for_each = toset(var.cloud_build_service_account_project_iam_list)
+#   project  = var.gcp_project_id
+#   role     = each.key
+#   member   = "serviceAccount:${local.cloud_build_service_account_email}"
+#   depends_on = [google_notebooks_instance.genai_notebook]
+# }
