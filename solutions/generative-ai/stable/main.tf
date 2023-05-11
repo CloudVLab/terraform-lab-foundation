@@ -79,23 +79,21 @@ resource "google_storage_bucket" "lab_config_bucket" {
 
 resource "local_file" "notebook_config" {
 
-  content = <<EOF
-echo "Current user: `id`" >> ${local.NOTEBOOK_LOG} 2>&1
-echo "Changing dir to /home/jupyter" >> ${local.NOTEBOOK_LOG} 2>&1
-cd /home/jupyter
-echo "Cloning generative-ai from github" >> ${local.NOTEBOOK_LOG} 2>&1
-su - jupyter -c "git clone https://github.com/GoogleCloudPlatform/generative-ai.git" >> ${local.NOTEBOOK_LOG} 2>&1
-echo "Current user: `id`" >> ${local.NOTEBOOK_LOG} 2>&1
-echo "Installing python packages" >> ${local.NOTEBOOK_LOG} 2&1
-su - jupyter -c "pip install --upgrade --no-warn-conflicts --no-warn-script-location --user \
-    google-cloud-bigquery \
-    google-cloud-pipeline-components \
-    google-cloud-aiplatform \
-    seaborn \
-    kfp" >> ${local.NOTEBOOK_LOG} 2>&1
-
-EOF
-
+  content  = <<EOF
+  echo "Current user: `id`" >> ${local.NOTEBOOK_LOG} 2>&1
+  echo "Changing dir to /home/jupyter" >> ${local.NOTEBOOK_LOG} 2>&1
+  cd /home/jupyter
+  echo "Cloning generative-ai from github" >> ${local.NOTEBOOK_LOG} 2>&1
+  su - jupyter -c "git clone https://github.com/GoogleCloudPlatform/generative-ai.git" >> ${local.NOTEBOOK_LOG} 2>&1
+  echo "Current user: `id`" >> ${local.NOTEBOOK_LOG} 2>&1
+  echo "Installing python packages" >> ${local.NOTEBOOK_LOG} 2&1
+  su - jupyter -c "pip install --upgrade --no-warn-conflicts --no-warn-script-location --user \
+      google-cloud-bigquery \
+      google-cloud-pipeline-components \
+      google-cloud-aiplatform \
+      seaborn \
+      kfp" >> ${local.NOTEBOOK_LOG} 2>&1
+  EOF
   filename = "notebook_config.sh"
 }
 
@@ -114,18 +112,18 @@ resource "google_storage_bucket_object" "notebook_config_script" {
 */
 
 resource "google_notebooks_instance" "genai_notebook" {
-  name               = "generative-ai-jupyterlab"
+  name               = var.sme_notebook_name
   project            = var.gcp_project_id
   location           = var.gcp_zone
-  machine_type       = "n1-standard-4" 
+  machine_type       = var.sme_machine_type
   install_gpu_driver = false
   vm_image { // https://cloud.google.com/vertex-ai/docs/workbench/user-managed/images
-    project      = "deeplearning-platform-release"
-    image_family = "tf-ent-2-11-cu113-notebooks-debian-11-py310"
+    project      = var.sme_image_project
+    image_family = var.sme_image_family
   }
 
   post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/notebook_config.sh"
-  
+
   depends_on = [google_project_service.gcp_services, google_storage_bucket_object.notebook_config_script]
 }
 
@@ -157,28 +155,3 @@ resource "google_project_iam_member" "servacct-compute-add-permissions" {
   role     = each.key
   member   = "serviceAccount:${local.compute_service_account_email}"
 }
-
-/*
-  Assign Appropriate IAM Permissions to the Cloud Build SA
-*/
-        
-# variable "cloud_build_service_account_project_iam_list" {
-#   description = "Roles needed for compute SA"
-#   type        = list(string)
-#   default = [
-#     "roles/run.admin",
-#     "roles/cloudbuild.serviceAgent",
-#     "roles/aiplatform.admin",
-#     "roles/cloudbuild.builds.editor",
-#     "roles/cloudbuild.integrations.editor",
-#     "roles/iam.serviceAccountAdmin",
-#   ]
-# }
-
-# resource "google_project_iam_member" "servacct-cloud-build-add-permissions" {
-#   for_each = toset(var.cloud_build_service_account_project_iam_list)
-#   project  = var.gcp_project_id
-#   role     = each.key
-#   member   = "serviceAccount:${local.cloud_build_service_account_email}"
-#   depends_on = [google_notebooks_instance.genai_notebook]
-# }
