@@ -2,7 +2,7 @@
 BRANCH="main"
 CHANNEL="STABLE"
 TYPE="solutions"
-MODULE="fraudfinder"
+MODULE="generative-ai"
 
 # Set the endpoint for the module
 if [ "$CHANNEL" = "STABLE" ]; then
