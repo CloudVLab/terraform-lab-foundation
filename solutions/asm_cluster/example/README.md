@@ -56,6 +56,13 @@ Update the `qwiklabs.yaml` to include startup_script configuration i.e. Terrafor
 5    startup_script:
 6      type: qwiklabs
 7      path: tf
+8      custom_properties:
+9       - key: gcp_username
+10        reference: user_0.local_username
+11      - key: ssh_pvt_key
+12        reference: user_0.ssh_key
+13      - key: gke_cluster_name
+14        value: "asm-cluster-test"
 ```
 
 
