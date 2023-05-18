@@ -16,6 +16,7 @@ steps:
   - 'CLUSTER_NAME=${_CLUSTER_NAME}'
   - 'ASM_VERSION=${_ASM_VERSION}'
   - 'KUBECONFIG=${_KUBECONFIG}'
+  - 'SA=${_SA}'
   script: |
     #!/bin/bash
 
@@ -41,8 +42,9 @@ steps:
     --enable_all \
     --option legacy-default-ingressgateway \
     --ca mesh_ca \
+    --service-account $SA \
     --enable_gcp_components
-
+   
     echo "Enabling Sidecar Injection..."
     kubectl label namespace default istio-injection=enabled --overwrite
 timeout: 900s
@@ -54,6 +56,7 @@ substitutions:
   _CLUSTER_NAME: cluster_name
   _ASM_VERSION: '1.16'
   _KUBECONFIG: ~/.kubeconfig
+  _SA: service_account 
 options:
   substitution_option: 'ALLOW_LOOSE'
 EOF
