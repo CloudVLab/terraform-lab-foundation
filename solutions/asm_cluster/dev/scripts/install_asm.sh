@@ -6,9 +6,8 @@ gcloud config set project "$1"
 # Create CloudBuild script 
 cat << 'EOF' > cloudbuild.yaml 
 steps:
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
 - id: startup_script 
-  name: 'ubuntu'
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   env:
   - 'PROJECT_ID=${_PROJECT_ID}'
   - 'PROJECT_NUMBER=${_PROJECT_NUMBER}'
@@ -19,9 +18,7 @@ steps:
   - 'KUBECONFIG=${_KUBECONFIG}'
   script: |
     #!/bin/bash
-
     apt-get update && apt-get install kubectl google-cloud-sdk-gke-gcloud-auth-plugin jq git netcat -y
-    gcloud components install kubectl
     gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE --project $PROJECT_ID
     kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=$GCP_USERNAME@qwiklabs.net
     
