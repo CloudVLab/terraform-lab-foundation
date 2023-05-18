@@ -31,7 +31,8 @@ module "la_sa_role" {
   # container.admin - ASM management
   # iam.serviceAccountUser - View enabled services
   iam_sa_name  = local.cloudbuild_sa
-  iam_sa_roles = ["roles/editor","roles/container.admin","roles/container.developer","roles/iam.serviceAccountAdmin","roles/iam.serviceAccountUser"] 
+  # Ref: https://cloud.google.com/service-mesh/docs/installation-permissions
+  iam_sa_roles = ["roles/gkehub.admin","roles/container.admin","roles/container.developer","roles/iam.serviceAccountAdmin","roles/iam.serviceAccountUser", "roles/serviceusage.serviceUsageAdmin","roles/privateca.admin"] 
   # iam_sa_roles = ["roles/container.admin"] 
 }
 
