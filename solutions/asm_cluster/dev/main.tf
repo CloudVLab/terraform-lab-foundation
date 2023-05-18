@@ -32,7 +32,7 @@ module "la_sa_role" {
   # iam.serviceAccountUser - View enabled services
   iam_sa_name  = local.cloudbuild_sa
   # Ref: https://cloud.google.com/service-mesh/docs/installation-permissions
-  iam_sa_roles = ["roles/gkehub.admin","roles/container.admin","roles/container.developer","roles/iam.serviceAccountAdmin","roles/iam.serviceAccountUser", "roles/serviceusage.serviceUsageAdmin","roles/privateca.admin"] 
+  iam_sa_roles = ["roles/gkehub.admin","roles/container.admin","roles/meshconfig.admin","roles/resourcemanager.projectIamAdmin","roles/iam.serviceAccountAdmin","roles/iam.serviceAccountUser","servicemanagement.admin","roles/privateca.admin","roles/container.developer", "roles/serviceusage.serviceUsageAdmin"] 
   # iam_sa_roles = ["roles/container.admin"] 
 }
 
