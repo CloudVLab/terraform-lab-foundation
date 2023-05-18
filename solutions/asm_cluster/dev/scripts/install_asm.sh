@@ -19,7 +19,6 @@ steps:
   script: |
     #!/bin/bash
 
-    # apt-get update && apt-get install kubectl google-cloud-sdk-gke-gcloud-auth-plugin jq git netcat -y
     apt-get update && apt-get install kubectl jq git netcat -y
     gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE --project $PROJECT_ID
     kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=$GCP_USERNAME@qwiklabs.net
@@ -27,11 +26,6 @@ steps:
     curl -L https://storage.googleapis.com/csm-artifacts/asm/asmcli_1.16 -o asmcli
     chmod +x asmcli
     mv asmcli /usr/local/bin/asmcli
-    # install -o root -g root -m 0755 asmcli /usr/local/bin/asmcli
-    
-    # export SCRIPTPATH=$(dirname $(realpath $0))
-    # cd $SCRIPTPATH
-    # export WORK_DIR=$SCRIPTPATH
 
     asmcli install \
     --project_id $PROJECT_ID \

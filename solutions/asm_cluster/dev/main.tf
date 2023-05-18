@@ -12,7 +12,7 @@ data "google_project" "project" {
 locals {
   # Use the Google project object
   cloudbuild_sa = "serviceAccount:${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
-  compute_sa    = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
+  # compute_sa    = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
 }
 
 #-----------------------------------------------------------------------------
@@ -32,6 +32,7 @@ module "la_sa_role" {
   # iam.serviceAccountUser - View enabled services
   iam_sa_name  = local.cloudbuild_sa
   # Ref: https://cloud.google.com/service-mesh/docs/installation-permissions
+  # in-cluster ASM role permissions
   iam_sa_roles = ["roles/gkehub.admin","roles/container.admin","roles/meshconfig.admin","roles/resourcemanager.projectIamAdmin","roles/iam.serviceAccountAdmin","roles/iam.serviceAccountUser","servicemanagement.admin","roles/privateca.admin","roles/container.developer", "roles/serviceusage.serviceUsageAdmin"] 
   # iam_sa_roles = ["roles/container.admin"] 
 }
@@ -108,7 +109,6 @@ module "cloudbuild_script" {
   version = "~> 3.0.1"
   platform = "linux"
   create_cmd_entrypoint = "chmod +x ${path.module}/scripts/install_asm.sh;${path.module}/scripts/install_asm.sh"
-  # create_cmd_body = "${var.gcp_project_id} ${data.google_project.project.number} ${var.gcp_zone} ${var.gcp_username} ${var.gke_cluster_name} ${local.compute_sa}"
   create_cmd_body = "${var.gcp_project_id} ${data.google_project.project.number} ${var.gcp_zone} ${var.gcp_username} ${var.gke_cluster_name}"
   skip_download = false
   upgrade = false
