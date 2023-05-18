@@ -37,7 +37,6 @@ steps:
     --cluster_name $CLUSTER_NAME \
     --cluster_location $ZONE \
     --fleet_id $PROJECT_ID \
-    #--output_dir ./asm_output \
     --enable_all \
     --option legacy-default-ingressgateway \
     --ca mesh_ca \
