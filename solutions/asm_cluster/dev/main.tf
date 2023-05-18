@@ -31,8 +31,8 @@ module "la_sa_role" {
   # container.admin - ASM management
   # iam.serviceAccountUser - View enabled services
   iam_sa_name  = local.cloudbuild_sa
-  iam_sa_roles = ["roles/container.admin", "roles/iam.serviceAccountUser"] 
-  # iam_sa_roles = ["roles/container.developer"] 
+  iam_sa_roles = ["roles/editor","roles/container.developer","roles/iam.serviceAccountUser"] 
+  # iam_sa_roles = ["roles/container.admin"] 
 }
 
 module "la_api_batch" {
@@ -107,7 +107,8 @@ module "cloudbuild_script" {
   version = "~> 3.0.1"
   platform = "linux"
   create_cmd_entrypoint = "chmod +x ${path.module}/scripts/install_asm.sh;${path.module}/scripts/install_asm.sh"
-  create_cmd_body = "${var.gcp_project_id} ${data.google_project.project.number} ${var.gcp_zone} ${var.gcp_username} ${var.gke_cluster_name} ${local.compute_sa}"
+  # create_cmd_body = "${var.gcp_project_id} ${data.google_project.project.number} ${var.gcp_zone} ${var.gcp_username} ${var.gke_cluster_name} ${local.compute_sa}"
+  create_cmd_body = "${var.gcp_project_id} ${data.google_project.project.number} ${var.gcp_zone} ${var.gcp_username} ${var.gke_cluster_name}"
   skip_download = false
   upgrade = false
   gcloud_sdk_version = "358.0.0"

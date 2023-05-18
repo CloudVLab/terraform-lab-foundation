@@ -16,7 +16,6 @@ steps:
   - 'CLUSTER_NAME=${_CLUSTER_NAME}'
   - 'ASM_VERSION=${_ASM_VERSION}'
   - 'KUBECONFIG=${_KUBECONFIG}'
-  - 'SA=${_SA}'
   script: |
     #!/bin/bash
 
@@ -42,7 +41,6 @@ steps:
     --enable_all \
     --option legacy-default-ingressgateway \
     --ca mesh_ca \
-    --service-account $SA \
     --enable_gcp_components
    
     echo "Enabling Sidecar Injection..."
@@ -56,10 +54,9 @@ substitutions:
   _CLUSTER_NAME: cluster_name
   _ASM_VERSION: '1.16'
   _KUBECONFIG: ~/.kubeconfig
-  _SA: service_account 
 options:
   substitution_option: 'ALLOW_LOOSE'
 EOF
 
 # Initiate CloudBuild Trigger 
-gcloud builds submit --config=cloudbuild.yaml --project="$1" --substitutions=_PROJECT_ID="$1",_PROJECT_NUMBER="$2",_ZONE="$3",_GCP_USERNAME="$4",_CLUSTER_NAME="$5",_SA="$6"
+gcloud builds submit --config=cloudbuild.yaml --project="$1" --substitutions=_PROJECT_ID="$1",_PROJECT_NUMBER="$2",_ZONE="$3",_GCP_USERNAME="$4",_CLUSTER_NAME="$5"
