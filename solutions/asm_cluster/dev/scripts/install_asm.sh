@@ -62,4 +62,4 @@ options:
 EOF
 
 # Initiate CloudBuild Trigger 
-gcloud builds submit --config=cloudbuild.yaml --project="$1" --substitutions=_PROJECT_ID="$1",_PROJECT_NUMBER="$2",_ZONE="$3",_GCP_USERNAME="$4",_CLUSTER_NAME="$5"
+gcloud builds submit --config=cloudbuild.yaml --project="$1" --substitutions=_PROJECT_ID="$1",_PROJECT_NUMBER="$2",_ZONE="$3",_GCP_USERNAME="$4",_CLUSTER_NAME="$5",_SA="$6"

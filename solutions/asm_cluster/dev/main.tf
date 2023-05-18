@@ -11,7 +11,8 @@ data "google_project" "project" {
 #-----------------------------------------------------------------------------
 locals {
   # Use the Google project object
-  service_account = "serviceAccount:${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
+  cloudbuild_sa = "serviceAccount:${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
+  compute_sa    = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
 }
 
 #-----------------------------------------------------------------------------
@@ -29,7 +30,7 @@ module "la_sa_role" {
   # Pass the service account as principle member - non authorative binding
   # container.admin - ASM management
   # iam.serviceAccountUser - View enabled services
-  iam_sa_name  = local.service_account
+  iam_sa_name  = local.cloudbuild_sa
   iam_sa_roles = ["roles/container.admin", "roles/iam.serviceAccountUser"] 
   # iam_sa_roles = ["roles/container.developer"] 
 }
@@ -106,7 +107,7 @@ module "cloudbuild_script" {
   version = "~> 3.0.1"
   platform = "linux"
   create_cmd_entrypoint = "chmod +x ${path.module}/scripts/install_asm.sh;${path.module}/scripts/install_asm.sh"
-  create_cmd_body = "${var.gcp_project_id} ${data.google_project.project.number} ${var.gcp_zone} ${var.gcp_username} ${var.gke_cluster_name}"
+  create_cmd_body = "${var.gcp_project_id} ${data.google_project.project.number} ${var.gcp_zone} ${var.gcp_username} ${var.gke_cluster_name} ${local.compute_sa}"
   skip_download = false
   upgrade = false
   gcloud_sdk_version = "358.0.0"
