@@ -31,7 +31,7 @@ module "la_sa_role" {
   # container.admin - ASM management
   # iam.serviceAccountUser - View enabled services
   iam_sa_name  = local.cloudbuild_sa
-  iam_sa_roles = ["roles/editor","roles/container.admin","roles/iam.serviceAccountAdmin","roles/container.developer"] 
+  iam_sa_roles = ["roles/editor","roles/container.admin","roles/container.developer","roles/iam.serviceAccountAdmin","roles/iam.serviceAccountUser"] 
   # iam_sa_roles = ["roles/container.admin"] 
 }
 
