@@ -19,7 +19,8 @@ steps:
   script: |
     #!/bin/bash
 
-    apt-get update && apt-get install kubectl google-cloud-sdk-gke-gcloud-auth-plugin jq git netcat -y
+    # apt-get update && apt-get install kubectl google-cloud-sdk-gke-gcloud-auth-plugin jq git netcat -y
+    apt-get update && apt-get install kubectl jq git netcat -y
     gcloud container clusters get-credentials $CLUSTER_NAME --zone $ZONE --project $PROJECT_ID
     kubectl create clusterrolebinding cluster-admin-binding --clusterrole=cluster-admin --user=$GCP_USERNAME@qwiklabs.net
     

@@ -28,9 +28,9 @@ module "la_sa_role" {
 
   # Pass the service account as principle member - non authorative binding
   # container.admin - ASM management
-  # serviceusage.serviceUsageViewer - View enabled services
+  # iam.serviceAccountUser - View enabled services
   iam_sa_name  = local.service_account
-  iam_sa_roles = ["roles/container.admin", "roles/serviceusage.serviceUsageViewer"] 
+  iam_sa_roles = ["roles/container.admin", "roles/iam.serviceAccountUser"] 
   # iam_sa_roles = ["roles/container.developer"] 
 }
 
