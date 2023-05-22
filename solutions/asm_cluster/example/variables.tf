@@ -17,4 +17,6 @@ variable "gcp_zone" {
 #
 # ------------------  Custom Properties
 #
-
+variable "gke_cluster_name" {
+  type = string
+}
