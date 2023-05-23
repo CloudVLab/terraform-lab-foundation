@@ -61,7 +61,7 @@ variable "gce_zone" {
 variable "gce_machine_type" {
   type        = string 
   description = "Machine type to use for GCE"
-  default     = "n1-standard-1" 
+  default     = "e2-medium" 
 }
 
 # Custom properties with defaults 
@@ -75,7 +75,7 @@ variable "gce_tags" {
 variable "gce_machine_image" {
   type        = string
   description = "GCE virtual machine image"
-  default     = "debian-cloud/debian-10"
+  default     = "debian-cloud/debian-11"
 }
 
 variable "gce_disk_size" {
