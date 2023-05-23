@@ -1,10 +1,17 @@
 #!/bin/sh
-
 BRANCH="main"
-TYPE="basics"
 MODULE="iam_service_account"
-URL="https://storage.googleapis.com/terraform-lab-foundation"
-#URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
+TYPE="basics"
+CHANNEL="STABLE"
+
+# Set the endpoint for the module
+if [ "$CHANNEL" = "STABLE" ]; then
+  ## STABLE Channel
+  URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
+else
+  ## DEV/BETA Channel
+  URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
+fi 
 
 DIRECTORY="tf"
 FILE1="main.tf"
@@ -15,7 +22,6 @@ FILE3="runtime.yaml"
 FILE3_URL="${URL}/${TYPE}/${MODULE}/example/runtime.yaml"
 FILE4="variables.tf"
 FILE4_URL="${URL}/${TYPE}/${MODULE}/example/variables.tf"
-
 
 # Create TF directory if not present
 if [ ! -d $DIRECTORY ]; then
