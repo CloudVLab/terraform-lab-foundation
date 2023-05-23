@@ -2,8 +2,16 @@
 BRANCH="main"
 MODULE="gke_node_pool"
 TYPE="basics"
-URL="https://storage.googleapis.com/terraform-lab-foundation"
-#URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
+CHANNEL="STABLE"
+
+# Set the endpoint for the module
+if [ "$CHANNEL" = "STABLE" ]; then
+  ## STABLE Channel
+  URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
+else
+  ## DEV/BETA Channel
+  URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
+fi 
 
 DIRECTORY="tf"
 FILE1="main.tf"
