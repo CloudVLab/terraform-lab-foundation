@@ -1,4 +1,4 @@
-# Terraform: IDE Cloud Code 
+# Terraform: Anthos Service Mesh
 
 
 ## Example
@@ -18,7 +18,7 @@ The example is based on the following hierarchy:
 
 Add the example Terraform code module to your project
 ```bash
-curl  -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/ide_cloud_code/example/install.sh | bash
+curl  -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/asm_cluster/example/install.sh | bash
 ```
 
 ## Task 1. Example
@@ -59,8 +59,6 @@ Update the `qwiklabs.yaml` to include startup_script configuration i.e. Terrafor
 8      custom_properties:
 9       - key: gcp_username
 10        reference: user_0.local_username
-11      - key: ssh_pvt_key
-12        reference: user_0.ssh_key
 13      - key: gke_cluster_name
 14        value: "asm-cluster-test"
 ```
@@ -72,7 +70,7 @@ Update the `qwiklabs.yaml` to include visible output returned from the startup_s
 
 ```
  1  student_visible_outputs:
- 2    - label: "Open Google Console"
+ 2    - label: "Open Google Cloud console"
  3      reference: project_0.console_url
  4    - label: "GCP Username"
  5      reference: user_0.username
@@ -92,6 +90,11 @@ Append the values to the `student_visible_outputs` section in the `qwiklabs.yaml
  5      reference: user_0.username
  6    - label: "GCP Password"
  7      reference: user_0.password
- 8    - label: "Cloudshell"
- 9      reference: project_0.startup_script.service_url
+```
+
+#### Dynamic Variables
+
+The output variable can be accessed with the following reference:
+```
+project_0.startup_script.gke_cluster_name
 ```
