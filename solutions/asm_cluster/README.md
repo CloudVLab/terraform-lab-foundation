@@ -5,7 +5,7 @@
 | Stable  | TBC    | 
 | Beta    | TBC    | 
 
-Create a GKE cluster with Anthos Service Mesh installed based on a Terraform configuration
+Create a Google Kubernetes Engine (GKE) cluster with Anthos Service Mesh (ASM) installed based on a Terraform configuration
 
 ## Using Input Values 
 
@@ -18,9 +18,10 @@ as per Anthos Service Mesh requirements.
 
 #### Qwiklabs Properties
 ```
-gcp_project_id = "my-gcp-project"
-gcp_region     = "us-central1"
-gcp_zone       = "us-central1-a"
+gcp_project_id           = var.gcp_project_id 
+gcp_region               = var.gcp_region 
+gcp_zone                 = var.gcp_zone 
+service_account_key_file = var.service_account_key_file
 ```
 
 #### Custom Properties
@@ -28,9 +29,8 @@ gcp_zone       = "us-central1-a"
 Override in `qwiklabs.yaml` file custom_properties stanza.
 
 ```
-gke_cluster_name = "tester-gke"
-gcp_username   = user_0.local_username
-ssh_pvt_key = user_0.ssh_key
+gcp_username     = var.gcp_username 
+gke_cluster_name = var.gke_cluster_name 
 ```
 
 ## Accessing Output Values 

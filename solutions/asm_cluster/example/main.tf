@@ -1,9 +1,6 @@
-# ------------------ IDE: Integrated Development Environment   
+# ------------------ ASM: Anthos Service Mesh 
 # ------------------ Module Definition 
 #
-
-# Local:  modules/[channel]
-# Remote: github.com://CloudVLab/terraform-lab-foundation//[module]/[channel]
 
 # Solution: ASM Cluster 
 # Local:  modules/stable
@@ -24,10 +21,12 @@ module "la_asm_cluster" {
   source = "github.com/CloudVLab/terraform-lab-foundation//solutions/asm_cluster/stable"
 
   # Pass values from Qwiklabs to the module
-  gcp_project_id = var.gcp_project_id
-  gcp_region     = var.gcp_region
-  gcp_zone       = var.gcp_zone
+  gcp_project_id           = var.gcp_project_id
+  gcp_region               = var.gcp_region
+  gcp_zone                 = var.gcp_zone
+  service_account_key_file = var.service_account_key_file
 
-  gke_cluster_name = var.gke_cluster_name
+  # Custom properties - defined in qwiklabs.yaml
+  gcp_username             = var.gcp_username
+  gke_cluster_name         = var.gke_cluster_name
 }
-
