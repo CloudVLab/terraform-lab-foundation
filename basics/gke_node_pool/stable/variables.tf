@@ -151,3 +151,10 @@ variable "gkeWorkloadPool" {
   description = "Network route "
   default     = "pool.svc.id.goog"
 }
+
+# Custom properties with defaults 
+variable "gkeScopes" {
+  type        = list 
+  description = "OAuth Scope to be applied"
+  default     = ["cloud-platform"]
+}
