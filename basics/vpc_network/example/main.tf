@@ -17,7 +17,7 @@ module "la_vpc" {
   gcp_region     = var.gcp_region
   gcp_zone       = var.gcp_zone
 
-  # Customise the GCS instance
+  # Customise the VPC 
   vpc_network             = "dev-network"
   vpc_network_description = "Developer network"
   vpc_subnet              = "dev-subnetwork"
