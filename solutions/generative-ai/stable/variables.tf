@@ -48,4 +48,9 @@ variable "sme_image_family" {
   default     = "tf-ent-2-11-cu113-notebooks-debian-11-py310"
 }
 
+variable "genai_repo" {
+  type        = string
+  description = "Repository where notebooks are stored"
+  default     = "https://github.com/GoogleCloudPlatform/generative-ai.git"
+}
 

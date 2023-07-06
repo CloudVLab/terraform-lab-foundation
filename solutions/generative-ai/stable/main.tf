@@ -84,7 +84,7 @@ resource "local_file" "notebook_config" {
   echo "Changing dir to /home/jupyter" >> ${local.NOTEBOOK_LOG} 2>&1
   cd /home/jupyter
   echo "Cloning generative-ai from github" >> ${local.NOTEBOOK_LOG} 2>&1
-  su - jupyter -c "git clone https://github.com/GoogleCloudPlatform/generative-ai.git" >> ${local.NOTEBOOK_LOG} 2>&1
+  su - jupyter -c "git clone ${var.genai_repo}" >> ${local.NOTEBOOK_LOG} 2>&1
   echo "Current user: `id`" >> ${local.NOTEBOOK_LOG} 2>&1
   echo "Installing python packages" >> ${local.NOTEBOOK_LOG} 2&1
   su - jupyter -c "pip install --upgrade --no-warn-conflicts --no-warn-script-location --user \
