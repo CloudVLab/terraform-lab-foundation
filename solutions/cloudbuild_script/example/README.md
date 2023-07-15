@@ -33,6 +33,7 @@ The script will update the hierarchy:
 ├── QL_OWNER
 ├── qwiklabs.yaml
 └── tf
+    ├── scripts/ 
     ├── main.tf
     ├── outputs.tf
     ├── runtime.yaml
