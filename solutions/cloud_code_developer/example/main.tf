@@ -26,7 +26,7 @@ module "la_ccd" {
   #source = "./solutions/ide_cloud_code/stable"
 
   ## REMOTE: GitHub (Public) access - working 
-  source = github.com/CloudVLab/terraform-lab-foundation//solutions/cloud_code_developer/stable
+  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/cloud_code_developer/stable"
   ## source = "gcs::https://storage.googleapis.com/terraform-lab-foundation/solutions/cloud_code_developer/stable"
 
   ## Exchange values between Qwiklabs and Module
