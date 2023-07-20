@@ -104,3 +104,18 @@ variable "vai_scopes" {
   description = "GCE service account scope"
   default     = ["cloud-platform"]
 }
+
+# Custom properties with defaults 
+variable "vai_no_public_access" {
+  type        = bool 
+  description = "Allow proxy access via SSH"
+  default     = false 
+}
+
+# Custom properties with defaults 
+variable "vai_no_proxy_access" {
+  type        = bool 
+  description = "Allow proxy access via SSH"
+  default     = false 
+}
+
