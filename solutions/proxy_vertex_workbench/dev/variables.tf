@@ -54,7 +54,7 @@ variable "vm_zone" {
 variable "machine_type" {
   type        = string
   description = "Machine type to use for GCE"
-  default     = "n1-standard-1"
+  default     = "e2-medium"
 }
 
 # Custom properties with defaults 
@@ -92,7 +92,7 @@ variable "vm_scopes" {
 variable "vpcConnectorMachineType" {
   type        = string
   description = "VPC Access Connector Machine Type"
-  # Note: valid options: f1-micro, e2-micro, e2-standard-4
+  # Note: valid options: e2-micro, e2-standard-4
   default = "e2-micro"
 }
 

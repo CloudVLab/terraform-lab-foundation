@@ -23,7 +23,7 @@ resource "google_vpc_access_connector" "connector" {
   #ip_cidr_range = "10.8.0.0/28"
   ip_cidr_range  = var.sva_subnet_cidr 
 
-  # Note: valid options: f1-micro, e2-micro, e2-standard-4
+  # Note: valid options: e2-micro, e2-standard-4
   machine_type = var.sva_connector_machine_type
 
   depends_on = [

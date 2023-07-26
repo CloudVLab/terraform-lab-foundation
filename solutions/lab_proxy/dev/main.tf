@@ -21,7 +21,7 @@ resource "google_vpc_access_connector" "connector" {
   network       = var.vpcNetworkName 
   ip_cidr_range = "10.8.0.0/28"
 
-  # Note: valid options: f1-micro, e2-micro, e2-standard-4
+  # Note: valid options: e2-micro, e2-standard-4
   machine_type = var.vpcConnectorMachineType
 
   depends_on = [ google_project_service.vpcaccess-api ]

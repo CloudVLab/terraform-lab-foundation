@@ -33,7 +33,7 @@ variable "sme_notebook_name" {
 variable "sme_machine_type" {
   type        = string
   description = "Notebook machine type"
-  default     = "n1-standard-4"
+  default     = "e2-standard-4"
 }
 
 variable "sme_image_project" {

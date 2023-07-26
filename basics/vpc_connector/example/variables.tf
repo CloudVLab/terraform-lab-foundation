@@ -52,5 +52,5 @@ variable "sva_subnet_cidr" {
 variable "sva_connector_machine_type" {
   type        = string
   description = "VPC connector machine default."
-  default     = "f1-micro" 
+  default     = "e2-micro" 
 }

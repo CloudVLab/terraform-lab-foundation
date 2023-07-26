@@ -21,7 +21,7 @@ gcp_zone       = "us-central1-a"
 #### Custom Properties
 ```
 gce_name            = var.tfResourceName
-gce_machine_type    = "n1-highmem-4"
+gce_machine_type    = "e2-highmem-4"
 gce_tags            = ["lab-vm"]
 gce_machine_image   = "debian-cloud/debian-10" 
 gce_machine_network = "default"

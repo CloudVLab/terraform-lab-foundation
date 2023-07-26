@@ -148,7 +148,7 @@ resource "google_notebooks_instance" "ff_notebook" {
   name               = "ff-jupyterlab"
   project            = var.gcp_project_id
   location           = var.gcp_zone
-  machine_type       = "n1-standard-4" // n1-standard-1 $112.91 monthly estimate
+  machine_type       = "e2-standard-4" // e2-medium $112.91 monthly estimate
   install_gpu_driver = false
   vm_image { // https://cloud.google.com/vertex-ai/docs/workbench/user-managed/images
     project      = "deeplearning-platform-release"

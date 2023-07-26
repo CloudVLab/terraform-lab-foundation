@@ -40,7 +40,7 @@ variable "vpcSubnetName" {
 variable "vpcConnectorMachineType" {
   type        = string 
   description = "VPC Access Connector Machine Type"
-  # Note: valid options: f1-micro, e2-micro, e2-standard-4
+  # Note: valid options: e2-micro, e2-standard-4
   default     = "e2-micro" 
 }
 

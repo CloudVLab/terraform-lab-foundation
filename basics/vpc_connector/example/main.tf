@@ -16,7 +16,7 @@ module "la_serverless_vpc_access" {
   sva_name                   = "ideconn"
   sva_network                = module.la_vpc.vpc_network_name
   sva_subnet_cidr            = "10.8.0.0/28"
-  sva_connector_machine_type = "f1-micro"
+  sva_connector_machine_type = "e2-micro"
  
   ## Depends on Network
   depends_on = [ module.la_vpc ]

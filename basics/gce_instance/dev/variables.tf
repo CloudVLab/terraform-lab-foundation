@@ -61,7 +61,7 @@ variable "gce_zone" {
 variable "gce_machine_type" {
   type        = string 
   description = "Machine type to use for GCE"
-  default     = "n1-standard-1" 
+  default     = "e2-medium" 
 }
 
 # Custom properties with defaults 
