@@ -26,12 +26,11 @@ gcp_zone       = "us-central1-a"
 sva_name                   = "ideconn"
 sva_network                = "default"
 sva_subnet_cidr            = "10.8.0.0/28"
-sva_connector_machine_type = "f1-micro" 
+sva_connector_machine_type = "e2-micro" 
 ```
 
 __NOTE:__ Valid VPC Connector Machine Type are:
 
-* f1-micro
 * e2-micro
 * e2-standard-4
 
