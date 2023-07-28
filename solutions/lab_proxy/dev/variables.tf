@@ -38,10 +38,10 @@ variable "vpcSubnetName" {
 
 # Custom properties with defaults 
 variable "vpcConnectorMachineType" {
-  type        = string 
+  type        = string
   description = "VPC Access Connector Machine Type"
   # Note: valid options: f1-micro, e2-micro, e2-standard-4
-  default     = "e2-micro" 
+  default = "e2-micro"
 }
 
 variable "gcrServiceName" {

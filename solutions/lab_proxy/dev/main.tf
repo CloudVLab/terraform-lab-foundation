@@ -18,13 +18,16 @@ resource "google_vpc_access_connector" "connector" {
   provider      = google-beta
   name          = "ideconn"
   region        = var.gcp_region
-  network       = var.vpcNetworkName 
+  network       = var.vpcNetworkName
   ip_cidr_range = "10.8.0.0/28"
+
+  min_throughput = 200
+  max_throughput = 300
 
   # Note: valid options: f1-micro, e2-micro, e2-standard-4
   machine_type = var.vpcConnectorMachineType
 
-  depends_on = [ google_project_service.vpcaccess-api ]
+  depends_on = [google_project_service.vpcaccess-api]
 }
 
 
@@ -46,7 +49,7 @@ resource "google_project_service" "run" {
 
 
 resource "google_cloud_run_service" "ide" {
-  name     = var.gcrServiceName
+  name = var.gcrServiceName
   # location = var.gcrRegion
   location = var.gcp_region
 
@@ -54,7 +57,7 @@ resource "google_cloud_run_service" "ide" {
     spec {
       containers {
         # image = "gcr.io/qwiklabs-resources/ide-proxy:latest"
-        image = var.gcrContainerImage 
+        image = var.gcrContainerImage
       }
       container_concurrency = 2
     }
@@ -76,7 +79,7 @@ resource "google_cloud_run_service" "ide" {
   }
 
   # Dependency - Cloud Run API enabled
-  depends_on = [google_project_service.run, google_vpc_access_connector.connector ] 
+  depends_on = [google_project_service.run, google_vpc_access_connector.connector]
 }
 
 
