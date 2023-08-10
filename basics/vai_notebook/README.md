@@ -25,8 +25,12 @@ vai_notebook_name       = var.tfResourceName
 vai_username            = var.tfUsername
 vai_region              = var.gcp_region
 vai_zone                = var.gcp_zone
-vai_post_startup_script = "gs://spls/lab-init"
+vai_post_startup_script = "gs://[BUCKET]/[LAB_ID]lab-init.sh"
 ```
+
+#### Post Startup Script
+
+Please ensure the lab-init.sh follows the Vertex AI Startup information in [CCC](https://docs.google.com/document/d/13TRRcCcN3_mT8mF5eHJv-OQkmFduqZcFDUbSrBMSQFY/edit#heading=h.9fdmj1dda21y)
 
 ## Example
 
