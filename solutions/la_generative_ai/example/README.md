@@ -23,7 +23,7 @@ The example is based on the following hierarchy:
 Add the example Terraform code module to your project
 
 ```
-curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/generative-ai/example/install.sh | bash
+curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/solutions/la_generative-ai/example/install.sh | bash
 ```
 
 ## View the updated directory 
