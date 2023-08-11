@@ -2,13 +2,13 @@
 BRANCH="main"
 CHANNEL="STABLE"
 TYPE="solutions"
-MODULE="generative-ai"
+MODULE="la_generative-ai"
 
 # Set the endpoint for the module
 if [ "$CHANNEL" = "STABLE" ]; then
   ## STABLE Channel
-  URL="https://storage.googleapis.com/terraform-lab-foundation/"
-  # URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
+  # URL="https://storage.googleapis.com/terraform-lab-foundation/"
+  URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
 else
   ## DEV/BETA Channel
   URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
