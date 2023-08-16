@@ -3,15 +3,15 @@
 #
 
 # Solution: Generative AI environment 
-# Local:  solutions/generative-ai/stable
-# Remote: github//solutions/generative-ai/stable
+# Local:  solutions/la_generative_ai/stable
+# Remote: github//solutions/la_generative_ai/stable
 
-module "sme_generative_ai" {
+module "la_generative_ai" {
   ## NOTE: When changing the `source` parameter
   ## `terraform init` is required
 
   ## REMOTE: GitHub (Public) access - working 
-  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/generative-ai/stable"
+  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/la_generative_ai/stable"
 
   ## Exchange values between Qwiklabs and Module
   gcp_project_id = var.gcp_project_id
