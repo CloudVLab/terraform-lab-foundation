@@ -95,7 +95,7 @@ variable "vai_machine_network" {
 variable "vai_post_startup_script" {
   type        = string
   description = "Path to a bash script to execute"
-  default     = "gs://spls/lab-init"
+  default     = "gs://spls/lab-init.sh"
 }
 
 # Custom properties with defaults 
