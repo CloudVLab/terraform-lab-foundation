@@ -19,6 +19,7 @@ __NOTE:__ Qwiklabs requires some values to be defined as part of the provisionin
 gcp_project_id  = "my-gcp-project"
 gcp_region      = "us-central1"
 gcp_zone        = "us-central1-a"
+sme_git_repo    = "https://[REPO]/generative-ai.git" 
 ```
 
 ## Accessing Output Values 
