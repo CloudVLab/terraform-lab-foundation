@@ -47,9 +47,7 @@ resource "google_cloudfunctions_function" "custom_function" {
 #    PROJECT_ID= var.gcp_project_id
 #  }
 
-  environment {
-    variables = var.gcf_environment_variables
-  }
+  environment_variables = var.gcf_environment_variables
 
   depends_on = [ google_storage_bucket_object.archive ]
 }
