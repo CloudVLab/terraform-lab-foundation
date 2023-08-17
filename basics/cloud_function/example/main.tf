@@ -15,10 +15,15 @@ module "la_gcf" {
   gcs_bucket_extension = "bucket"
 
   # Customise the Cloud Function
-  gcf_name             = "myfunction"
-  gcf_description      = "Test Cloud Function"
-  gcf_runtime          = "nodejs16"
-  gcf_target_bucket    = "mybucket"
-  gcf_local_source     = "./cf/function.zip"
-  gcf_entry_point      = "httpHello"
+  gcf_name                  = "myfunction"
+  gcf_description           = "Test Cloud Function"
+  gcf_runtime               = "nodejs16"
+  gcf_target_bucket         = "mybucket"
+  gcf_archive_source        = "./cf/function.zip"
+  gcf_entry_point           = "httpHello"
+  gcf_environment_variables = {
+    PROJECT_ID = var.gcp_project_id
+    BUCKETNAME = "${var.gcp.project_id}-bucket" 
+    FILENAME   = "tasks.json"
+  }
 }
