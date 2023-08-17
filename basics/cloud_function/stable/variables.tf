@@ -95,6 +95,6 @@ variable "gcf_environment_variables" {
   type = map(string)
 
   default = {
-    PROJECT_ID = var.gcp_project_id 
+    PROJECT_ID = "undefined" 
   }
 }
