@@ -1,5 +1,4 @@
-## --------------------------------------------------------------
-## Mandatory variable definitions
+## --------------------------------------------------------------## Mandatory variable definitions
 ## --------------------------------------------------------------
 
 variable "gcp_project_id" {
@@ -96,8 +95,6 @@ variable "gcf_environment_variables" {
   type = map(string)
 
   default = {
-    PROJECT_ID = var.gcp_project_id
-#    BUCKETNAME = "my-bucket"
-#    FILENAME   = "my-file"
+    PROJECT_ID = var.gcp_project_id 
   }
 }
