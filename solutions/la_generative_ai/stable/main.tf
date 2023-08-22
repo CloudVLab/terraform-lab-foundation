@@ -52,7 +52,7 @@ resource "random_string" "rand" {
 locals {
   ID                                = random_string.rand.result
   NOTEBOOK_LOG                      = "/tmp/notebook_config.log"
-  GIT_REPO                          = local.sme_git_repo
+  GIT_REPO                          = var.sme_git_repo
   compute_service_account_email     = "${data.google_project.project.number}-compute@developer.gserviceaccount.com"
   cloud_build_service_account_email = "${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
 }
