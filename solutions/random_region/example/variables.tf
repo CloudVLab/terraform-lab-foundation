@@ -15,7 +15,7 @@ variable "gcp_zone" {
 ## Variable definitions - Override from Custom Properties 
 ## --------------------------------------------------------------
 
-variable "gcp_allowed_regions" {
+variable "gcp_allowed_locations" {
   type = list(string) 
   description = "List of Regions to be used"
   default = [ "us-central1", "us-east1", "us-east4", "us-west1" ]
