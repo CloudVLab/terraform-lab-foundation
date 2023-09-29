@@ -35,7 +35,7 @@ View the [example configuration](https://github.com/CloudVLab/terraform-lab-foun
 
 | Field | Description |
 |-------|-------------|
-| gcp_primary_region | The value taken from var.gcp__region |
+| gcp_primary_region | The value taken from var.gcp_region |
 | gcp_secondary_region | A distinct custom value based on the gcp_allowed_locations variable |
 | gcp_tertiary_region | A distinct custom value based on the gcp_allowed_locations variable |
 
