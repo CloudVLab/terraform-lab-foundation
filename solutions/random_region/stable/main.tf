@@ -9,7 +9,7 @@ resource "random_string" "shuffle_seed" {
 ## ---------------------------------------------------------------------------
 # Define a random shuffle using the list of allowed_regions variable
 resource "random_shuffle" "custom_regions" {
-  input = var.gcp_allowed_regions 
+  input = var.gcp_allowed_locations
   seed = random_string.shuffle_seed.result 
 }
 
@@ -21,9 +21,9 @@ resource "random_shuffle" "custom_regions" {
 locals {
   # Option 1. For Loop - Create a List 
   filtered_regions =  [
-  # for region in var.gcp_allowed_regions:
-  for region in random_shuffle.custom_regions.result:
-    region if region != var.gcp_region
+    # for region in var.gcp_allowed_locations:
+    for region in random_shuffle.custom_regions.result:
+      region if region != var.gcp_region
   ]
 
   # Option 2. setsubtract - Create a List
