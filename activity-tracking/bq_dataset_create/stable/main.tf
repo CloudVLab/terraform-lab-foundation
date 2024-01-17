@@ -22,7 +22,7 @@ def ${var.step_name}(handles:, maximum_score:, resources:)
   end
 
   if isAvailable 
-    ret_hash = { :score => maximum_score, :message => "Assessment completed!", :student_message => "Assessment completed!"}
+    ret_hash = { :done => true, :score => maximum_score, :message => "Assessment completed!", :student_message => "Assessment completed!"}
   else
     error_message = 'Please create the BigQuery dataset.'
     ret_hash[:message] = error_message
