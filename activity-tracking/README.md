@@ -16,15 +16,15 @@ Use the Terraform scripts below to validate a resource exists with generic activ
 
 | Service | Method | Action | Link |
 |---------|--------|--------|------|
-| BigQuery | get_dataset | Check if a `dataset` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/bq_dataset_check) |
-| Cloud Storage | get_bucket | Check if a `storage bucket` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/gcs_bucket_check) |
-| Firewall | get_firewall | Check if a `firewall rule` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/fw_rule_check) |
-| Logging | get_sink | Check if a `log sink` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/log_sink_check) |
-| PubSub | get_topic | Check if a `Topic` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/pubsub_topic_check) |
-| PubSub | get_subscription | Check if a `Subscription` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/pubsub_sub_check) |
-| Source Repo | get_repo | Check if a `Repository` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/source_repo_check) |
-| Compute | get_network | Check if a `network` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/vpc_network_check) |
-| Compute | get_subnetwork | Check if a `subnetwork` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/vpc_subnet_check) |
+| BigQuery | get_dataset | Check if a `dataset` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/bq_dataset_create) |
+| Cloud Storage | get_bucket | Check if a `storage bucket` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/gcs_bucket_create) |
+| Compute | get_firewall | Check if a `firewall rule` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/fw_rule_create) |
+| Logging | get_sink | Check if a `log sink` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/log_sink_create) |
+| PubSub | get_topic | Check if a `Topic` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/pubsub_topic_create) |
+| PubSub | get_subscription | Check if a `Subscription` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/pubsub_sub_create) |
+| Source Repo | get_repo | Check if a `Repository` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/source_repo_create) |
+| Compute | get_network | Check if a `network` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/vpc_network_create) |
+| Compute | get_subnetwork | Check if a `subnetwork` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/vpc_subnet_create) |
 
 
 ## Setup
