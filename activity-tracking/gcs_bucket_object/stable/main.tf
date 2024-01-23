@@ -1,5 +1,5 @@
 resource "local_file" "activity_tracking_step" {
-  content = <<-EOF
+  content  = <<-EOF
 # Check if a file has been uploaded to Cloud Storage bucket
 def ${var.step_name}(handles:, maximum_score:, resources:)
 
