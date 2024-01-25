@@ -1,0 +1,5 @@
+gcp_project_id   = "qwiklabs-resources"
+gcp_region       = "us-central1"
+gcp_zone         = "us-central1-a"
+gcp_username     = "test-suite@qwiklabs.com"
+gke_cluster_name = "test-cluster"
