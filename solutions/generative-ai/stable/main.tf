@@ -89,10 +89,7 @@ resource "local_file" "notebook_config" {
   echo "Installing python packages" >> ${local.NOTEBOOK_LOG} 2&1
   su - jupyter -c "pip install --upgrade --no-warn-conflicts --no-warn-script-location --user \
       google-cloud-bigquery \
-      google-cloud-pipeline-components \
-      google-cloud-aiplatform \
-      seaborn \
-      kfp" >> ${local.NOTEBOOK_LOG} 2>&1
+      google-cloud-aiplatform" >> ${local.NOTEBOOK_LOG} 2>&1
   EOF
   filename = "notebook_config.sh"
 }
@@ -111,15 +108,21 @@ resource "google_storage_bucket_object" "notebook_config_script" {
   Create Vertex AI Notebook
 */
 
-resource "google_notebooks_instance" "genai_notebook" {
+resource "google_notebooks_instance" "generative-ai-jupterlab" {
+
   name               = var.sme_notebook_name
   project            = var.gcp_project_id
   location           = var.gcp_zone
   machine_type       = var.sme_machine_type
   install_gpu_driver = false
-  vm_image { // https://cloud.google.com/vertex-ai/docs/workbench/user-managed/images
-    project      = var.sme_image_project
-    image_family = var.sme_image_family
+  metadata = {
+    proxy-mode = "service_account"
+    terraform  = "true"
+  }
+
+  container_image {
+    repository = "gcr.io/deeplearning-platform-release/base-cpu"
+    tag = "latest"
   }
 
   post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/notebook_config.sh"
@@ -140,10 +143,10 @@ variable "compute_service_account_project_iam_list" {
     "roles/bigquery.admin",
     "roles/cloudbuild.builds.editor",
     "roles/cloudbuild.integrations.editor",
-    # "roles/cloudfunctions.admin",
+    "roles/cloudfunctions.admin",
     "roles/iam.serviceAccountAdmin",
     "roles/notebooks.admin",
-    # "roles/pubsub.admin",
+    "roles/pubsub.admin",
     "roles/resourcemanager.projectIamAdmin",
     "roles/storage.admin",
   ]
