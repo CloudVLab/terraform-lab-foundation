@@ -108,7 +108,7 @@ resource "google_storage_bucket_object" "notebook_config_script" {
   Create Vertex AI Notebook
 */
 
-resource "google_notebooks_instance" "generative-ai-jupterlab" {
+resource "google_notebooks_instance" "genai_notebook" {
 
   name               = var.sme_notebook_name
   project            = var.gcp_project_id
