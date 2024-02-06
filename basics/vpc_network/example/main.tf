@@ -21,6 +21,6 @@ module "la_vpc" {
   vpc_network             = "dev-network"
   vpc_network_description = "Developer network"
   vpc_subnet              = "dev-subnetwork"
-  vpc_region              = "us-central1"
-  vpc_subnet_cidr         = "10.128.0.0/16"
+  vpc_region              = var.gcp_region 
+  vpc_subnet_cidr         = "10.1.0.0/24"
 }
