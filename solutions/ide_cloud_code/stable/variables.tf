@@ -49,12 +49,26 @@ variable "vpcSubnetName" {
 }
 
 # Custom properties with defaults 
-variable "vpcConnectorMachineType" {
-  type        = string 
-  description = "VPC Access Connector Machine Type"
-  # Note: valid options: f1-micro, e2-micro, e2-standard-4
-  default     = "e2-micro" 
+variable "vpcDescription" {
+  type        = string
+  description = "Custom network"
+  default     = "Lab custom network"
 }
+
+# Custom properties with defaults 
+variable "vpcSubnetCidr" {
+  type        = string
+  description = "Network custom CIDR"
+  default     = "10.1.0.0/24"
+}
+
+## # Custom properties with defaults 
+## variable "vpcConnectorMachineType" {
+##   type        = string 
+##   description = "VPC Access Connector Machine Type"
+##   # Note: valid options: f1-micro, e2-micro, e2-standard-4
+##   default     = "e2-micro" 
+## }
 
 variable "gcrIDEService" {
   type        = string
