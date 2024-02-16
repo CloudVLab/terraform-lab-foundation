@@ -369,9 +369,10 @@ module "la_fw" {
       log_config = {
         metadata = "INCLUDE_ALL_METADATA"
       }
-    }
+    },
     {
       fwr_name                    = "default-allow-internal"
+      fwr_description             = "Internal communication"
       fwr_source_ranges           = [ "${var.vpcSubnetCidr}" ]
       fwr_destination_ranges      = null
       fwr_source_tags             = null
