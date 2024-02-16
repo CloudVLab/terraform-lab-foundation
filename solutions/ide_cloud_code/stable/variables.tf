@@ -62,6 +62,13 @@ variable "vpcSubnetCidr" {
   default     = "10.1.0.0/24"
 }
 
+# Custom properties with defaults 
+variable "vpcDefaultCidr" {
+  type        = string
+  description = "Network custom CIDR"
+  default     = "10.128.0.0/9"
+}
+
 ## # Custom properties with defaults 
 ## variable "vpcConnectorMachineType" {
 ##   type        = string 
@@ -163,10 +170,13 @@ variable "gkeMasterIPv4CIDRBlock" {
   default = "172.23.0.0/28"
 }
 
+## Cloud Run Settings
+#
+
 # Custom properties with defaults 
-variable "gkeRegion" {
-  type        = string 
-  description = "Region to create resources in."
-  default     = "us-central1" 
+variable "gcrContainerImage" {
+  type        = string
+  description = "Container Image."
+  default     = "gcr.io/qwiklabs-resources/test-ide-proxy:latest" 
 }
 

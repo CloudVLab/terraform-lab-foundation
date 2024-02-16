@@ -342,7 +342,7 @@ module "la_fw" {
     {
       fwr_name                    = "network-allow-internal"
       fwr_description             = "Private internal communication"
-      fwr_source_ranges           = [ "${var.vpcSubnetCidr}" ]
+      fwr_source_ranges           = [ "${var.vpcSubnetCidr}", "${var.vpcDefaultCidr}" ]
       fwr_destination_ranges      = null
       fwr_source_tags             = null
       fwr_source_service_accounts = null
@@ -427,7 +427,7 @@ resource "google_cloud_run_v2_service" "ide" {
   launch_stage = "BETA"
   template {
     containers {
-      image = "gcr.io/qwiklabs-resources/test-ide-proxy:latest"
+      image = var.gcrContainerImage 
     }
     vpc_access{
       network_interfaces {
