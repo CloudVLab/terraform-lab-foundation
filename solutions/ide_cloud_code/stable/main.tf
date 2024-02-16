@@ -342,13 +342,13 @@ module "la_fw" {
     {
       fwr_name                    = "network-allow-internal"
       fwr_description             = "Private internal communication"
-      fwr_source_ranges           = [ "${var.vpcSubnetCidr}", "${var.vpcDefaultCidr}" ]
+      fwr_source_ranges           = [ "${var.vpcSubnetCidr}" ]
       fwr_destination_ranges      = null
       fwr_source_tags             = null
       fwr_source_service_accounts = null
       fwr_target_tags             = null 
       fwr_target_service_accounts = null
-      fwr_priority                = "1000"
+      fwr_priority                = "65534"
       fwr_direction               = "INGRESS"
 
       # Allow List
@@ -370,7 +370,37 @@ module "la_fw" {
         metadata = "INCLUDE_ALL_METADATA"
       }
     }
-  ]
+    {
+      fwr_name                    = "default-allow-internal"
+      fwr_source_ranges           = [ "${var.vpcSubnetCidr}" ]
+      fwr_destination_ranges      = null
+      fwr_source_tags             = null
+      fwr_source_service_accounts = null
+      fwr_target_tags             = null 
+      fwr_target_service_accounts = null
+      fwr_priority                = "65534"
+      fwr_direction               = "INGRESS"
+
+      # Allow List
+      allow = [
+        {
+          protocol     = "tcp"
+          ports        = [ "0-65535" ] 
+        },
+        {
+          protocol     = "udp"
+          ports        = [ "0-65535" ] 
+        }
+      ]
+
+      # Deny List
+      deny = []
+
+      log_config = {
+        metadata = "INCLUDE_ALL_METADATA"
+      }
+    }
+ ]
 
   ## Firewall depends on existence of Network
   depends_on = [ module.la_vpc.vpc_network_name ]
