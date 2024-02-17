@@ -371,9 +371,9 @@ module "la_fw" {
       }
     },
     {
-      fwr_name                    = "default-allow-internal"
-      fwr_description             = "Internal communication"
-      fwr_source_ranges           = [ "${var.vpcSubnetCidr}" ]
+      fwr_name                    = "crossover-allow-internal"
+      fwr_description             = "Custom and Default VPC Internal communication"
+      fwr_source_ranges           = [ "${var.vpcSubnetCidr}", ${var.vpcDefaultCidr} ]
       fwr_destination_ranges      = null
       fwr_source_tags             = null
       fwr_source_service_accounts = null
