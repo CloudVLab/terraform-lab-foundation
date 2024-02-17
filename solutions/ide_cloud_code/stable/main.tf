@@ -369,37 +369,39 @@ module "la_fw" {
       log_config = {
         metadata = "INCLUDE_ALL_METADATA"
       }
-    },
-    {
-      fwr_name                    = "crossover-allow-internal"
-      fwr_description             = "Custom and Default VPC Internal communication"
-      fwr_source_ranges           = [ "${var.vpcSubnetCidr}", ${var.vpcDefaultCidr} ]
-      fwr_destination_ranges      = null
-      fwr_source_tags             = null
-      fwr_source_service_accounts = null
-      fwr_target_tags             = null 
-      fwr_target_service_accounts = null
-      fwr_priority                = "65534"
-      fwr_direction               = "INGRESS"
 
-      # Allow List
-      allow = [
-        {
-          protocol     = "tcp"
-          ports        = [ "0-65535" ] 
-        },
-        {
-          protocol     = "udp"
-          ports        = [ "0-65535" ] 
-        }
-      ]
-
-      # Deny List
-      deny = []
-
-      log_config = {
-        metadata = "INCLUDE_ALL_METADATA"
-      }
+## MOVE THIS TO LAB DEFINITION
+##     },
+##     {
+##       fwr_name                    = "crossover-allow-internal"
+##       fwr_description             = "Custom and Default VPC Internal communication"
+##       fwr_source_ranges           = [ "${var.vpcSubnetCidr}", ${var.vpcDefaultCidr} ]
+##       fwr_destination_ranges      = null
+##       fwr_source_tags             = null
+##       fwr_source_service_accounts = null
+##       fwr_target_tags             = null 
+##       fwr_target_service_accounts = null
+##       fwr_priority                = "65534"
+##       fwr_direction               = "INGRESS"
+## 
+##       # Allow List
+##       allow = [
+##         {
+##           protocol     = "tcp"
+##           ports        = [ "0-65535" ] 
+##         },
+##         {
+##           protocol     = "udp"
+##           ports        = [ "0-65535" ] 
+##         }
+##       ]
+## 
+##       # Deny List
+##       deny = []
+## 
+##       log_config = {
+##         metadata = "INCLUDE_ALL_METADATA"
+##       }
     }
  ]
 
@@ -482,37 +484,38 @@ resource "google_cloud_run_service_iam_binding" "public" {
   ]
 }
 
-# Reference:
-# https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/using_gke_with_terraform
-#
-
-##---------------------------------------------------------------------------
-## Container Cluster: Separate Managed Node Pool Example
-
-# GKE cluster
-resource "google_container_cluster" "primary" {
-  # provider = google-beta
-  name     = var.gkeClusterName
-  location = var.gcp_region
-
-  # Define VPC configuration
-  network    = var.isCustomNetwork ? module.la_vpc.vpc_network_name: "default"
-  subnetwork = var.isCustomNetwork ? module.la_vpc.vpc_subnetwork_name : "default"
-
-  private_cluster_config {
-    enable_private_endpoint = false
-    enable_private_nodes    = var.isPrivateCluster ? true : false
-    master_ipv4_cidr_block  = var.isPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
-  }
-
-  # Enable GKE Autopilot
-  enable_autopilot = true
-
-  # Release channel GKE clusters.
-  release_channel {
-    channel = "STABLE"
-  }
-
-  # Dependency - Cloud Run API enabled
-  ##   depends_on = [google_compute_instance.default]
-}
+## MOVE THIS TO LAB DEFINITION
+## # Reference:
+## # https://registry.terraform.io/providers/hashicorp/google/latest/docs/guides/using_gke_with_terraform
+## #
+## 
+## ##---------------------------------------------------------------------------
+## ## Container Cluster: Separate Managed Node Pool Example
+## 
+## # GKE cluster
+## resource "google_container_cluster" "primary" {
+##   # provider = google-beta
+##   name     = var.gkeClusterName
+##   location = var.gcp_region
+## 
+##   # Define VPC configuration
+##   network    = var.isCustomNetwork ? module.la_vpc.vpc_network_name: "default"
+##   subnetwork = var.isCustomNetwork ? module.la_vpc.vpc_subnetwork_name : "default"
+## 
+##   private_cluster_config {
+##     enable_private_endpoint = false
+##     enable_private_nodes    = var.isPrivateCluster ? true : false
+##     master_ipv4_cidr_block  = var.isPrivateCluster ? var.gkeMasterIPv4CIDRBlock : null
+##   }
+## 
+##   # Enable GKE Autopilot
+##   enable_autopilot = true
+## 
+##   # Release channel GKE clusters.
+##   release_channel {
+##     channel = "STABLE"
+##   }
+## 
+##   # Dependency - Cloud Run API enabled
+##   ##   depends_on = [google_compute_instance.default]
+## }
