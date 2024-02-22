@@ -1,6 +1,12 @@
-# Cloud Storage Bucket Object 
+# Cloud Storage
 
 Checks if a Bucket Object exists within a project.
+
+## Cloud Storage Bucket 
+
+* Problem: I want validate a bucket object has been created.
+* Solution: Include the `get_bucket` method to perform this action.
+* Discussion: The code linked below provides an example setup.
 
 ```
   storage       = handles['project_0.StorageV1']

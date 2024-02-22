@@ -1,6 +1,6 @@
 resource "local_file" "activity_tracking_step" {
   content = <<-EOF
-# Objective: Verifies the creation of the bucket
+# Objective: Verifies the creation of the repository 
 def ${var.step_name}(handles:, maximum_score:, resources:)
 
   # Service handle initialization
@@ -15,10 +15,10 @@ def ${var.step_name}(handles:, maximum_score:, resources:)
   isAvailable = false
 
   # Method: get project repo returns an object
-  repo = sourcerepo.get_project_repo(repo_name.to_s) || []
+  resource_object = sourcerepo.get_project_repo(repo_name.to_s) || []
 
   # Check if the object exists
-  if repo
+  if resource_object 
     isAvailable = true
   end
 
