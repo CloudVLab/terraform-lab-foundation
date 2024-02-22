@@ -2,6 +2,12 @@
 
 Checks if a PubSub topic exists within a project.
 
+### PubSub Topic
+
+* Problem: I want validate a PubSub Topic has been created.
+* Solution: Include the `get_topic` method to perform this action.
+* Discussion: The code linked below provides an example setup.
+
 ```
   pubsub     = handles['project_0.PubsubV1']
   topic_name = 'projects/' + pubsub.project + '/topics/' + resources['project_0']['startup_script.pubsub_topic_name']

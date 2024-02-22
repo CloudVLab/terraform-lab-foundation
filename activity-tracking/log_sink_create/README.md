@@ -1,6 +1,12 @@
-# Log Sink Create
+# Log Sink
 
 Checks if a Log Sink exists within a project.
+
+## Logging Sink 
+
+* Problem: I want validate a sink has been created.
+* Solution: Include the `get_sink` method to perform this action.
+* Discussion: The code linked below provides an example setup.
 
 ```
   log_sink  = handles['project_0.LoggingV2']

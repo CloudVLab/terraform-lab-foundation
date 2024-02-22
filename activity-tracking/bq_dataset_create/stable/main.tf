@@ -1,6 +1,6 @@
 resource "local_file" "activity_tracking_step" {
   content = <<-EOF
-# Objective: Verifies the creation of the bucket
+# Objective: Verifies the creation of the dataset 
 def ${var.step_name}(handles:, maximum_score:, resources:)
 
   # Service handle initialization
@@ -14,10 +14,10 @@ def ${var.step_name}(handles:, maximum_score:, resources:)
   isAvailable = false
 
   # Get the object information 
-  dataset = bigquery.get_dataset(dataset_name.to_s) || []
+  resource_object = bigquery.get_dataset(dataset_name.to_s) || []
 
   # Check the object exists 
-  if dataset
+  if resource_object 
     isAvailable = true
   end
 

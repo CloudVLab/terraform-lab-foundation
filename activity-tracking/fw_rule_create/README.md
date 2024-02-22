@@ -1,6 +1,12 @@
-# Firewall Rule Exists
+# Firewall 
 
 Checks if a Firewall Rule exists within a project.
+
+## Firewall Rule 
+
+* Problem: I want validate a Firewall Rule has been created.
+* Solution: Include the `get_firewall` method to perform this action.
+* Discussion: The code linked below provides an example setup.
 
 ```
   compute  = handles['project_0.ComputeV1']
