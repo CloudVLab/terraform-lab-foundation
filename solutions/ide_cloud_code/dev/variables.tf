@@ -71,7 +71,7 @@ variable "gceMachineImage" {
   type        = string
   description = "GCE virtual machine image family"
 #  default     = "ide-codeserver"
-  default     = "debian-cloud/debian-10"
+  default     = "debian-cloud/debian-11"
 }
 
 variable "gceProjectMachineImage" {
