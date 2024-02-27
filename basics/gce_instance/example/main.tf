@@ -22,7 +22,7 @@ module "la_gce" {
   #gce_zone            = "us-central1-a" 
   #gce_machine_type    = "e2-micro" 
   #gce_tags            = ["lab-vm"] 
-  #gce_machine_image   = "debian-cloud/debian-10" 
+  #gce_machine_image   = "debian-cloud/debian-11" 
   #gce_machine_network = google_compute_subnetwork.dev_subnet.name
   #gce_scopes          = ["cloud-platform"] 
   #gce_service_account = "default"
