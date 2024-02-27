@@ -75,7 +75,7 @@ variable "gce_tags" {
 variable "gce_machine_image" {
   type        = string
   description = "GCE virtual machine image"
-  default     = "debian-cloud/debian-10"
+  default     = "debian-cloud/debian-11"
 }
 
 # Custom properties with defaults 

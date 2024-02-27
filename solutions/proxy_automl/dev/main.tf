@@ -40,7 +40,7 @@
 ##   ## Properties: GCE 
 ##   ## Ref: https://cloud.google.com/vertex-ai/docs/workbench/user-managed/images
 ##   #gceInstanceImage    = "tf-latest-cpu" 
-##   gceInstanceImage    = "common-cpu-notebooks-debian-10" 
+##   gceInstanceImage    = "common-cpu-notebooks-debian-11" 
 ##   gceImageProject     = "deeplearning-platform-release"
 ##   # gceInstanceName     = "cloudlearningservices" 
 ##   # gceInstanceZone     = "us-central1-f"

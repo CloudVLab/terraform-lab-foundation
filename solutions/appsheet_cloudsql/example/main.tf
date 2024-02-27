@@ -10,7 +10,7 @@ module "la_gce" {
   # Customise the GCE instance
   gce_name            = "mysql-admin"
   gce_tags            = ["lab-vm"]
-  gce_machine_image   = "debian-cloud/debian-10"
+  gce_machine_image   = "debian-cloud/debian-11"
   gce_machine_network = "default"
   gce_scopes          = ["cloud-platform"]
   gce_startup_script  = "${file("./scripts/lab-init")}"
