@@ -169,7 +169,7 @@ variable "gceImageProject" {
 variable "gceInstanceImage" {
   type        = string
   description = "GCE Image family"
-  default     = "common-cpu-notebooks-debian-10"
+  default     = "common-cpu-notebooks-debian-11"
 }
 
 # Custom properties with defaults 
