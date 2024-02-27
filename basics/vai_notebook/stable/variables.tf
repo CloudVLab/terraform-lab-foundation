@@ -81,7 +81,6 @@ variable "vai_machine_image" {
 variable "vai_image_family" {
   type        = string
   description = "GCE image family"
-  # default     = "common-cpu-notebooks-debian-10"
   default     = "common-cpu-notebooks-debian-11"
 }
 
