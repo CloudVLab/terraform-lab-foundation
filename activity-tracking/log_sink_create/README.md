@@ -17,5 +17,4 @@ In the above code, the resources definition accesses a startup script value.
 
 ## Googleapi 
 
--[ ] LoggingV2 
-
+-[ ] [LoggingV2](https://googleapis.dev/ruby/google-api-client/latest/Google/Apis/LoggingV2.html) 
