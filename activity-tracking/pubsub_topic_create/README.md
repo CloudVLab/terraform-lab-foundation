@@ -17,5 +17,5 @@ In the above code, the resources definition accesses a startup script value.
 
 ## Googleapi 
 
--[ ] PubsubV1 
+-[ ] [PubsubV1](https://googleapis.dev/ruby/google-api-client/latest/Google/Apis/PubsubV1.html) 
 

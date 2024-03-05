@@ -17,5 +17,4 @@ In the above code, the resources definition accesses a startup script value.
 
 ## Googleapi 
 
--[ ] ComputeV1 
-
+-[ ] [ComputeV1](https://googleapis.dev/ruby/google-api-client/latest/Google/Apis/ComputeV1.html) 
