@@ -118,7 +118,7 @@ variable "gcf_timeout" {
 }
 
 variable "gcf_trigger_http" {
-  type        = boolean 
+  type        = bool 
   description = "Trigger on http request."
   default     = true 
 }
