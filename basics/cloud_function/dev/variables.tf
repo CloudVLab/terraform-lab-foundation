@@ -105,3 +105,26 @@ variable "gcf_registry" {
   default     = "ARTIFACT_REGISTRY"
 }
 
+variable "gcf_available_mb" {
+  type        = number 
+  description = "Amount of memory to allocate."
+  default     = 128
+}
+
+variable "gcf_timeout" {
+  type        = number 
+  description = "Cloud Function timeout delay, defaults to 60s."
+  default     = 60 
+}
+
+variable "gcf_trigger_http" {
+  type        = boolean 
+  description = "Trigger on http request."
+  default     = true 
+}
+
+variable "gcf_trigger_security" {
+  type        = string
+  description = "Redirect to HTTP URL, support query params."
+  default     = "SECURE_ALWAYS"
+}
