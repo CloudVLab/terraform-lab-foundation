@@ -13,13 +13,11 @@ resource "google_storage_bucket" "bucket" {
 }
 
 resource "google_storage_bucket_object" "archive" {
-  name   = var.gcf_archive_object 
-  #name   = "mostplayed.zip" 
+  name   = var.gcf_archive_object
   bucket = google_storage_bucket.bucket.name
-  source = var.gcf_archive_source 
-  #source = "./cf/mostplayed.zip" 
+  source = var.gcf_archive_source
 
-  depends_on = [ google_storage_bucket.bucket ]
+  depends_on = [google_storage_bucket.bucket]
 }
 
 #
@@ -29,27 +27,25 @@ resource "google_storage_bucket_object" "archive" {
 ## NEW Module: Cloud Function
 
 resource "google_cloudfunctions_function" "custom_function" {
-  name                  = var.gcf_name 
-  project               = var.gcp_project_id
-  region                = var.gcp_region
-  description           = var.gcf_description 
-  runtime               = var.gcf_runtime
+  name        = var.gcf_name
+  project     = var.gcp_project_id
+  region      = var.gcp_region
+  description = var.gcf_description
+  runtime     = var.gcf_runtime
 
-  available_memory_mb   = 128
   source_archive_bucket = google_storage_bucket.bucket.name
   source_archive_object = google_storage_bucket_object.archive.name
-  ## source_archive_bucket = var.gcf_target_bucket 
-  ## source_archive_object = var.gcf_archive_source
-  trigger_http          = true
-  entry_point           = var.gcf_entry_point 
+  entry_point           = var.gcf_entry_point
 
-#  environment_variables = {
-#    PROJECT_ID= var.gcp_project_id
-#  }
+  ## Ref: CR/AF Migration 
+  available_memory_mb          = var.gcf_available_mb
+  docker_registry              = var.gcf_registry
+  timeout                      = var.gcf_timeout
+  trigger_http                 = var.gcf_trigger_http
+  https_trigger_security_level = var.gcf_trigger_security
+  environment_variables        = var.gcf_environment_variables
 
-  environment_variables = var.gcf_environment_variables
-
-  depends_on = [ google_storage_bucket_object.archive ]
+  depends_on = [google_storage_bucket_object.archive]
 }
 
 #
@@ -64,6 +60,6 @@ resource "google_cloudfunctions_function_iam_member" "invoker" {
   project        = var.gcp_project_id
   region         = var.gcp_region
   cloud_function = google_cloudfunctions_function.custom_function.name
-  role           = var.gcf_role_bind 
-  member         = var.gcf_member_account 
+  role           = var.gcf_role_bind
+  member         = var.gcf_member_account
 }

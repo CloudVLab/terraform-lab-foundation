@@ -1,1 +1,1 @@
-## Expose Cloud Firestore properties
+## Expose Cloud Function properties
