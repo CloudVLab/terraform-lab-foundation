@@ -37,14 +37,14 @@ resource "google_cloudfunctions_function" "custom_function" {
   ## source_archive_object = var.gcf_archive_source
   source_archive_bucket        = google_storage_bucket.bucket.name
   source_archive_object        = google_storage_bucket_object.archive.name
-  trigger_http                 = var.gcf_trigger_http 
   entry_point                  = var.gcf_entry_point 
 
   ## Ref: CR/AF Migration 
   available_memory_mb          = var.gcf_available_mb 
   docker_registry              = var.gcf_registry
   timeout                      = var.gcf_timeout 
-  https_trigger_security_level = var.gcf_trigger_http 
+  trigger_http                 = var.gcf_trigger_http 
+  https_trigger_security_level = var.gcf_trigger_security 
   environment_variables        = var.gcf_environment_variables
 
   depends_on                   = [ google_storage_bucket_object.archive ]
