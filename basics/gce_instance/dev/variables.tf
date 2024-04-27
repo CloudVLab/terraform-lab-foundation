@@ -27,7 +27,7 @@ variable "gcp_zone" {
 variable "gcp_username" {
   type        = string
   description = "Name of Qwiklabs user"
-  default     = "qwiklabs-student" 
+  default     = "qwiklabs-student"
 }
 
 # Expected custom_properties key to be declared in `qwiklabs.yaml` 
@@ -35,7 +35,7 @@ variable "gcp_username" {
 variable "gce_name" {
   type        = string
   description = "GCE VM instance name."
-  default     = "tf-test-gce" 
+  default     = "tf-test-gce"
 }
 
 
@@ -45,23 +45,23 @@ variable "gce_name" {
 
 # Custom properties with defaults 
 variable "gce_region" {
-  type        = string 
+  type        = string
   description = "Region to create resources in."
-  default     = "us-central1" 
+  default     = "us-central1"
 }
 
 # Custom properties with defaults 
 variable "gce_zone" {
-  type        = string 
+  type        = string
   description = "Zone to create resources in."
-  default     = "us-central1-f" 
+  default     = "us-central1-f"
 }
 
 # Custom properties with defaults 
 variable "gce_machine_type" {
-  type        = string 
+  type        = string
   description = "Machine type to use for GCE"
-  default     = "n1-standard-1" 
+  default     = "n1-standard-1"
 }
 
 # Custom properties with defaults 
@@ -97,7 +97,7 @@ variable "gce_scopes" {
 variable "gce_service_account" {
   type        = string
   description = "GCE Service Account"
-  default     = "default" 
+  default     = "default"
 }
 
 # Custom properties with defaults 
@@ -105,19 +105,26 @@ variable "gce_service_account" {
 variable "gce_metadata" {
   type        = map(string)
   description = "GCE Metadata object"
-  default     = {"foo" = "bar"} 
+  default     = { "foo" = "bar" }
 }
 
 # Custom properties with defaults 
 variable "gce_startup_script" {
   type        = string
   description = "GCE startup script"
-  default     = "echo Welcome to Project Octopus > /tmp/octopus.txt" 
+  default     = "echo Welcome to Project Octopus > /tmp/octopus.txt"
 }
 
 # Custom properties with defaults 
 variable "gce_can_ip_forward" {
-  type        = bool 
+  type        = bool
   description = "Allow IP forwarding"
-  default     = "false" 
+  default     = "false"
+}
+
+# Custom properties with defaults 
+variable "gce_assign_external_ip" {
+  type        = bool
+  description = "Enable an external IP"
+  default     = "true"
 }

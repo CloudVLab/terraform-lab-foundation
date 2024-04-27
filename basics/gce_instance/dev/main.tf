@@ -19,11 +19,12 @@ resource "google_compute_instance" "gce_virtual_machine" {
   }
 
   network_interface {
-    network = var.gce_machine_network == "default" ? var.gce_machine_network : null
+    network    = var.gce_machine_network == "default" ? var.gce_machine_network : null
     subnetwork = var.gce_machine_network == "default" ? null : var.gce_machine_network
 
-    access_config {
-      // Ephemeral IP
+    dynamic "access_config" {
+      for_each = var.gce_assign_external_ip ? [1] : []
+      content {}
     }
   }
 
@@ -32,12 +33,12 @@ resource "google_compute_instance" "gce_virtual_machine" {
 
 
   # Override to perform startup script
-  metadata_startup_script = var.gce_startup_script == null ? null : var.gce_startup_script 
+  metadata_startup_script = var.gce_startup_script == null ? null : var.gce_startup_script
 
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     # email  = google_service_account.default.email
-    email = var.gce_service_account == null ? null : var.gce_service_account
+    email  = var.gce_service_account == null ? null : var.gce_service_account
     scopes = var.gce_scopes
   }
 }
