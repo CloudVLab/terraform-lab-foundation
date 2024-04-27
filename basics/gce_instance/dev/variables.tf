@@ -121,3 +121,10 @@ variable "gce_can_ip_forward" {
   description = "Allow IP forwarding"
   default     = "false" 
 }
+
+# Custom properties with defaults 
+variable "gce_assign_external_ip" {
+  type        = bool 
+  description = "Enable an external IP"
+  default     = "true" 
+}
