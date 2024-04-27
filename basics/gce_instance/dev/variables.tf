@@ -119,12 +119,12 @@ variable "gce_startup_script" {
 variable "gce_can_ip_forward" {
   type        = bool
   description = "Allow IP forwarding"
-  default     = "false"
+  default     = false
 }
 
 # Custom properties with defaults 
 variable "gce_assign_external_ip" {
   type        = bool
   description = "Enable an external IP"
-  default     = "true"
+  default     = true
 }
