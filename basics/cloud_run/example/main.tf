@@ -2,9 +2,11 @@
 # Local:  modules/[channel]
 # Remote: github.com://CloudVLab/terraform-lab-foundation//[module]/[channel]
 
-# Module: AutoML  
+# Module: Cloud Run 
 module "la_cloud_run" {
   #source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable?ref=tlf-basics"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable/v1"
+  # source = "gcs::https://storage.googleapis.com/terraform-lab-foundation/basics/cloud_run/stable"
   source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable"
 
   # Pass values to the module
@@ -13,8 +15,8 @@ module "la_cloud_run" {
   gcp_zone       = var.gcp_zone
 
   # Customise the GCE instance
+  gcrRegion  = var.gcp_region 
   #gcrService = "automl-proxy"
   #gcrImage   = "gcr.io/qwiklabs-resources/ide-proxy:latest"
-  #gcrRegion  = "us-central1"
   #gcrEnvs    = [ { "URL", "https://storage.googleapis.com/spl-api/test2.json" } ]
 }
