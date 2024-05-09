@@ -8,7 +8,7 @@ Checks if a Log Filter exists within a project.
 * Solution: Include the `logging.list_entry_log_entries` method to perform this action.
 * Discussion: The code linked below provides an example setup.
 
-```
+```ruby
   # Filters for creation of the Artifact Repository
   log_filters = [
     'timestamp>"' + lab_start_time.utc.iso8601 + '"',

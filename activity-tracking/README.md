@@ -1,6 +1,7 @@
 # Generic Activity Tracking
 
 A quick list of generic modules available to perform `Activity Tracking`.
+Library follows the Unix philosophy of [Do one thing well](https://en.wikipedia.org/wiki/Unix_philosophy).
 
 ## Services
 
@@ -42,6 +43,7 @@ Use the Terraform scripts definitions to validate a resource.
 | Service | Method | Action | Link |
 |---------|--------|--------|------|
 | Logging | get_sink | Check if a `log sink` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/log_sink_create) |
+| Logging | logging.list_entry_log_entries | Check if a `log explorer filter` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/log_object_filter) |
 
 ### PubSub
 

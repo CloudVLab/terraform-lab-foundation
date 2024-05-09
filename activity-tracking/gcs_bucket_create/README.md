@@ -8,7 +8,7 @@ Checks if a Bucket exists within a project.
 * Solution: Include the `get_bucket` method to perform this action.
 * Discussion: The code linked below provides an example setup.
 
-```
+```ruby
   storage     = handles['project_0.StorageV1']
   bucket_name = resources['project_0']['startup_script.bucket']
 ```

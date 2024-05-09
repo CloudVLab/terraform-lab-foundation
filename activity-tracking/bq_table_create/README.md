@@ -8,7 +8,7 @@ Checks if a table exists within a project.
 * Solution: Include the `get_table` method to perform this action.
 * Discussion: The code linked below provides an example setup.
 
-```
+```ruby
   bigquery     = handles['project_0.BigqueryV2']
   dataset_name = resources['project_0']['startup_script.bq_dataset_name']
   table_name   = resources['project_0']['startup_script.bq_table_name']
