@@ -8,7 +8,7 @@ Checks if a VPC Subnet exists within a project.
 * Solution: Include the `get_subnetwork` method to perform this action.
 * Discussion: The code linked below provides an example setup.
 
-```
+```ruby
   compute  = handles['project_0.ComputeV1']
   subnetwork_name = resources['project_0']['startup_script.vpc_subnetwork_name']
 ```

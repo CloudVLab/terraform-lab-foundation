@@ -8,7 +8,7 @@ Checks if a PubSub topic exists within a project.
 * Solution: Include the `get_topic` method to perform this action.
 * Discussion: The code linked below provides an example setup.
 
-```
+```ruby
   pubsub     = handles['project_0.PubsubV1']
   topic_name = 'projects/' + pubsub.project + '/topics/' + resources['project_0']['startup_script.pubsub_topic_name']
 ```

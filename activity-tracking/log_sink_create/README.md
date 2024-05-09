@@ -8,7 +8,7 @@ Checks if a Log Sink exists within a project.
 * Solution: Include the `get_sink` method to perform this action.
 * Discussion: The code linked below provides an example setup.
 
-```
+```ruby
   log_sink  = handles['project_0.LoggingV2']
   log_sink_name = 'projects/' + log_sink.project + '/sinks/' + resources['project_0']['startup_script.log_sink_name']
 ```
