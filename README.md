@@ -48,6 +48,10 @@ Example configurations that can be used to build content on the Qwiklabs Platfor
 #### Source Repository 
 - [ ] [Source Repo](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/source_repo/README.md)
 
+#### Vertex AI 
+- [ ] [Vertex AI Notebook](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/vai_notebook/README.md)
+- [ ] [Vertex AI Workbench](https://github.com/CloudVLab/terraform-lab-foundation/blob/main/basics/vai_workbench/README.md)
+
 ## Technical Solutions
 
 Example solutions pre-built for the Qwiklabs platform
