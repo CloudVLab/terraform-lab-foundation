@@ -4,7 +4,8 @@
 
 # Module: Google Compute Engine
 module "la_gce" {
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/gce_instance/stable"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/gce_instance/stable/v1"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/gce_instance/stable/v1"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
@@ -18,8 +19,6 @@ module "la_gce" {
   gce_startup_script   = null
 
   ## Overrides
-  #gce_region          = "us-central1" 
-  #gce_zone            = "us-central1-a" 
   #gce_machine_type    = "e2-micro" 
   #gce_tags            = ["lab-vm"] 
   #gce_machine_image   = "debian-cloud/debian-11" 
