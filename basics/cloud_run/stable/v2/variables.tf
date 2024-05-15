@@ -22,158 +22,67 @@ variable "gcp_zone" {
 ## --------------------------------------------------------------
 ## Output variable definitions - Override from Custom Properties 
 ## --------------------------------------------------------------
-## Ensure these values are defined in Qwiklabs.yaml
+## Ensure corresponding values in Qwiklabs.yaml
 
-# with the same name for any lab that uses this script.
-variable "gcp_username" {
-  type        = string
-  description = "Name of Qwiklabs user"
-  default     = "tester"
-}
 
 ## --------------------------------------------------------------
 ## Custom variable definitions - Override from Custom Properties
 ## --------------------------------------------------------------
-# Custom properties with defaults 
-variable "vpcNetworkName" {
-  type        = string
-  description = "Custom network"
-  default     = "dev-network"
-}
 
 # Custom properties with defaults 
-variable "vpcSubnetName" {
+variable "gcrServiceName" {
   type        = string
-  description = "Custom network"
-  default     = "dev-subnetwork"
+  description = "Name of the Cloud Run service"
+  default     = "lab-service"
 }
 
 # Custom properties with defaults 
-variable "vpcDescription" {
+variable "gcrServiceImage" {
   type        = string
-  description = "Custom network"
-  default     = "Lab custom network"
+  description = "Name of the Cloud Run service"
+  default     = "gcr.io/qwiklabs-resources/test-ide-proxy:latest"
 }
 
 # Custom properties with defaults 
-variable "vpcSubnetCidr" {
-  type    = string
-  default = "10.1.0.0/24"
+variable "gcrServiceEgress" {
+  type        = string
+  description = "Egress applied to the Cloud Run service"
+  default     = "ALL_TRAFFIC"
 }
 
 # Custom properties with defaults 
-variable "vpcDefaultCidr" {
-  type    = string
-  default = "10.128.0.0/9"
-}
-
-# Custom properties with defaults 
-variable "vpcConnectorMachineType" {
-  type        = string 
-  description = "VPC Access Connector Machine Type"
-  # Note: valid options: f1-micro, e2-micro, e2-standard-4
-  default     = "e2-micro" 
-}
-
-variable "gcrIDEService" {
-  type        = string
-  description = "Name of the proxy service"
-  default     = "ide-service"
-}
-
-variable "gcrRegion" {
-  type        = string
-  description = "GCE virtual machine image family"
-  default     = "us-central1"
-}
-
-variable "gceMachineImage" {
-  type        = string
-  description = "GCE virtual machine image family"
-  default     = "test-cloud-codeserver"
-#  default     = "test-flutter-codeserver"
-#  default     = "cloud-code-codeserver"
-#  default     = "debian-cloud/debian-10"
-}
-
-variable "gceProjectMachineImage" {
-  type        = string
-  description = "Project hosting the image family"
-  default     = "qwiklabs-resources"
-}
-
-variable "gceInstanceName" {
-  type        = string
-  description = "GCE virtual machine image family"
-  default     = "cloudlearningservices"
-}
-
-# Custom properties with defaults 
-variable "gceInstanceZone" {
-  type        = string 
-  description = "Zone to create resources in."
-  default     = "us-central1-f" 
-}
-
-# Custom properties with defaults 
-variable "gceInstanceTags" {
-  type        = list(string)
-  description = "GCE virtual machine tags"
+variable "gcrInstanceTags" {
+  type        = list(any)
+  description = "List of network tags"
   default     = ["lab-vm"]
 }
 
 # Custom properties with defaults 
-variable "gceMachineType" {
-  type        = string 
-  description = "Machine type to use for GCE"
-  default     = "e2-standard-2" 
-}
-
-# Custom properties with defaults 
-variable "gceInstanceNetwork" {
+variable "gcrNetworkName" {
   type        = string
-  description = "GCE virtual machine network"
-  default     = "default"
+  description = "Custom network"
+  ## default     = "dev-network"
+  default = "default"
 }
 
 # Custom properties with defaults 
-variable "gceInstanceScope" {
-  type        = list(string)
-  description = "GCE service account scope"
-  default     = ["cloud-platform"]
-}
-
-variable "isPrivateCluster" {
-  default = true
-  description = "True to spin up a private, secure cluster. False to spin up a public cluster."
-}
-
-variable "isCustomNetwork" {
-  default = true
-  description = "True to utilize custom network resources. False to switch to default network."
-}
-
-
-## GKE Settings
-#
-
-# Custom properties with defaults 
-variable "gkeClusterName" {
+variable "gcrSubnetName" {
   type        = string
-  description = "GKE Cluster name."
-  default     = "dev-cluster" 
+  description = "Custom network"
+  ## default     = "dev-subnetwork"
+  default = "default"
 }
 
 # Custom properties with defaults 
-variable "gkeMasterIPv4CIDRBlock" {
-  type    = string
-  default = "172.23.0.0/28"
+variable "gcrServiceRole" {
+  type        = string
+  description = "Role permission for service access"
+  default = "roles/run.invoker"
 }
 
 # Custom properties with defaults 
-variable "gkeRegion" {
-  type        = string 
-  description = "Region to create resources in."
-  default     = "us-central1" 
+variable "gcrMemberAccess" {
+  type        = list 
+  description = "Member access to the service"
+  default = [ "allUsers" ]
 }
-
