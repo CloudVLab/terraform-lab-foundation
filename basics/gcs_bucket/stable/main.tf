@@ -7,6 +7,6 @@ resource "google_storage_bucket" "cloud-bucket" {
   location                    = var.gcp_region 
   project                     = var.gcp_project_id
   storage_class               = var.gcs_storage_class
-  force_destroy               = true
-  uniform_bucket_level_access = true
+  force_destroy               = var.gcs_force_destroy 
+  uniform_bucket_level_access = var.gcs_append_project 
 }

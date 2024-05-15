@@ -25,39 +25,21 @@ variable "gcp_zone" {
 
 # Expected custom_properties key to be declared in `qwiklabs.yaml` 
 # with the same name for any lab that uses this script.
-variable "gcp_username" {
+## variable "api_service_name" {
+##   type        = string
+##   description = "Googleapis service name."
+## }
+
+variable "api_services" {
+  type = list(string)
+  default = [
+    "storage-api.googleapis.com",
+  ]
+}
+
+# with the same name for any lab that uses this script.
+variable "api_service_deny" {
   type        = string
   description = "Name of Qwiklabs user"
-  default     = "qwiklabs-student"
+  default     = false
 }
-
-variable "gcs_bucket_extension" {
-  type        = string
-  description = "GCS Bucket name."
-  default     = "bucket"
-}
-
-variable "gcs_storage_class" {
-  type        = string
-  description = "GCS Bucket name."
-  default     = "STANDARD"
-}
-
-variable "gcs_append_project" {
-  type        = bool
-  description = "Enable uniform bucket level access"
-  default     = true
-}
-
-variable "gcs_force_destroy" {
-  type        = bool
-  description = "Delete bucket contents on destroy"
-  default     = true
-}
-
-variable "gcs_bucket_level_access" {
-  type        = bool
-  description = "Append the Project ID to bucket name"
-  default     = true
-}
-

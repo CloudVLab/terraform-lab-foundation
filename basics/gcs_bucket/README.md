@@ -26,6 +26,8 @@ gcp_zone             = "us-central1-a"
 gcs_bucket_extension = "my_bucket"
 gcs_append_project   = true
 gcs_storage_class    = "STANDARD"
+gcs_force_destroy    = true 
+gcs_append_project   = true 
 ```
 
 | STORAGE CLASS |
