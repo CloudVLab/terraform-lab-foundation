@@ -45,6 +45,19 @@ variable "gcs_storage_class" {
 
 variable "gcs_append_project" {
   type        = bool
+  description = "Enable uniform bucket level access"
+  default     = true
+}
+
+variable "gcs_force_destroy" {
+  type        = bool
+  description = "Delete bucket contents on destroy"
+  default     = true
+}
+
+variable "gcs_bucket_level_access" {
+  type        = bool
   description = "Append the Project ID to bucket name"
   default     = true
 }
+
