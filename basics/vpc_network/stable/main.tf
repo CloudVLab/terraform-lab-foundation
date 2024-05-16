@@ -10,7 +10,7 @@ resource "google_compute_network" "dev_network" {
 
 resource "time_sleep" "wait_vpc_delay" {
   create_duration = "60s"
-  depends_on      = [ google_compute_network.dev_network.name ]
+  depends_on      = [ google_compute_network.dev_network ]
 }
 
 # Reference:
