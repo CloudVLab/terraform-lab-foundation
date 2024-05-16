@@ -49,6 +49,20 @@ variable "iam_sa_description" {
 }
 
 # with the same name for any lab that uses this script.
+variable "iam_sa_display" {
+  type        = string
+  description = "Display name for the SA"
+  default     = "tester-qwiklabs account" 
+}
+
+# with the same name for any lab that uses this script.
+variable "iam_sa" {
+  type        = string
+  description = "Display name for the SA"
+  default     = "tester-qwiklabs account" 
+}
+
+# with the same name for any lab that uses this script.
 variable "iam_role" {
   type        = string
   description = "Role to bind to the user account"
