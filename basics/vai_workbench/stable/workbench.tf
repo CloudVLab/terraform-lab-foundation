@@ -49,6 +49,15 @@ resource "google_workbench_instance" "instance" {
     ##     nic_type = "GVNIC"
     ##   }
 
+    dynamic "network_interfaces" {
+      for_each = var.vai_machine_network != null || var.vai_machine_subnet != null ? [1] : []
+      content {
+        network    = var.vai_machine_network
+        subnet     = var.vai_machine_subnet
+        nic_type   = "GVNIC"
+      }
+    }
+
     ## Ref: https://cloud.google.com/vertex-ai/docs/workbench/instances/manage-metadata
     metadata = {
       ## post-startup-script = "https://storage.googleapis.com/spls/tlf-workbench/lab-init.sh"

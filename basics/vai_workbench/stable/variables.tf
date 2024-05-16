@@ -45,6 +45,13 @@ variable "vai_tags" {
 variable "vai_machine_network" {
   type        = string
   description = "GCE virtual machine network"
+  default     = null
+}
+
+# Custom properties with defaults
+variable "vai_machine_subnet" {
+  type        = string
+  description = "GCE virtual machine network"
   default     = "default"
 }
 
