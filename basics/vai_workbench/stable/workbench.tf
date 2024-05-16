@@ -54,9 +54,8 @@ resource "google_workbench_instance" "instance" {
       content {
         network    = var.vai_machine_network
         subnet     = var.vai_machine_subnet
-        ## nic_type   = "GVNIC"
         nic_type   = var.vai_network_nic_type 
-        stack_type = var.vai_network_stack_type 
+        ## stack_type = var.vai_network_stack_type 
       }
     }
 
