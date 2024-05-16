@@ -82,6 +82,7 @@ resource "google_workbench_instance" "instance" {
 
   ##   desired_state = "ACTIVE"
 
+  ## TODO: Move this functionality to parent caller
   ## Give the Workbench API time to be created 
-  depends_on = [time_sleep.wait_60_seconds]
+  ## depends_on = [time_sleep.wait_60_seconds]
 }
