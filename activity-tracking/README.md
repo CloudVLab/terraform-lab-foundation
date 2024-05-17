@@ -19,6 +19,7 @@ Use the Terraform scripts definitions to validate a resource.
 |---------|--------|--------|------|
 | BigQuery | get_dataset | Check if a `dataset` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/bq_dataset_create) |
 | BigQuery | get_table | Check if a `table` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/bq_table_create) |
+| BigQuery | get_job | Check if a `job` is defined within a project | [Link](https://github.com/CloudVLab/terraform-lab-foundation/tree/main/activity-tracking/bq_job_create) |
 
 ### Compute
 
