@@ -38,8 +38,15 @@ variable "api_services" {
 }
 
 # with the same name for any lab that uses this script.
-variable "api_service_deny" {
+variable "api_create_duration" {
   type        = string
-  description = "Name of Qwiklabs user"
+  description = "Duration delay to apply post API enablement"
+  default     = "60s"
+}
+
+# with the same name for any lab that uses this script.
+variable "api_service_deny" {
+  type        = bool 
+  description = "Disable dependent services"
   default     = false
 }
