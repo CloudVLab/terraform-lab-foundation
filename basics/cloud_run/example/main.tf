@@ -3,11 +3,12 @@
 # Remote: github.com://CloudVLab/terraform-lab-foundation//[module]/[channel]
 
 # Module: Cloud Run 
+# v1: Generation 1
+# v2: Generation 2
 module "la_cloud_run" {
-  #source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable?ref=tlf-basics"
-  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable/v1"
-  # source = "gcs::https://storage.googleapis.com/terraform-lab-foundation/basics/cloud_run/stable"
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable"
+  # source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/cloud_run/stable/v2"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/cloud_run/stable/v1"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
