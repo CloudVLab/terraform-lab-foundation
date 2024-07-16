@@ -4,7 +4,8 @@
 
 # Module: Cloud Functions
 module "la_gcf" {
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_function/stable"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_function_g2/dev"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/cloud_function_g2/dev"
 
   # Pass values to the module
   gcp_project_id       = var.gcp_project_id
