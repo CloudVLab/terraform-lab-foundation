@@ -4,7 +4,8 @@
 
 # Module: App Engine + Cloud Firestore
 module "la_gae_database" {
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/app_engine/stable"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/app_engine/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/app_engine/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
