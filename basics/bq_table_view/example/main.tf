@@ -6,9 +6,9 @@ module "la_bq_table_view" {
   ## Module subdirectory needs to be defined within the TF directory
 
   ## REMOTE: GitHub (Public) access - working 
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/bq_table_view/stable"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/bq_table_view/stable"
   # source = "github.com/CloudVLab/terraform-lab-foundation//basics/bq_table_view/stable?ref=tlf_bq"
-  # source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/bq_table_view/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/bq_table_view/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
