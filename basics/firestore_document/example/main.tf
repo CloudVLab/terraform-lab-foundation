@@ -4,7 +4,8 @@
 
 # Module: Cloud Firestore Document
 module "la_firestore_document" {
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/firestore_document/stable"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/firestore_document/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/firestore_document/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
