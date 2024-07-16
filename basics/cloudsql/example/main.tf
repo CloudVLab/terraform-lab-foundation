@@ -4,10 +4,10 @@ module "la_cloudsql" {
 
   ## Local Modules - working
   ## Module subdirectory needs to be defined within the TF directory
-  #source = "./basics/cloudsql/stable"
 
   ## REMOTE: GitHub (Public) access - working 
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloudsql/stable"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloudsql/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/cloudsql/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
