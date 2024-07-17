@@ -1,11 +1,12 @@
-# GCE:    Virtual Machine
+# GKE:    Google Kubernetes Engine
 # Local:  modules/[channel]
 # Remote: github.com://CloudVLab/terraform-lab-foundation//[module]/[channel]
 
-# Module: Google Compute Engine
-module "la_gce" {
-  #source = "github.com/CloudVLab/terraform-lab-foundation//basics/gke_cluster/dev"
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/gke_cluster/stable"
+# Module: Google Kubernetes Engine
+module "la_gke_cluster" {
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/gke_cluster/dev"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/gke_cluster/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/gke_cluster/stable"
 
   # Pass values to the module
   gcp_project_id      = var.gcp_project_id
