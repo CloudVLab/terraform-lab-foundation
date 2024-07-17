@@ -4,7 +4,8 @@
 
 # Module: Google Kubernetes Engine Node Pool - Standard
 module "la_gke_node_pool" {
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/gke_node_pool/stable"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/gke_node_pool/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/gke_node_pool/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
