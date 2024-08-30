@@ -180,6 +180,8 @@ resource "google_vpc_access_connector" "connector" {
 
   # Note: valid options: f1-micro, e2-micro, e2-standard-4
   machine_type = var.vpcConnectorMachineType
+  min_instances = 2
+  max_instances = 3
 
   # https://github.com/google/exposure-notifications-server/issues/932
   # vpc_access_connector_max_throughput= 300
