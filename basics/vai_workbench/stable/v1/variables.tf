@@ -83,8 +83,8 @@ variable "vai_network_stack_type" {
 variable "vai_post_startup_script" {
   type        = string
   description = "Path to a bash script to execute"
-  default     = "https://storage.googleapis.com/spls/tlf-workbench/lab-init.sh"
-  ## default     = "https://storage.googleapis.com/spls/tlf-workbench/workbench-lab-init.sh"
+  ## default     = "https://storage.googleapis.com/spls/tlf-workbench/lab-init.sh"
+  default     = "https://storage.googleapis.com/spls/tlf-workbench/workbench-lab-init.sh"
 }
 
 # Custom properties with defaults
