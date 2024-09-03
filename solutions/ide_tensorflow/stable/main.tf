@@ -158,7 +158,9 @@ resource "google_vpc_access_connector" "connector" {
   ip_cidr_range = "10.8.0.0/28"
 
   # Note: valid options: f1-micro, e2-micro, e2-standard-4
-  machine_type = var.vpcConnectorMachineType 
+  machine_type  = var.vpcConnectorMachineType 
+  min_instances = 2
+  max_instances = 3
 
   depends_on = [
     google_project_service.vpcaccess-api, google_compute_network.dev_network
