@@ -20,72 +20,6 @@ variable "gcp_zone" {
 }
 
 ## --------------------------------------------------------------
-## Output variable definitions - Override from Custom Properties 
-## --------------------------------------------------------------
-
-
-
-## --------------------------------------------------------------
-## Custom variable definitions - Override from Custom Properties
-## --------------------------------------------------------------
-
-## # Custom properties with defaults 
-## variable "vm_name" {
-##   type        = string
-##   description = "Region to create resources in."
-##   default     = "cls-notebook"
-## }
-## 
-## # Custom properties with defaults 
-## variable "vm_region" {
-##   type        = string
-##   description = "Region to create resources in."
-##   default     = "us-central1"
-## }
-## 
-## # Custom properties with defaults 
-## variable "vm_zone" {
-##   type        = string
-##   description = "Zone to create resources in."
-##   default     = "us-central1-a"
-## }
-## 
-## # Custom properties with defaults 
-## variable "machine_type" {
-##   type        = string
-##   description = "Machine type to use for GCE"
-##   default     = "n1-standard-1"
-## }
-## 
-## # Custom properties with defaults 
-## variable "vm_tags" {
-##   type        = list(string)
-##   description = "GCE virtual machine tags"
-##   default     = ["lab-vm"]
-## }
-## 
-## # Custom properties with defaults 
-## variable "machine_image" {
-##   type        = string
-##   description = "GCE virtual machine image"
-##   default     = "debian-cloud/debian-11"
-## }
-## 
-## # Custom properties with defaults 
-## variable "machine_network" {
-##   type        = string
-##   description = "GCE virtual machine network"
-##   default     = "default"
-## }
-## 
-## # Custom properties with defaults 
-## variable "vm_scopes" {
-##   type        = list(string)
-##   description = "GCE service account scope"
-##   default     = ["cloud-platform"]
-## }
-
-## --------------------------------------------------------------
 ## Custom variable definitions - Override from Custom Properties
 ## --------------------------------------------------------------
 
@@ -137,7 +71,6 @@ variable "gcrMemberPermission" {
   description = "Assign member IAM permissions"
   default     = "allUsers"
 }
-
 
 # Custom properties with defaults 
 variable "gceInstanceName" {
@@ -197,7 +130,7 @@ variable "gceInstanceScope" {
 variable "gcePostStartupScript" {
   type        = string
   description = "Vertex post startup-script via public URL"
-  default     = "https://storage.googleapis.com/spls/poc004/lab-init.sh"
+  default     = "https://storage.googleapis.com/spls/tlf-workbench/proxy-lab-init.sh"
 }
 
 # Custom properties with defaults 
@@ -206,4 +139,3 @@ variable "vpcSubnetCidr" {
   description = "Subnetwork range"
   default     = "10.1.0.0/16"
 }
-
