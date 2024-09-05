@@ -21,11 +21,19 @@ gcp_zone       = "us-central1-a"
 #### Custom Properties
 
 ```
-vai_notebook_name       = var.tfResourceName
-vai_username            = var.tfUsername
+vai_notebook_name       = "cls-notebook" 
 vai_region              = var.gcp_region
 vai_zone                = var.gcp_zone
 vai_post_startup_script = "gs://[BUCKET]/[LAB_ID]lab-init.sh"
+```
+
+Note: 
+
+To use a custom VPC (assumes using the VPC basics module) add the following properties:
+
+```
+vai_machine_network = module.la_vpc.vpc_network_self_link
+vai_machine_subnet  = module.la_vpc.vpc_subnet_self_link
 ```
 
 #### Post Startup Script
