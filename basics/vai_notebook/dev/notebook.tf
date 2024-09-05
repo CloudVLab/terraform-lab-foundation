@@ -16,13 +16,8 @@ resource "google_notebooks_instance" "vertex_instance" {
 
   #  network = google_compute_network.dev_network.id
   #  subnet = google_compute_subnetwork.ml_subnet.id
-  dynamic "network_interfaces" {
-    for_each = var.vai_machine_network != null || var.vai_machine_subnet != null ? [1] : []
-    content {
-      network    = var.vai_machine_network
-      subnet     = var.vai_machine_subnet
-    }
-  }
+  network = var.vai_machine_network != null ? var.vai_machine_network : null 
+  subnet  = var.vai_machine_subnet != null ? var.vai_machine_subnet : null
 
   labels = {
     host = "vertexai_notebook"
