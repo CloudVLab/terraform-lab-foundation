@@ -92,7 +92,7 @@ variable "vai_machine_network" {
 }
 
 # Custom properties with defaults 
-variable "vai_machine_subnetwork" {
+variable "vai_machine_subnet" {
   type        = string
   description = "GCE virtual machine subnetwork"
   default     = null 
