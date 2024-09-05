@@ -12,7 +12,7 @@ module "la_vai_workbench" {
 
   ## REMOTE: GitHub (Public) access - working 
   ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/vai_workbench/stable"
-  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/vai_workbench/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/vai_workbench/stable/v1"
 
   ## Exchange values between Qwiklabs and Module
   gcp_project_id = var.gcp_project_id

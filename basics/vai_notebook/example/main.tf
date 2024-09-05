@@ -11,7 +11,8 @@ module "la_vai_notebook" {
   # source = "./basics/vai_notebook/stable"
 
   ## REMOTE: GitHub (Public) access - working 
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/vai_notebook/stable"
+  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/vai_notebook/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/vai_notebook/stable/v1"
 
   ## Exchange values between Qwiklabs and Module
   gcp_project_id = var.gcp_project_id
