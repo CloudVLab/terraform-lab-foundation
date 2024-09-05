@@ -20,6 +20,6 @@ module "la_vai_workbench" {
   gcp_zone       = var.gcp_zone 
 
   ## Custom Properties
-  # vai_notebook_name = "custom-notebook-name" 
+  # vai_workbench_name = "custom-notebook-name" 
   # vai_post_startup_script = "gs://[bucket]/[LAB_ID]/lab-init.sh"
 }
