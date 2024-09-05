@@ -23,7 +23,7 @@ module "la_vai_workbench" {
   # vai_machine_subnet      = module.la_vpc.vpc_subnetwork_name 
   # vai_machine_network     = module.la_vpc.vpc_network_name 
   # vai_machine_network     = module.la_vpc.vpc_network_self_link
-  # vai_post_startup_script = "gs://[bucket]/[LAB_ID]/lab-init.sh"
+  vai_post_startup_script = var.gcePostStartupScript  
 
   # Give the JIT API time to be enabled
   depends_on = [ time_sleep.wait_api_delay ]
