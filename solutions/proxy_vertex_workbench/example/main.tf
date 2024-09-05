@@ -21,7 +21,8 @@ module "la_vertex_workbench" {
   #source = "./solutions/vertex_proxy_workbench/dev"
 
   ## REMOTE: GitHub (Public) access - working 
-  source = "github.com/CloudVLab/terraform-lab-foundation//solutions/proxy_vertex_workbench/stable"
+  ## source = "github.com/CloudVLab/terraform-lab-foundation//solutions/proxy_vertex_workbench/stable/v1"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/solutions/proxy_vertex_workbench/stable/v1"
 
   ## Exchange values between Qwiklabs and Module
   gcp_project_id  = var.gcp_project_id 
