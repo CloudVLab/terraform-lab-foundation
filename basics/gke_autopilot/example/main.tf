@@ -4,7 +4,8 @@
 
 # Module: Google Kubernetes Engine - Autopilot 
 module "la_gke_autopilot" {
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/gke_autopilot/stable"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/gke_autopilot/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/gke_autopilot/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id

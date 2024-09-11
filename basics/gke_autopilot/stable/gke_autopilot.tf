@@ -74,11 +74,12 @@ resource "google_container_cluster" "tfer-gke" {
 
   networking_mode = var.gkeModeVpcNative
 
-  node_pool_defaults {
-    node_config_defaults {
-      logging_variant = "DEFAULT"
-    }
-  }
+  ## Ref:  https://buganizer.corp.google.com/issues/365912554
+  # node_pool_defaults {
+  #   node_config_defaults {
+  #     logging_variant = "DEFAULT"
+  #   }
+  # }
 
   notification_config {
     pubsub {
