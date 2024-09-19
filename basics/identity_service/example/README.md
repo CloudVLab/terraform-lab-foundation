@@ -1,31 +1,56 @@
-## Requirements
+# Terraform: Project Identity Service 
 
-No requirements.
+## Example
 
-## Providers
+The example is based on the following hierarchy:
 
-No providers.
+```
+.
+├── instructions
+│   ├── en.md
+│   └── img
+├── QL_OWNER
+└── qwiklabs.yaml 
+```
 
-## Modules
+## Add the module to the directory
+Add the example Terraform code module to your project
+```
+curl -L https://github.com/CloudVLab/terraform-lab-foundation/raw/main/basics/identity_service/example/install.sh | bash
+```
 
-| Name | Source | Version |
-|------|--------|---------|
-| <a name="module_la_service_identity"></a> [la\_service\_identity](#module\_la\_service\_identity) | github.com/CloudVLab/terraform-lab-foundation//basics/identity_service/dev | n/a |
+## View the updated directory
+```
+.
+├── instructions
+│   ├── en.md
+│   └── img
+├── QL_OWNER
+├── qwiklabs.yaml
+└── tf
+    ├── main.tf
+    ├── outputs.tf
+    ├── runtime.yaml
+    └── variables.tf
+```
 
-## Resources
+__NOTE:__ The Terraform examples assume a configuration sub-directory 
+named `tf` is present.
 
-No resources.
+## Qwiklabs Yaml
 
-## Inputs
+#### Custom Properties
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_gcp_project_id"></a> [gcp\_project\_id](#input\_gcp\_project\_id) | Qwiklabs Mandatory: PROJECT\_ID | `string` | n/a | yes |
-| <a name="input_gcp_region"></a> [gcp\_region](#input\_gcp\_region) | Qwiklabs Mandatory: REGION | `string` | n/a | yes |
-| <a name="input_gcp_zone"></a> [gcp\_zone](#input\_gcp\_zone) | Qwiklabs Mandatory: ZONE | `string` | n/a | yes |
+```yaml
+1  - type: gcp_project
+2    id: project_0
+3    variant: gcpd
+4    ssh_key_user: user_0
+5    startup_script:
+6      type: qwiklabs
+7      path: tf
+```
 
-## Outputs
+#### Visible Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_wait_indentity_delay"></a> [wait\_indentity\_delay](#output\_wait\_indentity\_delay) | n/a |
+N/A
