@@ -108,24 +108,23 @@ resource "google_storage_bucket_object" "notebook_config_script" {
   Create Vertex AI Notebook
 */
 
-resource "google_notebooks_instance" "genai_notebook" {
+resource "google_workbench_instance" "genai_notebook" {
 
   name               = var.sme_notebook_name
   project            = var.gcp_project_id
   location           = var.gcp_zone
-  machine_type       = var.sme_machine_type
-  install_gpu_driver = false
-  metadata = {
-    proxy-mode = "service_account"
-    terraform  = "true"
+  
+  gce_setup {
+    machine_type = "e2-standard-2"
+    vm_image {
+      project = "cloud-notebooks-managed"
+      family  = "workbench-instances"
+    }
+    metadata = {
+      post-startup-script = "gs://${var.gcp_project_id}-labconfig-bucket/notebook_config.sh"
+    }
   }
-
-  container_image {
-    repository = "gcr.io/deeplearning-platform-release/base-cpu"
-    tag = "latest"
-  }
-
-  post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/notebook_config.sh"
+  
 
   depends_on = [google_project_service.gcp_services, google_storage_bucket_object.notebook_config_script]
 }
