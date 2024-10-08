@@ -8,10 +8,5 @@ output "wait_identity_delay" {
 
 output "service_account_emails" {
   value = { for k, v in google_project_service_identity.tlf : k => v.member }
-  description = "Map of service names to their corresponding service account emails"
+  description = "Map of service names key to their corresponding service account property value"
 }
-
-## output "service_account_member" {
-##   value = google_project_service_identity.tlf[tolist(google_project_service_identity.tlf)[0]].member
-##   description = "Service identity member service account"
-## }
