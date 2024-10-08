@@ -7,6 +7,6 @@ output "wait_identity_delay" {
 }
 
 output "service_account_member" {
-  value = tolist(google_project_service_identity.tlf)[0].member
+  value = google_project_service_identity.tlf[tolist(google_project_service_identity.tlf)[0]].member
   description = "Service identity member service account"
 }
