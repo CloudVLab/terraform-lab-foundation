@@ -6,5 +6,5 @@ output "wait_identity_delay" {
 }
 
 output "service_account_member" {
-  value = google_project_service_identity.tlf.member
+  value = google_project_service_identity.tlf[0].member
 }
