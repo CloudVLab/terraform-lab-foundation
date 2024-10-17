@@ -42,19 +42,18 @@ variable "gce_name" {
 ## --------------------------------------------------------------
 ## Custom variable definitions - Override from Custom Properties
 ## --------------------------------------------------------------
-
 # Custom properties with defaults 
 variable "gce_region" {
-  type        = string 
+  type        = string
   description = "Region to create resources in."
-  default     = "us-central1" 
+  default     = null
 }
 
 # Custom properties with defaults 
 variable "gce_zone" {
-  type        = string 
+  type        = string
   description = "Zone to create resources in."
-  default     = "us-central1-f" 
+  default     = null 
 }
 
 # Custom properties with defaults 
