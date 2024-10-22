@@ -32,7 +32,7 @@ data "google_project" "project" {
 
 locals {
   #  PROJECT_NUMBER-compute@developer.gserviceaccount.com
-  service_account = "serviceAccount:${data.google_project.project.number}-$compute@developer.gserviceaccount.com"
+  service_account = "serviceAccount:${data.google_project.project.number}-compute@developer.gserviceaccount.com"
 }
 
 resource "google_cloudfunctions_function" "custom_function" {
