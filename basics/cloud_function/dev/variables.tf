@@ -68,9 +68,9 @@ variable "gcf_runtime" {
 }
 
 # Default value passed in
-variable "gcf_service_account" {
+variable "gcf_service_account_email" {
   type        = string
-  description = "Cloud Function Service Account."
+  description = "Cloud Function Service Account Email."
   default     = null 
 }
 
