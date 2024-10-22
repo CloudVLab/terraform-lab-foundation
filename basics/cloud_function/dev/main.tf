@@ -57,7 +57,7 @@ resource "google_cloudfunctions_function" "custom_function" {
   environment_variables        = var.gcf_environment_variables
 
   # b/374612344 - Gen 1 uses appspot as service SA + compute dev as Build SA
-  service_account_email = local.service_account
+  service_account_email = var.gcf_service_account == null ? null : var.gcf_service_account 
   depends_on            = [google_storage_bucket_object.archive]
 }
 

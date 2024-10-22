@@ -67,6 +67,14 @@ variable "gcf_runtime" {
   default     = "nodejs16"
 }
 
+# Default value passed in
+variable "gcf_service_account" {
+  type        = string
+  description = "Cloud Function Service Account."
+  default     = null 
+}
+
+
 variable "gcf_target_bucket" {
   type        = string
   description = "Target bucket to upload source code."
