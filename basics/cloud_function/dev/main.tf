@@ -50,7 +50,7 @@ resource "google_cloudfunctions_function" "custom_function" {
 
   ## Ref: CR/AF Migration 
   available_memory_mb = var.gcf_available_mb
-  # docker_registry              = var.gcf_registry
+  docker_registry              = var.gcf_registry
   timeout                      = var.gcf_timeout
   trigger_http                 = var.gcf_trigger_http
   https_trigger_security_level = var.gcf_trigger_security
