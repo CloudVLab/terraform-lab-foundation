@@ -110,8 +110,8 @@ variable "gcf_environment_variables" {
 variable "gcf_registry" {
   type        = string
   description = "Registry type to use."
-  default     = "ARTIFACT_REGISTRY"
-  # default     = "CONTAINER_REGISTRY"
+  # default     = "ARTIFACT_REGISTRY"
+  default     = "CONTAINER_REGISTRY"
 }
 
 variable "gcf_available_mb" {
