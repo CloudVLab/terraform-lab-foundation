@@ -71,7 +71,7 @@ variable "gcf_runtime" {
 variable "gcf_service_account_email" {
   type        = string
   description = "Cloud Function Service Account Email."
-  default     = null 
+  default     = null
 }
 
 variable "gcf_target_bucket" {
@@ -102,7 +102,7 @@ variable "gcf_environment_variables" {
   type = map(string)
 
   default = {
-    PROJECT_ID = "undefined" 
+    PROJECT_ID = "undefined"
   }
 }
 
@@ -111,7 +111,7 @@ variable "gcf_registry" {
   description = "Registry type to use."
   # b/374612344 - Gen 1 set to CR as default 
   # default     = "ARTIFACT_REGISTRY"
-  default     = "CONTAINER_REGISTRY"
+  default = "CONTAINER_REGISTRY"
 }
 
 variable "gcf_available_mb" {
