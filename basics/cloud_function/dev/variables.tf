@@ -67,6 +67,14 @@ variable "gcf_runtime" {
   default     = "nodejs16"
 }
 
+# Default value passed in
+variable "gcf_service_account_email" {
+  type        = string
+  description = "Cloud Function Service Account Email."
+  default     = null 
+}
+
+
 variable "gcf_target_bucket" {
   type        = string
   description = "Target bucket to upload source code."
@@ -95,7 +103,7 @@ variable "gcf_environment_variables" {
   type = map(string)
 
   default = {
-    PROJECT_ID = "undefined" 
+    PROJECT_ID = "undefined"
   }
 }
 
@@ -107,21 +115,21 @@ variable "gcf_registry" {
 }
 
 variable "gcf_available_mb" {
-  type        = number 
+  type        = number
   description = "Amount of memory to allocate."
   default     = 128
 }
 
 variable "gcf_timeout" {
-  type        = number 
+  type        = number
   description = "Cloud Function timeout delay, defaults to 60s."
-  default     = 60 
+  default     = 60
 }
 
 variable "gcf_trigger_http" {
-  type        = bool 
+  type        = bool
   description = "Trigger on http request."
-  default     = true 
+  default     = true
 }
 
 variable "gcf_trigger_security" {
