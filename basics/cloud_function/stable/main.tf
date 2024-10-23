@@ -35,19 +35,21 @@ resource "google_cloudfunctions_function" "custom_function" {
   description           = var.gcf_description 
   runtime               = var.gcf_runtime
 
-  available_memory_mb   = 128
   source_archive_bucket = google_storage_bucket.bucket.name
   source_archive_object = google_storage_bucket_object.archive.name
-  ## source_archive_bucket = var.gcf_target_bucket 
-  ## source_archive_object = var.gcf_archive_source
-  trigger_http          = true
   entry_point           = var.gcf_entry_point 
 
-#  environment_variables = {
-#    PROJECT_ID= var.gcp_project_id
-#  }
+  available_memory_mb   = var.gcf_available_mb
 
-  environment_variables = var.gcf_environment_variables
+  # b/374612344 - Gen 1 set to CR as default 
+  docker_registry       = var.gcf_registry
+  timeout               = var.gcf_timeout
+  trigger_http          = var.gcf_trigger_http
+  https_trigger_security_level = var.gcf_trigger_security
+  environment_variables        = var.gcf_environment_variables
+
+  # b/374612344 - Gen 1 uses appspot as service SA + compute dev as Build SA
+  service_account_email = var.gcf_service_account_email == null ? null : var.gcf_service_account_email 
 
   depends_on = [ google_storage_bucket_object.archive ]
 }
