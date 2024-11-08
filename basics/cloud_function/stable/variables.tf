@@ -106,14 +106,6 @@ variable "gcf_environment_variables" {
   }
 }
 
-variable "gcf_registry" {
-  type        = string
-  description = "Registry type to use."
-  # b/374612344 - Gen 1 set to CR as default 
-  # default     = "ARTIFACT_REGISTRY"
-  default = "CONTAINER_REGISTRY"
-}
-
 variable "gcf_available_mb" {
   type        = number
   description = "Amount of memory to allocate."
@@ -130,10 +122,4 @@ variable "gcf_trigger_http" {
   type        = bool
   description = "Trigger on http request."
   default     = true
-}
-
-variable "gcf_trigger_security" {
-  type        = string
-  description = "Redirect to HTTP URL, support query params."
-  default     = "SECURE_ALWAYS"
 }
