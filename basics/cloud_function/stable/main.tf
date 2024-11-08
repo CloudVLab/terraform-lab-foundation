@@ -42,10 +42,8 @@ resource "google_cloudfunctions_function" "custom_function" {
   available_memory_mb = var.gcf_available_mb
 
   # b/374612344 - Gen 1 set to CR as default 
-  docker_registry              = var.gcf_registry
   timeout                      = var.gcf_timeout
   trigger_http                 = var.gcf_trigger_http
-  https_trigger_security_level = var.gcf_trigger_security
   environment_variables        = var.gcf_environment_variables
 
   # b/374612344 - Gen 1 uses appspot as service SA + compute dev as Build SA
