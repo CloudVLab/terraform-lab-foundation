@@ -1,5 +1,4 @@
 # ------------------ Module Definition 
-
 #
 
 # Local:  modules/[channel]
@@ -22,7 +21,11 @@ module "la_automl_proxy" {
   ## Add Environment Variables
   ## Consult Docs to add required settings
   cr_env      = [
-    { gcr_env_name = "XXXXXXXX", gcr_env_value = "YYYYYYYYY" }
+    { gcr_env_name = "PROJECT_ID",      gcr_env_value = var.gcp_project_id },
+    { gcr_env_name = "REGION_ID",       gcr_env_value = var.gcp_region },
+    { gcr_env_name = "ENDPOINT_ID",     gcr_env_value = var.endpoint_id },
+    { gcr_env_name = "GATEWAY_URL",     gcr_env_value = var.gateway_url },
+    { gcr_env_name = "GATEWAY_PROJECT", gcr_env_value = var.gateway_project }
   ]
 
 }
