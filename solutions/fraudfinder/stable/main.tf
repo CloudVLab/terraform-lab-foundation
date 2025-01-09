@@ -127,7 +127,8 @@ su - jupyter -c "pip install --upgrade --no-warn-conflicts --no-warn-script-loca
 
 EOF
 
-  filename = "notebook_config.sh"
+  # filename = "notebook_config.sh"
+  filename = "workbench_config.sh"
 }
 
 resource "google_storage_bucket_object" "notebook_config_script" {
@@ -174,7 +175,7 @@ module "la_vai_workbench" {
   ## Custom Properties
   vai_workbench_name = "ff-jupyterlab"
   # vai_post_startup_script = "gs://[bucket]/[LAB_ID]/lab-init.sh"
-  vai_post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/notebook_config.sh"
+  vai_post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/workbench_config.sh"
 
   depends_on = [google_project_service.gcp_services, google_storage_bucket_object.notebook_config_script]
 }
@@ -233,5 +234,6 @@ resource "google_project_iam_member" "servacct-cloud-build-add-permissions" {
   project  = var.gcp_project_id
   role     = each.key
   member   = "serviceAccount:${local.cloud_build_service_account_email}"
-  depends_on = [google_notebooks_instance.ff_notebook]
+  ## depends_on = [google_notebooks_instance.ff_notebook]
+  depends_on = [module.la_vai_workbench]
 }
