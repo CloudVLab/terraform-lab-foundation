@@ -106,10 +106,10 @@ resource "local_file" "notebook_config" {
 #!/bin/bash -e
 echo "STARTUP-SCRIPT: START"
 
-# Download Path File
+# Download Patch File
 gsutil cp gs://spls/tlf-workbench/workbench.patch /tmp/workbench.patch
 
-# Path configuration
+# Patch configuration
 sudo -u jupyter patch /home/jupyter/.jupyter/jupyter_notebook_config.py < /tmp/workbench.patch
 
 # Restart the service
@@ -145,14 +145,12 @@ echo "STARTUP-SCRIPT: END"
 
 EOF
 
-  # filename = "notebook_config.sh"
-  filename = "workbench_config.sh"
+  filename = "notebook_config.sh"
 }
 
 resource "google_storage_bucket_object" "notebook_config_script" {
   name   = "notebook_config.sh"
-  # source = "notebook_config.sh"
-  source = "workbench_config.sh"
+  source = "notebook_config.sh"
   bucket = google_storage_bucket.lab_config_bucket.name
   depends_on = [
     google_storage_bucket.lab_config_bucket,
