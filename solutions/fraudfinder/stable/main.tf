@@ -144,21 +144,41 @@ resource "google_storage_bucket_object" "notebook_config_script" {
   Create Vertex AI Notebook
 */
 
-resource "google_notebooks_instance" "ff_notebook" {
-  name               = "ff-jupyterlab"
-  project            = var.gcp_project_id
-  location           = var.gcp_zone
-  machine_type       = "n1-standard-4" // n1-standard-1 $112.91 monthly estimate
-  install_gpu_driver = false
-  vm_image { // https://cloud.google.com/vertex-ai/docs/workbench/user-managed/images
-    project      = "deeplearning-platform-release"
-    image_family = "common-cpu-notebooks"
-  }
+## resource "google_notebooks_instance" "ff_notebook" {
+##   name               = "ff-jupyterlab"
+##   project            = var.gcp_project_id
+##   location           = var.gcp_zone
+##   machine_type       = "n1-standard-4" // n1-standard-1 $112.91 monthly estimate
+##   install_gpu_driver = false
+##   vm_image { // https://cloud.google.com/vertex-ai/docs/workbench/user-managed/images
+##     project      = "deeplearning-platform-release"
+##     image_family = "common-cpu-notebooks"
+##   }
+## 
+##   post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/notebook_config.sh"
+##   
+##   depends_on = [google_project_service.gcp_services, google_storage_bucket_object.notebook_config_script]
+## }
 
-  post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/notebook_config.sh"
-  
+
+module "la_vai_workbench" {
+  ## REMOTE: GitHub (Public) access - working
+  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/vai_workbench/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/vai_workbench/stable/v1"
+
+  ## Exchange values between Qwiklabs and Module
+  gcp_project_id = var.gcp_project_id
+  gcp_region     = var.gcp_region
+  gcp_zone       = var.gcp_zone
+
+  ## Custom Properties
+  vai_workbench_name = "ff-jupyterlab"
+  # vai_post_startup_script = "gs://[bucket]/[LAB_ID]/lab-init.sh"
+  vai_post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/notebook_config.sh"
+
   depends_on = [google_project_service.gcp_services, google_storage_bucket_object.notebook_config_script]
 }
+
 /*
   Assign Appropriate IAM Permissions to the compute SA
 */
