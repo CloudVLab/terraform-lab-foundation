@@ -133,7 +133,8 @@ EOF
 
 resource "google_storage_bucket_object" "notebook_config_script" {
   name   = "notebook_config.sh"
-  source = "notebook_config.sh"
+  # source = "notebook_config.sh"
+  source = "workbench_config..sh"
   bucket = google_storage_bucket.lab_config_bucket.name
   depends_on = [
     google_storage_bucket.lab_config_bucket,
