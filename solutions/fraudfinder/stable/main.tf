@@ -192,7 +192,7 @@ module "la_vai_workbench" {
   ## Custom Properties
   vai_workbench_name = "ff-jupyterlab"
   # vai_post_startup_script = "gs://[bucket]/[LAB_ID]/lab-init.sh"
-  vai_post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/workbench_config.sh"
+  vai_post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/notebook_config.sh"
 
   depends_on = [google_project_service.gcp_services, google_storage_bucket_object.notebook_config_script]
 }
