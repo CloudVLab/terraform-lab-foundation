@@ -101,10 +101,11 @@ resource "google_storage_bucket" "lab_config_bucket" {
 
 resource "local_file" "notebook_config" {
 
-  co01ck2Z6bMslcntent = <<EOF
+  content = <<EOF
 
 #!/bin/bash -e
 echo "STARTUP-SCRIPT: START"
+
 # Download Path File
 gsutil cp gs://spls/tlf-workbench/workbench.patch /tmp/workbench.patch
 
@@ -113,11 +114,6 @@ sudo -u jupyter patch /home/jupyter/.jupyter/jupyter_notebook_config.py < /tmp/w
 
 # Restart the service
 sudo -u jupyter sudo systemctl restart jupyter.service
-
-## Amend ACL
-# sudo -u jupyter sed -i '/c.ServerApp.ip /c\\nc.ServerApp.ip = \"*\"' /home/jupyter/.jupyter/jupyter_notebook_config.py
-# sudo -u jupyter sed -i '/c\.ServerApp\.allow_origin_pat =/s/$/|(^(https?:\/\/)?[0-9a-z]+-[\-0-9a-z]*\.a\.run\.app)"/' /home/jupyter/.jupyter/jupyter_notebook_config.py
-# sudo -u jupyter sed -i '/c.ServerApp.allow_remote_access/c\\nc.ServerApp.allow_remote_access = True' /home/jupyter/.jupyter/jupyter_notebook_config.py
 
 ## Git clone the training-data-analyst repo as Jupyter user
 sudo -u jupyter git clone https://github.com/GoogleCloudPlatform/training-data-analyst /home/jupyter/training-data-analyst
@@ -128,7 +124,6 @@ gcloud pubsub subscriptions create "ff-tx-sub" --topic="ff-tx" --topic-project="
 gcloud pubsub subscriptions create "ff-tx-for-feat-eng-sub" --topic="ff-tx" --topic-project="cymbal-fraudfinder"
 gcloud pubsub subscriptions create "ff-txlabels-sub" --topic="ff-txlabels" --topic-project="cymbal-fraudfinder" >> ${local.NOTEBOOK_LOG} 2>&1
 echo "Changing dir to /home/jupyter" >> ${local.NOTEBOOK_LOG} 2>&1
-
 cd /home/jupyter
 echo "Cloning fraudfinder from github" >> ${local.NOTEBOOK_LOG} 2>&1
 su - jupyter -c "git clone https://github.com/GoogleCloudPlatform/fraudfinder.git" >> ${local.NOTEBOOK_LOG} 2>&1
