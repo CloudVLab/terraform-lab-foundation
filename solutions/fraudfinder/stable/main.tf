@@ -102,6 +102,22 @@ resource "google_storage_bucket" "lab_config_bucket" {
 resource "local_file" "notebook_config" {
 
   content = <<EOF
+
+#!/bin/bash -e
+echo "STARTUP-SCRIPT: START"
+
+# Download Patch File
+gsutil cp gs://spls/tlf-workbench/workbench.patch /tmp/workbench.patch
+
+# Patch configuration
+sudo -u jupyter patch /home/jupyter/.jupyter/jupyter_notebook_config.py < /tmp/workbench.patch
+
+# Restart the service
+sudo -u jupyter sudo systemctl restart jupyter.service
+
+## Git clone the training-data-analyst repo as Jupyter user
+sudo -u jupyter git clone https://github.com/GoogleCloudPlatform/training-data-analyst /home/jupyter/training-data-analyst
+
 echo "Current user: `id`" >> ${local.NOTEBOOK_LOG} 2>&1
 echo "Creating pub/sub subscriptions" >> ${local.NOTEBOOK_LOG} 2>&1
 gcloud pubsub subscriptions create "ff-tx-sub" --topic="ff-tx" --topic-project="cymbal-fraudfinder" >> ${local.NOTEBOOK_LOG} 2>&1
@@ -125,6 +141,8 @@ su - jupyter -c "pip install --upgrade --no-warn-conflicts --no-warn-script-loca
     google-cloud-pipeline-components \
     kfp" >> ${local.NOTEBOOK_LOG} 2>&1
 
+echo "STARTUP-SCRIPT: END"
+
 EOF
 
   filename = "notebook_config.sh"
@@ -144,21 +162,41 @@ resource "google_storage_bucket_object" "notebook_config_script" {
   Create Vertex AI Notebook
 */
 
-resource "google_notebooks_instance" "ff_notebook" {
-  name               = "ff-jupyterlab"
-  project            = var.gcp_project_id
-  location           = var.gcp_zone
-  machine_type       = "n1-standard-4" // n1-standard-1 $112.91 monthly estimate
-  install_gpu_driver = false
-  vm_image { // https://cloud.google.com/vertex-ai/docs/workbench/user-managed/images
-    project      = "deeplearning-platform-release"
-    image_family = "common-cpu-notebooks"
-  }
+## resource "google_notebooks_instance" "ff_notebook" {
+##   name               = "ff-jupyterlab"
+##   project            = var.gcp_project_id
+##   location           = var.gcp_zone
+##   machine_type       = "n1-standard-4" // n1-standard-1 $112.91 monthly estimate
+##   install_gpu_driver = false
+##   vm_image { // https://cloud.google.com/vertex-ai/docs/workbench/user-managed/images
+##     project      = "deeplearning-platform-release"
+##     image_family = "common-cpu-notebooks"
+##   }
+## 
+##   post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/notebook_config.sh"
+##   
+##   depends_on = [google_project_service.gcp_services, google_storage_bucket_object.notebook_config_script]
+## }
 
-  post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/notebook_config.sh"
-  
+
+module "la_vai_workbench" {
+  ## REMOTE: GitHub (Public) access - working
+  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/vai_workbench/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/vai_workbench/stable/v1"
+
+  ## Exchange values between Qwiklabs and Module
+  gcp_project_id = var.gcp_project_id
+  gcp_region     = var.gcp_region
+  gcp_zone       = var.gcp_zone
+
+  ## Custom Properties
+  vai_workbench_name = "ff-jupyterlab"
+  # vai_post_startup_script = "gs://[bucket]/[LAB_ID]/lab-init.sh"
+  vai_post_startup_script = "gs://${var.gcp_project_id}-labconfig-bucket/notebook_config.sh"
+
   depends_on = [google_project_service.gcp_services, google_storage_bucket_object.notebook_config_script]
 }
+
 /*
   Assign Appropriate IAM Permissions to the compute SA
 */
@@ -213,5 +251,6 @@ resource "google_project_iam_member" "servacct-cloud-build-add-permissions" {
   project  = var.gcp_project_id
   role     = each.key
   member   = "serviceAccount:${local.cloud_build_service_account_email}"
-  depends_on = [google_notebooks_instance.ff_notebook]
+  ## depends_on = [google_notebooks_instance.ff_notebook]
+  depends_on = [module.la_vai_workbench]
 }
