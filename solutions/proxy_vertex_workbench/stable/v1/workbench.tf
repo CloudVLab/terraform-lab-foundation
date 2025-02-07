@@ -7,8 +7,8 @@ module "la_vai_workbench" {
   # source = "./basics/vai_workbench/stable"
 
   ## REMOTE: GitHub (Public) access - working 
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/vai_workbench/stable"
-  ## source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/vai_workbench/stable"
+  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/vai_workbench/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/vai_workbench/stable/v1"
 
   ## Exchange values between Qwiklabs and Module
   gcp_project_id = var.gcp_project_id
@@ -16,14 +16,14 @@ module "la_vai_workbench" {
   gcp_zone       = var.gcp_zone 
 
   ## Custom Properties
-  vai_workbench_name  = "cls-vertex-workbench" 
+  vai_workbench_name  =  var.gceInstanceName 
   vai_machine_subnet  = module.la_vpc.vpc_subnet_self_link 
-  # vai_tags            = [ "cls", "lab-vm", "http-server", "https-server" ]
-
+  # vai_tags            = var.gceInstanceTags 
   # vai_machine_subnet      = module.la_vpc.vpc_subnetwork_name 
   # vai_machine_network     = module.la_vpc.vpc_network_name 
   # vai_machine_network     = module.la_vpc.vpc_network_self_link
   vai_post_startup_script = var.gcePostStartupScript  
+  vai_disable_public_ip   = var.gceDisableExternalIp
 
   # Give the JIT API time to be enabled
   depends_on = [ time_sleep.wait_api_delay ]

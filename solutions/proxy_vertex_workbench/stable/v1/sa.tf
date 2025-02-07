@@ -1,7 +1,8 @@
 # Create Service Account and Bind Role
 module "la_role_bind" {
   ## REMOTE: GitHub (Public) access - working 
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/iam_role_bind/stable"
+  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/iam_role_bind/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/iam_role_bind/stable"
 
   ## Exchange values between Qwiklabs and Module
   gcp_project_id = var.gcp_project_id
