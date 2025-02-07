@@ -6,7 +6,8 @@ module "la_fw" {
   # source = "./basics/vpc_firewall/stable"
 
   ## REMOTE: GitHub (Public) access - working
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/vpc_firewall/stable"
+  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/vpc_firewall/stable"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/vpc_firewall/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id

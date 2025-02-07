@@ -1,6 +1,7 @@
 # Module: Cloud Run Gen v2 
 module "la_cloud_run_v2" {
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable/v2"
+  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable/v2"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/cloud_run/stable/v2"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id

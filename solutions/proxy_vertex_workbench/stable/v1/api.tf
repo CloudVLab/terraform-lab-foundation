@@ -13,7 +13,8 @@ resource "time_sleep" "wait_api_delay" {
 # ----------------------------------------------------------------------------
 module "la_api_batch" {
   ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/api_service/dev"
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/api_service/stable/v1"
+  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/api_service/stable/v1"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/api_service/stable/v1"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id

@@ -76,7 +76,7 @@ variable "gcrMemberPermission" {
 variable "gceInstanceName" {
   type        = string
   description = "Name of virtual machine."
-  default     = "cloudlearningservices"
+  default     = "cls-vertex-workbench"
 }
 
 # Custom properties with defaults 
@@ -90,7 +90,7 @@ variable "gceInstanceZone" {
 variable "gceInstanceTags" {
   type        = list(string)
   description = "GCE virtual machine tags"
-  default     = ["lab-vm"]
+  default     = [ "cls", "lab-vm", "http-server", "https-server" ]
 }
 
 variable "gceImageProject" {
@@ -117,6 +117,13 @@ variable "gceInstanceNetwork" {
   type        = string
   description = "GCE virtual machine network"
   default     = "default"
+}
+
+# Custom properties with defaults 
+variable "gceDisableExternalIp" {
+  type        = bool 
+  description = "GCE disable external IP"
+  default     = true 
 }
 
 # Custom properties with defaults 
