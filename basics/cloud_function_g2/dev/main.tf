@@ -13,11 +13,11 @@ resource "google_storage_bucket" "bucket" {
 }
 
 resource "google_storage_bucket_object" "archive" {
-  name   = var.gcf_archive_object 
+  name   = var.gcf_archive_object
   bucket = google_storage_bucket.bucket.name
-  source = var.gcf_archive_source 
+  source = var.gcf_archive_source
 
-  depends_on = [ google_storage_bucket.bucket ]
+  depends_on = [google_storage_bucket.bucket]
 }
 
 #
@@ -27,14 +27,14 @@ resource "google_storage_bucket_object" "archive" {
 ## NEW Module: Cloud Function
 
 resource "google_cloudfunctions2_function" "custom_function" {
-  name                  = var.gcf_name 
-  project               = var.gcp_project_id
-  location              = var.gcp_region
-  description           = var.gcf_description 
+  name        = var.gcf_name
+  project     = var.gcp_project_id
+  location    = var.gcp_region
+  description = var.gcf_description
 
   build_config {
-    runtime               = var.gcf_runtime
-    entry_point           = var.gcf_entry_point 
+    runtime     = var.gcf_runtime
+    entry_point = var.gcf_entry_point
     source {
       storage_source {
         bucket = google_storage_bucket.bucket.name
@@ -43,13 +43,16 @@ resource "google_cloudfunctions2_function" "custom_function" {
     }
   }
 
+  environment_variables = var.gcf_environment_variables
+
+
   service_config {
-    max_instance_count    = 1
-    available_memory      = "256M"
-    timeout_seconds       = 60
+    max_instance_count = 1
+    available_memory   = "256M"
+    timeout_seconds    = 60
   }
 
-  depends_on = [ google_storage_bucket_object.archive ]
+  depends_on = [google_storage_bucket_object.archive]
 }
 
 #
@@ -78,9 +81,9 @@ data "google_iam_policy" "noauth" {
 }
 
 resource "google_cloud_run_service_iam_policy" "noauth" {
-  project        = var.gcp_project_id
-  location       = var.gcp_region
-  service        = google_cloudfunctions2_function.custom_function.name
+  project  = var.gcp_project_id
+  location = var.gcp_region
+  service  = google_cloudfunctions2_function.custom_function.name
 
   policy_data = data.google_iam_policy.noauth.policy_data
 }
