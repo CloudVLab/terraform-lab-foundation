@@ -21,10 +21,8 @@ resource "google_storage_bucket_object" "archive" {
 }
 
 #
-## Cloud Functions 
+## Cloud Functions Gen 2
 #-----------------------------------------------------------------------------
-#
-## NEW Module: Cloud Function
 
 resource "google_cloudfunctions2_function" "custom_function" {
   name        = var.gcf_name
@@ -43,8 +41,6 @@ resource "google_cloudfunctions2_function" "custom_function" {
       }
     }
   }
-
-
 
   service_config {
     max_instance_count = 1
