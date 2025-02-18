@@ -91,3 +91,11 @@ variable "gcf_member_account" {
   description = "IAM member account."
   default     = "allUsers"
 }
+
+variable "gcf_environment_variables" {
+  type = map(string)
+
+  default = {
+    PROJECT_ID = "undefined"
+  }
+}
