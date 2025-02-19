@@ -1,7 +1,7 @@
 # Ref: https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service_identity
 
 resource "google_project_service_identity" "tlf" {
-  provider = google-beta
+#  provider = google-beta
 
   # Original config:
   # project = data.google_project.project.project_id

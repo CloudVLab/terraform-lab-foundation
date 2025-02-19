@@ -13,7 +13,7 @@ module "la_api_batch" {
 
 # https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/firebase_project.html
 resource "google_firebase_project" "default" {
-    provider = google-beta
+#    provider = google-beta
     project  = var.gcp_project_id 
     depends_on = [ module.la_api_batch ]
 }
