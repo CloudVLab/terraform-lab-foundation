@@ -7,7 +7,7 @@
 
 # GKE cluster
 resource "google_container_cluster" "primary" {
-#  provider    = google-beta
+  provider    = google-beta
   name        = var.gkeClusterName
   location    = var.gkeLocation
   description = var.gkeDescription 
