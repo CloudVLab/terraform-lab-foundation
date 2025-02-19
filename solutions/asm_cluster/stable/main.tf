@@ -50,7 +50,7 @@ module "la_api_batch" {
 }
 
 resource "google_container_cluster" "gke" {
-  provider = google-beta
+##  provider = google-beta
   project  = var.gcp_project_id
   name     = var.gke_cluster_name
   location = var.gcp_zone
