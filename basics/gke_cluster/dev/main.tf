@@ -8,7 +8,7 @@
 
 # GKE cluster
 resource "google_container_cluster" "tfer-gke" {
-  provider = google-beta
+#  provider = google-beta
   project  = var.gcp_project_id 
   name     = var.gkeClusterName
   location = var.gcp_zone 
