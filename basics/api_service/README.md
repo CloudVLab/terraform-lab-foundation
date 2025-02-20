@@ -2,7 +2,7 @@
 
 | Channel | Status |
 |---------|--------|
-| Stable  | TBC    | 
+| Stable  | ![CloudBuild](https://badger-kjyo252taq-uc.a.run.app/build/status?project=qwiklabs-resources&id=5b6ccdb5-e6c7-4532-adcc-974e83d59340)    | 
 | Beta    | TBC    | 
 
 Enable Googleapis services using a Terraform configuration
