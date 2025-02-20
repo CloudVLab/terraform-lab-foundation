@@ -18,4 +18,4 @@ steps:
 substitutions:  
   _PROVIDER_VER: 1.0.1
   _TERRAFORM_DIR: basics/gce_instance/stable/v1
-tags: ['terraform-lab-foundation','gce', 'vm', 'stable/v1']  
+tags: ['terraform-lab-foundation','gce', 'vm', 'stable', 'v1']  
