@@ -28,6 +28,7 @@ variable "gcp_zone" {
 variable "api_service_name" {
   type        = string
   description = "Googleapis service name."
+  default     = "compute.googleapis.com"
 }
 
 # with the same name for any lab that uses this script.
