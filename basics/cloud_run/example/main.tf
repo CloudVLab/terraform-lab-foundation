@@ -6,8 +6,8 @@
 module "la_cloud_run" {
   #source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable?ref=tlf-basics"
   # source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable/v1"
-  # source = "gcs::https://storage.googleapis.com/terraform-lab-foundation/basics/cloud_run/stable"
-  source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable"
+  # source = "github.com/CloudVLab/terraform-lab-foundation//basics/cloud_run/stable"
+  source = "gcs::https://storage.googleapis.com/terraform-lab-foundation/basics/cloud_run/stable"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
