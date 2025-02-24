@@ -65,7 +65,14 @@ variable "gcf_description" {
 variable "gcf_runtime" {
   type        = string
   description = "Runtime of the Cloud Function."
-  default     = "nodejs16"
+  default     = "nodejs20"
+}
+
+# Default value passed in
+variable "gcf_service_account_email" {
+  type        = string
+  description = "Cloud Function Service Account Email."
+  default     = null
 }
 
 variable "gcf_target_bucket" {

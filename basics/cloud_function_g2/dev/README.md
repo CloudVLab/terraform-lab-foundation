@@ -34,7 +34,7 @@ No modules.
 | <a name="input_gcf_member_account"></a> [gcf\_member\_account](#input\_gcf\_member\_account) | IAM member account. | `string` | `"allUsers"` | no |
 | <a name="input_gcf_name"></a> [gcf\_name](#input\_gcf\_name) | Name of the Cloud Function. | `string` | `"test_function"` | no |
 | <a name="input_gcf_role_bind"></a> [gcf\_role\_bind](#input\_gcf\_role\_bind) | IAM role binding. | `string` | `"roles/cloudfunctions.invoker"` | no |
-| <a name="input_gcf_runtime"></a> [gcf\_runtime](#input\_gcf\_runtime) | Runtime of the Cloud Function. | `string` | `"nodejs16"` | no |
+| <a name="input_gcf_runtime"></a> [gcf\_runtime](#input\_gcf\_runtime) | Runtime of the Cloud Function. | `string` | `"nodejs20"` | no |
 | <a name="input_gcf_target_bucket"></a> [gcf\_target\_bucket](#input\_gcf\_target\_bucket) | Target bucket to upload source code. | `string` | `"mybucket"` | no |
 | <a name="input_gcp_project_id"></a> [gcp\_project\_id](#input\_gcp\_project\_id) | The GCP project ID to create resources in. | `string` | n/a | yes |
 | <a name="input_gcp_region"></a> [gcp\_region](#input\_gcp\_region) | Region to create resources in. | `string` | n/a | yes |
