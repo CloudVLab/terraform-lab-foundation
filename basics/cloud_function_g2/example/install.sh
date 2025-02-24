@@ -1,7 +1,7 @@
 #!/bin/sh
 
 BRANCH="main"
-MODULE="cloud_function"
+MODULE="cloud_function_g2"
 TYPE="basics"
 CHANNEL="STABLE"
 
