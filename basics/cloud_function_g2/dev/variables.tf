@@ -68,6 +68,12 @@ variable "gcf_runtime" {
   default     = "nodejs16"
 }
 
+variable "gcf_runtime" {
+  type        = string
+  description = "Runtime of the Cloud Function."
+  default     = "nodejs20"
+}
+
 variable "gcf_target_bucket" {
   type        = string
   description = "Target bucket to upload source code."

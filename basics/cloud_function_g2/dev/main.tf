@@ -43,9 +43,10 @@ resource "google_cloudfunctions2_function" "custom_function" {
   }
 
   service_config {
-    max_instance_count = 1
-    available_memory   = "256M"
-    timeout_seconds    = 60
+    max_instance_count    = 1
+    available_memory      = "256M"
+    timeout_seconds       = 60
+    service_account_email = var.gcf_service_account_email == null ? null : var.gcf_service_account_email
   }
 
   depends_on = [google_storage_bucket_object.archive]
