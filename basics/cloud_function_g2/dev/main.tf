@@ -46,6 +46,7 @@ resource "google_cloudfunctions2_function" "custom_function" {
     max_instance_count    = 1
     available_memory      = "256M"
     timeout_seconds       = 60
+    environment_variables = var.gcf_environment_variables
     service_account_email = var.gcf_service_account_email == null ? null : var.gcf_service_account_email
   }
 
