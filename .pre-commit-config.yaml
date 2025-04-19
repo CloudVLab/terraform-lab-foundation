@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: terraform-docs-hook
+        name: Generate TERRAFORM.md with terraform-docs
+        entry: bash scripts/generate-docs.sh
+        language: system
+        types: [file]
+        always_run: true
