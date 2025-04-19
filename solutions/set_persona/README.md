@@ -7,17 +7,15 @@ Persona types are the input for Chatbots
 
 __NOTE:__ Qwiklabs requires some values to be defined as part of the provisioning process. 
 
-```json
-{
-  name = "Mathilde"
-  topic = "French"
-  knowledge= "French"
-  role = "tutor" 
-  messageText = "I can help with French"
-  imageUrl = "https://storage.googleapis.com/my-bucket/image.png"
-  time = "22 March"
-  endpoint = "/v1/v1"
-}
+```
+persona_name = "Mathilde"
+persona_topic = "French"
+persona_knowledge= "French"
+persona_role = "tutor" 
+persona_messageText = "I can help with French"
+persona_imageUrl = "https://storage.googleapis.com/my-bucket/image.png"
+persona_time = "22 March"
+persona_endpoint = "/v1/v1"
 ```
 
 ## Accessing Output Values 
