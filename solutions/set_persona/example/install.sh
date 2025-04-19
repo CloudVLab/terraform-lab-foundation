@@ -13,7 +13,7 @@ else
   URL="https://github.com/CloudVLab/terraform-lab-foundation/raw/${BRANCH}"
 fi 
 
-FILE1="main.tf"
+FILE1="persona.tf"
 FILE1_URL="${URL}/${TYPE}/${MODULE}/example/main.tf"
 FILE2="outputs.tf"
 FILE2_URL="${URL}/${TYPE}/${MODULE}/example/outputs.tf"
