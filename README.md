@@ -66,6 +66,27 @@ Example solutions pre-built for the Qwiklabs platform
 - [ ] Custom VM
 
 
+## Module Documentation
+
+Generated documentation is created using `terraform-docs`.
+
+The repo uses a pre-commit hook for both the basics and solutions folders.
+A bash script has been added to automatically perform the documentation generation.
+
+
+The script will run automatically when content is committed to the repo.
+
+```
+.pre-commit-config.yaml
+```
+
+To run the script manually when testing use the command below:
+
+```
+bash scripts/generate-docs.sh
+```
+
+
 ## Channels
 
 Release schedule for the supported channels:
