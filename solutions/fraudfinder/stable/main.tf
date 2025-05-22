@@ -106,14 +106,15 @@ resource "local_file" "notebook_config" {
 #!/bin/bash -e
 echo "STARTUP-SCRIPT: START"
 
+## b/419233463 Only Patch if using Proxy
 # Download Patch File
-gsutil cp gs://spls/tlf-workbench/workbench.patch /tmp/workbench.patch
+# gsutil cp gs://spls/tlf-workbench/workbench.patch /tmp/workbench.patch
 
 # Patch configuration
-sudo -u jupyter patch /home/jupyter/.jupyter/jupyter_notebook_config.py < /tmp/workbench.patch
+# sudo -u jupyter patch /home/jupyter/.jupyter/jupyter_notebook_config.py < /tmp/workbench.patch
 
 # Restart the service
-sudo -u jupyter sudo systemctl restart jupyter.service
+# sudo -u jupyter sudo systemctl restart jupyter.service
 
 ## Git clone the training-data-analyst repo as Jupyter user
 sudo -u jupyter git clone https://github.com/GoogleCloudPlatform/training-data-analyst /home/jupyter/training-data-analyst
