@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-DOC_FILE="READMD.md"
+DOC_FILE="README.md"
 
 # Check if terraform-docs is installed
 if ! command -v terraform-docs &> /dev/null; then
