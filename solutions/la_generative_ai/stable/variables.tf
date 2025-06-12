@@ -45,7 +45,7 @@ variable "sme_image_project" {
 variable "sme_image_family" {
   type        = string
   description = "Machine image family"
-  default     = "tf-ent-2-11-cu113-notebooks-debian-11-py310"
+  default     = "tf-ent-2-17-cu123-notebooks-debian-11-py310"
 }
 
 variable "sme_git_repo" {
