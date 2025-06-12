@@ -26,9 +26,9 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_ac_data_415"></a> [ac\_data\_415](#input\_ac\_data\_415) | n/a | `map` | <pre>{<br/>  "first_name": {<br/>    "stringValue": "Nozomi"<br/>  },<br/>  "last_name": {<br/>    "stringValue": "Hernandez"<br/>  },<br/>  "pin": {<br/>    "stringValue": "1111"<br/>  },<br/>  "tier": {<br/>    "stringValue": "platinum"<br/>  }<br/>}</pre> | no |
-| <a name="input_ac_data_650"></a> [ac\_data\_650](#input\_ac\_data\_650) | n/a | `map` | <pre>{<br/>  "first_name": {<br/>    "stringValue": "Chitra"<br/>  },<br/>  "last_name": {<br/>    "stringValue": "Wang"<br/>  },<br/>  "pin": {<br/>    "stringValue": "3333"<br/>  },<br/>  "tier": {<br/>    "stringValue": "silver"<br/>  }<br/>}</pre> | no |
-| <a name="input_ac_data_925"></a> [ac\_data\_925](#input\_ac\_data\_925) | n/a | `map` | <pre>{<br/>  "first_name": {<br/>    "stringValue": "Mohammed"<br/>  },<br/>  "last_name": {<br/>    "stringValue": "Devi"<br/>  },<br/>  "pin": {<br/>    "stringValue": "2222"<br/>  },<br/>  "tier": {<br/>    "stringValue": "gold"<br/>  }<br/>}</pre> | no |
+| <a name="input_ac_data_415"></a> [ac\_data\_415](#input\_ac\_data\_415) | n/a | `map` | <pre>{<br>  "first_name": {<br>    "stringValue": "Nozomi"<br>  },<br>  "last_name": {<br>    "stringValue": "Hernandez"<br>  },<br>  "pin": {<br>    "stringValue": "1111"<br>  },<br>  "tier": {<br>    "stringValue": "platinum"<br>  }<br>}</pre> | no |
+| <a name="input_ac_data_650"></a> [ac\_data\_650](#input\_ac\_data\_650) | n/a | `map` | <pre>{<br>  "first_name": {<br>    "stringValue": "Chitra"<br>  },<br>  "last_name": {<br>    "stringValue": "Wang"<br>  },<br>  "pin": {<br>    "stringValue": "3333"<br>  },<br>  "tier": {<br>    "stringValue": "silver"<br>  }<br>}</pre> | no |
+| <a name="input_ac_data_925"></a> [ac\_data\_925](#input\_ac\_data\_925) | n/a | `map` | <pre>{<br>  "first_name": {<br>    "stringValue": "Mohammed"<br>  },<br>  "last_name": {<br>    "stringValue": "Devi"<br>  },<br>  "pin": {<br>    "stringValue": "2222"<br>  },<br>  "tier": {<br>    "stringValue": "gold"<br>  }<br>}</pre> | no |
 | <a name="input_collection_accounts"></a> [collection\_accounts](#input\_collection\_accounts) | Accounts Variables #------------------------------------------------------------ | `string` | `"accounts"` | no |
 | <a name="input_collection_most_played"></a> [collection\_most\_played](#input\_collection\_most\_played) | Most Played Variables #------------------------------------------------------------ | `string` | `"most_played"` | no |
 | <a name="input_document_415"></a> [document\_415](#input\_document\_415) | n/a | `string` | `"4155551212"` | no |
@@ -40,9 +40,9 @@ No resources.
 | <a name="input_gcp_project_id"></a> [gcp\_project\_id](#input\_gcp\_project\_id) | Qwiklabs Mandatory Values | `string` | n/a | yes |
 | <a name="input_gcp_region"></a> [gcp\_region](#input\_gcp\_region) | n/a | `string` | n/a | yes |
 | <a name="input_gcp_zone"></a> [gcp\_zone](#input\_gcp\_zone) | n/a | `string` | n/a | yes |
-| <a name="input_mp_data_classical"></a> [mp\_data\_classical](#input\_mp\_data\_classical) | n/a | `map` | <pre>{<br/>  "composer": {<br/>    "stringValue": "Wolfgang Mozart"<br/>  },<br/>  "title": {<br/>    "stringValue": "Serenade No 13 for strings in G major"<br/>  }<br/>}</pre> | no |
-| <a name="input_mp_data_pop"></a> [mp\_data\_pop](#input\_mp\_data\_pop) | n/a | `map` | <pre>{<br/>  "composer": {<br/>    "stringValue": "Wiz Khalifa"<br/>  },<br/>  "title": {<br/>    "stringValue": "See You Soon"<br/>  }<br/>}</pre> | no |
-| <a name="input_mp_data_rock"></a> [mp\_data\_rock](#input\_mp\_data\_rock) | n/a | `map` | <pre>{<br/>  "composer": {<br/>    "stringValue": "Led Zeppelin"<br/>  },<br/>  "title": {<br/>    "stringValue": "Stairway to Heaven"<br/>  }<br/>}</pre> | no |
+| <a name="input_mp_data_classical"></a> [mp\_data\_classical](#input\_mp\_data\_classical) | n/a | `map` | <pre>{<br>  "composer": {<br>    "stringValue": "Wolfgang Mozart"<br>  },<br>  "title": {<br>    "stringValue": "Serenade No 13 for strings in G major"<br>  }<br>}</pre> | no |
+| <a name="input_mp_data_pop"></a> [mp\_data\_pop](#input\_mp\_data\_pop) | n/a | `map` | <pre>{<br>  "composer": {<br>    "stringValue": "Wiz Khalifa"<br>  },<br>  "title": {<br>    "stringValue": "See You Soon"<br>  }<br>}</pre> | no |
+| <a name="input_mp_data_rock"></a> [mp\_data\_rock](#input\_mp\_data\_rock) | n/a | `map` | <pre>{<br>  "composer": {<br>    "stringValue": "Led Zeppelin"<br>  },<br>  "title": {<br>    "stringValue": "Stairway to Heaven"<br>  }<br>}</pre> | no |
 
 ## Outputs
 

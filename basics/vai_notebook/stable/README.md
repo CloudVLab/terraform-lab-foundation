@@ -38,8 +38,8 @@ No modules.
 | <a name="input_vai_notebook_name"></a> [vai\_notebook\_name](#input\_vai\_notebook\_name) | Vertex VM instance name. | `string` | `"cloudlearningservices"` | no |
 | <a name="input_vai_post_startup_script"></a> [vai\_post\_startup\_script](#input\_vai\_post\_startup\_script) | Path to a bash script to execute | `string` | `"gs://spls/lab-init.sh"` | no |
 | <a name="input_vai_region"></a> [vai\_region](#input\_vai\_region) | Region to create resources in. | `string` | `"us-central1"` | no |
-| <a name="input_vai_scopes"></a> [vai\_scopes](#input\_vai\_scopes) | GCE service account scope | `list(string)` | <pre>[<br/>  "cloud-platform"<br/>]</pre> | no |
-| <a name="input_vai_tags"></a> [vai\_tags](#input\_vai\_tags) | GCE virtual machine tags | `list(string)` | <pre>[<br/>  "lab-vm"<br/>]</pre> | no |
+| <a name="input_vai_scopes"></a> [vai\_scopes](#input\_vai\_scopes) | GCE service account scope | `list(string)` | <pre>[<br>  "cloud-platform"<br>]</pre> | no |
+| <a name="input_vai_tags"></a> [vai\_tags](#input\_vai\_tags) | GCE virtual machine tags | `list(string)` | <pre>[<br>  "lab-vm"<br>]</pre> | no |
 | <a name="input_vai_zone"></a> [vai\_zone](#input\_vai\_zone) | Zone to create resources in. | `string` | `"us-central1-f"` | no |
 
 ## Outputs

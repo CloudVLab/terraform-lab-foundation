@@ -42,7 +42,7 @@ No modules.
 | <a name="input_gkeNetwork"></a> [gkeNetwork](#input\_gkeNetwork) | Network route | `string` | `"default"` | no |
 | <a name="input_gkeNetworkingMode"></a> [gkeNetworkingMode](#input\_gkeNetworkingMode) | Set to true for VPC\_NATIVE (IP aliasing), false for ROUTES (default) | `bool` | `false` | no |
 | <a name="input_gkePoolName"></a> [gkePoolName](#input\_gkePoolName) | Network route | `string` | `"pool-12345"` | no |
-| <a name="input_gkeScopes"></a> [gkeScopes](#input\_gkeScopes) | OAuth Scope to be applied | `list` | <pre>[<br/>  "cloud-platform"<br/>]</pre> | no |
+| <a name="input_gkeScopes"></a> [gkeScopes](#input\_gkeScopes) | OAuth Scope to be applied | `list` | <pre>[<br>  "cloud-platform"<br>]</pre> | no |
 | <a name="input_gkeSubnetwork"></a> [gkeSubnetwork](#input\_gkeSubnetwork) | Network route | `string` | `"default"` | no |
 | <a name="input_gkeWorkloadPool"></a> [gkeWorkloadPool](#input\_gkeWorkloadPool) | Network route | `string` | `"pool.svc.id.goog"` | no |
 
