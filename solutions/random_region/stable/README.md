@@ -23,7 +23,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_gcp_allowed_locations"></a> [gcp\_allowed\_locations](#input\_gcp\_allowed\_locations) | List of Regions to be used | `list(string)` | <pre>[<br/>  "us-central1",<br/>  "us-east1",<br/>  "us-east4",<br/>  "us-west1"<br/>]</pre> | no |
+| <a name="input_gcp_allowed_locations"></a> [gcp\_allowed\_locations](#input\_gcp\_allowed\_locations) | List of Regions to be used | `list(string)` | <pre>[<br>  "us-central1",<br>  "us-east1",<br>  "us-east4",<br>  "us-west1"<br>]</pre> | no |
 | <a name="input_gcp_project_id"></a> [gcp\_project\_id](#input\_gcp\_project\_id) | The GCP project ID to create resources in. | `string` | n/a | yes |
 | <a name="input_gcp_region"></a> [gcp\_region](#input\_gcp\_region) | Region to create resources in. | `string` | n/a | yes |
 | <a name="input_gcp_zone"></a> [gcp\_zone](#input\_gcp\_zone) | Zone to create resources in. | `string` | n/a | yes |

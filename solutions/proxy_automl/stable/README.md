@@ -21,7 +21,7 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_cr_env"></a> [cr\_env](#input\_cr\_env) | List of custom rule definitions (refer to variables file for syntax). | <pre>list(object({<br/>    gcr_env_name  = string,<br/>    gcr_env_value = string<br/>  }))</pre> | `[]` | no |
+| <a name="input_cr_env"></a> [cr\_env](#input\_cr\_env) | List of custom rule definitions (refer to variables file for syntax). | <pre>list(object({<br>    gcr_env_name  = string,<br>    gcr_env_value = string<br>  }))</pre> | `[]` | no |
 | <a name="input_cr_image"></a> [cr\_image](#input\_cr\_image) | Image for the proxy service | `string` | `"gcr.io/qwiklabs-resources/automl-proxy:latest"` | no |
 | <a name="input_cr_region"></a> [cr\_region](#input\_cr\_region) | Region for the Cloud Run service | `string` | `"us-central1"` | no |
 | <a name="input_cr_service_name"></a> [cr\_service\_name](#input\_cr\_service\_name) | Name of the proxy service to be created | `string` | `"automl-proxy"` | no |

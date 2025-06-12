@@ -36,7 +36,7 @@ No modules.
 | <a name="input_gke_machine_network"></a> [gke\_machine\_network](#input\_gke\_machine\_network) | GCE virtual machine network | `string` | `"default"` | no |
 | <a name="input_gke_machine_type"></a> [gke\_machine\_type](#input\_gke\_machine\_type) | GCE machine type | `string` | `"e2-standard-2"` | no |
 | <a name="input_gke_num_nodes"></a> [gke\_num\_nodes](#input\_gke\_num\_nodes) | number of gke nodes | `number` | `2` | no |
-| <a name="input_gke_scopes"></a> [gke\_scopes](#input\_gke\_scopes) | GCE service account scope | `list(string)` | <pre>[<br/>  "https://www.googleapis.com/auth/logging.write",<br/>  "https://www.googleapis.com/auth/monitoring"<br/>]</pre> | no |
+| <a name="input_gke_scopes"></a> [gke\_scopes](#input\_gke\_scopes) | GCE service account scope | `list(string)` | <pre>[<br>  "https://www.googleapis.com/auth/logging.write",<br>  "https://www.googleapis.com/auth/monitoring"<br>]</pre> | no |
 
 ## Outputs
 

@@ -22,8 +22,8 @@ No resources.
 | <a name="input_gceInstanceImage"></a> [gceInstanceImage](#input\_gceInstanceImage) | GCE Image family | `string` | `"common-cpu-notebooks-debian-11"` | no |
 | <a name="input_gceInstanceName"></a> [gceInstanceName](#input\_gceInstanceName) | Name of virtual machine. | `string` | `"cloudlearningservices"` | no |
 | <a name="input_gceInstanceNetwork"></a> [gceInstanceNetwork](#input\_gceInstanceNetwork) | GCE virtual machine network | `string` | `"default"` | no |
-| <a name="input_gceInstanceScope"></a> [gceInstanceScope](#input\_gceInstanceScope) | GCE service account scope | `list(string)` | <pre>[<br/>  "cloud-platform"<br/>]</pre> | no |
-| <a name="input_gceInstanceTags"></a> [gceInstanceTags](#input\_gceInstanceTags) | GCE virtual machine tags | `list(string)` | <pre>[<br/>  "lab-vm"<br/>]</pre> | no |
+| <a name="input_gceInstanceScope"></a> [gceInstanceScope](#input\_gceInstanceScope) | GCE service account scope | `list(string)` | <pre>[<br>  "cloud-platform"<br>]</pre> | no |
+| <a name="input_gceInstanceTags"></a> [gceInstanceTags](#input\_gceInstanceTags) | GCE virtual machine tags | `list(string)` | <pre>[<br>  "lab-vm"<br>]</pre> | no |
 | <a name="input_gceInstanceZone"></a> [gceInstanceZone](#input\_gceInstanceZone) | Zone to create resources in. | `string` | `"us-central1-f"` | no |
 | <a name="input_gceMachineType"></a> [gceMachineType](#input\_gceMachineType) | Machine type to use for GCE | `string` | `"e2-medium"` | no |
 | <a name="input_gcePostStartupScript"></a> [gcePostStartupScript](#input\_gcePostStartupScript) | Vertex post startup-script via public URL | `string` | `"https://storage.googleapis.com/spls/poc004/lab-init.sh"` | no |
@@ -41,8 +41,8 @@ No resources.
 | <a name="input_machine_type"></a> [machine\_type](#input\_machine\_type) | Machine type to use for GCE | `string` | `"n1-standard-1"` | no |
 | <a name="input_vm_name"></a> [vm\_name](#input\_vm\_name) | Region to create resources in. | `string` | `"cls-notebook"` | no |
 | <a name="input_vm_region"></a> [vm\_region](#input\_vm\_region) | Region to create resources in. | `string` | `"us-central1"` | no |
-| <a name="input_vm_scopes"></a> [vm\_scopes](#input\_vm\_scopes) | GCE service account scope | `list(string)` | <pre>[<br/>  "cloud-platform"<br/>]</pre> | no |
-| <a name="input_vm_tags"></a> [vm\_tags](#input\_vm\_tags) | GCE virtual machine tags | `list(string)` | <pre>[<br/>  "lab-vm"<br/>]</pre> | no |
+| <a name="input_vm_scopes"></a> [vm\_scopes](#input\_vm\_scopes) | GCE service account scope | `list(string)` | <pre>[<br>  "cloud-platform"<br>]</pre> | no |
+| <a name="input_vm_tags"></a> [vm\_tags](#input\_vm\_tags) | GCE virtual machine tags | `list(string)` | <pre>[<br>  "lab-vm"<br>]</pre> | no |
 | <a name="input_vm_zone"></a> [vm\_zone](#input\_vm\_zone) | Zone to create resources in. | `string` | `"us-central1-a"` | no |
 | <a name="input_vpcConnectorMachineType"></a> [vpcConnectorMachineType](#input\_vpcConnectorMachineType) | VPC Access Connector Machine Type | `string` | `"e2-micro"` | no |
 

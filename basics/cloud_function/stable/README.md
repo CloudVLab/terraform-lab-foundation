@@ -30,7 +30,7 @@ No modules.
 | <a name="input_gcf_available_mb"></a> [gcf\_available\_mb](#input\_gcf\_available\_mb) | Amount of memory to allocate. | `number` | `128` | no |
 | <a name="input_gcf_description"></a> [gcf\_description](#input\_gcf\_description) | Description of the Cloud Function. | `string` | `"Test function description"` | no |
 | <a name="input_gcf_entry_point"></a> [gcf\_entry\_point](#input\_gcf\_entry\_point) | Runtime of the Cloud Function. | `string` | `"helloCF"` | no |
-| <a name="input_gcf_environment_variables"></a> [gcf\_environment\_variables](#input\_gcf\_environment\_variables) | n/a | `map(string)` | <pre>{<br/>  "PROJECT_ID": "undefined"<br/>}</pre> | no |
+| <a name="input_gcf_environment_variables"></a> [gcf\_environment\_variables](#input\_gcf\_environment\_variables) | n/a | `map(string)` | <pre>{<br>  "PROJECT_ID": "undefined"<br>}</pre> | no |
 | <a name="input_gcf_member_account"></a> [gcf\_member\_account](#input\_gcf\_member\_account) | IAM member account. | `string` | `"allUsers"` | no |
 | <a name="input_gcf_name"></a> [gcf\_name](#input\_gcf\_name) | Name of the Cloud Function. | `string` | `"test_function"` | no |
 | <a name="input_gcf_registry"></a> [gcf\_registry](#input\_gcf\_registry) | Registry type to use. | `string` | `"CONTAINER_REGISTRY"` | no |
