@@ -36,6 +36,8 @@ No modules.
 | <a name="input_vai_post_startup_script"></a> [vai\_post\_startup\_script](#input\_vai\_post\_startup\_script) | Path to a bash script to execute | `string` | `"https://storage.googleapis.com/spls/tlf-workbench/lab-init.sh"` | no |
 | <a name="input_vai_tags"></a> [vai\_tags](#input\_vai\_tags) | Vertex Workbench virtual machine tags | `list(string)` | <pre>[<br>  "tlf",<br>  "cls",<br>  "lab-vm"<br>]</pre> | no |
 | <a name="input_vai_workbench_name"></a> [vai\_workbench\_name](#input\_vai\_workbench\_name) | Vertex VM instance name. | `string` | `"cloudlearningservices"` | no |
+| <a name="input_vai_vm_image_project"></a> [vai\_workbench\_name](#input\_vai\_vm_\_image\_project) | Vertex AI Workbench VM Image Project. | `string` | `"deeplearning-platform-release"` | no |
+| <a name="input_vai_vm_image_family"></a> [vai\_workbench\_family](#input\_vai\_vm_\_image\_family) | Vertex AI Workbench VM Image Family. | `string` | `"common-cpu-ubuntu-2204-py310-conda"` | no |
 
 ## Outputs
 

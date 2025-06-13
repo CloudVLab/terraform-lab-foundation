@@ -60,11 +60,16 @@ resource "google_workbench_instance" "instance" {
     dynamic "network_interfaces" {
       for_each = var.vai_machine_network != null || var.vai_machine_subnet != null ? [1] : []
       content {
-        network    = var.vai_machine_network
-        subnet     = var.vai_machine_subnet
-        nic_type   = var.vai_network_nic_type 
+        network  = var.vai_machine_network
+        subnet   = var.vai_machine_subnet
+        nic_type = var.vai_network_nic_type
         ## stack_type = var.vai_network_stack_type 
       }
+    }
+
+    vm_image {
+      project = var.vai_vm_image_project
+      family  = var.vai_vm_image_family
     }
 
     ## Ref: https://cloud.google.com/vertex-ai/docs/workbench/instances/manage-metadata
