@@ -3,12 +3,12 @@
 ## --------------------------------------------------------------
 
 output "vpc_network_name" {
-  value       = "${google_compute_network.dev_network.name}"
+  value       = google_compute_network.dev_network.name
   description = "Name of the VPC network"
 }
 
 output "vpc_network_self_link" {
-  value       = "${google_compute_network.dev_network.self_link}"
+  value       = google_compute_network.dev_network.self_link
   description = "Self Link to the VPC Network"
 }
 
