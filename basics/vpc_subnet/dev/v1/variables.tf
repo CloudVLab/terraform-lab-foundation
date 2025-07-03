@@ -51,13 +51,6 @@ variable "vpc_network" {
 }
 
 # Default value passed in
-## variable "vpc_network_description" {
-##   type        = string
-##   description = "Custom VPC network."
-##   default     = "Qwiklabs lab network" 
-## }
-
-# Default value passed in
 variable "vpc_subnet" {
   type        = string
   description = "Name of the VPC subnetwork to create."
