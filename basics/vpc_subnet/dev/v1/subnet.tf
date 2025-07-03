@@ -4,7 +4,8 @@ resource "google_compute_subnetwork" "dev_subnet" {
   name          = var.vpc_subnet 
   ip_cidr_range = var.vpc_subnet_cidr 
   region        = var.vpc_region
-  network       = google_compute_network.dev_network.id
+  # network       = google_compute_network.dev_network.id
+  network       = var.vpc_network 
   project       = var.gcp_project_id
   private_ip_google_access = var.vpc_private_google_access
 
