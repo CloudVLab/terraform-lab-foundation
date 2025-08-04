@@ -36,8 +36,8 @@ module "la_vpc" {
   # source = "./basics/vpc_network/stable"
 
   ## REMOTE: GitHub (Public) access - working
-  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/vpc_network/dev/v1"
-  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/vpc_network/dev/v1"
+  ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/vpc_network/stable/v1"
+  source = "gcs::https://www.googleapis.com/storage/v1/terraform-lab-foundation/basics/vpc_network/stable/v1"
 
   # Pass values to the module
   gcp_project_id = var.gcp_project_id
