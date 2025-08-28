@@ -7,18 +7,6 @@
 
 This module provisions Generative AI models on Google Cloud.
 
-## Using Input Values
-
-__NOTE:__ Qwiklabs requires some values to be defined as part of the provisioning process.
-
-Qwiklabs Properties
-__NOTE:__ Qwiklabs properties are mandatory.
-The mandatory values are used to initiate the project.
-```bash
-gcp_project_id       = "my-gcp-project"
-gcp_region           = "us-central1"
-```
-
 ## Accessing Output Values
 
 | Field | Description |
