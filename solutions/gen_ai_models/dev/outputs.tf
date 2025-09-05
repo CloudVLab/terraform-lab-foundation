@@ -15,7 +15,7 @@ output "gemini_flash" {
   value       = local.models.gemini_flash
 }
 
-output "embedding" {
+output "gemini_embedding" {
   description = "Embedding model details."
   value       = local.models.embedding
 }
