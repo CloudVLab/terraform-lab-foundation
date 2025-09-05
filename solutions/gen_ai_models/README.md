@@ -11,10 +11,10 @@ This module provisions Generative AI models on Google Cloud.
 
 | Field | Description |
 |---|---|
-| models | A map of all available Generative AI models. |
-| gemini_pro | Gemini Pro model details. |
-| gemini_flash | Gemini Flash model details. |
-| embedding | Gemini Embedding model details. |
+| `models` | A map of all available Generative AI models. |
+| `gemini_pro` | Gemini Pro model details. |
+| `gemini_flash` | Gemini Flash model details. |
+| `gemini_embedding` | Gemini Embedding model details. |
 
 ## Adding a Commit
 
