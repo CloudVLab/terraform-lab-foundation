@@ -54,7 +54,6 @@ locals {
   ID                                = random_string.rand.result
   NOTEBOOK_LOG                      = "/tmp/notebook_config.log"
   compute_service_account_email     = "${data.google_project.project.number}-compute@developer.gserviceaccount.com"
-  cloud_build_service_account_email = "${data.google_project.project.number}@cloudbuild.gserviceaccount.com"
 }
 
 /*
@@ -229,8 +228,7 @@ resource "google_project_iam_member" "servacct-compute-add-permissions" {
   role     = each.key
   member   = "serviceAccount:${local.compute_service_account_email}"
   depends_on = [
-    google_project_service.gcp_services,  # Ensure services are enabled first
-    module.la_vai_workbench
+    google_project_service.gcp_services  # Ensure services are enabled first
   ]
  }
 
@@ -265,7 +263,6 @@ resource "google_project_iam_member" "servacct-cloud-build-add-permissions" {
    ## depends_on = [google_notebooks_instance.ff_notebook]
   depends_on = [
     google_service_account.cloud_build_service_account,  # Ensure service account exists
-    google_project_service.gcp_services,  # Ensure Cloud Build API is enabled first
-    module.la_vai_workbench
+    google_project_service.gcp_services  # Ensure Cloud Build API is enabled first
   ]
 }
