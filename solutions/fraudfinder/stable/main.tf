@@ -2,6 +2,7 @@
   Get GCP project number (int)
 */
 
+
 data "google_project" "project" {}
 
 /*
@@ -33,7 +34,6 @@ resource "google_project_service" "gcp_services" {
   service  = each.key
 }
 
-
 /*
   Random Generator
 */
@@ -44,6 +44,7 @@ resource "random_string" "rand" {
   lower   = true
   upper   = false
 }
+
 
 /*
   Set local variables
@@ -59,6 +60,7 @@ locals {
 /*
   Create Pub/Sub subscriptions
 */
+
 
 resource "google_pubsub_subscription" "ff-tx-subscription" {
   project = var.gcp_project_id
@@ -179,7 +181,6 @@ resource "google_storage_bucket_object" "notebook_config_script" {
 ##   depends_on = [google_project_service.gcp_services, google_storage_bucket_object.notebook_config_script]
 ## }
 
-
 module "la_vai_workbench" {
   ## REMOTE: GitHub (Public) access - working
   ## source = "github.com/CloudVLab/terraform-lab-foundation//basics/vai_workbench/stable"
@@ -201,7 +202,6 @@ module "la_vai_workbench" {
 /*
   Assign Appropriate IAM Permissions to the compute SA
 */
-
 
 variable "compute_service_account_project_iam_list" {
   description = "Roles needed for compute SA"
@@ -228,12 +228,16 @@ resource "google_project_iam_member" "servacct-compute-add-permissions" {
   project  = var.gcp_project_id
   role     = each.key
   member   = "serviceAccount:${local.compute_service_account_email}"
-}
+  depends_on = [
+    google_project_service.gcp_services,  # Ensure services are enabled first
+    module.la_vai_workbench
+  ]
+ }
 
 /*
   Assign Appropriate IAM Permissions to the Cloud Build SA
 */
-        
+
 variable "cloud_build_service_account_project_iam_list" {
   description = "Roles needed for compute SA"
   type        = list(string)
@@ -247,11 +251,21 @@ variable "cloud_build_service_account_project_iam_list" {
   ]
 }
 
+resource "google_service_account" "cloud_build_service_account" {
+  account_id   = "cloudbuild"
+  display_name = "Cloud Build Service Account"
+  project      = var.gcp_project_id
+}
+
 resource "google_project_iam_member" "servacct-cloud-build-add-permissions" {
   for_each = toset(var.cloud_build_service_account_project_iam_list)
   project  = var.gcp_project_id
   role     = each.key
-  member   = "serviceAccount:${local.cloud_build_service_account_email}"
-  ## depends_on = [google_notebooks_instance.ff_notebook]
-  depends_on = [module.la_vai_workbench]
+  member   = "serviceAccount:${google_service_account.cloud_build_service_account.email}"
+   ## depends_on = [google_notebooks_instance.ff_notebook]
+  depends_on = [
+    google_service_account.cloud_build_service_account,  # Ensure service account exists
+    google_project_service.gcp_services,  # Ensure Cloud Build API is enabled first
+    module.la_vai_workbench
+  ]
 }
