@@ -19,3 +19,13 @@ output "gemini_embedding" {
   description = "Embedding model details."
   value       = local.models.gemini_embedding
 }
+
+output "gemini_flash_lite" {
+  description = "Gemini Flash-Lite model details."
+  value       = local.models.gemini_flash_lite
+}
+
+output "multimodal_embedding" {
+  description = "Embeddings for Multimodal model details."
+  value       = local.models.multimodal_embedding
+}
