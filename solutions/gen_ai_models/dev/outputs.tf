@@ -1,4 +1,4 @@
-# solutions/generative-ai-models/outputs.tf
+# solutions/gen_ai_models/outputs.tf
 
 output "models" {
   description = "A map of all available Generative AI models."
@@ -15,7 +15,22 @@ output "gemini_flash" {
   value       = local.models.gemini_flash
 }
 
+output "gemini_flash_lite" {
+  description = "Gemini Flash-Lite model details."
+  value       = local.models.gemini_flash_lite
+}
+
+output "gemini_flash_image" {
+  description = "Gemini Flash Image model details."
+  value       = local.models.gemini_flash_image
+}
+
 output "gemini_embedding" {
   description = "Embedding model details."
   value       = local.models.gemini_embedding
+}
+
+output "multimodal_embedding" {
+  description = "Embeddings for Multimodal model details."
+  value       = local.models.multimodal_embedding
 }
