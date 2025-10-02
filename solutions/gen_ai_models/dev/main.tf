@@ -1,4 +1,4 @@
-# solutions/generative-ai-models/main.tf
+# solutions/gen_ai_models/main.tf
 locals {
   models = {
     "gemini_pro" = {

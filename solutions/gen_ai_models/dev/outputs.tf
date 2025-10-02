@@ -1,4 +1,4 @@
-# solutions/generative-ai-models/outputs.tf
+# solutions/gen_ai_models/outputs.tf
 
 output "models" {
   description = "A map of all available Generative AI models."
