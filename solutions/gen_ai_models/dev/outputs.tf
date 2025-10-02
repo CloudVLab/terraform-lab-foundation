@@ -15,14 +15,19 @@ output "gemini_flash" {
   value       = local.models.gemini_flash
 }
 
-output "gemini_embedding" {
-  description = "Embedding model details."
-  value       = local.models.gemini_embedding
-}
-
 output "gemini_flash_lite" {
   description = "Gemini Flash-Lite model details."
   value       = local.models.gemini_flash_lite
+}
+
+output "gemini_flash_image" {
+  description = "Gemini Flash Image model details."
+  value       = local.models.gemini_flash_image
+}
+
+output "gemini_embedding" {
+  description = "Embedding model details."
+  value       = local.models.gemini_embedding
 }
 
 output "multimodal_embedding" {
