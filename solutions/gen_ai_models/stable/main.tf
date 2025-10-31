@@ -22,7 +22,7 @@ locals {
       "model_name" = "Gemini Embedding 001"
     },
     "multimodal_embedding" = {
-      "model_id"   = "multimodalembedding"
+      "model_id"   = "multimodalembedding@001"
       "model_name" = "Embeddings for Multimodal"
     }
   }
