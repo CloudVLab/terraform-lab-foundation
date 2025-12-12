@@ -2,7 +2,7 @@
 locals {
   models = {
     "gemini_pro" = {
-      "model_id"   = "gemini-3.0-pro-preview"
+      "model_id"   = "gemini-3-pro-preview"
       "model_name" = "Gemini 3.0 Pro"
     },
     "gemini_flash" = {
