@@ -10,6 +10,11 @@ output "gemini_pro" {
   value       = local.models.gemini_pro
 }
 
+output "gemini_pro_image" {
+  description = "Gemini Pro Image model details."
+  value       = local.models.gemini_pro_image
+}
+
 output "gemini_flash" {
   description = "Gemini Flash model details."
   value       = local.models.gemini_flash
@@ -25,6 +30,11 @@ output "gemini_flash_image" {
   value       = local.models.gemini_flash_image
 }
 
+output "gemini_flash_live" {
+  description = "Gemini Flash Native Audio model details."
+  value       = local.models.gemini_flash_live
+}
+
 output "gemini_embedding" {
   description = "Embedding model details."
   value       = local.models.gemini_embedding
@@ -35,7 +45,7 @@ output "multimodal_embedding" {
   value       = local.models.multimodal_embedding
 }
 
-output "gemini_pro_image" {
-  description = "Gemini Pro Image model details."
-  value       = local.models.gemini_pro_image
+output "text_embedding" {
+  description = "Text Embedding model details."
+  value       = local.models.text_embedding
 }

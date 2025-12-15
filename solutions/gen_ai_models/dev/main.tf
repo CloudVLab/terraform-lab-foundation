@@ -17,6 +17,10 @@ locals {
       "model_id"   = "gemini-2.5-flash-image"
       "model_name" = "Gemini 2.5 Flash Image"
     },
+    "gemini_flash_live" = {
+      "model_id"   = "gemini-live-2.5-flash-native-audio"
+      "model_name" = "Gemini 2.5 Flash Native Audio"
+    },
     "gemini_embedding" = {
       "model_id"   = "gemini-embedding-001"
       "model_name" = "Gemini Embedding 001"
@@ -24,6 +28,10 @@ locals {
     "multimodal_embedding" = {
       "model_id"   = "multimodalembedding@001"
       "model_name" = "Embeddings for Multimodal"
+    },
+    "text_embedding" = {
+      "model_id"   = "text-embedding-005"
+      "model_name" = "Text Embedding 005"
     }
   }
 }

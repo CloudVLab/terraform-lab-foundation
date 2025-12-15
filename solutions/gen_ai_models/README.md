@@ -18,8 +18,10 @@ This module provisions Generative AI models on Google Cloud.
 | `gemini_flash` | Gemini Flash model details. | Stable |
 | `gemini_flash_lite` | Gemini Flash Lite model details. | Stable |
 | `gemini_flash_image` | Gemini Flash Image (Nano Banana) model details. | Stable |
+| `gemini_flash_live` | Gemini Flash Native Audio model details. | Stable |
 | `gemini_embedding` | Gemini Embedding model details. | Stable |
 | `multimodal_embedding` | Embeddings for Multimodal model details. | Stable |
+| `text_embedding` | Text Embedding model details. | Stable |
 
 ## Adding a Commit
 
