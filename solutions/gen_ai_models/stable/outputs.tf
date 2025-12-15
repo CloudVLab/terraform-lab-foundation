@@ -25,6 +25,11 @@ output "gemini_flash_image" {
   value       = local.models.gemini_flash_image
 }
 
+output "gemini_flash_live" {
+  description = "Gemini Flash Native Audio model details."
+  value       = local.models.gemini_flash_live
+}
+
 output "gemini_embedding" {
   description = "Embedding model details."
   value       = local.models.gemini_embedding
@@ -33,4 +38,9 @@ output "gemini_embedding" {
 output "multimodal_embedding" {
   description = "Embeddings for Multimodal model details."
   value       = local.models.multimodal_embedding
+}
+
+output "text_embedding" {
+  description = "Text Embedding model details."
+  value       = local.models.text_embedding
 }
