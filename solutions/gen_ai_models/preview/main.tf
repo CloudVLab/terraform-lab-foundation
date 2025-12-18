@@ -3,15 +3,15 @@ locals {
   models = {
     "gemini_pro" = {
       "model_id"   = "gemini-3-pro-preview"
-      "model_name" = "Gemini 3.0 Pro"
+      "model_name" = "Gemini 3 Pro"
     },
     "gemini_pro_image" = {
       "model_id"   = "gemini-3-pro-image-preview"
-      "model_name" = "Gemini 3.0 Pro Image"
+      "model_name" = "Gemini 3 Pro Image"
     },
     "gemini_flash" = {
       "model_id"   = "gemini-3-flash-preview"
-      "model_name" = "Gemini 3.0 Flash"
+      "model_name" = "Gemini 3 Flash"
     },
     "gemini_flash_lite" = {
       "model_id"   = "gemini-2.5-flash-lite"
