@@ -7,7 +7,7 @@ locals {
     },
     "gemini_pro_image" = {
       "model_id"   = "gemini-3-pro-image-preview"
-      "model_name" = "Gemini 3 Pro Image"
+      "model_name" = "Nano Banana Pro"
     },
     "gemini_flash" = {
       "model_id"   = "gemini-3-flash-preview"
@@ -19,7 +19,7 @@ locals {
     },
     "gemini_flash_image" = {
       "model_id"   = "gemini-2.5-flash-image"
-      "model_name" = "Gemini 2.5 Flash Image"
+      "model_name" = "Nano Banana"
     },
     "gemini_flash_live" = {
       "model_id"   = "gemini-live-2.5-flash-native-audio"
