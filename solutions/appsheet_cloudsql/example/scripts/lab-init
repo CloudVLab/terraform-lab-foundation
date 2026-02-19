@@ -22,7 +22,7 @@ SQL_SOURCE="$SQL_URL$SQL_FILENAME"
 export SQL_SOURCE
 
 # Download the test database
-gsutil cp "$SQL_SOURCE" /tmp
+gcloud storage cp "$SQL_SOURCE" /tmp
 
 # Get the instance external IP
 MYSQL_IP="$(gcloud compute instances list --format="value(EXTERNAL_IP)")"

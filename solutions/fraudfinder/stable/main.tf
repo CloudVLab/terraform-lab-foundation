@@ -109,7 +109,7 @@ echo "STARTUP-SCRIPT: START"
 
 ## b/419233463 Only Patch if using Proxy
 # Download Patch File
-# gsutil cp gs://spls/tlf-workbench/workbench.patch /tmp/workbench.patch
+# gcloud storage cp gs://spls/tlf-workbench/workbench.patch /tmp/workbench.patch
 
 # Patch configuration
 # sudo -u jupyter patch /home/jupyter/.jupyter/jupyter_notebook_config.py < /tmp/workbench.patch
