@@ -5,7 +5,7 @@ steps:
   args: ['clone', 'https://github.com/CloudVLab/terraform-lab-foundation.git']
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   id: 'Rsync terraform-lab-foundation/basics'
-  args: ['gsutil', '-m', 'rsync', '-d', '-R', 'terraform-lab-foundation/basics', 'gs://terraform-lab-foundation/basics']
+  args: ['gcloud', 'storage', 'rsync', '--delete-unmatched-destination-objects', '--recursive', 'terraform-lab-foundation/basics', 'gs://terraform-lab-foundation/basics']
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   id: 'Rsync terraform-lab-foundation/solutions'
-  args: ['gsutil', '-m', 'rsync', '-d', '-R', 'terraform-lab-foundation/solutions', 'gs://terraform-lab-foundation/solutions']
+  args: ['gcloud', 'storage', 'rsync', '--delete-unmatched-destination-objects', '--recursive', 'terraform-lab-foundation/solutions', 'gs://terraform-lab-foundation/solutions']
