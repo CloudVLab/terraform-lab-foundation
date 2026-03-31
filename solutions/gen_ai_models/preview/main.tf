@@ -26,8 +26,8 @@ locals {
       "model_name" = "Gemini 2.5 Flash Native Audio Preview"
     },
     "gemini_embedding" = {
-      "model_id"   = "gemini-embedding-2-preview"
-      "model_name" = "Gemini Embedding 2"
+      "model_id"   = "gemini-embedding-001"
+      "model_name" = "Gemini Embedding"
     },
     "multimodal_embedding" = {
       "model_id"   = "multimodalembedding@001"
