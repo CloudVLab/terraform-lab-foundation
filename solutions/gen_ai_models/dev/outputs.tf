@@ -1,4 +1,4 @@
-# solutions/gen_ai_models/outputs.tf
+# solutions/gen_ai_models/dev/outputs.tf
 
 output "models" {
   description = "A map of all available Generative AI models."
@@ -8,6 +8,11 @@ output "models" {
 output "gemini_pro" {
   description = "Gemini Pro model details."
   value       = local.models.gemini_pro
+}
+
+output "gemini_pro_image" {
+  description = "Gemini Pro Image model details."
+  value       = local.models.gemini_pro_image
 }
 
 output "gemini_flash" {

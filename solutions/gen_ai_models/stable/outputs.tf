@@ -10,6 +10,11 @@ output "gemini_pro" {
   value       = local.models.gemini_pro
 }
 
+output "gemini_pro_image" {
+  description = "Gemini Pro Image model details."
+  value       = local.models.gemini_pro_image
+}
+
 output "gemini_flash" {
   description = "Gemini Flash model details."
   value       = local.models.gemini_flash
