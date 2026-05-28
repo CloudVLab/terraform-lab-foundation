@@ -5,6 +5,10 @@ locals {
       "model_id"   = "gemini-2.5-pro"
       "model_name" = "Gemini 2.5 Pro"
     },
+    "gemini_pro_image" = {
+      "model_id"   = "gemini-3-pro-image"
+      "model_name" = "Nano Banana Pro"
+    },
     "gemini_flash" = {
       "model_id"   = "gemini-2.5-flash"
       "model_name" = "Gemini 2.5 Flash"
