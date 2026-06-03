@@ -31,7 +31,17 @@ def get_image_display(image_data):
         return "*Not Available*"
     image_id = image_data.get("image_id_short", "")
     image_name = image_data.get("image_name_short", "")
-    return f"`{image_id}`<br>_({image_name})_"
+    image_id_long = image_data.get("image_id_long", "")
+    image_name_long = image_data.get("image_name_long", "")
+    
+    display = ""
+    if image_id and image_name:
+        display += f"`{image_id}`<br>_({image_name})_"
+    if image_id_long and image_name_long:
+        if display:
+            display += "<br><br>"
+        display += f"`{image_id_long}`<br>_({image_name_long})_"
+    return display if display else "*Not Available*"
 
 def main():
     base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -66,7 +76,7 @@ def main():
     lines = [
         "## Accessing Output Values",
         "",
-        "This table compares the configured `image_id_short` and `image_name_short` across the stable, preview, and development channels.",
+        "This table compares the configured `image_id_short`, `image_name_short`, `image_id_long`, and `image_name_long` across the stable, preview, and development channels.",
         "",
         "| Output Field | Description | Stable Channel | Preview Channel | Dev Channel |",
         "|---|---|---|---|---|"
