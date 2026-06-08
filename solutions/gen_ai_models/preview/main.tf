@@ -26,7 +26,7 @@ locals {
       "model_name" = "Gemini 3.1 Flash Live"
     },
     "gemini_embedding" = {
-      "model_id"   = "gemini-embedding-001"
+      "model_id"   = "gemini-embedding-2"
       "model_name" = "Gemini Embedding"
     },
     "multimodal_embedding" = {
