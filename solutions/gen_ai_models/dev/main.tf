@@ -10,8 +10,8 @@ locals {
       "model_name" = "Nano Banana Pro"
     },
     "gemini_flash" = {
-      "model_id"   = "gemini-3.5-flash"
-      "model_name" = "Gemini 3.5 Flash"
+      "model_id"   = "gemini-2.5-flash"
+      "model_name" = "Gemini 2.5 Flash"
     },
     "gemini_flash_lite" = {
       "model_id"   = "gemini-3.1-flash-lite"
@@ -26,8 +26,8 @@ locals {
       "model_name" = "Gemini 3.1 Flash Live"
     },
     "gemini_embedding" = {
-      "model_id"   = "gemini-embedding-2"
-      "model_name" = "Gemini Embedding"
+      "model_id"   = "gemini-embedding-001"
+      "model_name" = "Gemini Embedding 001"
     },
     "multimodal_embedding" = {
       "model_id"   = "multimodalembedding@001"
