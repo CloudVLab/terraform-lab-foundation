@@ -7,5 +7,12 @@ locals {
       "image_id_long"    = "debian-13-trixie"
       "image_name_long"  = "Debian GNU/Linux 13 (trixie)" 
     }
+    "ubuntu" = {
+      "image_id_short"   = "ubuntu-2204-lts"
+      "image_name_short" = "Ubuntu 22.04 LTS" 
+      "image_id_long"    = "ubuntu-2204-lts"
+      "image_name_long"  = "Ubuntu 22.04 LTS"
+      "image_project"    = "ubuntu-os-cloud"
+    }
   }
 }

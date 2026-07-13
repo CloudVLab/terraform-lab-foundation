@@ -9,3 +9,8 @@ output "debian" {
   description = "Debian OS image details."
   value       = local.os_images.debian
 }
+
+output "ubuntu" {
+  description = "Ubuntu OS image details."
+  value       = local.os_images.ubuntu
+}
