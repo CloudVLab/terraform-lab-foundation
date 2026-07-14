@@ -78,5 +78,4 @@ locals {
       "image_project"    = "centos-cloud"
     }
   }
-  }
 }
