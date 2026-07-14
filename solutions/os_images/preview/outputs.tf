@@ -59,3 +59,38 @@ output "centos_stream_9" {
   description = "CentOS Stream 9 OS image details."
   value       = local.os_images.centos_stream_9
 }
+
+output "windows_2022" {
+  description = "Windows Server 2022 OS image details."
+  value       = local.os_images.windows_2022
+}
+
+output "windows_2019" {
+  description = "Windows Server 2019 OS image details."
+  value       = local.os_images.windows_2019
+}
+
+output "windows_2016" {
+  description = "Windows Server 2016 OS image details."
+  value       = local.os_images.windows_2016
+}
+
+output "windows_2019_containers_v20201110" {
+  description = "Windows Server 2019 Datacenter Core for Containers (v20201110) OS image details."
+  value       = local.os_images.windows_2019_containers_v20201110
+}
+
+output "windows_2022_dc" {
+  description = "Windows Server 2022 Datacenter OS image details."
+  value       = local.os_images.windows_2022_dc
+}
+
+output "windows_2019_dc" {
+  description = "Windows Server 2019 Datacenter OS image details."
+  value       = local.os_images.windows_2019_dc
+}
+
+output "windows_2016_dc" {
+  description = "Windows Server 2016 Datacenter OS image details."
+  value       = local.os_images.windows_2016_dc
+}
