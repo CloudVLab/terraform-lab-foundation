@@ -14,5 +14,69 @@ locals {
       "image_name_long"  = "Ubuntu 22.04 LTS (Jammy Jellyfish)"
       "image_project"    = "ubuntu-os-cloud"
     }
+    "ubuntu_2204" = {
+      "image_id_short"   = "ubuntu-2204-lts"
+      "image_name_short" = "Ubuntu 22.04 LTS" 
+      "image_id_long"    = "ubuntu-2204-lts"
+      "image_name_long"  = "Ubuntu 22.04 LTS (Jammy Jellyfish)"
+      "image_project"    = "ubuntu-os-cloud"
+    }
+    "ubuntu_2004" = {
+      "image_id_short"   = "ubuntu-2004-lts"
+      "image_name_short" = "Ubuntu 20.04 LTS" 
+      "image_id_long"    = "ubuntu-2004-lts"
+      "image_name_long"  = "Ubuntu 20.04 LTS (Focal Fossa)"
+      "image_project"    = "ubuntu-os-cloud"
+    }
+    "ubuntu_2404_minimal" = {
+      "image_id_short"   = "ubuntu-minimal-2404-lts-amd64"
+      "image_name_short" = "Ubuntu Minimal 24.04 LTS" 
+      "image_id_long"    = "ubuntu-minimal-2404-lts-amd64"
+      "image_name_long"  = "Ubuntu Minimal 24.04 LTS (Noble Numbat)"
+      "image_project"    = "ubuntu-os-cloud"
+    }
+    "ubuntu_2404_arm64" = {
+      "image_id_short"   = "ubuntu-2404-lts-arm64"
+      "image_name_short" = "Ubuntu 24.04 LTS (ARM64)" 
+      "image_id_long"    = "ubuntu-2404-lts-arm64"
+      "image_name_long"  = "Ubuntu 24.04 LTS (Noble Numbat ARM64)"
+      "image_project"    = "ubuntu-os-cloud"
+    }
+    "ubuntu_1804" = {
+      "image_id_short"   = "ubuntu-1804-lts"
+      "image_name_short" = "Ubuntu 18.04 LTS" 
+      "image_id_long"    = "ubuntu-1804-lts"
+      "image_name_long"  = "Ubuntu 18.04 LTS (Bionic Beaver)"
+      "image_project"    = "ubuntu-os-cloud"
+    }
+    "ubuntu_1604" = {
+      "image_id_short"   = "ubuntu-1604-lts"
+      "image_name_short" = "Ubuntu 16.04 LTS" 
+      "image_id_long"    = "ubuntu-1604-lts"
+      "image_name_long"  = "Ubuntu 16.04 LTS (Xenial Xerus)"
+      "image_project"    = "ubuntu-os-cloud"
+    }
+    "centos_7" = {
+      "image_id_short"   = "centos-7"
+      "image_name_short" = "CentOS 7" 
+      "image_id_long"    = "centos-7"
+      "image_name_long"  = "CentOS 7"
+      "image_project"    = "centos-cloud"
+    }
+    "centos_7_v20201014" = {
+      "image_id_short"   = "centos-7-v20201014"
+      "image_name_short" = "CentOS 7 v20201014" 
+      "image_id_long"    = "centos-7-v20201014"
+      "image_name_long"  = "CentOS 7 (v20201014)"
+      "image_project"    = "centos-cloud"
+    }
+    "centos_stream_9" = {
+      "image_id_short"   = "centos-stream-9"
+      "image_name_short" = "CentOS Stream 9" 
+      "image_id_long"    = "centos-stream-9"
+      "image_name_long"  = "CentOS Stream 9"
+      "image_project"    = "centos-cloud"
+    }
+  }
   }
 }
