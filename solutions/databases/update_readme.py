@@ -10,9 +10,15 @@ def parse_tf_db(file_path):
     with open(file_path, 'r') as f:
         content = f.read()
     
-    block_pattern = re.compile(r'([a-zA-Z0-9_]+)\s*=\s*\{\s*name\s*=\s*"([^"]+)"\s*version\s*=\s*"([^"]+)"\s*\}', re.DOTALL)
+    databases_match = re.search(r'databases\s*=\s*\{(.*)\}', content, re.DOTALL)
+    if not databases_match:
+        return db_versions
     
-    for match in block_pattern.finditer(content):
+    databases_content = databases_match.group(1)
+    
+    block_pattern = re.compile(r'([a-zA-Z0-9_]+)\s*=\s*\{[^}]*?name\s*=\s*"([^"]+)"[^}]*?version\s*=\s*"([^"]+)"[^}]*?\}', re.DOTALL)
+    
+    for match in block_pattern.finditer(databases_content):
         key = match.group(1)
         name = match.group(2)
         version = match.group(3)
@@ -22,6 +28,7 @@ def parse_tf_db(file_path):
         }
         
     return db_versions
+
 
 def get_db_display(db_data):
     if not db_data:
