@@ -45,16 +45,11 @@ def main():
     preview_node = parse_tf_node(preview_path)
     dev_node = parse_tf_node(dev_path)
     
-    # Collect all unique keys in a deterministic order
-    keys_order = [
-        "node"
-    ]
-    
     all_keys = list(set(list(stable_node.keys()) + list(preview_node.keys()) + list(dev_node.keys())))
-    # Sort by keys_order first, then alphabetically for any others
-    all_keys.sort(key=lambda k: keys_order.index(k) if k in keys_order else len(keys_order) + all_keys.index(k))
+    all_keys.sort()
     # Ensure 'node' is always the first element in the table
-    all_keys = ["node"] + [k for k in all_keys if k != "node"]
+    if "node" in all_keys:
+        all_keys = ["node"] + [k for k in all_keys if k != "node"]
     
     # Key descriptions
     descriptions = {

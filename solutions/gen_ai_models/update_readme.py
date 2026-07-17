@@ -60,9 +60,14 @@ def main():
     
     all_keys = list(set(list(stable_models.keys()) + list(preview_models.keys()) + list(dev_models.keys())))
     # Sort by keys_order first, then alphabetically for any others
-    all_keys.sort(key=lambda k: keys_order.index(k) if k in keys_order else len(keys_order) + all_keys.index(k))
+    ordered_keys = [k for k in keys_order if k in all_keys]
+    other_keys = [k for k in all_keys if k not in keys_order]
+    other_keys.sort()
+    all_keys = ordered_keys + other_keys
+    
     # Ensure 'models' is always the first element in the table
-    all_keys = ["models"] + all_keys
+    if "models" not in all_keys:
+        all_keys = ["models"] + all_keys
     
     # Key descriptions
     descriptions = {

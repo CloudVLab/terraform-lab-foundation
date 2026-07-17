@@ -53,18 +53,18 @@ def main():
     stable_images = parse_tf_images(stable_path)
     preview_images = parse_tf_images(preview_path)
     dev_images = parse_tf_images(dev_path)
-    
-    # Collect all unique keys in a deterministic order
     keys_order = [
         "os_images",
         "debian"
     ]
     
     all_keys = list(set(list(stable_images.keys()) + list(preview_images.keys()) + list(dev_images.keys())))
+    
     # Sort by keys_order first, then alphabetically for any others
-    all_keys.sort(key=lambda k: keys_order.index(k) if k in keys_order else len(keys_order) + all_keys.index(k))
-    # Ensure 'os_images' is always the first element in the table
-    all_keys = ["os_images"] + [k for k in all_keys if k != "os_images"]
+    ordered_keys = [k for k in keys_order if k in all_keys]
+    other_keys = [k for k in all_keys if k not in keys_order]
+    other_keys.sort()
+    all_keys = ordered_keys + other_keys
     
     # Key descriptions
     descriptions = {
