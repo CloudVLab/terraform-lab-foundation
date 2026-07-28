@@ -16,17 +16,20 @@ def parse_tf_db(file_path):
     
     databases_content = databases_match.group(1)
     
-    block_pattern = re.compile(r'([a-zA-Z0-9_]+)\s*=\s*\{[^}]*?name\s*=\s*"([^"]+)"[^}]*?version\s*=\s*"([^"]+)"[^}]*?\}', re.DOTALL)
+    block_pattern = re.compile(r'([a-zA-Z0-9_"]+)\s*=\s*\{([^}]+)\}', re.DOTALL)
+    kv_pattern = re.compile(r'([a-zA-Z0-9_"]+)\s*=\s*"([^"]+)"')
     
-    for match in block_pattern.finditer(databases_content):
-        key = match.group(1)
-        name = match.group(2)
-        version = match.group(3)
-        db_versions[key] = {
-            "name": name,
-            "version": version
-        }
+    for block_match in block_pattern.finditer(databases_content):
+        key = block_match.group(1).strip('"')
+        block_body = block_match.group(2)
         
+        db_data = {}
+        for kv_match in kv_pattern.finditer(block_body):
+            db_data[kv_match.group(1).strip('"')] = kv_match.group(2)
+        
+        if db_data:
+            db_versions[key] = db_data
+            
     return db_versions
 
 
