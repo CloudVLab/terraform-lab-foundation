@@ -1,6 +1,6 @@
 # solutions/node/dev/outputs.tf
 
 output "node" {
-  description = "A map of all available node details."
+  description = "Node.js runtime details for this channel."
   value       = local.node
 }

@@ -18,4 +18,4 @@ steps:
 substitutions:  
   _PROVIDER_VER: 1.12.1
   _TERRAFORM_DIR: solutions/node/stable
-tags: ['terraform-lab-foundation', 'gen-ai', 'node']
+tags: ['terraform-lab-foundation', 'node', 'runtime']
