@@ -18,4 +18,4 @@ steps:
 substitutions:  
   _PROVIDER_VER: 1.12.1
   _TERRAFORM_DIR: solutions/databases/stable
-tags: ['terraform-lab-foundation', 'gen-ai', 'databases']
+tags: ['terraform-lab-foundation', 'databases', 'sql']
