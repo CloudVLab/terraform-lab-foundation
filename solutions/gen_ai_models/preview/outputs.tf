@@ -25,6 +25,11 @@ output "gemini_flash_lite" {
   value       = local.models.gemini_flash_lite
 }
 
+output "gemini_flash_lite_image" {
+  description = "Gemini Flash-Lite Image model details."
+  value       = local.models.gemini_flash_lite_image
+}
+
 output "gemini_flash_image" {
   description = "Gemini Flash Image model details."
   value       = local.models.gemini_flash_image
