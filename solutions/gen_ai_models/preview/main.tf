@@ -14,8 +14,8 @@ locals {
       "model_name" = "Gemini 3.7 Flash"
     },
     "gemini_flash_lite" = {
-      "model_id"   = "gemini-3.1-flash-lite"
-      "model_name" = "Gemini 3.1 Flash-Lite"
+      "model_id"   = "gemini-3.5-flash-lite"
+      "model_name" = "Gemini 3.5 Flash-Lite"
     },
     "gemini_flash_lite_image" = {
       "model_id"   = "gemini-3.1-flash-lite-image"
