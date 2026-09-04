@@ -38,42 +38,42 @@ variable "vpcConnectorMachineType" {
   type        = string
   description = "VPC Access Connector Machine Type"
   # Note: valid options: f1-micro, e2-micro, e2-standard-4
-  default     = "e2-micro"
+  default = "e2-micro"
 }
 
 # Custom properties with defaults 
 variable "gcrRegion" {
-  type        = string 
+  type        = string
   description = "Region to create resources in."
-  default     = "us-central1" 
+  default     = "us-central1"
 }
 
 # Custom properties with defaults 
 variable "gcrImageIde" {
-  type        = string 
+  type        = string
   description = "Image to be run by Cloud Run"
-  default     = "gcr.io/qwiklabs-resources/ide-proxy:latest" 
+  default     = "gcr.io/qwiklabs-resources/ide-proxy:latest"
 }
 
 # Custom properties with defaults 
 variable "gcrImageBrowser" {
-  type        = string 
+  type        = string
   description = "Image to be run by Cloud Run"
-  default     = "gcr.io/qwiklabs-resources/certdoc-proxy:latest" 
+  default     = "gcr.io/qwiklabs-resources/certdoc-proxy:latest"
 }
 
 # Custom properties with defaults 
 variable "gceInstanceName" {
-  type        = string 
+  type        = string
   description = "Name of virtual machine."
-  default     = "cloudlearningservices" 
+  default     = "cloudlearningservices"
 }
 
 # Custom properties with defaults 
 variable "gceInstanceZone" {
-  type        = string 
+  type        = string
   description = "Zone to create resources in."
-  default     = "us-central1-f" 
+  default     = "us-central1-f"
 }
 
 # Custom properties with defaults 
@@ -91,9 +91,9 @@ variable "gceMachineImage" {
 
 # Custom properties with defaults 
 variable "gceMachineType" {
-  type        = string 
+  type        = string
   description = "Machine type to use for GCE"
-  default     = "e2-standard-2" 
+  default     = "e2-standard-2"
 }
 
 # Custom properties with defaults 
@@ -115,4 +115,16 @@ variable "gce_startup_script" {
   type        = string
   description = "GCE startup script"
   default     = "echo Welcome to Project Octopus > /tmp/octopus.txt"
+}
+
+variable "vpcConnectorMinInstances" {
+  type        = number
+  description = "Minimum number of instances for VPC Access Connector"
+  default     = 2
+}
+
+variable "vpcConnectorMaxInstances" {
+  type        = number
+  description = "Maximum number of instances for VPC Access Connector"
+  default     = 3
 }

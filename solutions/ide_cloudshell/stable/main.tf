@@ -3,8 +3,8 @@
 
 # Network
 resource "google_compute_network" "dev_network" {
-  name = "dev-network"
-  description = "Developer network"
+  name                    = "dev-network"
+  description             = "Developer network"
   auto_create_subnetworks = false
 }
 
@@ -24,10 +24,10 @@ resource "google_compute_subnetwork" "dev_subnet" {
 
 # Firewall: Allow Serverless to VPC connector
 resource "google_compute_firewall" "serverless-to-vpc-connector" {
-  name    = "serverless-to-vpc-connector"
-  network = google_compute_network.dev_network.name
+  name          = "serverless-to-vpc-connector"
+  network       = google_compute_network.dev_network.name
   source_ranges = ["107.178.230.64/26", "35.199.224.0/19"]
-  direction = "INGRESS"
+  direction     = "INGRESS"
 
   # Enable INGRESS
   allow {
@@ -46,15 +46,15 @@ resource "google_compute_firewall" "serverless-to-vpc-connector" {
   # source_tags = ["web"]
   target_tags = ["vpc-connector"]
 
-  depends_on = [ google_compute_network.dev_network ]
+  depends_on = [google_compute_network.dev_network]
 }
 
 # Firewall: Allow VPC connector to Serverless
 resource "google_compute_firewall" "vpc-connector-to-serverless" {
-  name    = "vpc-connector-to-serverless"
-  network = google_compute_network.dev_network.name
+  name               = "vpc-connector-to-serverless"
+  network            = google_compute_network.dev_network.name
   destination_ranges = ["107.178.230.64/26", "35.199.224.0/19"]
-  direction = "EGRESS"
+  direction          = "EGRESS"
 
   # Enable EGRESS
   allow {
@@ -72,15 +72,15 @@ resource "google_compute_firewall" "vpc-connector-to-serverless" {
 
   target_tags = ["vpc-connector"]
 
-  depends_on = [ google_compute_network.dev_network ]
+  depends_on = [google_compute_network.dev_network]
 }
 
 # Firewall: Allow Healthcheck
 resource "google_compute_firewall" "vpc-connector-health-check" {
-  name    = "vpc-connector-health-check"
-  network = google_compute_network.dev_network.name
+  name          = "vpc-connector-health-check"
+  network       = google_compute_network.dev_network.name
   source_ranges = ["130.211.0.0/22", "35.191.0.0/16", "108.170.220.0/23"]
-  direction = "INGRESS"
+  direction     = "INGRESS"
 
   # Enable INGRESS
   allow {
@@ -90,13 +90,13 @@ resource "google_compute_firewall" "vpc-connector-health-check" {
 
   target_tags = ["vpc-connector"]
 
-  depends_on = [ google_compute_network.dev_network ]
+  depends_on = [google_compute_network.dev_network]
 }
 
 # Firewall: Allow TCP/UDP/ICMP
 resource "google_compute_firewall" "vpc-connector-egress" {
-  name    = "vpc-connector-egress"
-  network = google_compute_network.dev_network.name
+  name      = "vpc-connector-egress"
+  network   = google_compute_network.dev_network.name
   direction = "INGRESS"
 
   # Enable INGRESS
@@ -112,13 +112,13 @@ resource "google_compute_firewall" "vpc-connector-egress" {
 
   source_tags = ["vpc-connector"]
 
-  depends_on = [ google_compute_network.dev_network ]
+  depends_on = [google_compute_network.dev_network]
 }
 
 # Firewall: Allow SSH
 resource "google_compute_firewall" "vm-ssh" {
-  name    = "vm-ssh"
-  network = google_compute_network.dev_network.name
+  name      = "vm-ssh"
+  network   = google_compute_network.dev_network.name
   direction = "INGRESS"
 
   # Enable INGRESS
@@ -129,7 +129,7 @@ resource "google_compute_firewall" "vm-ssh" {
 
   source_tags = ["lab-vm"]
 
-  depends_on = [ google_compute_network.dev_network ]
+  depends_on = [google_compute_network.dev_network]
 }
 
 
@@ -158,7 +158,9 @@ resource "google_vpc_access_connector" "connector" {
   ip_cidr_range = "10.8.0.0/28"
 
   # Note: valid options: f1-micro, e2-micro, e2-standard-4
-  machine_type = var.vpcConnectorMachineType 
+  machine_type  = var.vpcConnectorMachineType
+  min_instances = var.vpcConnectorMinInstances
+  max_instances = var.vpcConnectorMaxInstances
 
   depends_on = [
     google_project_service.vpcaccess-api, google_compute_network.dev_network
@@ -185,7 +187,7 @@ resource "google_project_service" "run" {
 
 # Cloud Run: IDE
 resource "google_cloud_run_service" "ide" {
-  name     = "ide-service" 
+  name = "ide-service"
   # location = var.gcrRegion
   location = var.gcp_region
 
@@ -200,16 +202,16 @@ resource "google_cloud_run_service" "ide" {
     # Add support for vpc connector
     metadata {
       annotations = {
-        "autoscaling.knative.dev/maxScale" = "3"
-        "autoscaling.knative.dev/minScale" = "1"
-        "run.googleapis.com/vpc-access-egress" = "all"
+        "autoscaling.knative.dev/maxScale"        = "3"
+        "autoscaling.knative.dev/minScale"        = "1"
+        "run.googleapis.com/vpc-access-egress"    = "all"
         "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.connector.name
       }
     }
   }
 
   traffic {
-    percent = 100
+    percent         = 100
     latest_revision = true
   }
 
@@ -220,7 +222,7 @@ resource "google_cloud_run_service" "ide" {
 
 # Cloud Run: Browser 
 resource "google_cloud_run_service" "browser" {
-  name     = "browser-service"
+  name = "browser-service"
   # location = var.gcrRegion
   location = var.gcp_region
 
@@ -235,16 +237,16 @@ resource "google_cloud_run_service" "browser" {
     # Add support for vpc connector
     metadata {
       annotations = {
-        "autoscaling.knative.dev/maxScale" = "3"
-        "autoscaling.knative.dev/minScale" = "1"
-        "run.googleapis.com/vpc-access-egress" = "all"
+        "autoscaling.knative.dev/maxScale"        = "3"
+        "autoscaling.knative.dev/minScale"        = "1"
+        "run.googleapis.com/vpc-access-egress"    = "all"
         "run.googleapis.com/vpc-access-connector" = google_vpc_access_connector.connector.name
       }
     }
   }
 
   traffic {
-    percent = 100
+    percent         = 100
     latest_revision = true
   }
 
@@ -264,18 +266,18 @@ data "google_iam_policy" "noauth" {
 
 # Cloud Run: IDE Policy
 resource "google_cloud_run_service_iam_policy" "ide_noauth" {
-  location    = google_cloud_run_service.ide.location
-  project     = google_cloud_run_service.ide.project
-  service     = google_cloud_run_service.ide.name
+  location = google_cloud_run_service.ide.location
+  project  = google_cloud_run_service.ide.project
+  service  = google_cloud_run_service.ide.name
 
   policy_data = data.google_iam_policy.noauth.policy_data
 }
 
 # Cloud Run: Browser Policy
 resource "google_cloud_run_service_iam_policy" "browser_noauth" {
-  location    = google_cloud_run_service.browser.location
-  project     = google_cloud_run_service.browser.project
-  service     = google_cloud_run_service.browser.name
+  location = google_cloud_run_service.browser.location
+  project  = google_cloud_run_service.browser.project
+  service  = google_cloud_run_service.browser.name
 
   policy_data = data.google_iam_policy.noauth.policy_data
 }
@@ -284,7 +286,7 @@ resource "google_cloud_run_service_iam_policy" "browser_noauth" {
 
 # Compute Image: qwiklabs-resources
 data "google_compute_image" "image_family" {
-  family  = var.gceMachineImage 
+  family  = var.gceMachineImage
   project = "qwiklabs-resources"
 }
 
@@ -296,20 +298,20 @@ data "google_compute_image" "image_family" {
 # GCE: Instance
 resource "google_compute_instance" "default" {
 
-  name         = var.gceInstanceName 
+  name         = var.gceInstanceName
   machine_type = var.gceMachineType
-  zone         = var.gceInstanceZone 
+  zone         = var.gceInstanceZone
 
   tags = var.gceInstanceTags
 
   boot_disk {
     initialize_params {
-      image = data.google_compute_image.image_family.self_link 
+      image = data.google_compute_image.image_family.self_link
     }
   }
 
   network_interface {
-    subnetwork      = google_compute_subnetwork.dev_subnet.name
+    subnetwork = google_compute_subnetwork.dev_subnet.name
 
     access_config {
       // Ephemeral IP
