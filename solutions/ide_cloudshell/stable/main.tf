@@ -300,7 +300,7 @@ resource "google_compute_instance" "default" {
 
   name         = var.gceInstanceName
   machine_type = var.gceMachineType
-  zone         = var.gceInstanceZone
+  zone         = coalesce(var.gceInstanceZone, var.gcp_zone)
 
   tags = var.gceInstanceTags
 
