@@ -15,7 +15,7 @@ resource "google_compute_network" "dev_network" {
 resource "google_compute_subnetwork" "dev_subnet" {
   name          = "dev-subnetwork"
   ip_cidr_range = "10.128.0.0/16"
-  region        = "us-central1"
+  region        = var.gcp_region
   network       = google_compute_network.dev_network.id
 }
 
@@ -300,7 +300,7 @@ resource "google_compute_instance" "default" {
 
   name         = var.gceInstanceName
   machine_type = var.gceMachineType
-  zone         = var.gceInstanceZone
+  zone         = coalesce(var.gceInstanceZone, var.gcp_zone)
 
   tags = var.gceInstanceTags
 

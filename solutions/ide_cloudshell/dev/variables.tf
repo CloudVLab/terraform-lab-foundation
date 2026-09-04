@@ -84,8 +84,8 @@ variable "gceInstanceName" {
 # Custom properties with defaults 
 variable "gceInstanceZone" {
   type        = string 
-  description = "Zone to create resources in."
-  default     = "us-central1-f" 
+  description = "Zone to create resources in. If null, defaults to gcp_zone."
+  default     = null 
 }
 
 # Custom properties with defaults 
