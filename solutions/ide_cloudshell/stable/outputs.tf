@@ -3,16 +3,16 @@
 ## --------------------------------------------------------------
 
 output "ideEditorService" {
-  value       = "${google_cloud_run_service.ide.status[0].url}"
+  value       = google_cloud_run_service.ide.status[0].url
   description = "URL of the IDE service"
 }
 
 output "ideBrowserService" {
-  value       = "${google_cloud_run_service.browser.status[0].url}"
+  value       = google_cloud_run_service.browser.status[0].url
   description = "URL of the Browser service"
 }
 
 output "ideInstanceName" {
-  value       = "${var.gceInstanceName}"
+  value       = var.gceInstanceName
   description = "Name of the GCE instance"
 }

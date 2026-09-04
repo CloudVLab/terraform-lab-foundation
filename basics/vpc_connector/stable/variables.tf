@@ -31,26 +31,38 @@ variable "gcp_zone" {
 variable "sva_name" {
   type        = string
   description = "Name of the VPC connector."
-  default     = "ideconn" 
+  default     = "ideconn"
 }
 
 # Default value passed in
 variable "sva_network" {
   type        = string
   description = "Name of the VPC network to use."
-  default     = "default" 
+  default     = "default"
 }
 
 # Default value passed in
 variable "sva_subnet_cidr" {
   type        = string
   description = "VPC subnetwork to cidr."
-  default     = "10.8.0.0/28" 
+  default     = "10.8.0.0/28"
 }
 
 # Default value passed in
 variable "sva_connector_machine_type" {
   type        = string
   description = "VPC connector machine default."
-  default     = "f1-micro" 
+  default     = "f1-micro"
+}
+
+variable "sva_connector_min_instances" {
+  type        = number
+  description = "Minimum number of instances for VPC Access Connector"
+  default     = 2
+}
+
+variable "sva_connector_max_instances" {
+  type        = number
+  description = "Maximum number of instances for VPC Access Connector"
+  default     = 3
 }
