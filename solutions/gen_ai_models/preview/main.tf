@@ -26,8 +26,8 @@ locals {
       "model_name" = "Nano Banana 2"
     },
     "gemini_flash_live" = {
-      "model_id"   = "gemini-3.1-flash-live-preview"
-      "model_name" = "Gemini 3.1 Flash Live"
+      "model_id"   = "gemini-3.8-live"
+      "model_name" = "Gemini 3.8 Live"
     },
     "gemini_embedding" = {
       "model_id"   = "gemini-embedding-2"
