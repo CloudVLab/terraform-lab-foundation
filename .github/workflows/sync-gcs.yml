@@ -1,0 +1,146 @@
+name: Validate and Sync Modules to GCS
+
+on:
+  pull_request:
+    paths:
+      - 'basics/**'
+      - 'solutions/**'
+      - '.github/workflows/sync-gcs.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'basics/**'
+      - 'solutions/**'
+      - '.github/workflows/sync-gcs.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-gcs-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate Modified Terraform Modules
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
+        with:
+          terraform_version: '1.12.1'
+          terraform_wrapper: false
+
+      - name: Validate modified Terraform directories
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          BEFORE_SHA: ${{ github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+
+          DIFF_FILES=""
+          if [ "$EVENT_NAME" = "pull_request" ] && [ -n "$BASE_SHA" ]; then
+            DIFF_FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- 'basics/**/*.tf' 'solutions/**/*.tf')
+          elif [ "$EVENT_NAME" = "push" ] && [ -n "$BEFORE_SHA" ] && [ "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
+            DIFF_FILES=$(git diff --name-only "$BEFORE_SHA" "$HEAD_SHA" -- 'basics/**/*.tf' 'solutions/**/*.tf')
+          fi
+
+          if [ -z "$DIFF_FILES" ]; then
+            echo "No modified .tf files detected in basics/ or solutions/; skipping Terraform validation."
+            exit 0
+          fi
+
+          DIRS=$(printf '%s\n' "$DIFF_FILES" | xargs -r -n1 dirname | sort -u)
+          FAILED=0
+          while IFS= read -r dir; do
+            if [ -z "$dir" ] || [ ! -d "$dir" ] || ! compgen -G "${dir}/*.tf" > /dev/null; then
+              continue
+            fi
+            echo "------------------------------------------------------------"
+            echo "Validating: $dir"
+            echo "------------------------------------------------------------"
+            if ! terraform fmt -check "$dir"; then
+              echo "Formatting check failed for $dir (run 'terraform fmt $dir')"
+              FAILED=1
+            fi
+            if ! (
+              cd "$dir"
+              terraform init -backend=false -input=false
+              terraform validate
+              rm -rf .terraform .terraform.lock.hcl
+            ); then
+              echo "Terraform validate failed for $dir"
+              FAILED=1
+            fi
+          done <<< "$DIRS"
+
+          if [ "$FAILED" -ne 0 ]; then
+            exit 1
+          fi
+
+  sync:
+    name: Sync Modules to GCS Mirror
+    needs: validate
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Authenticate to Google Cloud via WIF
+        uses: google-github-actions/auth@c200f3691d83b41bf9bbd8638997a462592937ed # v2
+        with:
+          workload_identity_provider: 'projects/1030115194620/locations/global/workloadIdentityPools/github-actions/providers/cloudvlab-tlf'
+          service_account: 'tlf-bucket-sync@qwiklabs-resources.iam.gserviceaccount.com'
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@e427ad8a34f8676edf47cf7d7925499adf3eb74f # v2
+
+      - name: Rsync basics/ and solutions/ to gs://terraform-lab-foundation
+        run: |
+          set -euo pipefail
+          echo "Syncing basics/ to gs://terraform-lab-foundation/basics..."
+          gcloud storage rsync \
+            --checksums-only \
+            --recursive \
+            --exclude='^\.terraform.*|.*\.gitkeep$' \
+            basics/ gs://terraform-lab-foundation/basics
+
+          echo "Syncing solutions/ to gs://terraform-lab-foundation/solutions..."
+          gcloud storage rsync \
+            --checksums-only \
+            --recursive \
+            --exclude='^\.terraform.*|.*\.gitkeep$' \
+            solutions/ gs://terraform-lab-foundation/solutions
+
+      - name: Write Step Summary
+        env:
+          COMMIT_SHA: ${{ github.sha }}
+          ACTOR: ${{ github.actor }}
+        run: |
+          {
+            echo "## Synced Modules to GCS Mirror"
+            echo ""
+            echo "- **Bucket:** \`gs://terraform-lab-foundation/{basics,solutions}\`"
+            echo "- **Commit:** \`${COMMIT_SHA}\`"
+            echo "- **Triggered by:** \`${ACTOR}\`"
+          } >> "$GITHUB_STEP_SUMMARY"
