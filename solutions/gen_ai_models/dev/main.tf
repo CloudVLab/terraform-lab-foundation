@@ -1,5 +1,4 @@
 # solutions/gen_ai_models/dev/main.tf
-# Dev channel Gen AI model registry mirrored to gs://terraform-lab-foundation/solutions/gen_ai_models/dev
 locals {
   models = {
     "gemini_pro" = {
