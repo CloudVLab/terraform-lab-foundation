@@ -1,11 +1,6 @@
-name: Validate and Sync Modules to GCS
+name: Sync Modules to GCS
 
 on:
-  pull_request:
-    paths:
-      - 'basics/**'
-      - 'solutions/**'
-      - '.github/workflows/sync-gcs.yml'
   push:
     branches:
       - main
@@ -45,17 +40,14 @@ jobs:
       - name: Validate modified Terraform directories
         env:
           EVENT_NAME: ${{ github.event_name }}
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
           BEFORE_SHA: ${{ github.event.before }}
           HEAD_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
 
           DIFF_FILES=""
-          if [ "$EVENT_NAME" = "pull_request" ] && [ -n "$BASE_SHA" ]; then
-            DIFF_FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- 'basics/**/*.tf' 'solutions/**/*.tf')
-          elif [ "$EVENT_NAME" = "push" ] && [ -n "$BEFORE_SHA" ] && [ "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
-            DIFF_FILES=$(git diff --name-only "$BEFORE_SHA" "$HEAD_SHA" -- 'basics/**/*.tf' 'solutions/**/*.tf')
+          if [ "$EVENT_NAME" = "push" ] && [ -n "$BEFORE_SHA" ] && [ "$BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
+            DIFF_FILES=$(git diff --no-renames --name-only "$BEFORE_SHA" "$HEAD_SHA" -- 'basics/**/*.tf' 'solutions/**/*.tf')
           fi
 
           if [ -z "$DIFF_FILES" ]; then
@@ -94,7 +86,7 @@ jobs:
   sync:
     name: Sync Modules to GCS Mirror
     needs: validate
-    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main')
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
