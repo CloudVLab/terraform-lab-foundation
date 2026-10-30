@@ -18,7 +18,7 @@ This table compares the configured `model_id` and `model_name` across the stable
 | `gemini_pro` | Gemini Pro model details. | `gemini-3.8-flash`<br>_(Gemini 3.8 Flash)_ | `gemini-3.1-pro-preview`<br>_(Gemini 3.1 Pro)_ | `gemini-3.1-pro-preview`<br>_(Gemini 3.1 Pro)_ |
 | `gemini_pro_image` | Gemini Pro Image model details. | `gemini-3-pro-image`<br>_(Nano Banana Pro)_ | `gemini-3-pro-image`<br>_(Nano Banana Pro)_ | `gemini-3-pro-image`<br>_(Nano Banana Pro)_ |
 | `gemini_flash` | Gemini Flash model details. | `gemini-3.6-flash`<br>_(Gemini 3.6 Flash)_ | `gemini-3.8-flash`<br>_(Gemini 3.8 Flash)_ | `gemini-3.6-flash`<br>_(Gemini 3.6 Flash)_ |
-| `gemini_flash_lite` | Gemini Flash Lite model details. | `gemini-3.5-flash-lite`<br>_(Gemini 3.5 Flash-Lite)_ | `gemini-3.5-flash-lite`<br>_(Gemini 3.5 Flash-Lite)_ | `gemini-3.5-flash-lite`<br>_(Gemini 3.5 Flash-Lite)_ |
+| `gemini_flash_lite` | Gemini Flash Lite model details. | `gemini-3.6-flash-lite`<br>_(Gemini 3.6 Flash-Lite)_ | `gemini-3.6-flash-lite`<br>_(Gemini 3.6 Flash-Lite)_ | `gemini-3.6-flash-lite`<br>_(Gemini 3.6 Flash-Lite)_ |
 | `gemini_flash_lite_image` | Gemini Flash Lite Image model details. | `gemini-3.1-flash-lite-image`<br>_(Nano Banana 2 Lite)_ | `gemini-3.1-flash-lite-image`<br>_(Nano Banana 2 Lite)_ | `gemini-3.1-flash-lite-image`<br>_(Nano Banana 2 Lite)_ |
 | `gemini_flash_image` | Gemini Flash Image model details. | `gemini-3.1-flash-image`<br>_(Nano Banana 2)_ | `gemini-3.1-flash-image`<br>_(Nano Banana 2)_ | `gemini-3.1-flash-image`<br>_(Nano Banana 2)_ |
 | `gemini_flash_live` | Gemini Flash Native Audio model details. | `gemini-3.8-live`<br>_(Gemini 3.8 Live)_ | `gemini-3.8-live`<br>_(Gemini 3.8 Live)_ | `gemini-3.8-live`<br>_(Gemini 3.8 Live)_ |
