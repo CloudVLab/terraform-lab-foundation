@@ -2,11 +2,15 @@
 ## Custom variable definitions
 ## --------------------------------------------------------------
 output "wait_identity_delay" {
-  value = time_sleep.wait_identity_delay.id
+  value       = time_sleep.wait_identity_delay.id
   description = "Custom delay for API to be enabled"
 }
 
 output "service_account_emails" {
-  value = { for k, v in google_project_service_identity.tlf : k => v.member }
+  value       = { for k, v in google_project_service_identity.tlf : k => v.member }
   description = "Map of service names key to their corresponding service account property value"
+
+  # Ensure consumers reading service_account_emails wait for IAM propagation
+  # after google_project_service_identity creation.
+  depends_on = [time_sleep.wait_identity_delay]
 }
